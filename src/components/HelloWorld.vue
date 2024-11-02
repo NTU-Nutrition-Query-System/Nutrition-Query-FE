@@ -1,41 +1,88 @@
-<script setup lang="ts">
-defineProps<{
-  msg: string
-}>()
-</script>
-
 <template>
-  <div class="greetings">
-    <h1 class="green">{{ msg }}</h1>
-    <h3>
-      You’ve successfully created a project with
-      <a href="https://vite.dev/" target="_blank" rel="noopener">Vite</a> +
-      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>.
-    </h3>
+  <div class="message-board">
+    <h2 class="board-title">公告板</h2>
+
+    <div class="messages">
+      <p-card v-for="(message, index) in messages" :key="index" class="message-card">
+        <template #header>
+          <div class="message-header">
+            <i class="pi pi-info-circle" />
+            <span class="message-title">{{ message.title }}</span>
+          </div>
+        </template>
+        <p>{{ message.content }}</p>
+        <template #footer>
+          <div class="message-footer">{{ message.date }}</div>
+        </template>
+      </p-card>
+    </div>
   </div>
 </template>
 
+<script setup lang="ts">
+import { ref } from 'vue';
+import Card from 'primevue/card';
+
+const messages = ref([
+  {
+    title: '系統維護通知',
+    content: '本系統將於本周五進行維護，期間將無法使用。',
+    date: '2024-10-15',
+  },
+  {
+    title: '新功能上線',
+    content: '我們將於下月推出新功能，敬請期待！',
+    date: '2024-10-10',
+  },
+  {
+    title: '使用者回饋',
+    content: '感謝各位使用者的寶貴意見，我們會持續改進！',
+    date: '2024-10-01',
+  },
+]);
+</script>
+
 <style scoped>
-h1 {
-  font-weight: 500;
-  font-size: 2.6rem;
-  position: relative;
-  top: -10px;
+.message-board {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-h3 {
-  font-size: 1.2rem;
-}
-
-.greetings h1,
-.greetings h3 {
+.board-title {
   text-align: center;
+  margin-bottom: 20px;
+  font-size: 2em;
+  color: #333;
 }
 
-@media (min-width: 1024px) {
-  .greetings h1,
-  .greetings h3 {
-    text-align: left;
-  }
+.messages {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.message-card {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.message-header {
+  display: flex;
+  align-items: center;
+}
+
+.message-title {
+  margin-left: 10px;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.message-footer {
+  text-align: right;
+  font-size: 0.85em;
+  color: #888;
 }
 </style>
