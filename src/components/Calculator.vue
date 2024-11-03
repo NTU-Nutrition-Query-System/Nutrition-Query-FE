@@ -30,10 +30,10 @@ const calculateDailyNeed = () => {
 const calculate = () => {
   showResult.value = true
   console.log(selectedProduct.value)
-  
+
 }
 
-const nextOnclicked = () => {
+const nextOnClicked = () => {
   isExpanded.value = true;
   calculateDailyNeed();
 };
@@ -44,17 +44,17 @@ const { locale } = useI18n();
 
 <template>
   <head>
-    
+
   </head>
   <div>
     <div
-    class="calculator-decription-title"
+    class="calculator-description-title"
     >
     <h1>{{$t('calculator')}}</h1>
     </div>
-  
+
   </div>
-  
+
   <div class="calculator" :class="{'expanded': isExpanded}">
     <div class="gender-selection flex justify-between items-center">
   <label class="font-bold block mb-2">{{$t('calculator_input_gender')}}</label>
@@ -85,42 +85,43 @@ const { locale } = useI18n();
         <label for="weight" class="font-bold block mb-2">{{$t('weight')}}</label>
         <InputNumber v-model="weight" suffix=" kg" fluid class="input-field" />
       </div>
-      <Button class="tab" label="Next" @click="nextOnclicked" />
+      <Button class="tab" label="Next" @click="nextOnClicked" />
       <Button class="tab" label="Collapse" @click="isExpanded = false" />
     </div>
 
     <div class="calculator_result" v-if="isExpanded">
       <h3>{{$t('calculator_result_daily_title')}}</h3>
-      
+
       <div class="display-row" v-for="(value, key) in dailyNeeds" :key="key">
         <label>{{$t(key)}}:</label>
         <span>{{ (value).toFixed(2) }} ({{ key === 'calories' ? 'kcal' : 'g' }})</span>
       </div>
       <h3>{{$t('calculator_result_meal_title')}}</h3>
-      
+
       <div class="display-row" v-for="(value, key) in dailyNeeds" :key="key">
         <label>{{$t(key)}}:</label>
         <span>{{ (value / 3.0).toFixed(2) }} ({{ key === 'calories' ? 'kcal' : 'g' }})</span>
       </div>
-      
+
     </div>
   </div>
 <Button class="tab" :label="$t('calculate')" @click="calculate" />
 
 <FoodTable
     v-model:selectedProduct="selectedProduct"
-/> 
-<CaloricResult 
+/>
+<CaloricResult
   v-model:visible="showResult"
   v-model:selectedData="selectedProduct"
+  v-model:needData="dailyNeeds"
 ></CaloricResult>
 </template>
 
 <style>
-.calculator-decription-title{
+.calculator-description-title{
   text-align: center;
 }
-.calculator-decription-content{
+.calculator-description-content{
   text-align: center;
 }
 .calculator {

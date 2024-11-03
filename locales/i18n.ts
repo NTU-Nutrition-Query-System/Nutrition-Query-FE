@@ -25,6 +25,9 @@ const messages = {
     food_gram: 'Grams',
     food_dt_fibre: 'Dietary fibre',
     selection_result_title: 'Am I not getting enough nutrients from the meals I selected?',
+    selection_nutrition: 'Nutrition',
+    selection_intake: 'Intake',
+    selection_uptake_percentage: 'Uptake Percentage'
   },
   ch: {
     select_language: '語言',
@@ -49,7 +52,9 @@ const messages = {
     food_gram: '克數',
     food_dt_fibre: '膳食纖維',
     selection_result_title: '我選擇的餐食營養素夠不夠呢?',
-    
+    selection_nutrition: '營養素',
+    selection_intake: '攝取量',
+    selection_uptake_percentage: '攝取百分比'
   },
 };
 
