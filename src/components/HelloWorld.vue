@@ -3,7 +3,11 @@
     <h2 class="board-title">公告板</h2>
 
     <div class="messages">
-      <p-card v-for="(message, index) in messages" :key="index" class="message-card">
+      <p-card
+        v-for="(message, index) in messages"
+        :key="index"
+        class="message-card"
+      >
         <template #header>
           <div class="message-header">
             <i class="pi pi-info-circle" />
@@ -20,24 +24,24 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import Card from 'primevue/card';
+import { ref } from "vue";
+import Card from "primevue/card";
 
 const messages = ref([
   {
-    title: '系統維護通知',
-    content: '本系統將於本周五進行維護，期間將無法使用。',
-    date: '2024-10-15',
+    title: "系統維護通知",
+    content: "本系統將於本周五進行維護，期間將無法使用。",
+    date: "2024-10-15",
   },
   {
-    title: '新功能上線',
-    content: '我們將於下月推出新功能，敬請期待！',
-    date: '2024-10-10',
+    title: "新功能上線",
+    content: "我們將於下月推出新功能，敬請期待！",
+    date: "2024-10-10",
   },
   {
-    title: '使用者回饋',
-    content: '感謝各位使用者的寶貴意見，我們會持續改進！',
-    date: '2024-10-01',
+    title: "使用者回饋",
+    content: "感謝各位使用者的寶貴意見，我們會持續改進！",
+    date: "2024-10-01",
   },
 ]);
 </script>
