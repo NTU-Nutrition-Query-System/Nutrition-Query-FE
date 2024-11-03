@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 import DataTable from "primevue/datatable";
+import InputText from "primevue/inputtext";
 import Column from "primevue/column";
+import { FilterMatchMode } from "@primevue/core/api";
 import ColumnGroup from "primevue/columngroup"; // optional
 import Row from "primevue/row"; // optional
 import { useI18n } from "vue-i18n";
@@ -11,7 +13,9 @@ const emit = defineEmits(["update:selectedProduct"]);
 watch(selectedProduct, (newSelection) => {
   emit("update:selectedProduct", newSelection);
 });
-
+const filters = ref({
+  global: { value: null, matchMode: FilterMatchMode.CONTAINS },
+});
 const fake_products = ref([
   {
     id: 1,
@@ -331,9 +335,24 @@ const fake_products = ref([
     <DataTable
       v-model:selection="selectedProduct"
       :value="fake_products"
+      :globalFilterFields="['item', 'class']"
+      :filters="filters"
       dataKey="id"
       tableStyle="min-width: 50rem"
     >
+      <template #header>
+        <div class="flex justify-end">
+          <IconField>
+            <InputIcon>
+              <i class="pi pi-search" />
+            </InputIcon>
+            <InputText
+              v-model="filters['global'].value"
+              placeholder="Keyword Search"
+            />
+          </IconField>
+        </div>
+      </template>
       <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
       <Column field="item" :header="$t('food_item')"></Column>
       <Column field="class" :header="$t('food_class')"></Column>

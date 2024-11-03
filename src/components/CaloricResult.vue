@@ -7,6 +7,7 @@ import DataTable from "primevue/datatable";
 import Column from "primevue/column";
 import ColumnGroup from "primevue/columngroup"; // optional
 import Row from "primevue/row"; // optional
+import type { nutrient, foodItem } from "../interfaces/Calculator";
 
 const fake_products = ref([
   {
@@ -33,13 +34,6 @@ const fake_products = ref([
 const { t } = useI18n();
 const { locale } = useI18n();
 
-interface nutrition {
-  calories: number;
-  protein: number;
-  carbohydrate: number;
-  fat: number;
-}
-
 const props = defineProps({
   visible: {
     type: Boolean,
@@ -50,35 +44,13 @@ const props = defineProps({
     required: true,
   },
   needData: {
-    type: Object as () => nutrition,
+    type: Object as () => nutrient,
     required: true,
   },
 });
 
-interface foodItem {
-  id: number;
-  item: string;
-  class: string;
-  gram: number;
-  calories: number;
-  carbohydrate: number;
-  fat: number;
-  protein: number;
-}
-
-interface foodItem {
-  id: number;
-  item: string;
-  class: string;
-  gram: number;
-  calories: number;
-  carbohydrate: number;
-  fat: number;
-  protein: number;
-}
-
-const selectedValue = computed<nutrition>(() => {
-  return props.selectedData.reduce<nutrition>(
+const selectedValue = computed<nutrient>(() => {
+  return props.selectedData.reduce<nutrient>(
     (acc, item) => {
       acc.calories += item.calories;
       acc.protein += item.protein;

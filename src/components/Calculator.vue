@@ -6,6 +6,7 @@ import RadioButton from "primevue/radiobutton";
 import FoodTable from "./FoodTable.vue";
 import { useI18n } from "vue-i18n";
 import CaloricResult from "./CaloricResult.vue";
+import type { nutrient } from "../interfaces/Calculator";
 // Declare reactive variables using `ref`
 const age = ref<number>(0);
 const height = ref<number>(0);
@@ -13,7 +14,7 @@ const weight = ref<number>(0);
 const gender = ref("Male");
 const isExpanded = ref<boolean>(false);
 const showResult = ref<boolean>(false);
-const dailyNeeds = ref({
+const dailyNeeds = ref<nutrient>({
   calories: 0,
   protein: 0,
   carbohydrate: 0,
@@ -28,7 +29,14 @@ const calculateDailyNeed = () => {
     dailyNeeds.value.calories =
       665 + 9.6 * weight.value + 1.8 * height.value - 4.7 * age.value;
   }
+
+  dailyNeeds.value.protein = weight.value * 1;
+
+  dailyNeeds.value.carbohydrate = (dailyNeeds.value.calories * 0.5) / 4;
+
+  dailyNeeds.value.fat = (dailyNeeds.value.calories * 0.3) / 9;
 };
+
 const calculate = () => {
   showResult.value = true;
   console.log(selectedProduct.value);
