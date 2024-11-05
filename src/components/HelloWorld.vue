@@ -1,4 +1,10 @@
 <template>
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
   <div class="message-board">
     <h2 class="board-title">公告板</h2>
 

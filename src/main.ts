@@ -5,6 +5,7 @@ import Aura from "@primevue/themes/aura";
 import { definePreset } from "@primevue/themes";
 import router from "./router";
 import i18n from "../locales/i18n"; // Import i18n configuration
+import "./assets/base.css";
 // Create the Vue app
 const app = createApp(App);
 const MyPreset = definePreset(Aura, {

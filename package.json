@@ -8,7 +8,9 @@
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
     "build-only": "vite build",
-    "type-check": "vue-tsc --build --force"
+    "type-check": "vue-tsc --build --force",
+    "code-lint-all": "eslint --quiet -c ./.vscode/code-lint-vue3-typescript.json --ignore-path ./.vscode/.eslintignore --no-eslintrc --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts ./",
+    "code-lint-all-quiet": "eslint --quiet -o ./code-lint-all-output.json -f json -c ./.vscode/code-lint-vue3-typescript.json --ignore-path ./.vscode/.eslintignore --no-eslintrc --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts ./ || exit 0"
   },
   "dependencies": {
     "@primevue/themes": "^4.1.0",
@@ -25,10 +27,20 @@
     "@types/node": "^20.16.11",
     "@vitejs/plugin-vue": "^5.1.4",
     "@vitejs/plugin-vue-jsx": "^4.0.1",
+    "@vue/eslint-config-prettier": "7",
+    "@vue/eslint-config-typescript": "10",
     "@vue/tsconfig": "^0.5.1",
+    "eslint": "8",
+    "eslint-plugin-vue": "8",
+    "husky": "7",
     "npm-run-all2": "^6.2.3",
+    "prettier": "2",
     "typescript": "~5.5.4",
+    "undefined": "^0.1.0",
     "vite": "^5.4.8",
     "vue-tsc": "^2.1.6"
+  },
+  "lint-staged": {
+    "*.{js,ts,jsx,tsx,vue,cjs,mjs,cts,mts}": "eslint --quiet -f ./.vscode/code-lint-stylish-formatter.js -c ./.vscode/code-lint-vue3-typescript.json --ignore-path ./.vscode/.eslintignore --no-eslintrc"
   }
 }

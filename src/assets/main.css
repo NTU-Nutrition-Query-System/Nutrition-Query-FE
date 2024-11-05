@@ -1,5 +1,7 @@
-@import './base.css';
-
+@import "./base.css";
+* {
+  font-family: "Inter", sans-serif; /* 這裡可以改成您要的字體 */
+}
 #app {
   max-width: 1280px;
   margin: 0 auto;

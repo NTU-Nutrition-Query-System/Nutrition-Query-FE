@@ -52,7 +52,12 @@ const { locale } = useI18n();
 </script>
 
 <template>
-  <head> </head>
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
   <div>
     <div class="calculator-description-title">
       <h1>{{ $t("calculator") }}</h1>
