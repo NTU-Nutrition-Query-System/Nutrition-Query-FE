@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import InputNumber from "primevue/inputnumber";
 import { useI18n } from "vue-i18n";
-import { defineProps, ref, watch, defineEmits, computed } from "vue";
+import { ref, watch, computed } from "vue";
 import Dialog from "primevue/dialog";
 import DataTable from "primevue/datatable";
 import Column from "primevue/column";
