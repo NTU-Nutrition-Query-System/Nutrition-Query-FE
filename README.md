@@ -36,3 +36,9 @@ npm run dev
 ```sh
 npm run build
 ```
+
+### Start the web server
+- server will start on localhost:3000
+```sh
+node server.js
+```
