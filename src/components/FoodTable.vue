@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { ref, watch, computed } from "vue";
 import DataTable from "primevue/datatable";
 import InputText from "primevue/inputtext";
 import Column from "primevue/column";
@@ -7,9 +7,18 @@ import { FilterMatchMode } from "@primevue/core/api";
 import ColumnGroup from "primevue/columngroup"; // optional
 import Row from "primevue/row"; // optional
 import { useI18n } from "vue-i18n";
+import Card from "primevue/card";
+import Button from "primevue/button";
+import Dialog from "primevue/dialog";
+import type { foodItem } from "@/interfaces/Calculator";
 const selectedProduct = ref();
-
-const emit = defineEmits(["update:selectedProduct"]);
+const dialogVisible = ref(false);
+const selectedClass = ref(0);
+const class1Clicked = (index: number) => {
+  dialogVisible.value = true;
+  selectedClass.value = index;
+};
+const emit = defineEmits(["update:selectedProduct", "update:visible"]);
 watch(selectedProduct, (newSelection) => {
   emit("update:selectedProduct", newSelection);
 });
@@ -328,52 +337,90 @@ const fake_products = ref([
     protein: 3.1,
   },
 ]);
+const productsFilterByCategories = computed(() => {
+  if (!categories || !Array.isArray(categories) || !fake_products.value) {
+    return [];
+  }
+
+  return categories.map((category) =>
+    fake_products.value.filter((item) => item.class === category)
+  );
+});
+const categories = ["三明治、漢堡類", "水果"];
 </script>
 <template>
   <head> </head>
-  <div class="FoodTable">
-    <DataTable
-      v-model:selection="selectedProduct"
-      :value="fake_products"
-      :globalFilterFields="['item', 'class']"
-      :filters="filters"
-      dataKey="id"
-      tableStyle="min-width: 50rem"
-    >
-      <template #header>
-        <div class="flex justify-end">
-          <IconField>
-            <InputIcon>
-              <i class="pi pi-search" />
-            </InputIcon>
-            <InputText
-              v-model="filters['global'].value"
-              placeholder="Keyword Search"
-            />
-          </IconField>
+  <div>
+    <Dialog v-model:visible="dialogVisible" :modal="true">
+      <DataTable
+        v-model:selection="selectedProduct"
+        :key="selectedProduct"
+        :value="productsFilterByCategories[selectedClass]"
+        :globalFilterFields="['item', 'class']"
+        :filters="filters"
+        dataKey="id"
+        tableStyle="min-width: 50rem"
+      >
+        <template #header>
+          <div class="flex justify-end">
+            <IconField>
+              <InputIcon>
+                <i class="pi pi-search" />
+              </InputIcon>
+              <InputText
+                v-model="filters['global'].value"
+                placeholder="Keyword Search"
+              />
+            </IconField>
+          </div>
+        </template>
+        <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
+        <Column field="item" :header="$t('food_item')"></Column>
+        <Column field="class" :header="$t('food_class')"></Column>
+        <Column field="gram" :header="$t('food_gram')"></Column>
+        <Column field="calories" :header="$t('calories')"></Column>
+        <Column field="carbohydrate" :header="$t('carbohydrate')"></Column>
+        <Column field="protein" :header="$t('protein')"></Column>
+        <Column field="fat" :header="$t('fat')"></Column>
+      </DataTable>
+    </Dialog>
+  </div>
+  <div class="card-container">
+    <Card style="width: 25rem" v-for="(item, index) in categories">
+      <template #title>{{ categories[index] }}</template>
+      <template #content> </template>
+      <template #footer>
+        <div>
+          <Button
+            style="display: flex"
+            label="Open"
+            @click="class1Clicked(index)"
+          />
         </div>
       </template>
-      <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
-      <Column field="item" :header="$t('food_item')"></Column>
-      <Column field="class" :header="$t('food_class')"></Column>
-      <Column field="gram" :header="$t('food_gram')"></Column>
-      <Column field="calories" :header="$t('calories')"></Column>
-      <Column field="carbohydrate" :header="$t('carbohydrate')"></Column>
-      <Column field="protein" :header="$t('protein')"></Column>
-      <Column field="fat" :header="$t('fat')"></Column>
-    </DataTable>
+    </Card>
   </div>
 </template>
 
 <style>
 .disabled-datatable {
-  pointer-events: none; /* 禁用所有交互 */
-  opacity: 0.5; /* 調整透明度顯示禁用效果 */
+  pointer-events: none;
+  opacity: 0.5;
 }
 
 .display-row {
   display: flex;
   justify-content: space-between;
   margin: 10px 0;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: nowrap; /* Prevent wrapping */
+  gap: 1rem; /* Optional: Add spacing between cards */
+}
+
+.Card {
+  flex-shrink: 0; /* Prevent cards from shrinking */
 }
 </style>

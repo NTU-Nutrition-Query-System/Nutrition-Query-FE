@@ -131,6 +131,7 @@ const { locale } = useI18n();
 
   <FoodTable v-model:selectedProduct="selectedProduct" />
   <CaloricResult
+    v-if="showResult"
     v-model:visible="showResult"
     v-model:selectedData="selectedProduct"
     v-model:needData="dailyNeeds"
