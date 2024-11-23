@@ -26,6 +26,14 @@ const props = defineProps({
   },
 });
 const selectedValue = computed<nutrient>(() => {
+  if (!cartData.value) {
+    return {
+      calories: 0,
+      protein: 0,
+      carbohydrate: 0,
+      fat: 0,
+    }; // cartData.value 為 undefined 時的預設值
+  }
   return cartData.value.reduce<nutrient>(
     (acc, item) => {
       acc.calories += item.calories;
@@ -42,6 +50,7 @@ const selectedValue = computed<nutrient>(() => {
     }
   );
 });
+
 const selectedIntake = computed(() => {
   return [
     {
