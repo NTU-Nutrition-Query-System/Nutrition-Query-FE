@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Button from "primevue/button";
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import InputNumber from "primevue/inputnumber";
 import RadioButton from "primevue/radiobutton";
 import FoodTable from "./FoodTable.vue";
@@ -49,6 +49,17 @@ const nextOnClicked = () => {
 const selectedProduct = ref([]);
 
 const { locale } = useI18n();
+const cartUpdate = (newValue: []) => {
+  console.log("Cart Update");
+
+  selectedProduct.value = newValue;
+  console.log(newValue);
+  console.log(selectedProduct.value);
+};
+watch(selectedProduct, (newValue) => {
+  console.log("selected product updated!");
+  console.log(newValue);
+});
 </script>
 
 <template>
@@ -129,12 +140,16 @@ const { locale } = useI18n();
   </div>
   <Button class="tab" :label="$t('calculate')" @click="calculate" />
 
-  <FoodTable v-model:selectedProduct="selectedProduct" />
+  <FoodTable
+    v-model:selectedProduct="selectedProduct"
+    @updateSelectedData="cartUpdate"
+  />
   <CaloricResult
     v-if="showResult"
     v-model:visible="showResult"
     v-model:selectedData="selectedProduct"
     v-model:needData="dailyNeeds"
+    @updateSelectedData="cartUpdate"
   ></CaloricResult>
 </template>
 
@@ -168,7 +183,7 @@ const { locale } = useI18n();
 .radio-group .RadioButton {
   flex: 1; /* 每個 radio 和 label 占據相同的空間 */
   display: flex; /* 將 radio 和 label 置於同一行 */
-  align-items: center; /* 垂直置中 */
+  align-items: center;
 }
 .calculator.expanded {
   height: 700px;

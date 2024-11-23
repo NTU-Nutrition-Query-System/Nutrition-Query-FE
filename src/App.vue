@@ -23,8 +23,8 @@ const changeLocale = () => {
   locale.value = currentLocale.value;
 };
 const languages = [
-  { label: "English", value: "en" },
   { label: "中文", value: "ch" },
+  { label: "English", value: "en" },
 ];
 const items = ref([
   {

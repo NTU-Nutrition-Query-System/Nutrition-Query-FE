@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import InputNumber from "primevue/inputnumber";
 import { useI18n } from "vue-i18n";
-import { ref, watch, computed } from "vue";
+import { ref, watch, computed, onMounted } from "vue";
 import Dialog from "primevue/dialog";
 import DataTable from "primevue/datatable";
 import Column from "primevue/column";
@@ -9,31 +9,8 @@ import ColumnGroup from "primevue/columngroup"; // optional
 import Row from "primevue/row"; // optional
 import type { nutrient, foodItem } from "../interfaces/Calculator";
 
-const fake_products = ref([
-  {
-    id: 1,
-    item: "醬燒烤雞三明治",
-    class: "三明治、漢堡類",
-    gram: 88,
-    calories: 181,
-    carbohydrate: 3.7,
-    fat: 6.6,
-    protein: 3.3,
-  },
-  {
-    id: 2,
-    item: "火腿起司蛋三明治",
-    class: "三明治、漢堡類",
-    gram: 67,
-    calories: 192,
-    carbohydrate: 20.6,
-    fat: 9.3,
-    protein: 6.4,
-  },
-]);
 const { t } = useI18n();
 const { locale } = useI18n();
-
 const props = defineProps({
   visible: {
     type: Boolean,
@@ -48,9 +25,8 @@ const props = defineProps({
     required: true,
   },
 });
-
 const selectedValue = computed<nutrient>(() => {
-  return props.selectedData.reduce<nutrient>(
+  return cartData.value.reduce<nutrient>(
     (acc, item) => {
       acc.calories += item.calories;
       acc.protein += item.protein;
@@ -107,20 +83,16 @@ const selectedIntake = computed(() => {
     },
   ];
 });
-const emit = defineEmits(["update:visible"]);
+const emit = defineEmits(["update:visible", "updateSelectedData"]);
 const isVisible = ref(props.visible);
 // Close dialog and emit update event
 const closeDialog = () => {
   isVisible.value = false;
   emit("update:visible", false);
+  emit("updateSelectedData", cartData.value);
+  console.log("Close Result");
 };
-const uptakePercentageTemplate = (rowData: { uptakePercentage: string }) => {
-  console.log("Hello");
-  const percentage = parseFloat(rowData.uptakePercentage);
-  const color = percentage > 100 ? "red" : "green";
-
-  return `<span style="color: ${color};">${rowData.uptakePercentage}</span>`;
-};
+const cartData = ref<foodItem[]>();
 // Watch for changes in the prop and update the local state
 watch(
   () => props.visible,
@@ -129,6 +101,16 @@ watch(
     isVisible.value = newValue;
   }
 );
+watch(cartData, (newSelection) => {
+  console.log("Result Data updated");
+  console.log(cartData.value);
+  console.log(props.selectedData);
+});
+onMounted(() => {
+  console.log("Result onMounted");
+  console.log(props.selectedData);
+  cartData.value = props.selectedData;
+});
 </script>
 
 <template>
@@ -170,7 +152,13 @@ watch(
             </div>
         </div> -->
     <br />
-    <DataTable :value="selectedData" dataKey="id" tableStyle="min-width: 50rem">
+    <DataTable
+      :value="props.selectedData"
+      dataKey="id"
+      tableStyle="min-width: 50rem"
+      v-model:selection="cartData"
+    >
+      <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
       <Column field="item" :header="$t('food_item')"></Column>
       <Column field="calories" :header="$t('calories')"></Column>
       <Column field="carbohydrate" :header="$t('carbohydrate')"></Column>

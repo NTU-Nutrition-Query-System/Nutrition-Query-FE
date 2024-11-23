@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, computed } from "vue";
+import { ref, watch, computed, onMounted } from "vue";
 import DataTable from "primevue/datatable";
 import InputText from "primevue/inputtext";
 import Column from "primevue/column";
@@ -11,17 +11,17 @@ import Card from "primevue/card";
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
 import type { foodItem } from "@/interfaces/Calculator";
-const selectedProduct = ref();
+const props = defineProps({
+  selectedProduct: {
+    type: Array as () => foodItem[],
+    required: true,
+  },
+});
+const FoodTableSelectedProduct = ref();
 const dialogVisible = ref(false);
 const selectedClass = ref(0);
-const class1Clicked = (index: number) => {
-  dialogVisible.value = true;
-  selectedClass.value = index;
-};
-const emit = defineEmits(["update:selectedProduct", "update:visible"]);
-watch(selectedProduct, (newSelection) => {
-  emit("update:selectedProduct", newSelection);
-});
+const emit = defineEmits(["updateSelectedData", "update:visible"]);
+
 const filters = ref({
   global: { value: null, matchMode: FilterMatchMode.CONTAINS },
 });
@@ -337,6 +337,7 @@ const fake_products = ref([
     protein: 3.1,
   },
 ]);
+
 const productsFilterByCategories = computed(() => {
   if (!categories || !Array.isArray(categories) || !fake_products.value) {
     return [];
@@ -346,15 +347,30 @@ const productsFilterByCategories = computed(() => {
     fake_products.value.filter((item) => item.class === category)
   );
 });
+const classClicked = (index: number) => {
+  dialogVisible.value = true;
+  selectedClass.value = index;
+  FoodTableSelectedProduct.value = props.selectedProduct;
+};
+
+const closeDialog = () => {
+  emit("updateSelectedData", FoodTableSelectedProduct.value);
+  console.log("Close Result");
+  console.log(FoodTableSelectedProduct.value);
+};
+onMounted(() => {
+  console.log("Food Table OnMounted");
+  console.log(props.selectedProduct);
+});
 const categories = ["三明治、漢堡類", "水果"];
 </script>
 <template>
   <head> </head>
   <div>
-    <Dialog v-model:visible="dialogVisible" :modal="true">
+    <Dialog v-model:visible="dialogVisible" :modal="true" @hide="closeDialog">
       <DataTable
-        v-model:selection="selectedProduct"
-        :key="selectedProduct"
+        v-model:selection="FoodTableSelectedProduct"
+        :key="props.selectedProduct"
         :value="productsFilterByCategories[selectedClass]"
         :globalFilterFields="['item', 'class']"
         :filters="filters"
@@ -394,7 +410,7 @@ const categories = ["三明治、漢堡類", "水果"];
           <Button
             style="display: flex"
             label="Open"
-            @click="class1Clicked(index)"
+            @click="classClicked(index)"
           />
         </div>
       </template>
