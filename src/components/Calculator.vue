@@ -136,9 +136,9 @@ watch(selectedProduct, (newValue) => {
           }})</span
         >
       </div>
+      <Button class="tab" :label="$t('calculate')" @click="calculate" />
     </div>
   </div>
-  <Button class="tab" :label="$t('calculate')" @click="calculate" />
 
   <FoodTable
     v-model:selectedProduct="selectedProduct"
