@@ -29,6 +29,7 @@ type Range = {
   [key: string]: [number, number]; // For keys like "low", "medium", etc.
   default: [number, number]; // A required fallback range
 };
+
 const computeRange = (optionValue: string, ranges: Range) => {
   if (optionValue === undefined) return ranges.default;
   return ranges[optionValue] || ranges.default;
@@ -85,10 +86,13 @@ const productsFilterByCategories = computed(() => {
     fakeProducts.value.filter((item) => item.class === category.name)
   );
 });
-const classClicked = (index: number) => {
+const classClicked = (item: { image: string; name: string }, index: number) => {
   dialogVisible.value = true;
   selectedClass.value = index;
   FoodTableSelectedProduct.value = props.selectedProduct;
+  console.log(item);
+  selectedCategory.value.image = item.image;
+  selectedCategory.value.name = item.name;
 };
 const proteinOption = ref();
 const carbOption = ref();
@@ -168,7 +172,10 @@ const categories = [
     image: new URL("@/assets/imgs/snacks.svg", import.meta.url).href,
   },
 ];
-
+const selectedCategory = ref<{ name: string; image: string }>({
+  name: "",
+  image: "",
+});
 const clearFilter = () => {
   caloriesOption.value =
     carbOption.value =
@@ -194,7 +201,28 @@ const closeFilter = () => {
 <template>
   <head> </head>
   <div>
-    <Dialog v-model:visible="dialogVisible" :modal="true" @hide="closeDialog">
+    <Dialog
+      v-model:visible="dialogVisible"
+      :modal="true"
+      @hide="closeDialog"
+      :header="selectedCategory.name"
+    >
+      <div style="width: 100%; height: 5rem">
+        <img
+          :src="selectedCategory.image"
+          alt="Category"
+          style="
+            height: 10rem;
+            float: right;
+            position: relative;
+            z-index: 10;
+            margin-bottom: -1rem;
+            margin-right: 0rem;
+            /* border: solid; */
+          "
+        />
+      </div>
+
       <DataTable
         v-model:selection="FoodTableSelectedProduct"
         :key="props.selectedProduct"
@@ -204,9 +232,10 @@ const closeFilter = () => {
         dataKey="id"
         tableStyle="min-width: 50rem"
         filterDisplay="menu"
+        rowHover
       >
         <template #header>
-          <div class="flex justify-end">
+          <div>
             <IconField>
               <InputIcon>
                 <i class="pi pi-search" />
@@ -224,6 +253,7 @@ const closeFilter = () => {
         <Column field="class" :header="$t('food_class')"></Column>
         <Column field="gram" :header="$t('food_gram')"></Column>
         <Column
+          sortable
           field="calories"
           :header="$t('calories')"
           :filter="true"
@@ -244,6 +274,7 @@ const closeFilter = () => {
           </template>
         </Column>
         <Column
+          sortable
           field="carbohydrate"
           :header="$t('carbohydrate')"
           :filter="true"
@@ -264,6 +295,7 @@ const closeFilter = () => {
           </template>
         </Column>
         <Column
+          sortable
           field="protein"
           :header="$t('protein')"
           :filter="true"
@@ -293,6 +325,7 @@ const closeFilter = () => {
           </template>
         </Column>
         <Column
+          sortable
           field="fat"
           :header="$t('fat')"
           :filter="true"
@@ -325,23 +358,35 @@ const closeFilter = () => {
     </Dialog>
   </div>
   <div class="card-container">
-    <Card style="width: 25rem" v-for="(item, index) in categories">
-      <template #title>{{ categories[index].name }}</template>
+    <Card
+      style="width: 100%; border: 1px solid #ccc; border-radius: 8px"
+      v-for="(item, index) in categories"
+    >
+      <template #title>
+        <div style="text-align: center">
+          {{ categories[index].name }}
+        </div>
+      </template>
       <template #content>
-        <div style="width: 50%">
+        <div style="width: 50%; margin-left: auto; margin-right: auto">
           <img
             :src="item.image"
             alt="Category Image"
-            style="width: 100%; height: auto; object-fit: cover"
+            style="
+              width: 100%;
+              height: auto;
+              object-fit: cover;
+              justify-content: center;
+            "
           />
         </div>
       </template>
       <template #footer>
         <div>
           <Button
-            style="display: flex"
+            style="display: flex; width: 100%"
             label="Open"
-            @click="classClicked(index)"
+            @click="classClicked(item, index)"
           />
         </div>
       </template>
@@ -362,13 +407,13 @@ const closeFilter = () => {
 }
 
 .card-container {
-  width: 75%;
-  margin-right: 5rem;
+  margin-top: 5rem;
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(20rem, 1.5fr));
   gap: 20px;
   justify-content: center; /* Centers the cards in the container */
-  padding: 100px;
+  /* border: solid; */
 }
 
 .card-container .Card {

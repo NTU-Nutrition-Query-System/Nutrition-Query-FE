@@ -111,8 +111,17 @@ watch(selectedProduct, (newValue) => {
         >
         <InputNumber v-model="weight" fluid class="input-field" />
       </div>
-      <Button class="tab" label="Next" @click="nextOnClicked" />
-      <Button class="tab" label="Collapse" @click="isExpanded = false" />
+      <div
+        style="
+          display: flex;
+          justify-content: center;
+          gap: 1rem;
+          margin-top: 1rem;
+        "
+      >
+        <Button class="tab" label="Next" @click="nextOnClicked" />
+        <Button class="tab" label="Collapse" @click="isExpanded = false" />
+      </div>
     </div>
 
     <div class="calculator_result" v-if="isExpanded">
@@ -166,6 +175,7 @@ watch(selectedProduct, (newValue) => {
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
+  height: max-content;
   transition: background-color 0.3s ease;
 }
 .radio-group {
@@ -186,7 +196,7 @@ watch(selectedProduct, (newValue) => {
   align-items: center;
 }
 .calculator.expanded {
-  height: 700px;
+  height: max-content;
 }
 
 .display-row {
@@ -196,36 +206,12 @@ watch(selectedProduct, (newValue) => {
 }
 
 .calculator_result {
-  flex: 1;
-  margin: 0 1%;
+  margin-top: 2rem;
+  margin: 5;
   padding: 10px;
   color: black;
   text-align: center;
-  border: none;
-  cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.tab {
-  flex: 1;
-  margin: 0 1%;
-  padding: 10px;
-  background-color: #3498db;
-  color: white;
-  text-align: center;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.tab:hover {
-  background-color: #2980b9;
-  transform: scale(1.05);
-}
-
-.tab.active {
-  background-color: #2980b9;
 }
 
 .input-field {

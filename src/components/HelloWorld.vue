@@ -26,13 +26,27 @@
         </template>
       </p-card>
     </div>
+    <router-link to="/Calculator">
+      <Button
+        label="前往計算機"
+        style="
+          display: block;
+          width: 100%;
+          padding: 1rem;
+          font-size: 1.2rem;
+          border-radius: 8px;
+          cursor: pointer;
+          margin-top: 1rem;
+        "
+      />
+    </router-link>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
 import Card from "primevue/card";
-
+import Button from "primevue/button";
 const messages = ref([
   {
     title: "系統維護通知",

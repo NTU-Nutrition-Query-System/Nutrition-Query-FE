@@ -2,13 +2,14 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import PrimeVue from "primevue/config"; // PrimeIcons styles
 import Aura from "@primevue/themes/aura";
+import Material from "@primevue/themes/material";
 import { definePreset } from "@primevue/themes";
 import router from "./router";
 import i18n from "../locales/i18n"; // Import i18n configuration
 import "./assets/base.css";
 // Create the Vue app
 const app = createApp(App);
-const MyPreset = definePreset(Aura, {
+const MyPreset = definePreset(Material, {
   semantic: {
     primary: {
       50: "{indigo.50}",
@@ -26,14 +27,12 @@ const MyPreset = definePreset(Aura, {
   },
   colorScheme: {
     light: {
-      formField: {
-        hoverBorderColor: "{primary.color}",
-      },
+      surface: "#ffffff", // 修改表格背景顏色（白色）
+      "surface-ground": "#f5f5f5", // 修改表格底色
     },
     dark: {
-      formField: {
-        hoverBorderColor: "{primary.color}",
-      },
+      surface: "#1e1e1e", // 修改暗模式表格背景
+      "surface-ground": "#252525",
     },
   },
 });
@@ -46,6 +45,7 @@ app.use(PrimeVue, {
     },
   },
 });
+
 app.use(router);
 app.use(i18n);
 // Mount the app to the #app element in the DOM
