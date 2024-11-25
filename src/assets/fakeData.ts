@@ -991,8 +991,6 @@ export const fakeProducts = ref<foodItem[]>([
     carbohydrate: 16.3,
     fat: 3.1,
     protein: 6.2,
-    cholesterol: 25.4,
-    sodium: 2.4,
   },
   {
     id: 100,
@@ -1004,8 +1002,6 @@ export const fakeProducts = ref<foodItem[]>([
     carbohydrate: 27.6,
     fat: 5.2,
     protein: 8.3,
-    cholesterol: 45.1,
-    sodium: 3.5,
   },
   {
     id: 101,
@@ -1017,8 +1013,6 @@ export const fakeProducts = ref<foodItem[]>([
     carbohydrate: 28.5,
     fat: 6.0,
     protein: 7.5,
-    cholesterol: 46.7,
-    sodium: 4.0,
   },
   {
     id: 102,
@@ -1030,8 +1024,6 @@ export const fakeProducts = ref<foodItem[]>([
     carbohydrate: 35.2,
     fat: 12.5,
     protein: 2.8,
-    cholesterol: 25.4,
-    sodium: 10.2,
   },
   {
     id: 103,
@@ -1043,8 +1035,6 @@ export const fakeProducts = ref<foodItem[]>([
     carbohydrate: 39.6,
     fat: 15.4,
     protein: 5.6,
-    cholesterol: 30.1,
-    sodium: 15.0,
   },
   {
     id: 104,
@@ -1056,8 +1046,6 @@ export const fakeProducts = ref<foodItem[]>([
     carbohydrate: 28.1,
     fat: 12.8,
     protein: 4.3,
-    cholesterol: 47.5,
-    sodium: 6.4,
   },
   {
     id: 105,
@@ -1069,8 +1057,6 @@ export const fakeProducts = ref<foodItem[]>([
     carbohydrate: 20.3,
     fat: 7.8,
     protein: 2.4,
-    cholesterol: 12.8,
-    sodium: 8.1,
   },
   {
     id: 106,
@@ -1082,8 +1068,6 @@ export const fakeProducts = ref<foodItem[]>([
     carbohydrate: 28.2,
     fat: 9.3,
     protein: 4.0,
-    cholesterol: 35.1,
-    sodium: 7.5,
   },
   {
     id: 107,
@@ -1095,8 +1079,6 @@ export const fakeProducts = ref<foodItem[]>([
     carbohydrate: 30.5,
     fat: 6.9,
     protein: 2.3,
-    cholesterol: 0,
-    sodium: 7.6,
   },
   {
     id: 108,
@@ -1108,7 +1090,5 @@ export const fakeProducts = ref<foodItem[]>([
     carbohydrate: 16.0,
     fat: 17.5,
     protein: 18.3,
-    cholesterol: 54.0,
-    sodium: 9.8,
   },
 ]);
