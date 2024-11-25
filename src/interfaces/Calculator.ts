@@ -8,6 +8,7 @@ export interface foodItem {
   id: number;
   item: string;
   class: string;
+  subclass: string;
   gram: number;
   calories: number;
   carbohydrate: number;

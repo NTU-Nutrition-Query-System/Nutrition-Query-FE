@@ -47,7 +47,10 @@ const nextOnClicked = () => {
   calculateDailyNeed();
 };
 const selectedProduct = ref([]);
-
+const titleIconURL = new URL(
+  "@/assets/imgs/user-interface-1-5.svg",
+  import.meta.url
+).href;
 const { locale } = useI18n();
 const cartUpdate = (newValue: []) => {
   console.log("Cart Update");
@@ -71,10 +74,16 @@ watch(selectedProduct, (newValue) => {
   </head>
   <div>
     <div class="calculator-description-title">
-      <h1>{{ $t("calculator") }}</h1>
+      <div style="align-items: center">
+        <div style="width: 15%; left: 5rem; position: absolute">
+          <img :src="titleIconURL" style="width: 100%; /* border: solid; */" />
+        </div>
+        <div style="justify-content: center">
+          <h1 style="justify-content: center">{{ $t("calculator") }}</h1>
+        </div>
+      </div>
     </div>
   </div>
-
   <div class="calculator" :class="{ expanded: isExpanded }">
     <div class="gender-selection flex justify-between items-center">
       <label class="font-bold block mb-2">{{
