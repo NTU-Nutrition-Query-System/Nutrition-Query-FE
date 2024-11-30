@@ -206,6 +206,7 @@ const closeFilter = () => {
       :modal="true"
       @hide="closeDialog"
       :header="selectedCategory.name"
+      style="overflow-x: auto; width: 90%"
     >
       <div style="width: 100%; height: 5rem">
         <img
@@ -248,10 +249,22 @@ const closeFilter = () => {
           </div>
         </template>
 
-        <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
-        <Column field="item" :header="$t('food_item')"></Column>
-        <Column field="class" :header="$t('food_class')"></Column>
-        <Column field="gram" :header="$t('food_gram')"></Column>
+        <Column selectionMode="multiple" style="width: 1%"></Column>
+        <Column
+          field="item"
+          :header="$t('food_item')"
+          style="width: 10%"
+        ></Column>
+        <Column
+          field="class"
+          :header="$t('food_class')"
+          style="width: 8%"
+        ></Column>
+        <Column
+          field="gram"
+          :header="$t('food_gram')"
+          style="width: 2%"
+        ></Column>
         <Column
           sortable
           field="calories"
@@ -261,6 +274,7 @@ const closeFilter = () => {
           :showFilterMatchModes="false"
           :showApplyButton="false"
           :showClearButton="false"
+          style="width: 4%"
         >
           <template #filter="{ field, filterModel, filterCallback }">
             <Dropdown
@@ -282,6 +296,7 @@ const closeFilter = () => {
           :showFilterMatchModes="false"
           :showApplyButton="false"
           :showClearButton="false"
+          style="width: 4%"
         >
           <template #filter="{ field, filterModel, filterCallback }">
             <Dropdown
@@ -303,6 +318,7 @@ const closeFilter = () => {
           :showFilterMatchModes="false"
           :showApplyButton="false"
           :showClearButton="false"
+          style="width: 4%"
         >
           <template #body="{ data }">
             {{ data.protein }}
@@ -333,6 +349,7 @@ const closeFilter = () => {
           filterField="fat"
           :showApplyButton="false"
           :showClearButton="false"
+          style="width: 4%"
         >
           <template #body="{ data }">
             {{ data.fat }}

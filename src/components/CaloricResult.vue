@@ -128,6 +128,7 @@ onMounted(() => {
     :header="$t('selection_result_title')"
     :modal="true"
     @hide="closeDialog"
+    style="overflow-x: scroll; width: 80%"
   >
     <DataTable
       :value="selectedIntake"

@@ -79,9 +79,6 @@ watch(selectedProduct, (newValue) => {
   <div>
     <div class="calculator-description-title">
       <div style="align-items: center">
-        <div style="width: 15%; left: 5rem; position: absolute">
-          <img :src="titleIconURL" style="width: 100%; /* border: solid; */" />
-        </div>
         <div style="justify-content: center">
           <h1 style="justify-content: center">{{ $t("calculator") }}</h1>
         </div>
