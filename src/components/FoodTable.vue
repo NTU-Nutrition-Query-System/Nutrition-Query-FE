@@ -11,17 +11,20 @@ import Card from "primevue/card";
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
 import Dropdown from "@/primevue/dropdown";
-import MultiSelect from "@/primevue/multiselect";
-import Select from "@/primevue/select";
+import Tag from "@/primevue/tag";
 import type { foodItem } from "@/interfaces/Calculator";
+import Toast from "primevue/toast";
+import { useToast } from "primevue/usetoast";
 import { fakeProducts } from "@/assets/fakeData";
+import { idText } from "typescript";
+
 const props = defineProps({
   selectedProduct: {
     type: Array as () => foodItem[],
     required: true,
   },
 });
-const FoodTableSelectedProduct = ref();
+const FoodTableSelectedProduct = ref([]);
 const dialogVisible = ref(false);
 const selectedClass = ref(0);
 const emit = defineEmits(["updateSelectedData", "update:visible"]);
@@ -90,7 +93,9 @@ const classClicked = (item: { image: string; name: string }, index: number) => {
   dialogVisible.value = true;
   selectedClass.value = index;
   FoodTableSelectedProduct.value = props.selectedProduct;
+  console.log("Class clicked");
   console.log(item);
+  console.log(FoodTableSelectedProduct.value);
   selectedCategory.value.image = item.image;
   selectedCategory.value.name = item.name;
 };
@@ -121,6 +126,7 @@ const fatFilterOptions = ref([
   { name: "10~20(g)", value: "medium" },
   { name: "> 20(g)", value: "high" },
 ]);
+const toast = useToast();
 
 const categories = [
   {
@@ -189,6 +195,49 @@ const closeDialog = () => {
   console.log("Close Result");
   console.log(FoodTableSelectedProduct.value);
 };
+const itemSelect = (e) => {
+  console.log("item selected!");
+  console.log(e);
+  toast.add({
+    severity: "success",
+    summary: "",
+    detail: `${e?.data.item} is added`,
+    life: 2000,
+  });
+};
+const computeNumberOfItem = (index: number) => {
+  return FoodTableSelectedProduct.value?.filter(
+    (product: foodItem) => product.class === categories[index].name
+  ).length;
+};
+const itemUnselect = (e) => {
+  console.log("item unselected!");
+  console.log(e);
+  toast.add({
+    severity: "warn",
+    summary: "",
+    detail: `${e?.data.item} is removed`,
+    life: 2000,
+  });
+};
+const selectAll = (e) => {
+  console.log("select all");
+  toast.add({
+    severity: "success",
+    summary: "Info",
+    detail: `${categories[selectedClass.value].name} is added`,
+    life: 2000,
+  });
+};
+const unselectAll = (e) => {
+  console.log("select all");
+  toast.add({
+    severity: "success",
+    summary: "Info",
+    detail: `${categories[selectedClass.value].name} is removed`,
+    life: 2000,
+  });
+};
 onMounted(() => {
   console.log("Food Table OnMounted");
   console.log(props.selectedProduct);
@@ -200,6 +249,7 @@ const closeFilter = () => {
 </script>
 <template>
   <head> </head>
+
   <div>
     <Dialog
       v-model:visible="dialogVisible"
@@ -208,6 +258,7 @@ const closeFilter = () => {
       :header="selectedCategory.name"
       style="overflow-x: auto; width: 90%"
     >
+      <Toast position="top-right" />
       <div style="width: 100%; height: 5rem">
         <img
           :src="selectedCategory.image"
@@ -233,6 +284,10 @@ const closeFilter = () => {
         dataKey="id"
         tableStyle="min-width: 50rem"
         filterDisplay="menu"
+        @row-select="itemSelect"
+        @row-unselect="itemUnselect"
+        @row-select-all="selectAll"
+        @row-unselect-all="unselectAll"
         rowHover
       >
         <template #header>
@@ -380,8 +435,25 @@ const closeFilter = () => {
       v-for="(item, index) in categories"
     >
       <template #title>
-        <div style="text-align: center">
-          {{ categories[index].name }}
+        <div style="display: flex">
+          <div style="text-align: center">
+            {{ categories[index].name }}
+          </div>
+          <Button
+            v-if="computeNumberOfItem(index) != 0"
+            style="
+              margin-left: auto;
+              margin-right: 1rem;
+              font-size: 14px;
+              border-radius: 20px;
+              background-color: #4caf50;
+              color: white;
+              font-weight: bold;
+            "
+            severity="info"
+            @click="classClicked(item, index)"
+            >{{ computeNumberOfItem(index) }}</Button
+          >
         </div>
       </template>
       <template #content>
@@ -435,5 +507,18 @@ const closeFilter = () => {
 
 .card-container .Card {
   width: 80%; /* Ensures the cards take up full available width in each column */
+}
+.badge {
+  top: -10px; /* 調整位置 */
+  right: -10px; /* 調整位置 */
+
+  border-radius: 50%;
+  width: 10%;
+  height: 24px;
+  justify-content: left;
+  align-items: center;
+  font-size: 12px;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 </style>
