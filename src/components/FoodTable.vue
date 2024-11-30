@@ -10,6 +10,7 @@ import { useI18n } from "vue-i18n";
 import Card from "primevue/card";
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
+import { getTableData } from "@/apis/tableData";
 import Dropdown from "@/primevue/dropdown";
 import Tag from "@/primevue/tag";
 import type { foodItem } from "@/interfaces/Calculator";
@@ -24,7 +25,8 @@ const props = defineProps({
     required: true,
   },
 });
-const FoodTableSelectedProduct = ref<foodItem[]>([]);
+const FoodTableSelectedProducts = ref<foodItem[]>([]);
+const products = ref<foodItem[]>([]);
 const dialogVisible = ref(false);
 const selectedClass = ref(0);
 const emit = defineEmits(["updateSelectedData", "update:visible"]);
@@ -81,21 +83,21 @@ const filters = ref({
 });
 
 const productsFilterByCategories = computed(() => {
-  if (!categories || !Array.isArray(categories) || !fakeProducts.value) {
+  if (!categories || !Array.isArray(categories) || !products.value) {
     return [];
   }
 
   return categories.map((category) =>
-    fakeProducts.value.filter((item) => item.class === category.name)
+    products.value.filter((item) => item.class === category.name)
   );
 });
 const classClicked = (item: { image: string; name: string }, index: number) => {
   dialogVisible.value = true;
   selectedClass.value = index;
-  FoodTableSelectedProduct.value = props.selectedProduct;
+  FoodTableSelectedProducts.value = props.selectedProduct;
   console.log("Class clicked");
   console.log(item);
-  console.log(FoodTableSelectedProduct.value);
+  console.log(FoodTableSelectedProducts.value);
   selectedCategory.value.image = item.image;
   selectedCategory.value.name = item.name;
 };
@@ -190,10 +192,10 @@ const clearFilter = () => {
       undefined;
 };
 const closeDialog = () => {
-  emit("updateSelectedData", FoodTableSelectedProduct.value);
+  emit("updateSelectedData", FoodTableSelectedProducts.value);
   clearFilter();
   console.log("Close Result");
-  console.log(FoodTableSelectedProduct.value);
+  console.log(FoodTableSelectedProducts.value);
 };
 const itemSelect = (e: any) => {
   console.log("item selected!");
@@ -202,14 +204,19 @@ const itemSelect = (e: any) => {
     severity: "success",
     summary: "",
     detail: `${e?.data.item} is added`,
-    life: 2000,
+    life: 1000,
   });
 };
-const computeNumberOfItem = (index: number) => {
-  return FoodTableSelectedProduct.value?.filter(
-    (product: foodItem) => product.class === categories[index].name
-  ).length;
-};
+const computeNumberOfItem = computed(() => {
+  return (index: number): number => {
+    if (!props.selectedProduct || !categories[index]) {
+      return 0; // 如果資料不存在，返回 0
+    }
+    return props.selectedProduct.filter(
+      (product: foodItem) => product.class === categories[index].name
+    ).length;
+  };
+});
 const itemUnselect = (e: any) => {
   console.log("item unselected!");
   console.log(e);
@@ -238,8 +245,14 @@ const unselectAll = (e: any) => {
     life: 2000,
   });
 };
+const loadTableData = async () => {
+  const res = await getTableData();
+  products.value = res;
+};
 onMounted(() => {
   console.log("Food Table OnMounted");
+  loadTableData();
+  console.log(products.value);
   console.log(props.selectedProduct);
 });
 
@@ -276,7 +289,7 @@ const closeFilter = () => {
       </div>
 
       <DataTable
-        v-model:selection="FoodTableSelectedProduct"
+        v-model:selection="FoodTableSelectedProducts"
         :key="props.selectedProduct"
         :value="productsFilterByCategories[selectedClass]"
         :globalFilterFields="['item', 'class']"
@@ -437,23 +450,9 @@ const closeFilter = () => {
       <template #title>
         <div style="display: flex">
           <div style="text-align: center">
-            {{ categories[index].name }}
+            <span>{{ categories[index].name }}</span>
+            <span style="color: red">({{ computeNumberOfItem(index) }})</span>
           </div>
-          <Button
-            v-if="computeNumberOfItem(index) != 0"
-            style="
-              margin-left: auto;
-              margin-right: 1rem;
-              font-size: 14px;
-              border-radius: 20px;
-              background-color: #4caf50;
-              color: white;
-              font-weight: bold;
-            "
-            severity="info"
-            @click="classClicked(item, index)"
-            >{{ computeNumberOfItem(index) }}</Button
-          >
         </div>
       </template>
       <template #content>
