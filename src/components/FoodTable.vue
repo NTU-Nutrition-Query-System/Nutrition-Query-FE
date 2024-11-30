@@ -24,6 +24,10 @@ const props = defineProps({
     type: Array as () => foodItem[],
     required: true,
   },
+  products: {
+    type: Array as () => foodItem[],
+    required: true,
+  },
 });
 const FoodTableSelectedProducts = ref<foodItem[]>([]);
 const products = ref<foodItem[]>([]);
@@ -81,23 +85,12 @@ const filters = ref({
   calories: { value: caloriesRange, matchMode: FilterMatchMode.BETWEEN },
   fat: { value: fatRange, matchMode: FilterMatchMode.BETWEEN },
 });
+const productsFilterByCategories = ref<foodItem[][]>([]);
 
-const productsFilterByCategories = computed(() => {
-  if (!categories || !Array.isArray(categories) || !products.value) {
-    return [];
-  }
-
-  return categories.map((category) =>
-    products.value.filter((item) => item.class === category.name)
-  );
-});
 const classClicked = (item: { image: string; name: string }, index: number) => {
   dialogVisible.value = true;
   selectedClass.value = index;
   FoodTableSelectedProducts.value = props.selectedProduct;
-  console.log("Class clicked");
-  console.log(item);
-  console.log(FoodTableSelectedProducts.value);
   selectedCategory.value.image = item.image;
   selectedCategory.value.name = item.name;
 };
@@ -179,6 +172,10 @@ const categories = [
     name: "麵飯類",
     image: new URL("@/assets/imgs/snacks.svg", import.meta.url).href,
   },
+  {
+    name: "全部",
+    image: new URL("@/assets/imgs/snacks.svg", import.meta.url).href,
+  },
 ];
 const selectedCategory = ref<{ name: string; image: string }>({
   name: "",
@@ -211,6 +208,9 @@ const computeNumberOfItem = computed(() => {
   return (index: number): number => {
     if (!props.selectedProduct || !categories[index]) {
       return 0; // 如果資料不存在，返回 0
+    }
+    if (categories[index].name === "全部") {
+      return props.selectedProduct.length;
     }
     return props.selectedProduct.filter(
       (product: foodItem) => product.class === categories[index].name
@@ -245,15 +245,15 @@ const unselectAll = (e: any) => {
     life: 2000,
   });
 };
-const loadTableData = async () => {
-  const res = await getTableData();
-  products.value = res;
-};
+
 onMounted(() => {
   console.log("Food Table OnMounted");
-  loadTableData();
-  console.log(products.value);
-  console.log(props.selectedProduct);
+  console.log(props.products);
+  const ret = categories.map((category) =>
+    props.products.filter((item) => item.class === category.name)
+  );
+  ret[ret.length - 1] = props.products;
+  productsFilterByCategories.value = ret;
 });
 
 const closeFilter = () => {
@@ -297,6 +297,8 @@ const closeFilter = () => {
         dataKey="id"
         tableStyle="min-width: 50rem"
         filterDisplay="menu"
+        paginator
+        :rows="10"
         @row-select="itemSelect"
         @row-unselect="itemUnselect"
         @row-select-all="selectAll"
@@ -324,7 +326,7 @@ const closeFilter = () => {
           style="width: 10%"
         ></Column>
         <Column
-          field="class"
+          field="subclass"
           :header="$t('food_class')"
           style="width: 8%"
         ></Column>

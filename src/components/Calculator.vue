@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import Button from "primevue/button";
-import { ref, watch } from "vue";
+import { onMounted, ref, watch } from "vue";
 import InputNumber from "primevue/inputnumber";
 import RadioButton from "primevue/radiobutton";
 import FoodTable from "./FoodTable.vue";
 import { useI18n } from "vue-i18n";
 import CaloricResult from "./CaloricResult.vue";
 import type { nutrient } from "../interfaces/Calculator";
+import type { foodItem } from "@/interfaces/Calculator";
+import { getTableData } from "@/apis/tableData";
 // Declare reactive variables using `ref`
 
 const age = ref<number>(0);
@@ -63,9 +65,19 @@ const cartUpdate = (newValue: []) => {
   console.log(newValue);
   console.log(selectedProduct.value);
 };
+const products = ref<foodItem[]>([]);
+const foodTableLoaded = ref<boolean>(false);
+const loadTableData = async () => {
+  const res = await getTableData();
+  products.value = res;
+  foodTableLoaded.value = true;
+};
 watch(selectedProduct, (newValue) => {
   console.log("selected product updated!");
   console.log(newValue);
+});
+onMounted(() => {
+  loadTableData();
 });
 </script>
 
@@ -192,8 +204,10 @@ watch(selectedProduct, (newValue) => {
   </div>
 
   <FoodTable
+    v-if="foodTableLoaded"
     v-model:selectedProduct="selectedProduct"
     @updateSelectedData="cartUpdate"
+    :products="products"
   />
   <CaloricResult
     v-if="showResult"
