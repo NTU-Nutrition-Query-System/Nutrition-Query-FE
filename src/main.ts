@@ -7,6 +7,7 @@ import { definePreset } from "@primevue/themes";
 import router from "./router";
 import i18n from "../locales/i18n"; // Import i18n configuration
 import "./assets/base.css";
+import ToastService from "primevue/toastservice";
 // Create the Vue app
 const app = createApp(App);
 const MyPreset = definePreset(Material, {
@@ -37,6 +38,7 @@ const MyPreset = definePreset(Material, {
   },
 });
 // Use the PrimeVue plugin
+app.use(ToastService); // 確保加載了 ToastService
 app.use(PrimeVue, {
   theme: {
     preset: MyPreset,
@@ -45,7 +47,6 @@ app.use(PrimeVue, {
     },
   },
 });
-
 app.use(router);
 app.use(i18n);
 // Mount the app to the #app element in the DOM

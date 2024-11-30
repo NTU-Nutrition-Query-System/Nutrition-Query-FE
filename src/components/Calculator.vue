@@ -12,7 +12,7 @@ import type { nutrient } from "../interfaces/Calculator";
 const age = ref<number>(0);
 const height = ref<number>(0);
 const weight = ref<number>(0);
-const activityFactor = ref<number>("1.3");
+const activityFactor = ref<string>("1.3");
 const gender = ref("Male");
 const isExpanded = ref<boolean>(false);
 const showResult = ref<boolean>(false);
@@ -27,11 +27,11 @@ const calculateDailyNeed = () => {
   if (gender.value === "Male") {
     dailyNeeds.value.calories =
       (66 + 13.7 * weight.value + 5 * height.value - 6.8 * age.value) *
-      activityFactor.value;
+      parseFloat(activityFactor.value);
   } else {
     dailyNeeds.value.calories =
       (665 + 9.6 * weight.value + 1.8 * height.value - 4.7 * age.value) *
-      activityFactor.value;
+      parseFloat(activityFactor.value);
   }
 
   dailyNeeds.value.protein = weight.value * 1;

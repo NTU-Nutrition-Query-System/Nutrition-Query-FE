@@ -24,7 +24,7 @@ const props = defineProps({
     required: true,
   },
 });
-const FoodTableSelectedProduct = ref([]);
+const FoodTableSelectedProduct = ref<foodItem[]>([]);
 const dialogVisible = ref(false);
 const selectedClass = ref(0);
 const emit = defineEmits(["updateSelectedData", "update:visible"]);
@@ -195,7 +195,7 @@ const closeDialog = () => {
   console.log("Close Result");
   console.log(FoodTableSelectedProduct.value);
 };
-const itemSelect = (e) => {
+const itemSelect = (e: any) => {
   console.log("item selected!");
   console.log(e);
   toast.add({
@@ -210,7 +210,7 @@ const computeNumberOfItem = (index: number) => {
     (product: foodItem) => product.class === categories[index].name
   ).length;
 };
-const itemUnselect = (e) => {
+const itemUnselect = (e: any) => {
   console.log("item unselected!");
   console.log(e);
   toast.add({
@@ -220,7 +220,7 @@ const itemUnselect = (e) => {
     life: 2000,
   });
 };
-const selectAll = (e) => {
+const selectAll = (e: any) => {
   console.log("select all");
   toast.add({
     severity: "success",
@@ -229,7 +229,7 @@ const selectAll = (e) => {
     life: 2000,
   });
 };
-const unselectAll = (e) => {
+const unselectAll = (e: any) => {
   console.log("select all");
   toast.add({
     severity: "success",
