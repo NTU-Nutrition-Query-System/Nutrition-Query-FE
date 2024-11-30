@@ -8,9 +8,11 @@ import { useI18n } from "vue-i18n";
 import CaloricResult from "./CaloricResult.vue";
 import type { nutrient } from "../interfaces/Calculator";
 // Declare reactive variables using `ref`
+
 const age = ref<number>(0);
 const height = ref<number>(0);
 const weight = ref<number>(0);
+const activityFactor = ref<number>("1.3");
 const gender = ref("Male");
 const isExpanded = ref<boolean>(false);
 const showResult = ref<boolean>(false);
@@ -24,10 +26,12 @@ const dailyNeeds = ref<nutrient>({
 const calculateDailyNeed = () => {
   if (gender.value === "Male") {
     dailyNeeds.value.calories =
-      66 + 13.7 * weight.value + 5 * height.value - 6.8 * age.value;
+      (66 + 13.7 * weight.value + 5 * height.value - 6.8 * age.value) *
+      activityFactor.value;
   } else {
     dailyNeeds.value.calories =
-      665 + 9.6 * weight.value + 1.8 * height.value - 4.7 * age.value;
+      (665 + 9.6 * weight.value + 1.8 * height.value - 4.7 * age.value) *
+      activityFactor.value;
   }
 
   dailyNeeds.value.protein = weight.value * 1;
@@ -103,7 +107,7 @@ watch(selectedProduct, (newValue) => {
       </div>
     </div>
 
-    <div class="card flex flex-wrap gap-4">
+    <div style="margin-top: 0.5rem">
       <div class="flex-auto">
         <label for="age" class="font-bold block mb-2">{{ $t("age") }}</label>
         <InputNumber v-model="age" fluid class="input-field" />
@@ -119,6 +123,38 @@ watch(selectedProduct, (newValue) => {
           >{{ $t("weight") }}(kg)</label
         >
         <InputNumber v-model="weight" fluid class="input-field" />
+      </div>
+      <div style="margin-top: 0.5rem">
+        <label class="font-bold block mb-2">{{
+          $t("calculator_input_activity_factor")
+        }}</label>
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
+          <div class="RadioButton">
+            <RadioButton v-model="activityFactor" value="1.3" />
+            <label style="margin-left: 0.3rem">{{
+              $t("calculator_input_activity_factor_mild")
+            }}</label>
+          </div>
+          <div class="RadioButton">
+            <RadioButton v-model="activityFactor" value="1.5" />
+            <label style="margin-left: 0.3rem">{{
+              $t("calculator_input_activity_factor_moderate")
+            }}</label>
+          </div>
+          <div class="RadioButton">
+            <RadioButton v-model="activityFactor" value="2" />
+            <label style="margin-left: 0.3rem">{{
+              $t("calculator_input_activity_factor_severe")
+            }}</label>
+          </div>
+          <!-- <span>{{ activityFactor }}</span> -->
+        </div>
       </div>
       <div
         style="
