@@ -18,7 +18,24 @@ import Toast from "primevue/toast";
 import { useToast } from "primevue/usetoast";
 import { fakeProducts } from "@/assets/fakeData";
 import { idText } from "typescript";
-
+import {
+  proteinOption,
+  carbOption,
+  caloriesOption,
+  fatOption,
+  proteinRange,
+  carbRange,
+  caloriesRange,
+  fatRange,
+  proteinFilterOptions,
+  carbFilterOptions,
+  caloriesFilterOptions,
+  fatFilterOptions,
+  filters,
+  clearFilter,
+  subclassOption,
+  subclassOptions,
+} from "@/components/CategoriesData";
 const props = defineProps({
   selectedProduct: {
     type: Array as () => foodItem[],
@@ -30,61 +47,10 @@ const props = defineProps({
   },
 });
 const FoodTableSelectedProducts = ref<foodItem[]>([]);
-const products = ref<foodItem[]>([]);
 const dialogVisible = ref(false);
-const selectedClass = ref(0);
+const selectedClass = ref<number>(0);
 const emit = defineEmits(["updateSelectedData", "update:visible"]);
-type Range = {
-  [key: string]: [number, number]; // For keys like "low", "medium", etc.
-  default: [number, number]; // A required fallback range
-};
 
-const computeRange = (optionValue: string, ranges: Range) => {
-  if (optionValue === undefined) return ranges.default;
-  return ranges[optionValue] || ranges.default;
-};
-const proteinRange = computed(() =>
-  computeRange(proteinOption.value?.value, {
-    low: [0, 18],
-    medium: [18, 30],
-    high: [30, 1000],
-    default: [0, 1000],
-  })
-);
-
-const carbRange = computed(() =>
-  computeRange(carbOption.value?.value, {
-    low: [0, 50],
-    medium: [50, 100],
-    high: [100, 1000],
-    default: [0, 1000],
-  })
-);
-
-const caloriesRange = computed(() =>
-  computeRange(caloriesOption.value?.value, {
-    low: [0, 200],
-    medium: [200, 500],
-    high: [500, 1000],
-    default: [0, 1000],
-  })
-);
-
-const fatRange = computed(() =>
-  computeRange(fatOption.value?.value, {
-    low: [0, 10],
-    medium: [10, 20],
-    high: [20, 1000],
-    default: [0, 1000],
-  })
-);
-const filters = ref({
-  global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-  protein: { value: proteinRange, matchMode: FilterMatchMode.BETWEEN },
-  carbohydrate: { value: carbRange, matchMode: FilterMatchMode.BETWEEN },
-  calories: { value: caloriesRange, matchMode: FilterMatchMode.BETWEEN },
-  fat: { value: fatRange, matchMode: FilterMatchMode.BETWEEN },
-});
 const productsFilterByCategories = ref<foodItem[][]>([]);
 
 const classClicked = (item: { image: string; name: string }, index: number) => {
@@ -94,33 +60,7 @@ const classClicked = (item: { image: string; name: string }, index: number) => {
   selectedCategory.value.image = item.image;
   selectedCategory.value.name = item.name;
 };
-const proteinOption = ref();
-const carbOption = ref();
-const caloriesOption = ref();
-const fatOption = ref();
-const proteinFilterOptions = ref([
-  { name: "< 18(g)", value: "low" },
-  { name: "18~30(g)", value: "medium" },
-  { name: "> 30(g)", value: "high" },
-]);
 
-const carbFilterOptions = ref([
-  { name: "< 50(g)", value: "low" },
-  { name: "50~100(g)", value: "medium" },
-  { name: "> 100(g)", value: "high" },
-]);
-
-const caloriesFilterOptions = ref([
-  { name: "< 200(cal)", value: "low" },
-  { name: "200~500(cal)", value: "medium" },
-  { name: "> 500(cal)", value: "high" },
-]);
-
-const fatFilterOptions = ref([
-  { name: "< 10(g)", value: "low" },
-  { name: "10~20(g)", value: "medium" },
-  { name: "> 20(g)", value: "high" },
-]);
 const toast = useToast();
 
 const categories = [
@@ -181,13 +121,7 @@ const selectedCategory = ref<{ name: string; image: string }>({
   name: "",
   image: "",
 });
-const clearFilter = () => {
-  caloriesOption.value =
-    carbOption.value =
-    proteinOption.value =
-    fatOption.value =
-      undefined;
-};
+
 const closeDialog = () => {
   emit("updateSelectedData", FoodTableSelectedProducts.value);
   clearFilter();
@@ -249,14 +183,22 @@ const unselectAll = (e: any) => {
 onMounted(() => {
   console.log("Food Table OnMounted");
   console.log(props.products);
+  console.log(subclassOptions.value[0]);
+  console.log(proteinFilterOptions.value);
   const ret = categories.map((category) =>
     props.products.filter((item) => item.class === category.name)
   );
   ret[ret.length - 1] = props.products;
   productsFilterByCategories.value = ret;
 });
-
+watch(selectedClass, (nv) => {
+  console.log("Selected Class");
+  console.log(selectedClass.value);
+  console.log(subclassOptions.value[selectedClass.value]);
+  console.log(nv);
+});
 const closeFilter = () => {
+  console.log("Close filter");
   document.body.click(); // 自動關閉 filter popup
 };
 </script>
@@ -329,7 +271,23 @@ const closeFilter = () => {
           field="subclass"
           :header="$t('food_class')"
           style="width: 8%"
-        ></Column>
+          :filter="true"
+          filterField="subclass"
+          :showFilterMatchModes="false"
+          :showApplyButton="false"
+          :showClearButton="false"
+        >
+          <template #filter="{ field, filterModel, filterCallback }">
+            <Dropdown
+              v-model="subclassOption"
+              :options="subclassOptions[selectedClass]"
+              optionLabel="name"
+              placeholder="Any"
+              @change="closeFilter"
+              showClear
+            />
+          </template>
+        </Column>
         <Column
           field="gram"
           :header="$t('food_gram')"
@@ -512,7 +470,6 @@ const closeFilter = () => {
 .badge {
   top: -10px; /* 調整位置 */
   right: -10px; /* 調整位置 */
-
   border-radius: 50%;
   width: 10%;
   height: 24px;
