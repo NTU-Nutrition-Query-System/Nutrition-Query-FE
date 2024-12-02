@@ -165,7 +165,6 @@ const selectAll = (e: any) => {
   console.log("select all");
   toast.add({
     severity: "success",
-    summary: "Info",
     detail: `${categories[selectedClass.value].name} is added`,
     life: 2000,
   });
@@ -173,8 +172,7 @@ const selectAll = (e: any) => {
 const unselectAll = (e: any) => {
   console.log("select all");
   toast.add({
-    severity: "success",
-    summary: "Info",
+    severity: "warn",
     detail: `${categories[selectedClass.value].name} is removed`,
     life: 2000,
   });
@@ -213,7 +211,7 @@ const closeFilter = () => {
       :header="selectedCategory.name"
       style="overflow-x: auto; width: 90%"
     >
-      <Toast position="top-right" />
+      <Toast position="top-center" baseZIndex="12" />
       <div style="width: 100%; height: 5rem">
         <img
           :src="selectedCategory.image"
