@@ -211,7 +211,7 @@ const closeFilter = () => {
       :header="selectedCategory.name"
       style="overflow-x: auto; width: 90%"
     >
-      <Toast position="top-center" baseZIndex="12" />
+      <Toast position="top-center" baseZIndex="12" style="width: 20rem" />
       <div style="width: 100%; height: 5rem">
         <img
           :src="selectedCategory.image"
