@@ -189,14 +189,12 @@ onMounted(() => {
   ret[ret.length - 1] = props.products;
   productsFilterByCategories.value = ret;
 });
-watch(selectedClass, (nv) => {
-  console.log("Selected Class");
-  console.log(selectedClass.value);
-  console.log(subclassOptions.value[selectedClass.value]);
-  console.log(nv);
+watch(subclassOption, (nv) => {
+  closeFilter();
 });
 const closeFilter = () => {
   console.log("Close filter");
+  document.body.click(); // 自動關閉 filter popup
   document.body.click(); // 自動關閉 filter popup
 };
 </script>
@@ -238,6 +236,9 @@ const closeFilter = () => {
         tableStyle="min-width: 50rem"
         filterDisplay="menu"
         paginator
+        scrollable
+        scrollHeight="700px"
+        selectionMode="multiple"
         :rows="10"
         @row-select="itemSelect"
         @row-unselect="itemUnselect"
@@ -282,6 +283,7 @@ const closeFilter = () => {
               optionLabel="name"
               placeholder="Any"
               @change="closeFilter"
+              @filter="console.log('Filter Changed!')"
               showClear
             />
           </template>
