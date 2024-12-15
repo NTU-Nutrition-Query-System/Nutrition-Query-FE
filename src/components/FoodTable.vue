@@ -197,7 +197,9 @@ watch(selectedClass, (nv) => {
 });
 const closeFilter = () => {
   console.log("Close filter");
+  //Clicked twice to close the filter
   document.body.click(); // 自動關閉 filter popup
+  document.body.click();
 };
 </script>
 <template>
