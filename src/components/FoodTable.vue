@@ -50,6 +50,7 @@ const FoodTableSelectedProducts = ref<foodItem[]>([]);
 const dialogVisible = ref(false);
 const selectedClass = ref<number>(0);
 const emit = defineEmits(["updateSelectedData", "update:visible"]);
+
 const productsFilterByCategories = ref<foodItem[][]>([]);
 
 const classClicked = (item: { image: string; name: string }, index: number) => {
@@ -260,12 +261,6 @@ const closeFilter = () => {
         </template>
 
         <Column selectionMode="multiple" style="width: 1%"></Column>
-
-        <!-- <Column :header="'份數'" style="width: 1%">
-          <template #body="{ data }">
-            <div><span class="pi pi-wrench"></span></div>
-          </template>
-        </Column> -->
         <Column
           field="item"
           :header="$t('food_item')"

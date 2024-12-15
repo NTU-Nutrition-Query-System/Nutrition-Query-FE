@@ -9,6 +9,7 @@ import { isMinusToken } from "typescript";
 import Dropdown from "primevue/dropdown";
 import Menubar from "primevue/menubar";
 import { useRouter } from "vue-router";
+
 const router = useRouter();
 const { locale } = useI18n();
 const calculationResult = ref(10);
@@ -43,10 +44,6 @@ const items = ref([
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/primeicons/6.0.1/primeicons.min.css"
     />
   </head>
   <div>
