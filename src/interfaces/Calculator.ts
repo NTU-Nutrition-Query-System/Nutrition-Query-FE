@@ -15,3 +15,7 @@ export interface foodItem {
   fat: number;
   protein: number;
 }
+
+export interface weightedFoodItem extends foodItem {
+  weight: number;
+}
