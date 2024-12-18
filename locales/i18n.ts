@@ -36,7 +36,7 @@ const messages = {
     selection_meal_requirement: "Meal Requirement",
     selection_meal_uptake_percentage: "Uptake Percentage per Meal",
     selection_daily_requirement: "Daily Requirement",
-    selection_uptake_percentage: "Uptake Percentage per Day"
+    selection_daily_uptake_percentage: "Uptake Percentage per Day"
   },
   ch: {
     select_language: "語言",
