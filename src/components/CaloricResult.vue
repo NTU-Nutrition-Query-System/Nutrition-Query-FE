@@ -57,7 +57,14 @@ const selectedIntake = computed(() => {
       id: 0,
       nutrition: t("calories"),
       intake: selectedValue.value.calories.toFixed(1),
-      uptakePercentage:
+      mealRequirement: (props.needData.calories / 3).toFixed(1),
+      mealUptakePercentage:
+        (
+          (selectedValue.value.calories / props.needData.calories) *
+          300
+        ).toFixed(1) + "%",
+      dailyRequirement: props.needData.calories.toFixed(1),
+      dailyUptakePercentage:
         (
           (selectedValue.value.calories / props.needData.calories) *
           100
@@ -67,24 +74,49 @@ const selectedIntake = computed(() => {
       id: 1,
       nutrition: t("protein"),
       intake: selectedValue.value.protein.toFixed(1),
-      uptakePercentage:
-        ((selectedValue.value.protein / props.needData.protein) * 100).toFixed(
-          1
-        ) + "%",
+      mealRequirement: (props.needData.protein / 3).toFixed(1),
+      mealUptakePercentage:
+        (
+          (selectedValue.value.protein / props.needData.protein) *
+          300
+        ).toFixed(1) + "%",
+      dailyRequirement: props.needData.protein.toFixed(1),
+      dailyUptakePercentage:
+        (
+          (selectedValue.value.protein / props.needData.protein) *
+          100
+        ).toFixed(1) + "%",
     },
 
     {
       id: 2,
       nutrition: t("fat"),
       intake: selectedValue.value.fat.toFixed(1),
-      uptakePercentage:
-        ((selectedValue.value.fat / props.needData.fat) * 100).toFixed(1) + "%",
+      mealRequirement: (props.needData.fat / 3).toFixed(1),
+      mealUptakePercentage:
+        (
+          (selectedValue.value.fat / props.needData.fat) *
+          300
+        ).toFixed(1) + "%",
+      dailyRequirement: props.needData.fat.toFixed(1),
+      dailyUptakePercentage:
+        (
+          (selectedValue.value.fat / props.needData.fat) *
+          100
+        ).toFixed(1) + "%",
     },
     {
       id: 3,
       nutrition: t("carbohydrate"),
-      intake: selectedValue.value.fat.toFixed(1),
-      uptakePercentage:
+      intake: selectedValue.value.carbohydrate.toFixed(1),
+      mealRequirement: (props.needData.carbohydrate / 3).toFixed(1),
+      mealUptakePercentage:
+        (
+          (selectedValue.value.carbohydrate / props.needData.carbohydrate) *
+          300
+        ).toFixed(1) + "%",
+      dailyRequirement: props.needData.carbohydrate.toFixed(1),
+      dailyUptakePercentage:
         (
           (selectedValue.value.carbohydrate / props.needData.carbohydrate) *
           100
@@ -134,23 +166,44 @@ onMounted(() => {
       :value="selectedIntake"
       dataKey="id"
       tableStyle="min-width: 50rem"
+      class="custom-divider"
     >
       <Column field="nutrition" :header="$t('selection_nutrition')"></Column>
-      <Column field="intake" :header="$t('selection_intake')"></Column>
+      <Column field="intake" :header="$t('selection_intake')" class="first-column-divider"></Column>
+      <Column field="mealRequirement" :header="$t('selection_meal_requirement')"></Column>
       <Column
-        field="uptakePercentage"
+        field="mealUptakePercentage"
+        :header="$t('selection_meal_uptake_percentage')"
+        class="first-column-divider"
+      >
+        <template #body="slotProps">
+          <span
+            :style="{
+              color:
+                parseFloat(slotProps.data.mealUptakePercentage) > 100
+                  ? 'red'
+                  : 'green',
+            }"
+          >
+            {{ slotProps.data.mealUptakePercentage }}
+          </span>
+        </template>
+      </Column>
+      <Column field="dailyRequirement" :header="$t('selection_daily_requirement')"></Column>
+      <Column
+        field="dailyUptakePercentage"
         :header="$t('selection_daily_uptake_percentage')"
       >
         <template #body="slotProps">
           <span
             :style="{
               color:
-                parseFloat(slotProps.data.uptakePercentage) > 100
+                parseFloat(slotProps.data.dailyUptakePercentage) > 100
                   ? 'red'
                   : 'green',
             }"
           >
-            {{ slotProps.data.uptakePercentage }}
+            {{ slotProps.data.dailyUptakePercentage }}
           </span>
         </template>
       </Column>
@@ -183,6 +236,10 @@ onMounted(() => {
   display: flex;
   justify-content: space-between;
   margin: 10px 0;
+}
+
+.custom-divider .first-column-divider {
+  border-right: 2px solid #dee2e6;
 }
 
 .p-dialog .p-dialog-title {
