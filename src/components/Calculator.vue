@@ -50,6 +50,7 @@ const calculate = () => {
 
 const nextOnClicked = () => {
   isExpanded.value = true;
+  foodTableDisplay.value = true;
   calculateDailyNeed();
 };
 const selectedProduct = ref([]);
@@ -67,6 +68,7 @@ const cartUpdate = (newValue: []) => {
 };
 const products = ref<foodItem[]>([]);
 const foodTableLoaded = ref<boolean>(false);
+const foodTableDisplay = ref<boolean>(false);
 const loadTableData = async () => {
   const res = await getTableData();
   products.value = res;
@@ -204,7 +206,7 @@ onMounted(() => {
   </div>
 
   <FoodTable
-    v-if="foodTableLoaded"
+    v-if="foodTableLoaded && foodTableDisplay"
     v-model:selectedProduct="selectedProduct"
     @updateSelectedData="cartUpdate"
     :products="products"
