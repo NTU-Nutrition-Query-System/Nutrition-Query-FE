@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, computed, onMounted } from "vue";
+import { ref, watch, computed, onMounted, toValue } from "vue";
 import DataTable from "primevue/datatable";
 import InputText from "primevue/inputtext";
 import Column from "primevue/column";
@@ -177,6 +177,65 @@ const unselectAll = (e: any) => {
     life: 2000,
   });
 };
+const getColor = (value: number, min_val: number, max_val: number) => {
+  const min = min_val;
+  const max = max_val;
+
+  // 計算顏色的線性過渡
+  const percentage = (value - min) / (max - min); // 0 到 1 之間的數字
+
+  // 定義顏色過渡階段
+  const colors = [
+    { r: 76, g: 232, b: 90 }, // #4CE85A
+    { r: 110, g: 219, b: 68 }, // #6EDB44
+    { r: 224, g: 220, b: 72 }, // #E0DC48
+    { r: 242, g: 183, b: 39 }, // #F2B727
+    { r: 242, g: 123, b: 39 }, // #F27B27
+  ];
+
+  let r, g, b;
+
+  // 根據百分比選擇顏色階段
+  if (percentage <= 0.25) {
+    // 第一階段：#4CE85A -> #6EDB44
+    const start = colors[0];
+    const end = colors[1];
+    const ratio = percentage / 0.25;
+
+    r = Math.round(start.r + ratio * (end.r - start.r));
+    g = Math.round(start.g + ratio * (end.g - start.g));
+    b = Math.round(start.b + ratio * (end.b - start.b));
+  } else if (percentage <= 0.5) {
+    // 第二階段：#6EDB44 -> #E0DC48
+    const start = colors[1];
+    const end = colors[2];
+    const ratio = (percentage - 0.25) / 0.25;
+
+    r = Math.round(start.r + ratio * (end.r - start.r));
+    g = Math.round(start.g + ratio * (end.g - start.g));
+    b = Math.round(start.b + ratio * (end.b - start.b));
+  } else if (percentage <= 0.75) {
+    // 第三階段：#E0DC48 -> #F2B727
+    const start = colors[2];
+    const end = colors[3];
+    const ratio = (percentage - 0.5) / 0.25;
+
+    r = Math.round(start.r + ratio * (end.r - start.r));
+    g = Math.round(start.g + ratio * (end.g - start.g));
+    b = Math.round(start.b + ratio * (end.b - start.b));
+  } else {
+    // 第四階段：#F2B727 -> #F27B27
+    const start = colors[3];
+    const end = colors[4];
+    const ratio = (percentage - 0.75) / 0.25;
+
+    r = Math.round(start.r + ratio * (end.r - start.r));
+    g = Math.round(start.g + ratio * (end.g - start.g));
+    b = Math.round(start.b + ratio * (end.b - start.b));
+  }
+
+  return `rgb(${r}, ${g}, ${b})`;
+};
 
 onMounted(() => {
   console.log("Food Table OnMounted");
@@ -304,6 +363,19 @@ const closeFilter = () => {
           :showClearButton="false"
           style="width: 0.5%"
         >
+          <template #body="{ data }">
+            <div
+              :style="{
+                backgroundColor: getColor(data.calories, 0, 550),
+                color: 'black',
+                padding: '10px',
+                borderRadius: '5px',
+                textAlign: 'center',
+              }"
+            >
+              {{ data.calories }}
+            </div>
+          </template>
           <template #filter="{ field, filterModel, filterCallback }">
             <Dropdown
               v-model="caloriesOption"
@@ -326,6 +398,19 @@ const closeFilter = () => {
           :showClearButton="false"
           style="width: 0.5%"
         >
+          <template #body="{ data }">
+            <div
+              :style="{
+                backgroundColor: getColor(data.carbohydrate, 0, 50),
+                color: 'black',
+                padding: '10px',
+                borderRadius: '5px',
+                textAlign: 'center',
+              }"
+            >
+              {{ data.carbohydrate }}
+            </div>
+          </template>
           <template #filter="{ field, filterModel, filterCallback }">
             <Dropdown
               v-model="carbOption"
@@ -349,7 +434,17 @@ const closeFilter = () => {
           style="width: 0.5%"
         >
           <template #body="{ data }">
-            {{ data.protein }}
+            <div
+              :style="{
+                backgroundColor: getColor(data.protein, 0, 25),
+                color: 'black',
+                padding: '10px',
+                borderRadius: '5px',
+                textAlign: 'center',
+              }"
+            >
+              {{ data.protein }}
+            </div>
           </template>
           <template #filter="{ field, filterModel, filterCallback }">
             <Dropdown
@@ -380,7 +475,17 @@ const closeFilter = () => {
           style="width: 0.5%"
         >
           <template #body="{ data }">
-            {{ data.fat }}
+            <div
+              :style="{
+                backgroundColor: getColor(data.fat, 0, 25),
+                color: 'black',
+                padding: '10px',
+                borderRadius: '5px',
+                textAlign: 'center',
+              }"
+            >
+              {{ data.fat }}
+            </div>
           </template>
           <template #filter="{ field, filterModel, filterCallback }">
             <Dropdown
