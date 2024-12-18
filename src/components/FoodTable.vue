@@ -265,12 +265,12 @@ const closeFilter = () => {
         <Column
           field="item"
           :header="$t('food_item')"
-          style="min-width: 150px; width: 5%"
+          style="min-width: 150px; width: 1%"
         ></Column>
         <Column
           field="subclass"
           :header="$t('food_class')"
-          style="width: 8%"
+          style="width: 1%"
           :filter="true"
           filterField="subclass"
           :showFilterMatchModes="false"
