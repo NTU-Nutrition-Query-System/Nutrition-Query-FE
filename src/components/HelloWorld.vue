@@ -6,7 +6,7 @@
     />
   </head>
   <div class="message-board">
-    <h2 class="board-title">公告板</h2>
+    <!-- <h2 class="board-title">公告板</h2>
 
     <div class="messages">
       <p-card
@@ -25,7 +25,8 @@
           <div class="message-footer">{{ message.date }}</div>
         </template>
       </p-card>
-    </div>
+    </div> -->
+    <Poster></Poster>
     <router-link to="/Calculator">
       <Button
         label="前往計算機"
@@ -47,6 +48,7 @@
 import { ref } from "vue";
 import Card from "primevue/card";
 import Button from "primevue/button";
+import Poster from "./Poster.vue";
 const messages = ref([
   {
     title: "系統維護通知",
