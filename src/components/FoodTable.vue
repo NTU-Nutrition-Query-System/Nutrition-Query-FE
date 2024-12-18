@@ -261,11 +261,11 @@ const closeFilter = () => {
           </div>
         </template>
 
-        <Column selectionMode="multiple" style="width: 1%"></Column>
+        <Column selectionMode="multiple" style="width: 0.1%"></Column>
         <Column
           field="item"
           :header="$t('food_item')"
-          style="width: 10%"
+          style="min-width: 150px; width: 5%"
         ></Column>
         <Column
           field="subclass"
@@ -291,7 +291,7 @@ const closeFilter = () => {
         <Column
           field="gram"
           :header="$t('food_gram')"
-          style="width: 2%"
+          style="width: 0.5%"
         ></Column>
         <Column
           sortable
@@ -302,7 +302,7 @@ const closeFilter = () => {
           :showFilterMatchModes="false"
           :showApplyButton="false"
           :showClearButton="false"
-          style="width: 4%"
+          style="width: 0.5%"
         >
           <template #filter="{ field, filterModel, filterCallback }">
             <Dropdown
@@ -324,7 +324,7 @@ const closeFilter = () => {
           :showFilterMatchModes="false"
           :showApplyButton="false"
           :showClearButton="false"
-          style="width: 4%"
+          style="width: 0.5%"
         >
           <template #filter="{ field, filterModel, filterCallback }">
             <Dropdown
@@ -346,7 +346,7 @@ const closeFilter = () => {
           :showFilterMatchModes="false"
           :showApplyButton="false"
           :showClearButton="false"
-          style="width: 4%"
+          style="width: 0.5%"
         >
           <template #body="{ data }">
             {{ data.protein }}
@@ -377,7 +377,7 @@ const closeFilter = () => {
           filterField="fat"
           :showApplyButton="false"
           :showClearButton="false"
-          style="width: 4%"
+          style="width: 0.5%"
         >
           <template #body="{ data }">
             {{ data.fat }}
