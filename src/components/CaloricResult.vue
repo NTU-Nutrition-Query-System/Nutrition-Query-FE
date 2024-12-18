@@ -223,6 +223,7 @@ onMounted(() => {
     >
       <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
       <Column field="item" :header="$t('food_item')"></Column>
+      <Column field="gram" :header="$t('gram')"></Column>
       <Column field="calories" :header="$t('calories')"></Column>
       <Column field="carbohydrate" :header="$t('carbohydrate')"></Column>
       <Column field="protein" :header="$t('protein')"></Column>
