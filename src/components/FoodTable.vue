@@ -251,7 +251,7 @@ const closeFilter = () => {
           <div>
             <IconField>
               <InputIcon>
-                <i class="pi pi-search" />
+                <i class="pi pi-search" style="margin-right: 1rem"></i>
               </InputIcon>
               <InputText
                 v-model="filters['global'].value"

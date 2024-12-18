@@ -8,6 +8,7 @@ import router from "./router";
 import i18n from "../locales/i18n"; // Import i18n configuration
 import "./assets/base.css";
 import ToastService from "primevue/toastservice";
+import "primeicons/primeicons.css";
 // Create the Vue app
 const app = createApp(App);
 const MyPreset = definePreset(Material, {
