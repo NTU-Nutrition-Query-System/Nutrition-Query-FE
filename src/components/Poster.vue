@@ -53,11 +53,24 @@
         </template>
         <template #content>
           <div class="info-details" style="background-color: #f0f0f0">
-            <p><strong>對象：</strong> 國高中學生</p>
-            <p><strong>人數：</strong> 每場 <b>20-24</b> 人</p>
-            <p><strong>場次：</strong> 國高中各一場</p>
-            <p><strong>日期：</strong> 114 年 2-4 月</p>
-            <p><strong>時間：</strong> 09:00-16:00</p>
+            <p>
+              <strong><i class="pi pi-user" /> 對象：</strong> 國高中學生
+            </p>
+            <p>
+              <strong><i class="pi pi-users" /> 人數：</strong> 每場
+              <b>20-24</b> 人
+            </p>
+            <p>
+              <strong><i class="pi pi-verified" /> 場次：</strong> 國高中各一場
+            </p>
+            <p>
+              <strong><i class="pi pi-calendar" /> 日期：</strong> 114 年
+              <b>2-4 </b>月
+            </p>
+            <p>
+              <strong><i class="pi pi-clock" /> 時間：</strong>
+              <b>09:00-16:00</b>
+            </p>
           </div>
         </template>
       </Card>
@@ -80,7 +93,11 @@
         <h4>歡迎國高中學校與本計畫聯繫！</h4>
         <p>
           <i>
-            聯絡信箱：<strong>skhsu900@gmail.com</strong><br />
+            <i class="pi pi-inbox" />聯絡信箱 ：<strong
+              >skhsu900@gmail.com</strong
+            ><br />
+            <i class="pi pi-phone" />連絡電話：<strong>02-3366-5716 </strong
+            ><br />
             或掃 QR Code 填表單</i
           >
         </p>
