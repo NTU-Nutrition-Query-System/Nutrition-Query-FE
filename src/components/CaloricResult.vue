@@ -139,7 +139,7 @@ onMounted(() => {
       <Column field="intake" :header="$t('selection_intake')"></Column>
       <Column
         field="uptakePercentage"
-        :header="$t('selection_uptake_percentage')"
+        :header="$t('selection_daily_uptake_percentage')"
       >
         <template #body="slotProps">
           <span
