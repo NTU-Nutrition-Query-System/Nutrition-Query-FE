@@ -69,6 +69,34 @@ const categories = [
     image: new URL("@/assets/imgs/sandwich_burger.svg", import.meta.url).href,
   },
   {
+    name: "飯糰壽司類",
+    image: new URL("@/assets/imgs/snacks.svg", import.meta.url).href,
+  },
+  {
+    name: "麵飯類",
+    image: new URL("@/assets/imgs/snacks.svg", import.meta.url).href,
+  },
+  {
+    name: "蛋與蛋餅類",
+    image: new URL("@/assets/imgs/snacks.svg", import.meta.url).href,
+  },
+  {
+    name: "麵包蛋糕類",
+    image: new URL("@/assets/imgs/snacks.svg", import.meta.url).href,
+  },
+  {
+    name: "燕麥類",
+    image: new URL("@/assets/imgs/snacks.svg", import.meta.url).href,
+  },
+  {
+    name: "飲品",
+    image: new URL("@/assets/imgs/snacks.svg", import.meta.url).href,
+  },
+  {
+    name: "青菜類",
+    image: new URL("@/assets/imgs/vegetables.svg", import.meta.url).href,
+  },
+  {
     name: "水果",
     image: new URL("@/assets/imgs/fruit.svg", import.meta.url).href,
   },
@@ -77,27 +105,7 @@ const categories = [
     image: new URL("@/assets/imgs/meat.svg", import.meta.url).href,
   },
   {
-    name: "青菜類",
-    image: new URL("@/assets/imgs/vegetables.svg", import.meta.url).href,
-  },
-  {
     name: "點心",
-    image: new URL("@/assets/imgs/snacks.svg", import.meta.url).href,
-  },
-  {
-    name: "飯糰壽司類",
-    image: new URL("@/assets/imgs/snacks.svg", import.meta.url).href,
-  },
-  {
-    name: "飲品",
-    image: new URL("@/assets/imgs/snacks.svg", import.meta.url).href,
-  },
-  {
-    name: "燕麥類",
-    image: new URL("@/assets/imgs/snacks.svg", import.meta.url).href,
-  },
-  {
-    name: "蛋與蛋餅類",
     image: new URL("@/assets/imgs/snacks.svg", import.meta.url).href,
   },
   {
@@ -105,18 +113,11 @@ const categories = [
     image: new URL("@/assets/imgs/snacks.svg", import.meta.url).href,
   },
   {
-    name: "麵包蛋糕類",
-    image: new URL("@/assets/imgs/snacks.svg", import.meta.url).href,
-  },
-  {
-    name: "麵飯類",
-    image: new URL("@/assets/imgs/snacks.svg", import.meta.url).href,
-  },
-  {
     name: "全部",
     image: new URL("@/assets/imgs/snacks.svg", import.meta.url).href,
   },
 ];
+
 const selectedCategory = ref<{ name: string; image: string }>({
   name: "",
   image: "",
