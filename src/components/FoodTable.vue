@@ -510,8 +510,9 @@ const closeFilter = () => {
   </div>
   <div class="card-container">
     <Card
-      style="width: 100%; border: 1px solid #ccc; border-radius: 8px"
+      class="card"
       v-for="(item, index) in categories"
+      @click="classClicked(item, index)"
     >
       <template #title>
         <div style="display: flex">
@@ -559,7 +560,17 @@ const closeFilter = () => {
   justify-content: space-between;
   margin: 10px 0;
 }
-
+.card {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+.card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 5);
+  background-color: rgba(255, 255, 255, 0.8);
+}
 .card-container {
   margin-top: 5rem;
   width: 100%;
