@@ -241,7 +241,12 @@ onMounted(() => {
   justify-content: space-between; /* 將兩組 radio 均勻分佈 */
   width: 100%; /* 使容器占滿整個寬度 */
 }
-
+.input-field .p-inputtext {
+  text-align: center; /* 文字居中对齐 */
+  font-size: 24px; /* 放大字体 */
+  font-weight: bold; /* 可选：加粗字体 */
+  padding: 10px; /* 增加内边距，让输入框显得更大气 */
+}
 .radio-group label {
   margin-left: 5px; /* 使 label 與 radio 之間有一些間距 */
   display: flex;
