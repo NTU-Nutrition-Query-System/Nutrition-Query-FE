@@ -21,10 +21,10 @@ const messages = {
     calculator_input_gender: "Gender",
     calculator_result_daily_title: "My Daily Nutrient Requirements",
     calculator_result_meal_title: "My Meal Nutrient Requirements",
-    calculator_input_activity_factor: "Activity Factor",
-    calculator_input_activity_factor_mild: "Mild",
-    calculator_input_activity_factor_moderate: "Moderate",
-    calculator_input_activity_factor_severe: "Severe",
+    // calculator_input_activity_factor: "Activity Factor",
+    // calculator_input_activity_factor_mild: "Mild",
+    // calculator_input_activity_factor_moderate: "Moderate",
+    // calculator_input_activity_factor_severe: "Severe",
     food_item: "Item",
     food_class: "Category",
     food_gram: "Grams",
@@ -36,7 +36,18 @@ const messages = {
     selection_meal_requirement: "Meal Requirement",
     selection_meal_uptake_percentage: "Uptake Percentage per Meal",
     selection_daily_requirement: "Daily Requirement",
-    selection_daily_uptake_percentage: "Uptake Percentage per Day"
+    selection_daily_uptake_percentage: "Uptake Percentage per Day",
+    calculator_input_activity_factor: {
+      title: "activity level",
+      mild: "light",
+      moderate: "medium",
+      severe: "heavy",
+      tips: {
+        mild: "e.g. reading, listening to music, computer work, using ipad, taking bus to school",
+        moderate: "e.g. waling or biking to school, house chores, exercising during recess, shopping, gardening",
+        severe: "e.g. joining sport teams, jogging, weight or heavy lifting, yard work",
+      },
+    },
   },
   ch: {
     select_language: "語言",
@@ -57,10 +68,6 @@ const messages = {
     calculator_input_gender: "性別",
     calculator_result_daily_title: "我的一日營養素需求",
     calculator_result_meal_title: "我的一餐營養素需求",
-    calculator_input_activity_factor: "每日活動強度",
-    calculator_input_activity_factor_mild: "輕度",
-    calculator_input_activity_factor_moderate: "中度",
-    calculator_input_activity_factor_severe: "重度",
     food_item: "品項",
     food_class: "分類",
     food_gram: "克數",
@@ -72,6 +79,17 @@ const messages = {
     selection_meal_uptake_percentage: "每餐攝取百分比",
     selection_daily_requirement: "每日所需營養素",
     selection_daily_uptake_percentage: "每日攝取百分比",
+    calculator_input_activity_factor: {
+      title: "每日活動強度說明",
+      mild: "輕度",
+      moderate: "中度",
+      severe: "重度",
+      tips: {
+        mild: "例如：看書、聽音樂、打電腦、用平板、補習、搭車上學",
+        moderate: "例如：走路或騎腳踏車上學、做家事、下課打球、逛街、種菜",
+        severe: "例如：運動校隊、跑步、重訓、搬重物、掃地或拖地超過30分鐘"
+      },
+    },
   },
 };
 

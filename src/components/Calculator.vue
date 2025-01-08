@@ -137,7 +137,7 @@ onMounted(() => {
       </div>
       <div style="margin-top: 0.5rem">
         <label class="font-bold block mb-2">{{
-          $t("calculator_input_activity_factor")
+          $t("calculator_input_activity_factor.title")
         }}</label>
         <div
           style="
@@ -148,20 +148,20 @@ onMounted(() => {
         >
           <div class="RadioButton">
             <RadioButton v-model="activityFactor" value="1.3" />
-            <label style="margin-left: 0.3rem">{{
-              $t("calculator_input_activity_factor_mild")
+            <label style="margin-left: 0.3rem" :title="$t('calculator_input_activity_factor.tips.mild')">{{
+              $t("calculator_input_activity_factor.mild")
             }}</label>
           </div>
           <div class="RadioButton">
             <RadioButton v-model="activityFactor" value="1.5" />
-            <label style="margin-left: 0.3rem">{{
-              $t("calculator_input_activity_factor_moderate")
+            <label style="margin-left: 0.3rem" :title="$t('calculator_input_activity_factor.tips.moderate')">{{
+              $t("calculator_input_activity_factor.moderate")
             }}</label>
           </div>
           <div class="RadioButton">
             <RadioButton v-model="activityFactor" value="2" />
-            <label style="margin-left: 0.3rem">{{
-              $t("calculator_input_activity_factor_severe")
+            <label style="margin-left: 0.3rem" :title="$t('calculator_input_activity_factor.tips.severe')">{{
+              $t("calculator_input_activity_factor.severe")
             }}</label>
           </div>
           <!-- <span>{{ activityFactor }}</span> -->
