@@ -67,10 +67,10 @@ const messages = {
     food_dt_fibre: "膳食纖維(克)",
     selection_result_title: "我選擇的餐食營養素夠不夠呢?",
     selection_nutrition: "營養素",
-    selection_intake: "攝取量",
-    selection_meal_requirement: "每餐所需攝取量",
+    selection_intake: "目前攝取量",
+    selection_meal_requirement: "每餐所需營養素",
     selection_meal_uptake_percentage: "每餐攝取百分比",
-    selection_daily_requirement: "每日所需攝取量",
+    selection_daily_requirement: "每日所需營養素",
     selection_daily_uptake_percentage: "每日攝取百分比",
   },
 };
