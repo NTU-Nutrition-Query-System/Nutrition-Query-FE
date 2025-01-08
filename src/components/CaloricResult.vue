@@ -238,7 +238,7 @@ const value3 = ref(5);
       <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
       <Column
         :header="$t('調整份數')"
-        header-style="width: 20%"
+        header-style="width: 12%"
         style="min-width: 180px"
       >
         <template #body="{ data }"
