@@ -263,12 +263,12 @@ const value3 = ref(5);
       >
       <Column field="gram" :header="$t('food_gram')"
         ><template #body="{ data }"
-          ><div>{{ (data.gram * data.weight).toFixed(1) }}</div>
+          ><div>{{ (data.gram * data.weight).toFixed(0) }}</div>
         </template></Column
       >
       <Column field="calories" :header="$t('calories')"
         ><template #body="{ data }"
-          ><div>{{ (data.calories * data.weight).toFixed(1) }}</div>
+          ><div>{{ (data.calories * data.weight).toFixed(0) }}</div>
         </template></Column
       >
       <Column field="carbohydrate" :header="$t('carbohydrate')"
