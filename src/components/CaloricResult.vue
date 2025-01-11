@@ -253,6 +253,7 @@ const value3 = ref(5);
               min="0.5"
               maxFractionDigits="1"
               fluid
+              incrementButtonClass="small-buttons"
             />
           </div> </template
       ></Column>
@@ -310,5 +311,17 @@ const value3 = ref(5);
   font-family: "Inter", sans-serif !important;
   font-size: 1em;
   font-weight: 700;
+}
+.small-buttons .p-inputnumber-button {
+  width: 24px; /* 按钮宽度 */
+  height: 24px; /* 按钮高度 */
+  font-size: 14px; /* 按钮文字/图标大小 */
+  padding: 0; /* 去掉内边距 */
+  border-radius: 4px; /* 圆角样式 */
+}
+
+.small-buttons .p-inputnumber-button.p-disabled {
+  opacity: 0.6; /* 禁用时的透明度 */
+  cursor: not-allowed;
 }
 </style>

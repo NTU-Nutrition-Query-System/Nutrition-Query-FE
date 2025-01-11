@@ -38,14 +38,16 @@ const messages = {
     selection_daily_requirement: "Daily Requirement",
     selection_daily_uptake_percentage: "Uptake Percentage per Day",
     calculator_input_activity_factor: {
-      title: "activity level",
-      mild: "light",
-      moderate: "medium",
-      severe: "heavy",
+      title: "Activity level",
+      mild: "Light",
+      moderate: "Medium",
+      severe: "Heavy",
       tips: {
-        mild: "e.g. reading, listening to music, computer work, using ipad, taking bus to school",
-        moderate: "e.g. waling or biking to school, house chores, exercising during recess, shopping, gardening",
-        severe: "e.g. joining sport teams, jogging, weight or heavy lifting, yard work",
+        mild: "Light: reading, listening to music, computer work, using ipad, taking bus to school",
+        moderate:
+          "Medium: waling or biking to school, house chores, exercising during recess, shopping, gardening",
+        severe:
+          "Heavy: joining sport teams, jogging, weight or heavy lifting, yard work",
       },
     },
   },
@@ -80,14 +82,14 @@ const messages = {
     selection_daily_requirement: "每日所需營養素",
     selection_daily_uptake_percentage: "每日攝取百分比",
     calculator_input_activity_factor: {
-      title: "每日活動強度說明",
+      title: "活動因子",
       mild: "輕度",
       moderate: "中度",
       severe: "重度",
       tips: {
-        mild: "例如：看書、聽音樂、打電腦、用平板、補習、搭車上學",
-        moderate: "例如：走路或騎腳踏車上學、做家事、下課打球、逛街、種菜",
-        severe: "例如：運動校隊、跑步、重訓、搬重物、掃地或拖地超過30分鐘"
+        mild: "輕度：看書、聽音樂、打電腦、用平板、補習、搭車上學",
+        moderate: "中度：走路或騎腳踏車上學、做家事、下課打球、逛街、種菜",
+        severe: "重度：運動校隊、跑步、重訓、搬重物、掃地或拖地超過30分鐘",
       },
     },
   },

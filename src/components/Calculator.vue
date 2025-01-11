@@ -104,36 +104,28 @@ onMounted(() => {
       <label class="font-bold block mb-2">{{
         $t("calculator_input_gender")
       }}</label>
-      <div class="flex items-center">
-        <div class="radio-group">
-          <div class="RadioButton">
-            <RadioButton v-model="gender" value="Male" />
-            <label>{{ $t("male") }}</label>
-          </div>
-          <div class="RadioButton">
-            <RadioButton v-model="gender" value="Female" />
-            <label>{{ $t("female") }}</label>
-          </div>
-        </div>
-      </div>
+      <RadioButton v-model="gender" value="Male" style="margin-left: 1rem" />
+      <label>{{ $t("male") }}</label>
+      <RadioButton v-model="gender" value="Female" style="margin-left: 1rem" />
+      <label>{{ $t("female") }}</label>
     </div>
 
     <div style="margin-top: 0.5rem">
-      <div class="flex-auto">
+      <div style="display: flex">
         <label for="age" class="font-bold block mb-2">{{ $t("age") }}</label>
-        <InputNumber v-model="age" fluid class="input-field" />
+        <InputNumber v-model="age" class="input-field" />
       </div>
-      <div class="flex-auto">
+      <div style="display: flex">
         <label for="height" class="font-bold block mb-2"
           >{{ $t("height") }}(cm)</label
         >
-        <InputNumber v-model="height" fluid class="input-field" />
+        <InputNumber v-model="height" class="input-field" />
       </div>
-      <div class="flex-auto">
+      <div style="display: flex">
         <label for="weight" class="font-bold block mb-2"
           >{{ $t("weight") }}(kg)</label
         >
-        <InputNumber v-model="weight" fluid class="input-field" />
+        <InputNumber v-model="weight" class="input-field" />
       </div>
       <div style="margin-top: 0.5rem">
         <label class="font-bold block mb-2">{{
@@ -148,23 +140,30 @@ onMounted(() => {
         >
           <div class="RadioButton">
             <RadioButton v-model="activityFactor" value="1.3" />
-            <label style="margin-left: 0.3rem" :title="$t('calculator_input_activity_factor.tips.mild')">{{
+            <label style="margin-left: 0.3rem">{{
               $t("calculator_input_activity_factor.mild")
             }}</label>
           </div>
           <div class="RadioButton">
             <RadioButton v-model="activityFactor" value="1.5" />
-            <label style="margin-left: 0.3rem" :title="$t('calculator_input_activity_factor.tips.moderate')">{{
+            <label style="margin-left: 0.3rem">{{
               $t("calculator_input_activity_factor.moderate")
             }}</label>
           </div>
           <div class="RadioButton">
             <RadioButton v-model="activityFactor" value="2" />
-            <label style="margin-left: 0.3rem" :title="$t('calculator_input_activity_factor.tips.severe')">{{
+            <label style="margin-left: 0.3rem">{{
               $t("calculator_input_activity_factor.severe")
             }}</label>
           </div>
+
           <!-- <span>{{ activityFactor }}</span> -->
+        </div>
+
+        <div style="">
+          <p>{{ $t("calculator_input_activity_factor.tips.mild") }}</p>
+          <p>{{ $t("calculator_input_activity_factor.tips.moderate") }}</p>
+          <p>{{ $t("calculator_input_activity_factor.tips.severe") }}</p>
         </div>
       </div>
       <div
@@ -176,7 +175,6 @@ onMounted(() => {
         "
       >
         <Button class="tab" label="Next" @click="nextOnClicked" />
-        <Button class="tab" label="Collapse" @click="isExpanded = false" />
       </div>
     </div>
 
@@ -228,7 +226,7 @@ onMounted(() => {
   text-align: center;
 }
 .calculator {
-  max-width: 400px;
+  max-width: 450px;
   margin: 0 auto;
   padding: 20px;
   border: 1px solid #ccc;
@@ -244,7 +242,6 @@ onMounted(() => {
 .input-field .p-inputtext {
   text-align: center; /* 文字居中对齐 */
   font-size: 24px; /* 放大字体 */
-  font-weight: bold; /* 可选：加粗字体 */
   padding: 10px; /* 增加内边距，让输入框显得更大气 */
 }
 .radio-group label {
@@ -281,6 +278,8 @@ onMounted(() => {
   border-radius: 4px;
   border: 1px solid #ccc;
   transition: border-color 0.3s ease;
+  margin-right: 2rem;
+  margin-left: auto;
 }
 
 .input-field:focus {
