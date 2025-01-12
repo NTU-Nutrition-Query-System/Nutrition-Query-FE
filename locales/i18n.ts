@@ -13,7 +13,7 @@ const messages = {
     protein: "Protein(g)",
     carbohydrate: "Carbohydrate(g)",
     fat: "Fat(g)",
-    calculate: "View Selected Items & Calculate Nutrients",
+    calculate: "View",
     calculator: "Nutrition Calculator",
     calculator_header_title: "Nutritionist Helps You Calculate",
     calculator_header_content:
@@ -62,7 +62,7 @@ const messages = {
     protein: "蛋白質(克)",
     carbohydrate: "醣類(克)",
     fat: "脂肪(克)",
-    calculate: "查看已選項目&計算營養素",
+    calculate: "查看",
     calculator: "營養計算機",
     calculator_header_title: "營養師幫你算",
     calculator_header_content:

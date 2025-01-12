@@ -11,7 +11,7 @@ import type { nutrient } from "../interfaces/Calculator";
 import type { foodItem } from "@/interfaces/Calculator";
 import { getTableData } from "@/apis/tableData";
 // Declare reactive variables using `ref`
-
+const content = ref<HTMLElement | null>(null);
 const age = ref<number>(0);
 const height = ref<number>(0);
 const weight = ref<number>(0);
@@ -55,6 +55,7 @@ const nextOnClicked = () => {
   calculateDailyNeed();
 };
 const selectedProduct = ref([]);
+const targetSection = ref<HTMLElement | null>(null);
 const titleIconURL = new URL(
   "@/assets/imgs/user-interface-1-5.svg",
   import.meta.url
@@ -74,6 +75,9 @@ const loadTableData = async () => {
   const res = await getTableData();
   products.value = res;
   foodTableLoaded.value = true;
+};
+const scrollDown = () => {
+  targetSection.value?.scrollIntoView({ behavior: "smooth" });
 };
 watch(selectedProduct, (newValue) => {
   console.log("selected product updated!");
@@ -111,24 +115,24 @@ onMounted(() => {
       <label>{{ $t("female") }}</label>
     </div>
 
-    <div style="margin-top: 0.5rem;">
+    <div style="margin-top: 0.5rem">
       <InputGroup>
         <FloatLabel variant="in">
-          <InputNumber v-model="age" class="input-field"/>
+          <InputNumber v-model="age" class="input-field" />
           <label for="age">{{ $t("age") }}</label>
         </FloatLabel>
       </InputGroup>
-    
+
       <InputGroup>
         <FloatLabel variant="in">
-          <InputNumber v-model="height" class="input-field" suffix=" cm"/>
+          <InputNumber v-model="height" class="input-field" suffix=" cm" />
           <label for="height">{{ $t("height") }}</label>
         </FloatLabel>
       </InputGroup>
 
       <InputGroup>
         <FloatLabel variant="in">
-          <InputNumber v-model="weight" class="input-field" suffix=" kg"/>
+          <InputNumber v-model="weight" class="input-field" suffix=" kg" />
           <label for="weight">{{ $t("weight") }}</label>
         </FloatLabel>
       </InputGroup>
@@ -150,7 +154,9 @@ onMounted(() => {
           <RadioButton v-model="activityFactor" value="1.3" />
           <label style="margin-left: 0.3rem">
             {{ $t("calculator_input_activity_factor.mild") }}
-            <div style="font-size:14px"> {{$t("calculator_input_activity_factor.tips.mild")}} </div>
+            <div style="font-size: 14px">
+              {{ $t("calculator_input_activity_factor.tips.mild") }}
+            </div>
           </label>
         </div>
         <div style="margin-bottom: 10px"></div>
@@ -158,7 +164,9 @@ onMounted(() => {
           <RadioButton v-model="activityFactor" value="1.5" />
           <label style="margin-left: 0.3rem">
             {{ $t("calculator_input_activity_factor.moderate") }}
-            <div style="font-size:14px"> {{$t("calculator_input_activity_factor.tips.moderate")}} </div>
+            <div style="font-size: 14px">
+              {{ $t("calculator_input_activity_factor.tips.moderate") }}
+            </div>
           </label>
         </div>
         <div style="margin-bottom: 10px"></div>
@@ -166,12 +174,14 @@ onMounted(() => {
           <RadioButton v-model="activityFactor" value="2" />
           <label style="margin-left: 0.3rem">
             {{ $t("calculator_input_activity_factor.severe") }}
-            <div style="font-size:14px"> {{$t("calculator_input_activity_factor.tips.severe")}} </div>
+            <div style="font-size: 14px">
+              {{ $t("calculator_input_activity_factor.tips.severe") }}
+            </div>
           </label>
         </div>
         <!-- <span>{{ activityFactor }}</span> -->
       </div>
-      
+
       <div
         style="
           display: flex;
@@ -205,16 +215,37 @@ onMounted(() => {
           }})</span
         >
       </div>
-      <Button class="tab" :label="$t('calculate')" @click="calculate" />
+      <Button class="tab" :label="$t('開始選取食物!')" @click="scrollDown" />
+      <Button
+        style="
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          z-index: 1000;
+          border-radius: 25px;
+          background-color: navy;
+          border-color: navy;
+          height: 5rem;
+          max-width: 5rem;
+        "
+        @click="calculate"
+      >
+        <div style="display: flex; flex-direction: column; align-items: center">
+          <i class="pi pi-calculator" style="font-size: 3rem"></i>
+          <label>{{ $t("calculate") }}</label>
+        </div>
+      </Button>
     </div>
   </div>
+  <div ref="targetSection">
+    <FoodTable
+      v-if="foodTableLoaded && foodTableDisplay"
+      v-model:selectedProduct="selectedProduct"
+      @updateSelectedData="cartUpdate"
+      :products="products"
+    />
+  </div>
 
-  <FoodTable
-    v-if="foodTableLoaded && foodTableDisplay"
-    v-model:selectedProduct="selectedProduct"
-    @updateSelectedData="cartUpdate"
-    :products="products"
-  />
   <CaloricResult
     v-if="showResult"
     v-model:visible="showResult"
@@ -291,5 +322,4 @@ onMounted(() => {
   text-align: center;
   font-size: 20px;
 }
-
 </style>
