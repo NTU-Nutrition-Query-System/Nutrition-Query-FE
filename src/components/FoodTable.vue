@@ -65,19 +65,27 @@ const toast = useToast();
 
 const categories = [
   {
-    name: "三明治、漢堡類",
-    image: new URL("@/assets/imgs/sandwich_burger.svg", import.meta.url).href,
+    name: "中式餐點",
+    image: new URL("@/assets/imgs/snacks.svg", import.meta.url).href,
+  },
+  {
+    name: "西式餐點",
+    image: new URL("@/assets/imgs/snacks.svg", import.meta.url).href,
   },
   {
     name: "飯糰壽司類",
     image: new URL("@/assets/imgs/snacks.svg", import.meta.url).href,
   },
   {
-    name: "麵飯類",
+    name: "蛋肉類",
     image: new URL("@/assets/imgs/snacks.svg", import.meta.url).href,
   },
   {
-    name: "蛋與蛋餅類",
+    name: "蔬菜類",
+    image: new URL("@/assets/imgs/snacks.svg", import.meta.url).href,
+  },
+  {
+    name: "水果類",
     image: new URL("@/assets/imgs/snacks.svg", import.meta.url).href,
   },
   {
@@ -85,27 +93,15 @@ const categories = [
     image: new URL("@/assets/imgs/snacks.svg", import.meta.url).href,
   },
   {
-    name: "燕麥類",
-    image: new URL("@/assets/imgs/snacks.svg", import.meta.url).href,
-  },
-  {
     name: "飲品",
     image: new URL("@/assets/imgs/snacks.svg", import.meta.url).href,
   },
   {
-    name: "青菜類",
-    image: new URL("@/assets/imgs/vegetables.svg", import.meta.url).href,
+    name: "油脂與堅果種子類",
+    image: new URL("@/assets/imgs/snacks.svg", import.meta.url).href,
   },
   {
-    name: "水果",
-    image: new URL("@/assets/imgs/fruit.svg", import.meta.url).href,
-  },
-  {
-    name: "肉類",
-    image: new URL("@/assets/imgs/meat.svg", import.meta.url).href,
-  },
-  {
-    name: "點心",
+    name: "零食類",
     image: new URL("@/assets/imgs/snacks.svg", import.meta.url).href,
   },
   {
@@ -182,57 +178,30 @@ const getColor = (value: number, min_val: number, max_val: number) => {
   const min = min_val;
   const max = max_val;
 
-  // 計算顏色的線性過渡
-  const percentage = (value - min) / (max - min); // 0 到 1 之間的數字
+  // Calculate the percentage between min and max values (0 to 1)
+  const percentage = (value - min) / (max - min);
 
-  // 定義顏色過渡階段
+  // Define the color transitions based on the percentage
   const colors = [
     { r: 76, g: 232, b: 90 }, // #4CE85A
-    { r: 110, g: 219, b: 68 }, // #6EDB44
     { r: 224, g: 220, b: 72 }, // #E0DC48
-    { r: 242, g: 183, b: 39 }, // #F2B727
     { r: 242, g: 123, b: 39 }, // #F27B27
   ];
 
+  // Choose a color based on the percentage value
   let r, g, b;
-
-  // 根據百分比選擇顏色階段
-  if (percentage <= 0.25) {
-    // 第一階段：#4CE85A -> #6EDB44
-    const start = colors[0];
-    const end = colors[1];
-    const ratio = percentage / 0.25;
-
-    r = Math.round(start.r + ratio * (end.r - start.r));
-    g = Math.round(start.g + ratio * (end.g - start.g));
-    b = Math.round(start.b + ratio * (end.b - start.b));
-  } else if (percentage <= 0.5) {
-    // 第二階段：#6EDB44 -> #E0DC48
-    const start = colors[1];
-    const end = colors[2];
-    const ratio = (percentage - 0.25) / 0.25;
-
-    r = Math.round(start.r + ratio * (end.r - start.r));
-    g = Math.round(start.g + ratio * (end.g - start.g));
-    b = Math.round(start.b + ratio * (end.b - start.b));
-  } else if (percentage <= 0.75) {
-    // 第三階段：#E0DC48 -> #F2B727
-    const start = colors[2];
-    const end = colors[3];
-    const ratio = (percentage - 0.5) / 0.25;
-
-    r = Math.round(start.r + ratio * (end.r - start.r));
-    g = Math.round(start.g + ratio * (end.g - start.g));
-    b = Math.round(start.b + ratio * (end.b - start.b));
+  if (percentage <= 0.33) {
+    r = colors[0].r;
+    g = colors[0].g;
+    b = colors[0].b;
+  } else if (percentage <= 0.66) {
+    r = colors[1].r;
+    g = colors[1].g;
+    b = colors[1].b;
   } else {
-    // 第四階段：#F2B727 -> #F27B27
-    const start = colors[3];
-    const end = colors[4];
-    const ratio = (percentage - 0.75) / 0.25;
-
-    r = Math.round(start.r + ratio * (end.r - start.r));
-    g = Math.round(start.g + ratio * (end.g - start.g));
-    b = Math.round(start.b + ratio * (end.b - start.b));
+    r = colors[2].r;
+    g = colors[2].g;
+    b = colors[2].b;
   }
 
   return `rgb(${r}, ${g}, ${b})`;
@@ -503,6 +472,32 @@ const closeFilter = () => {
                 </div>
               </template>
             </Dropdown>
+          </template>
+        </Column>
+
+        <Column
+          sortable
+          field="dietary_fibre"
+          :header="$t('food_dt_fibre')"
+          :filter="true"
+          :showFilterMatchModes="false"
+          filterField="dietary_fibre"
+          :showApplyButton="false"
+          :showClearButton="false"
+          style="width: 0.5%"
+        >
+          <template #body="{ data }">
+            <div
+              :style="{
+                backgroundColor: getColor(data.dietary_fibre, 0, 25),
+                color: 'black',
+                padding: '10px',
+                borderRadius: '5px',
+                textAlign: 'center',
+              }"
+            >
+              {{ data.dietary_fibre }}
+            </div>
           </template>
         </Column>
       </DataTable>
