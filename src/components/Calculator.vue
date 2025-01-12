@@ -190,7 +190,7 @@ onMounted(() => {
           margin-top: 1rem;
         "
       >
-        <Button class="tab" label="Next" @click="nextOnClicked" />
+        <Button class="tab" :label="$t('計算我的營養需求！')" @click="nextOnClicked" />
       </div>
     </div>
 
@@ -215,7 +215,7 @@ onMounted(() => {
           }})</span
         >
       </div>
-      <Button class="tab" :label="$t('開始選取食物!')" @click="scrollDown" />
+      <Button class="tab" :label="$t('開始選取食物！')" @click="scrollDown" />
       <Button
         style="
           position: fixed;
