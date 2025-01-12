@@ -243,21 +243,6 @@ const closeFilter = () => {
       style="overflow-x: auto; width: 90%"
     >
       <Toast position="top-center" baseZIndex="12" style="width: 20rem" />
-      <div style="width: 100%; height: 5rem">
-        <img
-          :src="selectedCategory.image"
-          alt="Category"
-          style="
-            height: 10rem;
-            float: right;
-            position: relative;
-            z-index: 10;
-            margin-bottom: -1rem;
-            margin-right: 0rem;
-            /* border: solid; */
-          "
-        />
-      </div>
 
       <DataTable
         v-model:selection="FoodTableSelectedProducts"

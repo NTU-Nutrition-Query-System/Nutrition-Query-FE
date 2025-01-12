@@ -7,7 +7,12 @@ import DataTable from "primevue/datatable";
 import Column from "primevue/column";
 import ColumnGroup from "primevue/columngroup"; // optional
 import Row from "primevue/row"; // optional
-import Slider from "primevue/slider";
+import Tabs from "primevue/tabs";
+import TabList from "primevue/tablist";
+import Tab from "primevue/tab";
+import TabPanels from "primevue/tabpanels";
+import TabPanel from "primevue/tabpanel";
+import ProgressBar from "primevue/progressbar";
 import type {
   nutrient,
   foodItem,
@@ -63,32 +68,30 @@ const selectedIntake = computed(() => {
       nutrition: t("calories"),
       intake: selectedValue.value.calories.toFixed(1),
       mealRequirement: (props.needData.calories / 3).toFixed(1),
-      mealUptakePercentage:
-        (
-          (selectedValue.value.calories / props.needData.calories) *
-          300
-        ).toFixed(1) + "%",
+      mealUptakePercentage: (
+        (selectedValue.value.calories / props.needData.calories) *
+        300
+      ).toFixed(1),
       dailyRequirement: props.needData.calories.toFixed(1),
-      dailyUptakePercentage:
-        (
-          (selectedValue.value.calories / props.needData.calories) *
-          100
-        ).toFixed(1) + "%",
+      dailyUptakePercentage: (
+        (selectedValue.value.calories / props.needData.calories) *
+        100
+      ).toFixed(1),
     },
     {
       id: 1,
       nutrition: t("protein"),
       intake: selectedValue.value.protein.toFixed(1),
       mealRequirement: (props.needData.protein / 3).toFixed(1),
-      mealUptakePercentage:
-        ((selectedValue.value.protein / props.needData.protein) * 300).toFixed(
-          1
-        ) + "%",
+      mealUptakePercentage: (
+        (selectedValue.value.protein / props.needData.protein) *
+        300
+      ).toFixed(1),
       dailyRequirement: props.needData.protein.toFixed(1),
-      dailyUptakePercentage:
-        ((selectedValue.value.protein / props.needData.protein) * 100).toFixed(
-          1
-        ) + "%",
+      dailyUptakePercentage: (
+        (selectedValue.value.protein / props.needData.protein) *
+        100
+      ).toFixed(1),
     },
 
     {
@@ -96,28 +99,30 @@ const selectedIntake = computed(() => {
       nutrition: t("fat"),
       intake: selectedValue.value.fat.toFixed(1),
       mealRequirement: (props.needData.fat / 3).toFixed(1),
-      mealUptakePercentage:
-        ((selectedValue.value.fat / props.needData.fat) * 300).toFixed(1) + "%",
+      mealUptakePercentage: (
+        (selectedValue.value.fat / props.needData.fat) *
+        300
+      ).toFixed(1),
       dailyRequirement: props.needData.fat.toFixed(1),
-      dailyUptakePercentage:
-        ((selectedValue.value.fat / props.needData.fat) * 100).toFixed(1) + "%",
+      dailyUptakePercentage: (
+        (selectedValue.value.fat / props.needData.fat) *
+        100
+      ).toFixed(1),
     },
     {
       id: 3,
       nutrition: t("carbohydrate"),
       intake: selectedValue.value.carbohydrate.toFixed(1),
       mealRequirement: (props.needData.carbohydrate / 3).toFixed(1),
-      mealUptakePercentage:
-        (
-          (selectedValue.value.carbohydrate / props.needData.carbohydrate) *
-          300
-        ).toFixed(1) + "%",
+      mealUptakePercentage: (
+        (selectedValue.value.carbohydrate / props.needData.carbohydrate) *
+        300
+      ).toFixed(1),
       dailyRequirement: props.needData.carbohydrate.toFixed(1),
-      dailyUptakePercentage:
-        (
-          (selectedValue.value.carbohydrate / props.needData.carbohydrate) *
-          100
-        ).toFixed(1) + "%",
+      dailyUptakePercentage: (
+        (selectedValue.value.carbohydrate / props.needData.carbohydrate) *
+        100
+      ).toFixed(1),
     },
   ];
 });
@@ -132,6 +137,7 @@ const closeDialog = () => {
 };
 const cartData = ref<weightedFoodItem[]>();
 const selectedCartData = ref<weightedFoodItem[]>();
+
 // Watch for changes in the prop and update the local state
 watch(
   () => props.visible,
@@ -145,6 +151,9 @@ watch(
 //   console.log(cartData.value);
 //   console.log(props.selectedData);
 // });
+const handle_percentage = (percent: number) => {
+  return Math.min(100, percent);
+};
 onMounted(() => {
   console.log("Result onMounted");
   console.log(props.selectedData);
@@ -166,62 +175,116 @@ const value3 = ref(5);
     @hide="closeDialog"
     style="overflow-x: scroll; width: 80%"
   >
-    <DataTable
-      :value="selectedIntake"
-      dataKey="id"
-      tableStyle="min-width: 50rem"
-      class="custom-divider"
-    >
-      <Column field="nutrition" :header="$t('selection_nutrition')"></Column>
-      <Column
-        field="intake"
-        :header="$t('selection_intake')"
-        class="first-column-divider"
-      ></Column>
-      <Column
-        field="mealRequirement"
-        :header="$t('selection_meal_requirement')"
-      ></Column>
-      <Column
-        field="mealUptakePercentage"
-        :header="$t('selection_meal_uptake_percentage')"
-        class="first-column-divider"
-      >
-        <template #body="slotProps">
-          <span
-            :style="{
-              color:
-                parseFloat(slotProps.data.mealUptakePercentage) > 100
-                  ? 'red'
-                  : 'green',
-            }"
+    <Tabs value="0">
+      <TabList>
+        <Tab value="0">每餐所需營養素&百分比</Tab>
+        <Tab value="1">每日所需營養素</Tab>
+      </TabList>
+      <TabPanels>
+        <TabPanel value="0">
+          <DataTable
+            :value="selectedIntake"
+            dataKey="id"
+            tableStyle="min-width: 50rem"
+            class="custom-divider"
           >
-            {{ slotProps.data.mealUptakePercentage }}
-          </span>
-        </template>
-      </Column>
-      <Column
-        field="dailyRequirement"
-        :header="$t('selection_daily_requirement')"
-      ></Column>
-      <Column
-        field="dailyUptakePercentage"
-        :header="$t('selection_daily_uptake_percentage')"
-      >
-        <template #body="slotProps">
-          <span
-            :style="{
-              color:
-                parseFloat(slotProps.data.dailyUptakePercentage) > 100
-                  ? 'red'
-                  : 'green',
-            }"
+            <Column
+              field="nutrition"
+              :header="$t('selection_nutrition')"
+            ></Column>
+            <Column
+              field="intake"
+              :header="$t('selection_intake')"
+              class="first-column-divider"
+            ></Column>
+            <Column
+              field="mealRequirement"
+              :header="$t('selection_meal_requirement')"
+            ></Column>
+            <Column
+              field="mealUptakePercentage"
+              :header="$t('selection_meal_uptake_percentage')"
+            >
+              <template #body="slotProps">
+                <span
+                  :style="{
+                    color:
+                      parseFloat(slotProps.data.mealUptakePercentage) > 100
+                        ? 'red'
+                        : 'green',
+                  }"
+                >
+                  {{ slotProps.data.mealUptakePercentage }}%
+                  <ProgressBar
+                    :value="
+                      handle_percentage(slotProps.data.mealUptakePercentage)
+                    "
+                    :class="{
+                      'custom-progress-bar':
+                        slotProps.data.mealUptakePercentage > 100,
+                    }"
+                  >
+                    {{ slotProps.data.mealUptakePercentage }}%
+                  </ProgressBar>
+                </span>
+              </template>
+            </Column>
+          </DataTable></TabPanel
+        >
+        <TabPanel value="1">
+          <DataTable
+            :value="selectedIntake"
+            dataKey="id"
+            tableStyle="min-width: 50rem"
+            class="custom-divider"
           >
-            {{ slotProps.data.dailyUptakePercentage }}
-          </span>
-        </template>
-      </Column>
-    </DataTable>
+            <Column
+              field="nutrition"
+              :header="$t('selection_nutrition')"
+            ></Column>
+            <Column
+              field="intake"
+              :header="$t('selection_intake')"
+              class="first-column-divider"
+            ></Column>
+
+            <Column
+              field="dailyRequirement"
+              :header="$t('selection_daily_requirement')"
+            ></Column>
+            <Column
+              field="dailyUptakePercentage"
+              :header="$t('selection_daily_uptake_percentage')"
+            >
+              <template #body="slotProps">
+                <span
+                  :style="{
+                    color:
+                      parseFloat(slotProps.data.dailyUptakePercentage) > 100
+                        ? 'red'
+                        : 'green',
+                  }"
+                >
+                  {{ slotProps.data.dailyUptakePercentage }}%
+                </span>
+                <ProgressBar
+                  :value="
+                    handle_percentage(slotProps.data.dailyUptakePercentage)
+                  "
+                  :class="{
+                    'custom-progress-bar':
+                      slotProps.data.dailyUptakePercentage > 100,
+                  }"
+                >
+                  {{ slotProps.data.dailyUptakePercentage }}%
+                </ProgressBar>
+              </template>
+            </Column>
+          </DataTable>
+        </TabPanel>
+      </TabPanels>
+    </Tabs>
+
     <!-- <div>
             <div class="display-row" v-for="(value, key) in selectedValue" :key="key">
                 <label>{{$t(key)}}:</label>
@@ -301,7 +364,9 @@ const value3 = ref(5);
 .custom-divider .first-column-divider {
   border-right: 2px solid #dee2e6;
 }
-
+.custom-progress-bar .p-progressbar-value {
+  background-color: #ff4444;
+}
 .p-dialog .p-dialog-title {
   font-family: "Inter", sans-serif !important;
   /* font-size: 2em; */
