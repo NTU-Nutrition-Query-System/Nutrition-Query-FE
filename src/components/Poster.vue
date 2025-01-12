@@ -13,7 +13,7 @@
         想幫助學生了解<br />食物與葡萄糖的關係嗎?
       </div>
       <div class="floating-text-right">
-        想幫助學生了解<br />食物與葡萄糖的關係嗎?
+        希望學生可以運用自製Arduino葡萄糖檢測器進行濃度檢測實驗嗎?
       </div>
     </div>
 
