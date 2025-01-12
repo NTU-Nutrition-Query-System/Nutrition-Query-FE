@@ -131,41 +131,41 @@ onMounted(() => {
         <label class="font-bold block mb-2">{{
           $t("calculator_input_activity_factor.title")
         }}</label>
+        <div style="margin-bottom: 5px"></div>
         <div
           style="
-            display: flex;
+            /* display: flex; */
             justify-content: space-between;
             align-items: center;
           "
         >
-          <div class="RadioButton">
+          <div class="RadioButton" style="display: flex; align-items: flex-start">
             <RadioButton v-model="activityFactor" value="1.3" />
-            <label style="margin-left: 0.3rem">{{
-              $t("calculator_input_activity_factor.mild")
-            }}</label>
+            <label style="margin-left: 0.3rem">
+              {{ $t("calculator_input_activity_factor.mild") }}
+              <div style="font-size:14px"> {{$t("calculator_input_activity_factor.tips.mild")}} </div>
+            </label>
           </div>
-          <div class="RadioButton">
+          <div style="margin-bottom: 10px"></div>
+          <div class="RadioButton" style="display: flex; align-items: flex-start">
             <RadioButton v-model="activityFactor" value="1.5" />
-            <label style="margin-left: 0.3rem">{{
-              $t("calculator_input_activity_factor.moderate")
-            }}</label>
+            <label style="margin-left: 0.3rem">
+              {{ $t("calculator_input_activity_factor.moderate") }}
+              <div style="font-size:14px"> {{$t("calculator_input_activity_factor.tips.moderate")}} </div>
+            </label>
           </div>
-          <div class="RadioButton">
+          <div style="margin-bottom: 10px"></div>
+          <div class="RadioButton" style="display: flex; align-items: flex-start">
             <RadioButton v-model="activityFactor" value="2" />
-            <label style="margin-left: 0.3rem">{{
-              $t("calculator_input_activity_factor.severe")
-            }}</label>
+            <label style="margin-left: 0.3rem">
+              {{ $t("calculator_input_activity_factor.severe") }}
+              <div style="font-size:14px"> {{$t("calculator_input_activity_factor.tips.severe")}} </div>
+            </label>
           </div>
-
           <!-- <span>{{ activityFactor }}</span> -->
         </div>
-
-        <div style="">
-          <p>{{ $t("calculator_input_activity_factor.tips.mild") }}</p>
-          <p>{{ $t("calculator_input_activity_factor.tips.moderate") }}</p>
-          <p>{{ $t("calculator_input_activity_factor.tips.severe") }}</p>
-        </div>
       </div>
+      
       <div
         style="
           display: flex;
