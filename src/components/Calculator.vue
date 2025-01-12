@@ -2,6 +2,7 @@
 import Button from "primevue/button";
 import { onMounted, ref, watch } from "vue";
 import InputNumber from "primevue/inputnumber";
+import FloatLabel from "primevue/floatlabel";
 import RadioButton from "primevue/radiobutton";
 import FoodTable from "./FoodTable.vue";
 import { useI18n } from "vue-i18n";
@@ -110,60 +111,65 @@ onMounted(() => {
       <label>{{ $t("female") }}</label>
     </div>
 
+    <div style="margin-top: 0.5rem;">
+      <InputGroup>
+        <FloatLabel variant="in">
+          <InputNumber v-model="age" class="input-field"/>
+          <label for="age">{{ $t("age") }}</label>
+        </FloatLabel>
+      </InputGroup>
+    
+      <InputGroup>
+        <FloatLabel variant="in">
+          <InputNumber v-model="height" class="input-field" suffix=" cm"/>
+          <label for="height">{{ $t("height") }}</label>
+        </FloatLabel>
+      </InputGroup>
+
+      <InputGroup>
+        <FloatLabel variant="in">
+          <InputNumber v-model="weight" class="input-field" suffix=" kg"/>
+          <label for="weight">{{ $t("weight") }}</label>
+        </FloatLabel>
+      </InputGroup>
+    </div>
+
     <div style="margin-top: 0.5rem">
-      <div style="display: flex">
-        <label for="age" class="font-bold block mb-2">{{ $t("age") }}</label>
-        <InputNumber v-model="age" class="input-field" />
-      </div>
-      <div style="display: flex">
-        <label for="height" class="font-bold block mb-2"
-          >{{ $t("height") }}(cm)</label
-        >
-        <InputNumber v-model="height" class="input-field" />
-      </div>
-      <div style="display: flex">
-        <label for="weight" class="font-bold block mb-2"
-          >{{ $t("weight") }}(kg)</label
-        >
-        <InputNumber v-model="weight" class="input-field" />
-      </div>
-      <div style="margin-top: 0.5rem">
-        <label class="font-bold block mb-2">{{
-          $t("calculator_input_activity_factor.title")
-        }}</label>
-        <div style="margin-bottom: 5px"></div>
-        <div
-          style="
-            /* display: flex; */
-            justify-content: space-between;
-            align-items: center;
-          "
-        >
-          <div class="RadioButton" style="display: flex; align-items: flex-start">
-            <RadioButton v-model="activityFactor" value="1.3" />
-            <label style="margin-left: 0.3rem">
-              {{ $t("calculator_input_activity_factor.mild") }}
-              <div style="font-size:14px"> {{$t("calculator_input_activity_factor.tips.mild")}} </div>
-            </label>
-          </div>
-          <div style="margin-bottom: 10px"></div>
-          <div class="RadioButton" style="display: flex; align-items: flex-start">
-            <RadioButton v-model="activityFactor" value="1.5" />
-            <label style="margin-left: 0.3rem">
-              {{ $t("calculator_input_activity_factor.moderate") }}
-              <div style="font-size:14px"> {{$t("calculator_input_activity_factor.tips.moderate")}} </div>
-            </label>
-          </div>
-          <div style="margin-bottom: 10px"></div>
-          <div class="RadioButton" style="display: flex; align-items: flex-start">
-            <RadioButton v-model="activityFactor" value="2" />
-            <label style="margin-left: 0.3rem">
-              {{ $t("calculator_input_activity_factor.severe") }}
-              <div style="font-size:14px"> {{$t("calculator_input_activity_factor.tips.severe")}} </div>
-            </label>
-          </div>
-          <!-- <span>{{ activityFactor }}</span> -->
+      <label class="font-bold block mb-2">{{
+        $t("calculator_input_activity_factor.title")
+      }}</label>
+      <div style="margin-bottom: 5px"></div>
+      <div
+        style="
+          /* display: flex; */
+          justify-content: space-between;
+          align-items: center;
+        "
+      >
+        <div class="RadioButton" style="display: flex; align-items: flex-start">
+          <RadioButton v-model="activityFactor" value="1.3" />
+          <label style="margin-left: 0.3rem">
+            {{ $t("calculator_input_activity_factor.mild") }}
+            <div style="font-size:14px"> {{$t("calculator_input_activity_factor.tips.mild")}} </div>
+          </label>
         </div>
+        <div style="margin-bottom: 10px"></div>
+        <div class="RadioButton" style="display: flex; align-items: flex-start">
+          <RadioButton v-model="activityFactor" value="1.5" />
+          <label style="margin-left: 0.3rem">
+            {{ $t("calculator_input_activity_factor.moderate") }}
+            <div style="font-size:14px"> {{$t("calculator_input_activity_factor.tips.moderate")}} </div>
+          </label>
+        </div>
+        <div style="margin-bottom: 10px"></div>
+        <div class="RadioButton" style="display: flex; align-items: flex-start">
+          <RadioButton v-model="activityFactor" value="2" />
+          <label style="margin-left: 0.3rem">
+            {{ $t("calculator_input_activity_factor.severe") }}
+            <div style="font-size:14px"> {{$t("calculator_input_activity_factor.tips.severe")}} </div>
+          </label>
+        </div>
+        <!-- <span>{{ activityFactor }}</span> -->
       </div>
       
       <div
@@ -239,11 +245,7 @@ onMounted(() => {
   justify-content: space-between; /* 將兩組 radio 均勻分佈 */
   width: 100%; /* 使容器占滿整個寬度 */
 }
-.input-field .p-inputtext {
-  text-align: center; /* 文字居中对齐 */
-  font-size: 24px; /* 放大字体 */
-  padding: 10px; /* 增加内边距，让输入框显得更大气 */
-}
+
 .radio-group label {
   margin-left: 5px; /* 使 label 與 radio 之間有一些間距 */
   display: flex;
@@ -278,11 +280,16 @@ onMounted(() => {
   border-radius: 4px;
   border: 1px solid #ccc;
   transition: border-color 0.3s ease;
-  margin-right: 2rem;
-  margin-left: auto;
+  width: 100%;
 }
 
 .input-field:focus {
   border-color: #3498db;
 }
+
+.input-field .p-inputtext {
+  text-align: center;
+  font-size: 20px;
+}
+
 </style>
