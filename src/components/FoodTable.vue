@@ -66,51 +66,51 @@ const toast = useToast();
 const categories = [
   {
     name: "中式餐點",
-    image: new URL("@/assets/imgs/snacks.svg", import.meta.url).href,
+    image: new URL("@/assets/imgs/menu1.jpg", import.meta.url).href,
   },
   {
     name: "西式餐點",
-    image: new URL("@/assets/imgs/snacks.svg", import.meta.url).href,
+    image: new URL("@/assets/imgs/menu2.jpg", import.meta.url).href,
   },
   {
     name: "飯糰壽司類",
-    image: new URL("@/assets/imgs/snacks.svg", import.meta.url).href,
+    image: new URL("@/assets/imgs/menu3.jpg", import.meta.url).href,
   },
   {
     name: "蛋肉類",
-    image: new URL("@/assets/imgs/snacks.svg", import.meta.url).href,
+    image: new URL("@/assets/imgs/menu4.jpg", import.meta.url).href,
   },
   {
     name: "蔬菜類",
-    image: new URL("@/assets/imgs/snacks.svg", import.meta.url).href,
+    image: new URL("@/assets/imgs/menu5.jpg", import.meta.url).href,
   },
   {
     name: "水果類",
-    image: new URL("@/assets/imgs/snacks.svg", import.meta.url).href,
+    image: new URL("@/assets/imgs/menu6.jpg", import.meta.url).href,
   },
   {
     name: "麵包蛋糕類",
-    image: new URL("@/assets/imgs/snacks.svg", import.meta.url).href,
+    image: new URL("@/assets/imgs/menu7.jpg", import.meta.url).href,
   },
   {
     name: "飲品",
-    image: new URL("@/assets/imgs/snacks.svg", import.meta.url).href,
+    image: new URL("@/assets/imgs/menu8.jpg", import.meta.url).href,
   },
   {
     name: "油脂與堅果種子類",
-    image: new URL("@/assets/imgs/snacks.svg", import.meta.url).href,
+    image: new URL("@/assets/imgs/menu9.jpg", import.meta.url).href,
   },
   {
     name: "零食類",
-    image: new URL("@/assets/imgs/snacks.svg", import.meta.url).href,
+    image: new URL("@/assets/imgs/menu10.jpg", import.meta.url).href,
   },
   {
     name: "醬料類",
-    image: new URL("@/assets/imgs/snacks.svg", import.meta.url).href,
+    image: new URL("@/assets/imgs/menu11.jpg", import.meta.url).href,
   },
   {
     name: "全部",
-    image: new URL("@/assets/imgs/snacks.svg", import.meta.url).href,
+    image: new URL("@/assets/imgs/girl_square.png", import.meta.url).href,
   },
 ];
 
