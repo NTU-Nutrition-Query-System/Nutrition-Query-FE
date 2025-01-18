@@ -491,26 +491,22 @@ const closeFilter = () => {
   </div>
   <div class="card-container">
     <Card
-      class="card"
+      class="food-class-card"
       v-for="(item, index) in categories"
       @click="classClicked(item, index)"
     >
-      <template #title>
-        <div style="display: flex">
-          <div style="text-align: center">
-            <span>{{ categories[index].name }}</span>
-            <span style="color: red">({{ computeNumberOfItem(index) }})</span>
-          </div>
-        </div>
-      </template>
       <template #content>
-        <div style="width: 50%; margin-left: auto; margin-right: auto">
+        <div style="width: 100%; margin: auto; position: relative;">
+          <OverlayBadge
+            v-if="computeNumberOfItem(index) > 0"
+            :value=computeNumberOfItem(index)
+            size="xlarge"
+            style="position: absolute; top: -6%; right: -6%;"
+          />
           <img
             :src="item.image"
             alt="Category Image"
             style="
-              width: 100%;
-              height: auto;
               object-fit: cover;
               justify-content: center;
             "
@@ -518,9 +514,12 @@ const closeFilter = () => {
         </div>
       </template>
       <template #footer>
-        <div>
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+          <div style="font-size:20px">
+            {{ categories[index].name }}
+          </div>
           <Button
-            style="display: flex; width: 100%"
+            style="width: 30%"
             label="Open"
             @click="classClicked(item, index)"
           />
@@ -541,40 +540,34 @@ const closeFilter = () => {
   justify-content: space-between;
   margin: 10px 0;
 }
-.card {
-  width: 100%;
+
+.food-class-card {
   border: 1px solid #ccc;
   border-radius: 8px;
   cursor: pointer;
   transition: box-shadow 0.3s ease, background-color 0.3s ease;
 }
-.card:hover {
+
+.food-class-card:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 5);
   background-color: rgba(255, 255, 255, 0.8);
 }
+
 .card-container {
-  margin-top: 5rem;
-  width: 100%;
+  margin: 10%;
+  margin-top: 3rem;
+  /* margin-right: 0%; */
+  width: 80%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(20rem, 1.5fr));
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 0.3fr));
   gap: 20px;
   justify-content: center; /* Centers the cards in the container */
+  padding: 10px;
   /* border: solid; */
 }
 
 .card-container .Card {
-  width: 80%; /* Ensures the cards take up full available width in each column */
+  width: 100%; /* Ensures the cards take up full available width in each column */
 }
-.badge {
-  top: -10px; /* 調整位置 */
-  right: -10px; /* 調整位置 */
-  border-radius: 50%;
-  width: 10%;
-  height: 24px;
-  justify-content: left;
-  align-items: center;
-  font-size: 12px;
-  font-weight: bold;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
+
 </style>
