@@ -3,9 +3,9 @@ import { useI18n } from "vue-i18n";
 import { ref, watch, computed, onMounted, toValue } from "vue";
 import DataTable from "primevue/datatable";
 import InputText from "primevue/inputtext";
-import IconField from 'primevue/iconfield';
-import InputIcon from 'primevue/inputicon';
-import OverlayBadge from 'primevue/overlaybadge';
+import IconField from "primevue/iconfield";
+import InputIcon from "primevue/inputicon";
+import OverlayBadge from "primevue/overlaybadge";
 import Column from "primevue/column";
 import ColumnGroup from "primevue/columngroup"; // optional
 import Row from "primevue/row"; // optional
@@ -496,26 +496,29 @@ const closeFilter = () => {
       @click="classClicked(item, index)"
     >
       <template #content>
-        <div style="width: 100%; margin: auto; position: relative;">
+        <div style="width: 100%; margin: auto; position: relative">
           <OverlayBadge
             v-if="computeNumberOfItem(index) > 0"
-            :value=computeNumberOfItem(index)
+            :value="computeNumberOfItem(index)"
             size="xlarge"
-            style="position: absolute; top: -6%; right: -6%;"
+            style="position: absolute; top: -6%; right: -6%"
           />
           <img
             :src="item.image"
             alt="Category Image"
-            style="
-              object-fit: cover;
-              justify-content: center;
-            "
+            style="object-fit: cover; justify-content: center"
           />
         </div>
       </template>
       <template #footer>
-        <div style="display: flex; align-items: center; justify-content: space-between;">
-          <div style="font-size:20px">
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          "
+        >
+          <div style="font-size: 20px">
             {{ categories[index].name }}
           </div>
           <Button
@@ -569,5 +572,4 @@ const closeFilter = () => {
 .card-container .Card {
   width: 100%; /* Ensures the cards take up full available width in each column */
 }
-
 </style>

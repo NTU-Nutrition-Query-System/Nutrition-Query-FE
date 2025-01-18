@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { useI18n } from "vue-i18n"; 
+import { useI18n } from "vue-i18n";
 import { onMounted, ref, watch } from "vue";
 import Button from "primevue/button";
 import InputNumber from "primevue/inputnumber";
-import InputGroup from 'primevue/inputgroup';
+import InputGroup from "primevue/inputgroup";
 import FloatLabel from "primevue/floatlabel";
 import RadioButton from "primevue/radiobutton";
-import OverlayBadge from 'primevue/overlaybadge';
+import OverlayBadge from "primevue/overlaybadge";
 import FoodTable from "./FoodTable.vue";
 import CaloricResult from "./CaloricResult.vue";
 import type { nutrient } from "../interfaces/Calculator";
@@ -192,7 +192,11 @@ onMounted(() => {
           margin-top: 1rem;
         "
       >
-        <Button class="tab" :label="$t('計算我的營養需求！')" @click="nextOnClicked" />
+        <Button
+          class="tab"
+          :label="$t('計算我的營養需求！')"
+          @click="nextOnClicked"
+        />
       </div>
     </div>
 
@@ -218,24 +222,26 @@ onMounted(() => {
         >
       </div>
       <Button class="tab" :label="$t('開始選取食物！')" @click="scrollDown" />
-      
+
       <!--
       A fixed positioned overlay badge component in the bottom-right corner of the screen
       with a circular shape.
       FIXME make the badge value dynamic
       @property {string} value - Number displayed in the badge.
       -->
-      <OverlayBadge 
+      <OverlayBadge
         class="overlaybadge-calc-btn"
-        style="  
+        style="
           position: fixed;
           bottom: 1.2rem;
           right: 1.2rem;
           z-index: 1000;
-          "
+          margin-right: 1rem;
+        "
         :value="selectedProduct.length"
         size="large"
-        severity="danger" >
+        severity="danger"
+      >
         <Button
           icon="pi pi-calculator"
           :label="$t('calculate')"
@@ -250,7 +256,6 @@ onMounted(() => {
           @click="calculate"
         />
       </OverlayBadge>
-      
     </div>
   </div>
   <div ref="targetSection">
@@ -345,8 +350,7 @@ onMounted(() => {
 
 .calculator-btn .p-button-icon {
   font-size: 2rem;
-  margin-right: 0 !important;  /* Remove default icon spacing */
-  margin-bottom: -0.2rem;  /* Space between icon and text */
+  margin-right: 0 !important; /* Remove default icon spacing */
+  margin-bottom: -0.2rem; /* Space between icon and text */
 }
-
 </style>
