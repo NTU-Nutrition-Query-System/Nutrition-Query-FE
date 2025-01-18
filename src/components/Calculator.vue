@@ -233,7 +233,7 @@ onMounted(() => {
           right: 1.2rem;
           z-index: 1000;
           "
-        value="4"
+        :value="selectedProduct.length"
         size="large"
         severity="danger" >
         <Button
