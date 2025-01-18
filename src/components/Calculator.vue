@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import Button from "primevue/button";
+import { useI18n } from "vue-i18n"; 
 import { onMounted, ref, watch } from "vue";
+import Button from "primevue/button";
 import InputNumber from "primevue/inputnumber";
+import InputGroup from 'primevue/inputgroup';
 import FloatLabel from "primevue/floatlabel";
 import RadioButton from "primevue/radiobutton";
+import OverlayBadge from 'primevue/overlaybadge';
 import FoodTable from "./FoodTable.vue";
-import { useI18n } from "vue-i18n";
 import CaloricResult from "./CaloricResult.vue";
 import type { nutrient } from "../interfaces/Calculator";
 import type { foodItem } from "@/interfaces/Calculator";
@@ -216,25 +218,39 @@ onMounted(() => {
         >
       </div>
       <Button class="tab" :label="$t('開始選取食物！')" @click="scrollDown" />
-      <Button
-        style="
+      
+      <!--
+      A fixed positioned overlay badge component in the bottom-right corner of the screen
+      with a circular shape.
+      FIXME make the badge value dynamic
+      @property {string} value - Number displayed in the badge.
+      -->
+      <OverlayBadge 
+        class="overlaybadge-calc-btn"
+        style="  
           position: fixed;
-          bottom: 20px;
-          right: 20px;
+          bottom: 1.2rem;
+          right: 1.2rem;
           z-index: 1000;
-          border-radius: 25px;
-          background-color: navy;
-          border-color: navy;
-          height: 5rem;
-          max-width: 5rem;
-        "
-        @click="calculate"
-      >
-        <div style="display: flex; flex-direction: column; align-items: center">
-          <i class="pi pi-calculator" style="font-size: 3rem"></i>
-          <label>{{ $t("calculate") }}</label>
-        </div>
-      </Button>
+          "
+        value="4"
+        size="large"
+        severity="danger" >
+        <Button
+          icon="pi pi-calculator"
+          :label="$t('calculate')"
+          class="calculator-btn"
+          style="
+            display: flex;
+            flex-direction: column;
+            border-radius: 25px;
+            height: 4.5rem;
+            width: 4.5rem;
+          "
+          @click="calculate"
+        />
+      </OverlayBadge>
+      
     </div>
   </div>
   <div ref="targetSection">
@@ -322,4 +338,15 @@ onMounted(() => {
   text-align: center;
   font-size: 20px;
 }
+
+.overlaybadge-calc-btn:hover {
+  transform: scale(1.05);
+}
+
+.calculator-btn .p-button-icon {
+  font-size: 2rem;
+  margin-right: 0 !important;  /* Remove default icon spacing */
+  margin-bottom: -0.2rem;  /* Space between icon and text */
+}
+
 </style>

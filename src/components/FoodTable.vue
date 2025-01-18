@@ -1,21 +1,24 @@
 <script setup lang="ts">
+import { useI18n } from "vue-i18n";
 import { ref, watch, computed, onMounted, toValue } from "vue";
 import DataTable from "primevue/datatable";
 import InputText from "primevue/inputtext";
+import IconField from 'primevue/iconfield';
+import InputIcon from 'primevue/inputicon';
+import OverlayBadge from 'primevue/overlaybadge';
 import Column from "primevue/column";
-import { FilterMatchMode } from "@primevue/core/api";
 import ColumnGroup from "primevue/columngroup"; // optional
 import Row from "primevue/row"; // optional
-import { useI18n } from "vue-i18n";
 import Card from "primevue/card";
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
-import { getTableData } from "@/apis/tableData";
+import Toast from "primevue/toast";
 import Dropdown from "@/primevue/dropdown";
 import Tag from "@/primevue/tag";
-import type { foodItem } from "@/interfaces/Calculator";
-import Toast from "primevue/toast";
 import { useToast } from "primevue/usetoast";
+import { FilterMatchMode } from "@primevue/core/api";
+import type { foodItem } from "@/interfaces/Calculator";
+import { getTableData } from "@/apis/tableData";
 import { fakeProducts } from "@/assets/fakeData";
 import { idText } from "typescript";
 import {
@@ -264,9 +267,7 @@ const closeFilter = () => {
         <template #header>
           <div>
             <IconField>
-              <InputIcon>
-                <i class="pi pi-search" style="margin-right: 1rem"></i>
-              </InputIcon>
+              <InputIcon class="pi pi-search" style="margin-right: 1rem" />
               <InputText
                 v-model="filters['global'].value"
                 placeholder="Keyword Search"
