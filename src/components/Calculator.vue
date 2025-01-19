@@ -99,78 +99,69 @@ onMounted(() => {
       rel="stylesheet"
     />
   </head>
+  
   <div class="calculator" :class="{ expanded: isExpanded }" style="margin-top: 0.5rem">
-    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; text-align: center;">
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 28px; font-weight: bold; text-align: center;">
         {{ $t("calculator_input.title") }}
     </div>
-    <div class="gender-selection" style="margin-top: 1rem; display: flex; align-items: center; justify-content: center;">
+    <div class="calc-gender-select" style="margin-top: 1rem;">
       <RadioButton v-model="gender" value="Male" style="margin-left: 1rem" />
       <label style="margin-left: 0.3rem">{{ $t("calculator_input.gender.male") }}</label>
       <RadioButton v-model="gender" value="Female" style="margin-left: 1rem" />
       <label style="margin-left: 0.3rem">{{ $t("calculator_input.gender.female") }}</label>
     </div>
+
+    <div style="margin-top: 0.5rem; display: flex; align-items: center; justify-content: center;">
+      <label class="calc-InputNum-label">{{ $t("calculator_input.age") }} :</label>
+      <InputNumber v-model="age" class="calc-InputNum"/>
+      <label class="calc-InputNum-unit">{{ $t("calculator_input.years_old") }}</label>
+    </div>
     
-    <InputGroup style="margin-top: 0.5rem;">
-      <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
-        <label style="text-align: right; width: 6rem;">{{ $t("calculator_input.age") }} :</label>
-        <InputNumber v-model="age" class="input-field" style="width: 5rem; margin: 0 0.5rem;"/>
-        <label style="text-align: left; width: 6rem;">{{ $t("calculator_input.years_old") }}</label>
-      </div>
-    </InputGroup>
+    <div style="margin-top: 0.5rem; display: flex; align-items: center; justify-content: center;">
+      <label class="calc-InputNum-label">{{ $t("calculator_input.height") }} :</label>
+      <InputNumber v-model="height" class="calc-InputNum"/>
+      <label class="calc-InputNum-unit">{{ $t("calculator_input.centimeter") }}</label>
+    </div>
+    
+    <div style="margin-top: 0.5rem; display: flex; align-items: center; justify-content: center;">
+      <label class="calc-InputNum-label">{{ $t("calculator_input.weight") }} :</label>
+      <InputNumber v-model="weight" class="calc-InputNum"/>
+      <label class="calc-InputNum-unit">{{ $t("calculator_input.kilogram") }}</label>
+    </div>
 
-    <InputGroup style="margin-top: 0.5rem;">
-      <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
-        <label style="text-align: right; width: 6rem;">{{ $t("calculator_input.height") }} :</label>
-        <InputNumber v-model="height" class="input-field" style="width: 5rem; margin: 0 0.5rem;"/>
-        <label style="text-align: left; width: 6rem;">{{ $t("calculator_input.centimeter") }}</label>
-      </div>
-    </InputGroup>
-
-    <InputGroup style="margin-top: 0.5rem;">
-      <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
-        <label style="text-align: right; width: 6rem;">{{ $t("calculator_input.weight") }} :</label>
-        <InputNumber v-model="weight" class="input-field" style="width: 5rem; margin: 0 0.5rem;"/>
-        <label style="text-align: left; width: 6rem;">{{ $t("calculator_input.kilogram") }}</label>
-      </div>
-    </InputGroup>
-
-    <div style="margin-top: 0.5rem">
-      <label style="font-weight: bold; display: block; margin-bottom: 0.5rem">{{
-        $t("calculator_input_activity_factor.title")
-      }}</label>
-      <div style="margin-top: 0.5rem; justify-content: space-between; align-items: center;">
-        <div class="RadioButton" style="display: flex; align-items: flex-start">
-          <RadioButton v-model="activityFactor" value="1.3" />
-          <label style="margin-left: 0.3rem">
-            {{ $t("calculator_input_activity_factor.mild") }}
-            <div style="font-size: 14px">
-              {{ $t("calculator_input_activity_factor.tips.mild") }}
-            </div>
-          </label>
-        </div>
-        <div class="RadioButton" style="margin-top: 0.5rem; display: flex; align-items: flex-start">
-          <RadioButton v-model="activityFactor" value="1.5" />
-          <label style="margin-left: 0.3rem">
-            {{ $t("calculator_input_activity_factor.moderate") }}
-            <div style="font-size: 14px">
-              {{ $t("calculator_input_activity_factor.tips.moderate") }}
-            </div>
-          </label>
-        </div>
-        <div class="RadioButton" style="margin-top: 0.5rem; display: flex; align-items: flex-start">
-          <RadioButton v-model="activityFactor" value="2" />
-          <label style="margin-left: 0.3rem">
-            {{ $t("calculator_input_activity_factor.severe") }}
-            <div style="font-size: 14px">
-              {{ $t("calculator_input_activity_factor.tips.severe") }}
-            </div>
-          </label>
-        </div>
-      </div>
-
-      <div style=" display: flex; justify-content: center; gap: 1rem; margin-top: 1rem;">
-        <Button class="tab" :label="$t('計算我的營養需求！')" @click="nextOnClicked" />
-      </div>
+    <div style="font-weight: bold; display: block; margin: 0.5 0.5rem">
+      {{ $t("calculator_input.activity_factor.title") }}
+    </div>
+    <div class="activity-radio-btn" style="margin-top: 0.5rem">
+      <RadioButton v-model="activityFactor" value="1.3" />
+      <label style="margin-left: 0.5rem">
+        {{ $t("calculator_input.activity_factor.mild") }}
+      </label>
+    </div>
+    <div class="activity-tips">
+      {{ $t("calculator_input.activity_factor.tips.mild") }}
+    </div>
+    <div class="activity-radio-btn" style="margin-top: 0.5rem">
+      <RadioButton v-model="activityFactor" value="1.5" />
+      <label style="margin-left: 0.5rem">
+        {{ $t("calculator_input.activity_factor.moderate") }}
+      </label>
+    </div>
+    <div class="activity-tips">
+      {{ $t("calculator_input.activity_factor.tips.moderate") }}
+    </div>
+    <div class="activity-radio-btn" style="margin-top: 0.5rem">
+      <RadioButton v-model="activityFactor" value="2" />
+      <label style="margin-left: 0.5rem">
+        {{ $t("calculator_input.activity_factor.severe") }}
+      </label>
+    </div>
+    <div class="activity-tips">
+      {{ $t("calculator_input.activity_factor.tips.severe") }}
+    </div>
+    
+    <div style=" display: flex; justify-content: center; gap: 1rem; margin-top: 1rem;">
+      <Button class="tab" :label="$t('calculator_input.calculate')" @click="nextOnClicked" />
     </div>
 
     <div class="calculator_result" v-if="isExpanded">
@@ -194,12 +185,15 @@ onMounted(() => {
           }})</span
         >
       </div>
-      <Button class="tab" :label="$t('開始選取食物！')" @click="scrollDown" />
-      <div style="font-size: 14px; margin-top: 0.3rem">
-        請往下滑
+      <Button class="tab" :label="$t('calculator_input.choosing')" @click="scrollDown" />
+      <div style="font-size: 16px; margin-top: 0.3rem" v-if="foodTableDisplay">
+        {{ $t("calculator_input.scroll_down") }}
       </div>
     </div>
   </div>
+  
+  <!-- foodTableDisplay.value = true; -->
+  
   <!--
   A fixed positioned overlay badge component in the bottom-right corner of the screen
   with a circular shape.
@@ -255,37 +249,36 @@ onMounted(() => {
 .calculator-description-title {
   text-align: center;
 }
+
 .calculator-description-content {
   text-align: center;
 }
+
 .calculator {
-  max-width: 450px;
+  max-width: 35rem;
   margin: 0 auto;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
   height: max-content;
   transition: background-color 0.3s ease;
-}
-.radio-group {
-  display: flex;
-  justify-content: space-between; /* 將兩組 radio 均勻分佈 */
-  width: 100%; /* 使容器占滿整個寬度 */
+  font-size: 18px;
 }
 
-.radio-group label {
-  margin-left: 5px; /* 使 label 與 radio 之間有一些間距 */
-  display: flex;
-  align-items: center; /* 垂直置中 label */
+.calculator.expanded {
+  height: max-content;
 }
 
-.radio-group .RadioButton {
+.activity-radio-btn {
   flex: 1; /* 每個 radio 和 label 占據相同的空間 */
   display: flex; /* 將 radio 和 label 置於同一行 */
   align-items: center;
+  margin: 0 1rem; 
 }
-.calculator.expanded {
-  height: max-content;
+
+.activity-tips{
+  margin-left: 2.8rem;
+  font-size: 16px;
 }
 
 .display-row {
@@ -302,21 +295,38 @@ onMounted(() => {
   text-align: center;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
+.calc-gender-select{
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+}
+.calc-InputNum-label {
+  min-width: 5rem;
+  text-align: right;
+}
 
-.input-field {
+.calc-InputNum-unit {
+  min-width: 5rem;
+  text-align: left;
+}
+
+.calc-InputNum {
   border-radius: 4px;
   border: 1px solid #ccc;
   transition: border-color 0.3s ease;
-  
+  margin: 0 0.5rem;
+  height:2.3rem; 
+  width: 5rem;
 }
 
-.input-field:focus {
+.calc-InputNum:focus {
   border-color: #3498db;
 }
 
-.input-field .p-inputtext {
+.calc-InputNum .p-inputtext {
   text-align: center;
   font-size: 20px;
+  width: 5rem;
 }
 
 .overlaybadge-calc-btn:hover {
