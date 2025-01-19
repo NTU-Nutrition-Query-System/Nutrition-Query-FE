@@ -70,7 +70,7 @@ const items = ref([
 
     <div class="MainPage">
       <div class="language-selector">
-        <label for="language-select">{{ $t("select_language") }}</label>
+        <label for="language-select" style="margin-right: 0.5rem">{{ $t("select_language") }}</label>
         <Dropdown
           id="language-select"
           :options="languages"
@@ -79,7 +79,8 @@ const items = ref([
           v-model="currentLocale"
           @change="changeLocale"
           placeholder="Select Language"
-          class="p-dropdown-sm"
+          class="language-dropdown"
+          style="height: 2.5rem"
         />
       </div>
       <!-- Sidebar Navigation -->
