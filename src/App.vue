@@ -3,7 +3,7 @@ import { ref } from "vue";
 import Calculator from "./components/Calculator.vue";
 import Result from "./components/CaloricResult.vue";
 import Table from "./components/FoodTable.vue";
-import Home from "./components/HelloWorld.vue";
+import Home from "./components/HomePage.vue";
 import { useI18n } from "vue-i18n";
 import { isMinusToken } from "typescript";
 import Dropdown from "primevue/dropdown";

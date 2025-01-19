@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import FoodTable from "../components/FoodTable.vue";
 import Calculator from "../components/Calculator.vue";
 import ContactPage from "../components/CaloricResult.vue";
-import Home from "../components/HelloWorld.vue";
+import Home from "../components/HomePage.vue";
 
 const routes = [
   // { path: '/', name: 'Home', component: HomePage },
