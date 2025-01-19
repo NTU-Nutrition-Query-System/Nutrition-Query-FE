@@ -82,7 +82,7 @@ const scrollDown = () => {
   foodTableDisplay.value = true;
   calculatorDisplay.value = true;
   nextTick(() => {
-  targetSection.value?.scrollIntoView({ behavior: "smooth" });
+    targetSection.value?.scrollIntoView({ behavior: "smooth" });
   });
 };
 
@@ -234,6 +234,26 @@ onMounted(() => {
       @click="calculate"
     />
   </OverlayBadge>
+  <Button
+    v-else-if="calculatorDisplay"
+    class="calculator-btn"
+    icon="pi pi-calculator"
+    :label="$t('calculate')"
+    style="
+      position: fixed;
+      bottom: 1.2rem;
+      right: 1.2rem;
+      z-index: 1000;
+      margin-right: 1rem;
+      display: flex;
+      flex-direction: column;
+      border-radius: 25px;
+      height: 4.5rem;
+      width: 4.5rem;
+    "
+    @click="calculate"
+  />
+  
   <div ref="targetSection">
     <FoodTable
       v-if="foodTableLoaded && foodTableDisplay"
