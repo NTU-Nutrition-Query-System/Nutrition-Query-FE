@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import Calculator from "./components/Calculator.vue";
-import Result from "./components/CaloricResult.vue";
-import Table from "./components/FoodTable.vue";
-import Home from "./components/HomePage.vue";
 import { useI18n } from "vue-i18n";
 import { isMinusToken } from "typescript";
 import Dropdown from "primevue/dropdown";
-import Menubar from "primevue/menubar";
+// import Menubar from "primevue/menubar";
 import { useRouter } from "vue-router";
+
+import Preloader from "@/components/common/Preloader.vue";
+import NavBar from "@/components/common/NavBar.vue";
 
 const router = useRouter();
 const { locale } = useI18n();
@@ -30,7 +29,7 @@ const items = ref([
   {
     label: "Home",
     icon: "pi pi-home",
-    route: "/Home",
+    route: "/",
   },
   {
     label: "Calculator",
@@ -40,33 +39,14 @@ const items = ref([
 ]);
 </script>
 <template>
-  <head>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <div>
-    <Menubar :model="items">
-      <template #item="{ item, props, hasSubmenu }">
-        <router-link
-          v-if="item.route"
-          v-slot="{ href, navigate }"
-          :to="item.route"
-          custom
-        >
-          <a v-ripple :href="href" v-bind="props.action" @click="navigate">
-            <span :class="item.icon"></span>
-            <span>{{ item.label }}</span>
-          </a>
-        </router-link>
-        <a v-else v-ripple v-bind="props.action">
-          <span :class="item.icon"></span>
-          <span>{{ item.label }}</span>
-          <span v-if="hasSubmenu" class="pi pi-fw pi-angle-down" />
-        </a>
-      </template>
-    </Menubar>
+  <div class="sb-app">
+    <!-- preloader -->
+    <Preloader/>
+    <!-- click effect -->
+    <div class="sb-click-effect"></div>
+    <!-- loader -->
+    <div class="sb-load"></div>
+    <NavBar :items="items"/>
 
     <div class="MainPage">
       <div class="language-selector">
@@ -103,6 +83,7 @@ const items = ref([
   flex-grow: 1;
   padding: 20px;
   background-color: #ecf0f1;
+  padding-top: 150px;
 }
 .MainPage {
   /* font-size: 2em; */
@@ -113,8 +94,9 @@ const items = ref([
 .language-selector {
   position: absolute;
   top: 10px;
-  right: 20px; /* 距离右边的距离 */
+  right: 20px; 
   display: flex;
   align-items: center;
+  z-index: 10000;
 }
 </style>

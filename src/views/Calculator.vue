@@ -9,9 +9,9 @@ import RadioButton from "primevue/radiobutton";
 import OverlayBadge from "primevue/overlaybadge";
 import DataTable from "primevue/datatable";
 import Column from "primevue/column";
-import FoodTable from "./FoodTable.vue";
-import CaloricResult from "./CaloricResult.vue";
-import type { nutrient } from "../interfaces/Calculator";
+import FoodTable from "@/components/FoodTable.vue";
+import CaloricResult from "@/components/CaloricResult.vue";
+import type { nutrient } from "@/interfaces/Calculator";
 import type { foodItem } from "@/interfaces/Calculator";
 import { getTableData } from "@/apis/tableData";
 // Declare reactive variables using `ref`
