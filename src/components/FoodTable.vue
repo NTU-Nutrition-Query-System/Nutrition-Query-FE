@@ -496,7 +496,7 @@ const closeFilter = () => {
       @click="classClicked(item, index)"
     >
       <template #content>
-        <div style="width: 100%; margin: auto; position: relative">
+        <div style="width: 100%; position: relative">
           <OverlayBadge
             v-if="computeNumberOfItem(index) > 0"
             :value="computeNumberOfItem(index)"
@@ -509,25 +509,29 @@ const closeFilter = () => {
             style="object-fit: cover; justify-content: center"
           />
         </div>
-      </template>
-      <template #footer>
         <div
           style="
             display: flex;
             align-items: center;
             justify-content: space-between;
+            margin-top: -6px;
           "
         >
-          <div style="font-size: 20px">
+          <label style="margin-left: 1rem; align-items: center; justify-content: center; font-size: 20px; text-align: center;" >
             {{ categories[index].name }}
-          </div>
+          </label>
           <Button
-            style="width: 30%"
+            style="
+              width: 35%;
+              border-radius: 0px;
+              margin-right: 0;
+            "
             label="Open"
             @click="classClicked(item, index)"
           />
         </div>
       </template>
+      
     </Card>
   </div>
 </template>
@@ -549,6 +553,10 @@ const closeFilter = () => {
   border-radius: 8px;
   cursor: pointer;
   transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.food-class-card .p-card-body {
+  padding: 0rem;
 }
 
 .food-class-card:hover {
