@@ -1,19 +1,20 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { onMounted, ref, watch } from "vue";
+import { onMounted, ref, watch, nextTick } from "vue";
 import Button from "primevue/button";
 import InputNumber from "primevue/inputnumber";
 import InputGroup from "primevue/inputgroup";
 import FloatLabel from "primevue/floatlabel";
 import RadioButton from "primevue/radiobutton";
 import OverlayBadge from "primevue/overlaybadge";
+import DataTable from "primevue/datatable";
+import Column from "primevue/column";
 import FoodTable from "./FoodTable.vue";
 import CaloricResult from "./CaloricResult.vue";
 import type { nutrient } from "../interfaces/Calculator";
 import type { foodItem } from "@/interfaces/Calculator";
 import { getTableData } from "@/apis/tableData";
 // Declare reactive variables using `ref`
-const content = ref<HTMLElement | null>(null);
 const age = ref<number>(0);
 const height = ref<number>(0);
 const weight = ref<number>(0);
@@ -56,11 +57,7 @@ const nextOnClicked = () => {
   calculateDailyNeed();
 };
 const selectedProduct = ref([]);
-const targetSection = ref<HTMLElement | null>(null);
-const titleIconURL = new URL(
-  "@/assets/imgs/user-interface-1-5.svg",
-  import.meta.url
-).href;
+
 const { locale } = useI18n();
 const cartUpdate = (newValue: []) => {
   console.log("Cart Update");
@@ -78,15 +75,22 @@ const loadTableData = async () => {
   products.value = res;
   foodTableLoaded.value = true;
 };
+
+const targetSection = ref<HTMLElement | null>(null);
+
 const scrollDown = () => {
   foodTableDisplay.value = true;
   calculatorDisplay.value = true;
+  nextTick(() => {
   targetSection.value?.scrollIntoView({ behavior: "smooth" });
+  });
 };
+
 watch(selectedProduct, (newValue) => {
   console.log("selected product updated!");
   console.log(newValue);
 });
+
 onMounted(() => {
   loadTableData();
 });
@@ -163,8 +167,9 @@ onMounted(() => {
     <div style=" display: flex; justify-content: center; gap: 1rem; margin-top: 1rem;">
       <Button class="tab" :label="$t('calculator_input.calculate')" @click="nextOnClicked" />
     </div>
-
-    <div class="calculator_result" v-if="isExpanded">
+  </div>
+  <div class="calculator" style="margin-top: 0.5rem" v-if="isExpanded">
+    <div class="result">
       <h3>{{ $t("calculator_result_daily_title") }}</h3>
 
       <div class="display-row" v-for="(value, key) in dailyNeeds" :key="key">
@@ -175,7 +180,8 @@ onMounted(() => {
           }})</span
         >
       </div>
-      <h3>{{ $t("calculator_result_meal_title") }}</h3>
+      
+      <h3 style="margin-top: 0.5rem;">{{ $t("calculator_result_meal_title") }}</h3>
 
       <div class="display-row" v-for="(value, key) in dailyNeeds" :key="key">
         <label>{{ $t(key) }}:</label>
@@ -185,6 +191,7 @@ onMounted(() => {
           }})</span
         >
       </div>
+
       <Button class="tab" :label="$t('calculator_input.choosing')" @click="scrollDown" />
       <div style="font-size: 16px; margin-top: 0.3rem" v-if="foodTableDisplay">
         {{ $t("calculator_input.scroll_down") }}
@@ -287,9 +294,8 @@ onMounted(() => {
   margin: 10px 0;
 }
 
-.calculator_result {
-  margin-top: 2rem;
-  margin: 5;
+.calculator .result {
+  margin: 0 5rem;
   padding: 10px;
   color: black;
   text-align: center;
