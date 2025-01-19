@@ -91,6 +91,7 @@ const messages = {
     protein: "蛋白質(克)",
     carbohydrate: "醣類(克)",
     fat: "脂肪(克)",
+    calculate: "查看",
     calculator: "營養計算機",
     calculator_header_title: "營養師幫你算",
     calculator_header_content:
