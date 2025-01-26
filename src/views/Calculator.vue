@@ -14,6 +14,9 @@ import CaloricResult from "@/components/CaloricResult.vue";
 import type { nutrient } from "@/interfaces/Calculator";
 import type { foodItem } from "@/interfaces/Calculator";
 import { getTableData } from "@/apis/tableData";
+
+import { useProductStore } from "@/stores/productStore";
+const productStore = useProductStore();
 // Declare reactive variables using `ref`
 const age = ref<number>(0);
 const height = ref<number>(0);
@@ -66,14 +69,12 @@ const cartUpdate = (newValue: []) => {
   console.log(newValue);
   console.log(selectedProduct.value);
 };
-const products = ref<foodItem[]>([]);
 const foodTableLoaded = ref<boolean>(false);
 const foodTableDisplay = ref<boolean>(false);
 const calculatorDisplay = ref<boolean>(false);
 const loadTableData = async () => {
-  const res = await getTableData();
-  products.value = res;
   foodTableLoaded.value = true;
+  productStore.loadTableData(getTableData);
 };
 
 const targetSection = ref<HTMLElement | null>(null);
@@ -85,11 +86,6 @@ const scrollDown = () => {
     targetSection.value?.scrollIntoView({ behavior: "smooth" });
   });
 };
-
-watch(selectedProduct, (newValue) => {
-  console.log("selected product updated!");
-  console.log(newValue);
-});
 
 onMounted(() => {
   loadTableData();
@@ -103,34 +99,85 @@ onMounted(() => {
       rel="stylesheet"
     />
   </head>
-  
-  <div class="calculator" :class="{ expanded: isExpanded }" style="margin-top: 0.5rem">
-    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 28px; font-weight: bold; text-align: center;">
-        {{ $t("calculator_input.title") }}
+
+  <div
+    class="calculator"
+    :class="{ expanded: isExpanded }"
+    style="margin-top: 0.5rem"
+  >
+    <div
+      style="
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        font-weight: bold;
+        text-align: center;
+      "
+    >
+      {{ $t("calculator_input.title") }}
     </div>
-    <div class="calc-gender-select" style="margin-top: 1rem;">
+    <div class="calc-gender-select" style="margin-top: 1rem">
       <RadioButton v-model="gender" value="Male" style="margin-left: 1rem" />
-      <label style="margin-left: 0.3rem">{{ $t("calculator_input.gender.male") }}</label>
-      <RadioButton v-model="gender" value="Female" style="margin-left: 1rem" />
-      <label style="margin-left: 0.3rem">{{ $t("calculator_input.gender.female") }}</label>
+      <label style="margin-left: 0.3rem">{{
+        $t("calculator_input.gender.male")
+      }}</label>
+      <RadioButton v-model="gender" value="Female" zstyle="margin-left: 1rem" />
+      <label style="margin-left: 0.3rem">{{
+        $t("calculator_input.gender.female")
+      }}</label>
     </div>
 
-    <div style="margin-top: 0.5rem; display: flex; align-items: center; justify-content: center;">
-      <label class="calc-InputNum-label">{{ $t("calculator_input.age") }} :</label>
-      <InputNumber v-model="age" class="calc-InputNum"/>
-      <label class="calc-InputNum-unit">{{ $t("calculator_input.years_old") }}</label>
+    <div
+      style="
+        margin-top: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <label class="calc-InputNum-label"
+        >{{ $t("calculator_input.age") }} :</label
+      >
+      <InputNumber v-model="age" class="calc-InputNum" />
+      <label class="calc-InputNum-unit">{{
+        $t("calculator_input.years_old")
+      }}</label>
     </div>
-    
-    <div style="margin-top: 0.5rem; display: flex; align-items: center; justify-content: center;">
-      <label class="calc-InputNum-label">{{ $t("calculator_input.height") }} :</label>
-      <InputNumber v-model="height" class="calc-InputNum"/>
-      <label class="calc-InputNum-unit">{{ $t("calculator_input.centimeter") }}</label>
+
+    <div
+      style="
+        margin-top: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <label class="calc-InputNum-label"
+        >{{ $t("calculator_input.height") }} :</label
+      >
+      <InputNumber v-model="height" class="calc-InputNum" />
+      <label class="calc-InputNum-unit">{{
+        $t("calculator_input.centimeter")
+      }}</label>
     </div>
-    
-    <div style="margin-top: 0.5rem; display: flex; align-items: center; justify-content: center;">
-      <label class="calc-InputNum-label">{{ $t("calculator_input.weight") }} :</label>
-      <InputNumber v-model="weight" class="calc-InputNum"/>
-      <label class="calc-InputNum-unit">{{ $t("calculator_input.kilogram") }}</label>
+
+    <div
+      style="
+        margin-top: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <label class="calc-InputNum-label"
+        >{{ $t("calculator_input.weight") }} :</label
+      >
+      <InputNumber v-model="weight" class="calc-InputNum" />
+      <label class="calc-InputNum-unit">{{
+        $t("calculator_input.kilogram")
+      }}</label>
     </div>
 
     <div style="font-weight: bold; display: block; margin: 0.5 0.5rem">
@@ -163,9 +210,20 @@ onMounted(() => {
     <div class="activity-tips">
       {{ $t("calculator_input.activity_factor.tips.severe") }}
     </div>
-    
-    <div style=" display: flex; justify-content: center; gap: 1rem; margin-top: 1rem;">
-      <Button class="tab" :label="$t('calculator_input.calculate')" @click="nextOnClicked" />
+
+    <div
+      style="
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1rem;
+      "
+    >
+      <Button
+        class="tab"
+        :label="$t('calculator_input.calculate')"
+        @click="nextOnClicked"
+      />
     </div>
   </div>
   <div class="calculator" style="margin-top: 0.5rem" v-if="isExpanded">
@@ -180,8 +238,10 @@ onMounted(() => {
           }})</span
         >
       </div>
-      
-      <h3 style="margin-top: 0.5rem;">{{ $t("calculator_result_meal_title") }}</h3>
+
+      <h3 style="margin-top: 0.5rem">
+        {{ $t("calculator_result_meal_title") }}
+      </h3>
 
       <div class="display-row" v-for="(value, key) in dailyNeeds" :key="key">
         <label>{{ $t(key) }}:</label>
@@ -192,15 +252,19 @@ onMounted(() => {
         >
       </div>
 
-      <Button class="tab" :label="$t('calculator_input.choosing')" @click="scrollDown" />
+      <Button
+        class="tab"
+        :label="$t('calculator_input.choosing')"
+        @click="scrollDown"
+      />
       <div style="font-size: 16px; margin-top: 0.3rem" v-if="foodTableDisplay">
         {{ $t("calculator_input.scroll_down") }}
       </div>
     </div>
   </div>
-  
+
   <!-- foodTableDisplay.value = true; -->
-  
+
   <!--
   A fixed positioned overlay badge component in the bottom-right corner of the screen
   with a circular shape.
@@ -215,10 +279,10 @@ onMounted(() => {
       z-index: 1000;
       margin-right: 1rem;
     "
-    :value="selectedProduct.length"
+    :value="productStore.selectedProducts.length"
     size="large"
     severity="danger"
-    v-if="selectedProduct.length > 0"
+    v-if="productStore.selectedProducts.length > 0"
   >
     <Button
       icon="pi pi-calculator"
@@ -253,13 +317,13 @@ onMounted(() => {
     "
     @click="calculate"
   />
-  
+
   <div ref="targetSection">
     <FoodTable
       v-if="foodTableLoaded && foodTableDisplay"
       v-model:selectedProduct="selectedProduct"
+      :products="productStore.products"
       @updateSelectedData="cartUpdate"
-      :products="products"
     />
   </div>
 
@@ -300,10 +364,10 @@ onMounted(() => {
   flex: 1; /* 每個 radio 和 label 占據相同的空間 */
   display: flex; /* 將 radio 和 label 置於同一行 */
   align-items: center;
-  margin: 0 1rem; 
+  margin: 0 1rem;
 }
 
-.activity-tips{
+.activity-tips {
   margin-left: 2.8rem;
   font-size: 16px;
 }
@@ -321,9 +385,9 @@ onMounted(() => {
   text-align: center;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
-.calc-gender-select{
-  display: flex; 
-  align-items: center; 
+.calc-gender-select {
+  display: flex;
+  align-items: center;
   justify-content: center;
 }
 .calc-InputNum-label {
@@ -341,7 +405,7 @@ onMounted(() => {
   border: 1px solid #ccc;
   transition: border-color 0.3s ease;
   margin: 0 0.5rem;
-  height:2.3rem; 
+  height: 2.3rem;
   width: 5rem;
 }
 

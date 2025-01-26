@@ -9,6 +9,7 @@ import i18n from "../locales/i18n"; // Import i18n configuration
 import "./assets/base.css";
 import ToastService from "primevue/toastservice";
 import "primeicons/primeicons.css";
+import { createPinia } from "pinia";
 // Create the Vue app
 const app = createApp(App);
 const MyPreset = definePreset(Material, {
@@ -39,6 +40,7 @@ const MyPreset = definePreset(Material, {
   },
 });
 // Use the PrimeVue plugin
+const pinia = createPinia();
 app.use(ToastService); // 確保加載了 ToastService
 app.use(PrimeVue, {
   theme: {
@@ -50,5 +52,6 @@ app.use(PrimeVue, {
 });
 app.use(router);
 app.use(i18n);
+app.use(pinia);
 // Mount the app to the #app element in the DOM
 app.mount("#app");

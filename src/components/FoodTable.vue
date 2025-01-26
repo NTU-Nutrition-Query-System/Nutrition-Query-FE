@@ -21,6 +21,7 @@ import type { foodItem } from "@/interfaces/Calculator";
 import { getTableData } from "@/apis/tableData";
 import { fakeProducts } from "@/assets/fakeData";
 import { idText } from "typescript";
+import { useProductStore } from "@/stores/productStore";
 import {
   proteinOption,
   carbOption,
@@ -49,17 +50,17 @@ const props = defineProps({
     required: true,
   },
 });
-const FoodTableSelectedProducts = ref<foodItem[]>([]);
+
 const dialogVisible = ref(false);
 const selectedClass = ref<number>(0);
 const emit = defineEmits(["updateSelectedData", "update:visible"]);
-
+const productStore = useProductStore();
 const productsFilterByCategories = ref<foodItem[][]>([]);
 
 const classClicked = (item: { image: string; name: string }, index: number) => {
   dialogVisible.value = true;
   selectedClass.value = index;
-  FoodTableSelectedProducts.value = props.selectedProduct;
+
   selectedCategory.value.image = item.image;
   selectedCategory.value.name = item.name;
 };
@@ -123,30 +124,58 @@ const selectedCategory = ref<{ name: string; image: string }>({
 });
 
 const closeDialog = () => {
-  emit("updateSelectedData", FoodTableSelectedProducts.value);
   clearFilter();
   console.log("Close Result");
-  console.log(FoodTableSelectedProducts.value);
 };
 const itemSelect = (e: any) => {
-  console.log("item selected!");
+  console.log("Row clicked");
   console.log(e);
-  toast.add({
-    severity: "success",
-    summary: "",
-    detail: `${e?.data.item} is added`,
-    life: 1000,
-  });
+  if (
+    !productStore.selectedProducts.some((item: any) => item.id === e.data.id)
+  ) {
+    productStore.selectedProducts.push(e.data);
+    console.log(productStore.selectedProducts);
+    e.data.weight = 1.0;
+
+    // 重新賦值，觸發重新渲染
+    productStore.selectedProducts = [...productStore.selectedProducts];
+
+    // Toast 提示
+    toast.add({
+      severity: "success",
+      summary: "",
+      detail: `${e?.data.item} is added`,
+      life: 1000,
+    });
+  } else {
+    // 如果已經選中了，則從 selectedProducts 移除
+    productStore.selectedProducts = productStore.selectedProducts.filter(
+      (item: any) => item.id !== e.data.id
+    );
+    console.log("item unselected!");
+    console.log(e);
+
+    // 重新賦值，觸發重新渲染
+    productStore.selectedProducts = [...productStore.selectedProducts];
+
+    toast.add({
+      severity: "warn",
+      summary: "",
+      detail: `${e?.data.item} is removed`,
+      life: 2000,
+    });
+  }
 };
+
 const computeNumberOfItem = computed(() => {
   return (index: number): number => {
-    if (!props.selectedProduct || !categories[index]) {
+    if (!productStore.selectedProducts || !categories[index]) {
       return 0; // 如果資料不存在，返回 0
     }
     if (categories[index].name === "全部") {
-      return props.selectedProduct.length;
+      return productStore.selectedProducts.length;
     }
-    return props.selectedProduct.filter(
+    return productStore.selectedProducts.filter(
       (product: foodItem) => product.class === categories[index].name
     ).length;
   };
@@ -212,13 +241,11 @@ const getColor = (value: number, min_val: number, max_val: number) => {
 
 onMounted(() => {
   console.log("Food Table OnMounted");
-  console.log(props.products);
-  console.log(subclassOptions.value[0]);
-  console.log(proteinFilterOptions.value);
+  console.log(props.selectedProduct);
   const ret = categories.map((category) =>
     props.products.filter((item) => item.class === category.name)
   );
-  ret[ret.length - 1] = props.products;
+  ret[ret.length - 1] = props.products; //for the class 'All items'
   productsFilterByCategories.value = ret;
 });
 watch(selectedClass, (nv) => {
@@ -227,12 +254,14 @@ watch(selectedClass, (nv) => {
   console.log(subclassOptions.value[selectedClass.value]);
   console.log(nv);
 });
+
 const closeFilter = () => {
   console.log("Close filter");
   //Clicked twice to close the filter
   document.body.click(); // 自動關閉 filter popup
   document.body.click();
 };
+const sel = ref([]);
 </script>
 <template>
   <head> </head>
@@ -248,8 +277,7 @@ const closeFilter = () => {
       <Toast position="top-center" baseZIndex="12" style="width: 20rem" />
 
       <DataTable
-        v-model:selection="FoodTableSelectedProducts"
-        :key="props.selectedProduct"
+        :selection="productStore.selectedProducts"
         :value="productsFilterByCategories[selectedClass]"
         :globalFilterFields="['item', 'class']"
         :filters="filters"
@@ -258,11 +286,9 @@ const closeFilter = () => {
         filterDisplay="menu"
         paginator
         :rows="10"
-        @row-select="itemSelect"
-        @row-unselect="itemUnselect"
-        @row-select-all="selectAll"
-        @row-unselect-all="unselectAll"
+        @row-click="itemSelect"
         rowHover
+        highlightOnSelect
       >
         <template #header>
           <div>
@@ -517,21 +543,24 @@ const closeFilter = () => {
             margin-top: -6px;
           "
         >
-          <label style="margin-left: 1rem; align-items: center; justify-content: center; font-size: 20px; text-align: center;" >
+          <label
+            style="
+              margin-left: 1rem;
+              align-items: center;
+              justify-content: center;
+              font-size: 20px;
+              text-align: center;
+            "
+          >
             {{ categories[index].name }}
           </label>
           <Button
-            style="
-              width: 35%;
-              border-radius: 0px;
-              margin-right: 0;
-            "
+            style="width: 35%; border-radius: 0px; margin-right: 0"
             label="Open"
             @click="classClicked(item, index)"
           />
         </div>
       </template>
-      
     </Card>
   </div>
 </template>

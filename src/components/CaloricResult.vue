@@ -13,12 +13,13 @@ import Tab from "primevue/tab";
 import TabPanels from "primevue/tabpanels";
 import TabPanel from "primevue/tabpanel";
 import ProgressBar from "primevue/progressbar";
+import { useProductStore } from "@/stores/productStore";
 import type {
   nutrient,
   foodItem,
   weightedFoodItem,
 } from "../interfaces/Calculator";
-
+const productStore = useProductStore();
 const { t } = useI18n();
 const { locale } = useI18n();
 const props = defineProps({
@@ -36,15 +37,17 @@ const props = defineProps({
   },
 });
 const selectedValue = computed<nutrient>(() => {
-  if (!cartData.value) {
+  if (!productStore.selectedProducts) {
     return {
       calories: 0,
       protein: 0,
       carbohydrate: 0,
       fat: 0,
-    }; // cartData.value 為 undefined 時的預設值
+    };
   }
-  return cartData.value.reduce<nutrient>(
+  console.log("Selected Value");
+
+  return productStore.selectedProducts.reduce<nutrient>(
     (acc, item) => {
       acc.calories += item.calories * item.weight;
       acc.protein += item.protein * item.weight;
@@ -132,13 +135,12 @@ const isVisible = ref(props.visible);
 const closeDialog = () => {
   isVisible.value = false;
   emit("update:visible", false);
-  emit("updateSelectedData", selectedCartData.value);
+  // emit("updateSelectedData", selectedCartData.value);
   console.log("Close Result");
 };
-const cartData = ref<weightedFoodItem[]>();
-const selectedCartData = ref<weightedFoodItem[]>();
+// const cartData = ref<weightedFoodItem[]>();
+// const selectedCartData = ref<weightedFoodItem[]>();
 
-// Watch for changes in the prop and update the local state
 watch(
   () => props.visible,
   (newValue) => {
@@ -146,23 +148,13 @@ watch(
     isVisible.value = newValue;
   }
 );
-// watch(cartData, (newSelection) => {
-//   console.log("Result Data updated");
-//   console.log(cartData.value);
-//   console.log(props.selectedData);
-// });
+
 const handle_percentage = (percent: number) => {
   return Math.min(100, percent);
 };
 onMounted(() => {
   console.log("Result onMounted");
   console.log(props.selectedData);
-
-  cartData.value = props.selectedData.map((item) => ({
-    ...item,
-    weight: 1,
-  }));
-  selectedCartData.value = cartData.value;
 });
 const value3 = ref(5);
 </script>
@@ -293,10 +285,10 @@ const value3 = ref(5);
         </div> -->
     <br />
     <DataTable
-      :value="cartData"
+      :value="productStore.selectedProducts"
       dataKey="id"
       tableStyle="min-width: 50rem"
-      v-model:selection="selectedCartData"
+      v-model:selection="productStore.selectedProducts"
     >
       <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
       <Column
