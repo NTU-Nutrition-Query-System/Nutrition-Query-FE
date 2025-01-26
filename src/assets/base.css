@@ -21,6 +21,8 @@
   /* 你可以添加其他全局變量，例如：*/
   --color-text: #333333;
   --color-background: #ffffff;
+
+  --primary-color: #F5C332;
 }
 
 /* 基礎樣式設置 */

@@ -10,17 +10,17 @@ import Preloader from "@/components/common/Preloader.vue";
 import NavBar from "@/components/common/NavBar.vue";
 
 const router = useRouter();
-const { locale } = useI18n();
+// const { locale } = useI18n();
 const calculationResult = ref(10);
-const currentLocale = ref(locale.value);
+// const currentLocale = ref(locale.value);
 
 const handleCalculation = (result: number) => {
   calculationResult.value = result;
   console.log(result);
 };
-const changeLocale = () => {
-  locale.value = currentLocale.value;
-};
+// const changeLocale = () => {
+//   locale.value = currentLocale.value;
+// };
 const languages = [
   { label: "中文", value: "ch" },
   { label: "English", value: "en" },
@@ -41,28 +41,14 @@ const items = ref([
 <template>
   <div class="sb-app">
     <!-- preloader -->
-    <Preloader/>
+    <!-- <Preloader/> -->
     <!-- click effect -->
     <div class="sb-click-effect"></div>
     <!-- loader -->
     <div class="sb-load"></div>
-    <NavBar :items="items"/>
+    <NavBar :items="items" :languages="languages"/>
 
     <div class="MainPage">
-      <div class="language-selector">
-        <label for="language-select" style="margin-right: 0.5rem">{{ $t("select_language") }}</label>
-        <Dropdown
-          id="language-select"
-          :options="languages"
-          optionLabel="label"
-          optionValue="value"
-          v-model="currentLocale"
-          @change="changeLocale"
-          placeholder="Select Language"
-          class="language-dropdown"
-          style="height: 2.5rem"
-        />
-      </div>
       <!-- Sidebar Navigation -->
       <div class="content-area">
         <router-view />
@@ -89,14 +75,5 @@ const items = ref([
   /* font-size: 2em; */
   font-weight: 400;
   display: flex;
-}
-
-.language-selector {
-  position: absolute;
-  top: 10px;
-  right: 20px; 
-  display: flex;
-  align-items: center;
-  z-index: 10000;
 }
 </style>
