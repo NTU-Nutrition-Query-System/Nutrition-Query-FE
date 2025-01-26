@@ -17,16 +17,15 @@ const props = defineProps({
 
 const activeMenuItem = ref<number | null>(null);
 const isMenuActive = ref(false);
-const menuActive = ref(false);
 
 const toggleMenu = () => {
-    menuActive.value = !menuActive.value;
+    isMenuActive.value = !isMenuActive.value;
 };
 
 // Method to handle menu click
 const handleClick = (index: number) => {
     activeMenuItem.value = activeMenuItem.value === index ? null : index;
-    isMenuActive.value = true;
+    isMenuActive.value = false;
 };
 </script>
 
@@ -44,20 +43,20 @@ const handleClick = (index: number) => {
                 <!-- menu -->
                 <div class="sb-right-side">
                     <nav id="sb-dynamic-menu" class="sb-menu-transition">
-                        <div class="sb-navigation">
+                        <div class="sb-navigation" :class="{ 'sb-active': isMenuActive }">
                             <ul class="sb-navigation-list">
-                                <li v-for="(item, index) in items" :key="index" @click="handleClick(index)"
-                                    :class="{ 'sb-active': activeMenuItem === index }">
-                                    <router-link v-if="item.route" :to="item.route">
-                                        <span data-no-swup>{{ item.label }}</span>
-                                    </router-link>
-                                    <a v-else>{{ item.label }}</a>
-                                </li>
-                            </ul>
+                            <li v-for="(item, index) in items" :key="index" @click="handleClick(index)"
+                                :class="{ 'sb-active': activeMenuItem === index }">
+                                <router-link v-if="item.route" :to="item.route">
+                                    <span data-no-swup>{{ item.label }}</span>
+                                </router-link>
+                                <a v-else>{{ item.label }}</a>
+                            </li>
                             <!-- language selector -->
-                            <div>
+                            <li class="sb-language-selector">
                                 <LanguageSelector :languages="languages" />
-                            </div>
+                            </li>
+                        </ul>
                         </div>
 
                     </nav>
@@ -165,7 +164,7 @@ nav {
 
 nav .sb-navigation {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
 }
 
@@ -173,6 +172,26 @@ nav .sb-navigation .sb-navigation-list {
     display: flex;
     justify-content: center;
     align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+@media (max-width: 992px) {
+  nav .sb-navigation .sb-navigation-list {
+    display: block;
+  }
+}
+
+nav .sb-navigation .sb-language-selector {
+    padding-left: 20rem;
+}
+
+@media (max-width: 992px) {
+  nav .sb-navigation .sb-language-selector {
+    justify-items: center;
+    padding: 0;
+  }
 }
 
 nav .sb-navigation::-webkit-scrollbar {
