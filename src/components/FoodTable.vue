@@ -237,7 +237,7 @@ const sel = ref([]);
         highlightOnSelect
       >
         <template #header>
-          <div>
+          <div style="display: flex; justify-content: space-between ;">
             <IconField>
               <InputIcon class="pi pi-search" style="margin-right: 1rem" />
               <InputText
@@ -245,6 +245,11 @@ const sel = ref([]);
                 placeholder="Keyword Search"
               />
             </IconField>
+            <Button :label="$t('food_table.confirm')" 
+              icon="pi pi-check"
+              style="margin-right: 0rem;"
+              @click="dialogVisible = false"
+            />
           </div>
         </template>
 

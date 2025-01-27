@@ -282,7 +282,8 @@ onMounted(() => {
       tableStyle="min-width: 50rem"
       v-model:selection="productStore.selectedProducts"
     >
-      <Column :header="$t('移除')" header-style="width: 10%">
+      <Column :header="$t('移除')" 
+          header-style="width: 3rem">
         <template #body="{ data }">
           <Button
             icon="pi pi-minus-circle"
@@ -292,13 +293,12 @@ onMounted(() => {
       </Column>
       <Column
         :header="$t('調整份數')"
-        header-style="width: 12%"
-        style="min-width: 180px"
+        header-style="width: 9rem"
       >
         <template #body="{ data }"
           ><div>
             <InputNumber
-              inputId="horizontal-buttons"
+              class="iptBtn-amount"
               v-model="data.weight"
               showButtons
               buttonLayout="horizontal"
@@ -380,4 +380,13 @@ onMounted(() => {
   opacity: 0.6; /* 禁用时的透明度 */
   cursor: not-allowed;
 }
+
+.iptBtn-amount .p-inputnumber-increment-button{
+  width: 2rem;
+}
+
+.iptBtn-amount .p-inputnumber-decrement-button{
+  width: 2rem;
+}
+
 </style>
