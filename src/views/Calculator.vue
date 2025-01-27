@@ -118,13 +118,13 @@ onMounted(() => {
     >
       {{ $t("calculator_input.title") }}
     </div>
-    <div class="calc-gender-select" style="margin-top: 1rem">
-      <RadioButton v-model="gender" value="Male" style="margin-left: 1rem" />
-      <label style="margin-left: 0.3rem">{{
+    <div class="calc-gender-select" style="margin-top: 1rem;">
+      <RadioButton v-model="gender" value="Male" style="margin-left: 1rem;" />
+      <label style="margin-left: 0.3rem;">{{
         $t("calculator_input.gender.male")
       }}</label>
-      <RadioButton v-model="gender" value="Female" zstyle="margin-left: 1rem" />
-      <label style="margin-left: 0.3rem">{{
+      <RadioButton v-model="gender" value="Female" style="margin-left: 1rem" />
+      <label style="margin-left: 0.3rem;">{{
         $t("calculator_input.gender.female")
       }}</label>
     </div>
@@ -361,8 +361,8 @@ onMounted(() => {
 }
 
 .activity-radio-btn {
-  flex: 1; /* 每個 radio 和 label 占據相同的空間 */
-  display: flex; /* 將 radio 和 label 置於同一行 */
+  flex: 1;
+  display: flex;
   align-items: center;
   margin: 0 1rem;
 }
@@ -389,6 +389,7 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
 }
 .calc-InputNum-label {
   min-width: 5rem;
@@ -406,7 +407,7 @@ onMounted(() => {
   transition: border-color 0.3s ease;
   margin: 0 0.5rem;
   height: 2.3rem;
-  width: 5rem;
+  width: 7rem;
 }
 
 .calc-InputNum:focus {
