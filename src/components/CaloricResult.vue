@@ -14,21 +14,22 @@ import TabPanels from "primevue/tabpanels";
 import TabPanel from "primevue/tabpanel";
 import ProgressBar from "primevue/progressbar";
 import { useProductStore } from "@/stores/productStore";
+import Button from "primevue/button";
 import type {
   nutrient,
   foodItem,
   weightedFoodItem,
 } from "../interfaces/Calculator";
+import Toast from "primevue/toast";
+import { useToast } from "primevue/usetoast";
 const productStore = useProductStore();
 const { t } = useI18n();
 const { locale } = useI18n();
+
+const toast = useToast();
 const props = defineProps({
   visible: {
     type: Boolean,
-    required: true,
-  },
-  selectedData: {
-    type: Array as () => foodItem[],
     required: true,
   },
   needData: {
@@ -129,18 +130,23 @@ const selectedIntake = computed(() => {
     },
   ];
 });
-const emit = defineEmits(["update:visible", "updateSelectedData"]);
+const emit = defineEmits(["update:visible"]);
 const isVisible = ref(props.visible);
 // Close dialog and emit update event
 const closeDialog = () => {
   isVisible.value = false;
   emit("update:visible", false);
-  // emit("updateSelectedData", selectedCartData.value);
   console.log("Close Result");
 };
-// const cartData = ref<weightedFoodItem[]>();
-// const selectedCartData = ref<weightedFoodItem[]>();
-
+const deleteButtonClicked = (row: weightedFoodItem) => {
+  productStore.updateRow(row);
+  toast.add({
+    severity: "warn",
+    summary: "",
+    detail: `${row.item} is removed`,
+    life: 2000,
+  });
+};
 watch(
   () => props.visible,
   (newValue) => {
@@ -149,14 +155,9 @@ watch(
   }
 );
 
-const handle_percentage = (percent: number) => {
-  return Math.min(100, percent);
-};
 onMounted(() => {
   console.log("Result onMounted");
-  console.log(props.selectedData);
 });
-const value3 = ref(5);
 </script>
 
 <template>
@@ -167,6 +168,7 @@ const value3 = ref(5);
     @hide="closeDialog"
     style="overflow-x: scroll; width: 80%"
   >
+    <Toast position="top-center" baseZIndex="12" style="width: 20rem" />
     <Tabs value="0">
       <TabList>
         <Tab value="0">每餐所需營養素&百分比</Tab>
@@ -208,9 +210,7 @@ const value3 = ref(5);
                 >
                   {{ slotProps.data.mealUptakePercentage }}%
                   <ProgressBar
-                    :value="
-                      handle_percentage(slotProps.data.mealUptakePercentage)
-                    "
+                    :value="Math.min(100, slotProps.data.mealUptakePercentage)"
                     :class="{
                       'custom-progress-bar':
                         slotProps.data.mealUptakePercentage > 100,
@@ -260,9 +260,7 @@ const value3 = ref(5);
                   {{ slotProps.data.dailyUptakePercentage }}%
                 </span>
                 <ProgressBar
-                  :value="
-                    handle_percentage(slotProps.data.dailyUptakePercentage)
-                  "
+                  :value="Math.min(100, slotProps.data.mealUptakePercentage)"
                   :class="{
                     'custom-progress-bar':
                       slotProps.data.dailyUptakePercentage > 100,
@@ -277,12 +275,6 @@ const value3 = ref(5);
       </TabPanels>
     </Tabs>
 
-    <!-- <div>
-            <div class="display-row" v-for="(value, key) in selectedValue" :key="key">
-                <label>{{$t(key)}}:</label>
-                <span>{{ (value).toFixed(2) }} ({{ key === 'calories' ? 'kcal' : 'g' }})</span>
-            </div>
-        </div> -->
     <br />
     <DataTable
       :value="productStore.selectedProducts"
@@ -290,7 +282,14 @@ const value3 = ref(5);
       tableStyle="min-width: 50rem"
       v-model:selection="productStore.selectedProducts"
     >
-      <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
+      <Column :header="$t('移除')" header-style="width: 10%">
+        <template #body="{ data }">
+          <Button
+            icon="pi pi-minus-circle"
+            @click="deleteButtonClicked(data)"
+          ></Button>
+        </template>
+      </Column>
       <Column
         :header="$t('調整份數')"
         header-style="width: 12%"

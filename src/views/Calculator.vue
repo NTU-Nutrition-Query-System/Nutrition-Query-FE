@@ -62,13 +62,7 @@ const nextOnClicked = () => {
 const selectedProduct = ref([]);
 
 const { locale } = useI18n();
-const cartUpdate = (newValue: []) => {
-  console.log("Cart Update");
 
-  selectedProduct.value = newValue;
-  console.log(newValue);
-  console.log(selectedProduct.value);
-};
 const foodTableLoaded = ref<boolean>(false);
 const foodTableDisplay = ref<boolean>(false);
 const calculatorDisplay = ref<boolean>(false);
@@ -118,13 +112,13 @@ onMounted(() => {
     >
       {{ $t("calculator_input.title") }}
     </div>
-    <div class="calc-gender-select" style="margin-top: 1rem;">
-      <RadioButton v-model="gender" value="Male" style="margin-left: 1rem;" />
-      <label style="margin-left: 0.3rem;">{{
+    <div class="calc-gender-select" style="margin-top: 1rem">
+      <RadioButton v-model="gender" value="Male" style="margin-left: 1rem" />
+      <label style="margin-left: 0.3rem">{{
         $t("calculator_input.gender.male")
       }}</label>
       <RadioButton v-model="gender" value="Female" style="margin-left: 1rem" />
-      <label style="margin-left: 0.3rem;">{{
+      <label style="margin-left: 0.3rem">{{
         $t("calculator_input.gender.female")
       }}</label>
     </div>
@@ -319,20 +313,13 @@ onMounted(() => {
   />
 
   <div ref="targetSection">
-    <FoodTable
-      v-if="foodTableLoaded && foodTableDisplay"
-      v-model:selectedProduct="selectedProduct"
-      :products="productStore.products"
-      @updateSelectedData="cartUpdate"
-    />
+    <FoodTable v-if="foodTableLoaded && foodTableDisplay" />
   </div>
 
   <CaloricResult
     v-if="showResult"
     v-model:visible="showResult"
-    v-model:selectedData="selectedProduct"
     v-model:needData="dailyNeeds"
-    @updateSelectedData="cartUpdate"
   ></CaloricResult>
 </template>
 

@@ -40,17 +40,7 @@ import {
   subclassOption,
   subclassOptions,
 } from "@/components/CategoriesData";
-const props = defineProps({
-  selectedProduct: {
-    type: Array as () => foodItem[],
-    required: true,
-  },
-  products: {
-    type: Array as () => foodItem[],
-    required: true,
-  },
-});
-
+const props = defineProps({});
 const dialogVisible = ref(false);
 const selectedClass = ref<number>(0);
 const emit = defineEmits(["updateSelectedData", "update:visible"]);
@@ -130,17 +120,9 @@ const closeDialog = () => {
 const itemSelect = (e: any) => {
   console.log("Row clicked");
   console.log(e);
-  if (
-    !productStore.selectedProducts.some((item: any) => item.id === e.data.id)
-  ) {
-    productStore.selectedProducts.push(e.data);
-    console.log(productStore.selectedProducts);
-    e.data.weight = 1.0;
-
-    // 重新賦值，觸發重新渲染
-    productStore.selectedProducts = [...productStore.selectedProducts];
-
-    // Toast 提示
+  const success = productStore.updateRow(e.data);
+  if (success) {
+    //Toast 提示
     toast.add({
       severity: "success",
       summary: "",
@@ -148,16 +130,6 @@ const itemSelect = (e: any) => {
       life: 1000,
     });
   } else {
-    // 如果已經選中了，則從 selectedProducts 移除
-    productStore.selectedProducts = productStore.selectedProducts.filter(
-      (item: any) => item.id !== e.data.id
-    );
-    console.log("item unselected!");
-    console.log(e);
-
-    // 重新賦值，觸發重新渲染
-    productStore.selectedProducts = [...productStore.selectedProducts];
-
     toast.add({
       severity: "warn",
       summary: "",
@@ -180,32 +152,7 @@ const computeNumberOfItem = computed(() => {
     ).length;
   };
 });
-const itemUnselect = (e: any) => {
-  console.log("item unselected!");
-  console.log(e);
-  toast.add({
-    severity: "warn",
-    summary: "",
-    detail: `${e?.data.item} is removed`,
-    life: 2000,
-  });
-};
-const selectAll = (e: any) => {
-  console.log("select all");
-  toast.add({
-    severity: "success",
-    detail: `${categories[selectedClass.value].name} is added`,
-    life: 2000,
-  });
-};
-const unselectAll = (e: any) => {
-  console.log("select all");
-  toast.add({
-    severity: "warn",
-    detail: `${categories[selectedClass.value].name} is removed`,
-    life: 2000,
-  });
-};
+
 const getColor = (value: number, min_val: number, max_val: number) => {
   const min = min_val;
   const max = max_val;
@@ -241,11 +188,10 @@ const getColor = (value: number, min_val: number, max_val: number) => {
 
 onMounted(() => {
   console.log("Food Table OnMounted");
-  console.log(props.selectedProduct);
   const ret = categories.map((category) =>
-    props.products.filter((item) => item.class === category.name)
+    productStore.products.filter((item) => item.class === category.name)
   );
-  ret[ret.length - 1] = props.products; //for the class 'All items'
+  ret[ret.length - 1] = productStore.products; //for the class 'All items'
   productsFilterByCategories.value = ret;
 });
 watch(selectedClass, (nv) => {
@@ -535,7 +481,7 @@ const sel = ref([]);
             style="object-fit: cover; justify-content: center"
           />
         </div>
-        <div style="display: flex;">
+        <div style="display: flex">
           <label
             style="
               width: 40%;
@@ -548,15 +494,17 @@ const sel = ref([]);
               text-align: center;
               font-size: 20px;
             "
-            >
+          >
             {{ categories[index].name }}
           </label>
           <Button
-            style="width: 50%; 
-                   height: 4.5rem; 
-                   border-radius: 0; 
-                   margin: 0 0; 
-                   font-size: 20px"
+            style="
+              width: 50%;
+              height: 4.5rem;
+              border-radius: 0;
+              margin: 0 0;
+              font-size: 20px;
+            "
             label="Open"
             @click="classClicked(item, index)"
           />
