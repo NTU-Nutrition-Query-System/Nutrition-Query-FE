@@ -527,7 +527,7 @@ const sel = ref([]);
             v-if="computeNumberOfItem(index) > 0"
             :value="computeNumberOfItem(index)"
             size="xlarge"
-            style="position: absolute; top: -6%; right: -6%"
+            style="position: absolute; right: 0"
           />
           <img
             :src="item.image"
@@ -535,27 +535,28 @@ const sel = ref([]);
             style="object-fit: cover; justify-content: center"
           />
         </div>
-        <div
-          style="
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: -6px;
-          "
-        >
+        <div style="display: flex;">
           <label
             style="
-              margin-left: 1rem;
+              width: 40%;
+              margin: 0;
+              margin-left: 5%;
+              margin-right: 5%;
+              display: flex;
               align-items: center;
               justify-content: center;
-              font-size: 20px;
               text-align: center;
+              font-size: 20px;
             "
-          >
+            >
             {{ categories[index].name }}
           </label>
           <Button
-            style="width: 35%; border-radius: 0px; margin-right: 0"
+            style="width: 50%; 
+                   height: 4.5rem; 
+                   border-radius: 0; 
+                   margin: 0 0; 
+                   font-size: 20px"
             label="Open"
             @click="classClicked(item, index)"
           />
