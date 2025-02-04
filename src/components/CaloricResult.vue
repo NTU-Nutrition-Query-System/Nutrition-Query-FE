@@ -39,8 +39,8 @@ const selectedValue = computed<nutrient>(() => {
   if (!cartData.value) {
     return {
       calories: 0,
-      protein: 0,
       carbohydrate: 0,
+      protein: 0,
       fat: 0,
     }; // cartData.value 為 undefined 時的預設值
   }
@@ -79,6 +79,21 @@ const selectedIntake = computed(() => {
       ).toFixed(1),
     },
     {
+      id: 3,
+      nutrition: t("carbohydrate"),
+      intake: selectedValue.value.carbohydrate.toFixed(1),
+      mealRequirement: (props.needData.carbohydrate / 3).toFixed(1),
+      mealUptakePercentage: (
+        (selectedValue.value.carbohydrate / props.needData.carbohydrate) *
+        300
+      ).toFixed(1),
+      dailyRequirement: props.needData.carbohydrate.toFixed(1),
+      dailyUptakePercentage: (
+        (selectedValue.value.carbohydrate / props.needData.carbohydrate) *
+        100
+      ).toFixed(1),
+    },
+    {
       id: 1,
       nutrition: t("protein"),
       intake: selectedValue.value.protein.toFixed(1),
@@ -106,21 +121,6 @@ const selectedIntake = computed(() => {
       dailyRequirement: props.needData.fat.toFixed(1),
       dailyUptakePercentage: (
         (selectedValue.value.fat / props.needData.fat) *
-        100
-      ).toFixed(1),
-    },
-    {
-      id: 3,
-      nutrition: t("carbohydrate"),
-      intake: selectedValue.value.carbohydrate.toFixed(1),
-      mealRequirement: (props.needData.carbohydrate / 3).toFixed(1),
-      mealUptakePercentage: (
-        (selectedValue.value.carbohydrate / props.needData.carbohydrate) *
-        300
-      ).toFixed(1),
-      dailyRequirement: props.needData.carbohydrate.toFixed(1),
-      dailyUptakePercentage: (
-        (selectedValue.value.carbohydrate / props.needData.carbohydrate) *
         100
       ).toFixed(1),
     },
