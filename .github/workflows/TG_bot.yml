@@ -1,17 +1,19 @@
-name: telegram message
-on: [push]
+name: notify TG while push
+on: 
+  push:
+    branches:
+      - 'main'
+      - 'hot-fix**'
 jobs:
-
-  build:
-    name: Build
+  notify-TG:
     runs-on: ubuntu-latest
     steps:
-      - name: send telegram message on push
+      - name: notify TG
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TG_BOT_ID }}
           token: ${{ secrets.TG_BOT_TOKEN }}
           message: |
-            ${{ github.actor }} created commit:
+            ${{ github.actor }} pushed to ${{ github.ref }}:
                         
-            ${{ github.event.commits[0].message }}
+            ${{ github.event.head_commit.message }}
