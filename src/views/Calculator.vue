@@ -27,8 +27,8 @@ const isExpanded = ref<boolean>(false);
 const showResult = ref<boolean>(false);
 const dailyNeeds = ref<nutrient>({
   calories: 0,
-  protein: 0,
   carbohydrate: 0,
+  protein: 0,
   fat: 0,
 });
 
@@ -226,6 +226,7 @@ onMounted(() => {
 
       <div class="display-row" v-for="(value, key) in dailyNeeds" :key="key">
         <label>{{ $t(key) }}:</label>
+        <!-- 熱量 -->
         <span
           >{{ value.toFixed(2) }} ({{
             key === "calories" ? "kcal" : "g"
