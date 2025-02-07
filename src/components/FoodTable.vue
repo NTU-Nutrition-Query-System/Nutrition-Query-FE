@@ -13,39 +13,63 @@ import Card from "primevue/card";
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
 import Toast from "primevue/toast";
-import Dropdown from "@/primevue/dropdown";
-import Tag from "@/primevue/tag";
+import CascadeSelect from "primevue/cascadeselect";
+import MultiSelect from "primevue/multiselect";
 import { useToast } from "primevue/usetoast";
-import { FilterMatchMode } from "@primevue/core/api";
-import type { foodItem } from "@/interfaces/Calculator";
-import { getTableData } from "@/apis/tableData";
-import { fakeProducts } from "@/assets/fakeData";
-import { idText } from "typescript";
+import type { foodItem, filterOption } from "@/interfaces/Calculator";
 import { useProductStore } from "@/stores/productStore";
-import {
-  proteinOption,
-  carbOption,
-  caloriesOption,
-  fatOption,
-  proteinRange,
-  carbRange,
-  caloriesRange,
-  fatRange,
-  proteinFilterOptions,
-  carbFilterOptions,
-  caloriesFilterOptions,
-  fatFilterOptions,
-  filters,
-  clearFilter,
-  subclassOption,
-  subclassOptions,
-} from "@/components/CategoriesData";
+import { filters } from "@/components/CategoriesData";
 const props = defineProps({});
+
+const selectedFilterOption = ref();
 const dialogVisible = ref(false);
 const selectedClass = ref<number>(0);
 const emit = defineEmits(["updateSelectedData", "update:visible"]);
 const productStore = useProductStore();
 const productsFilterByCategories = ref<foodItem[][]>([]);
+const filteredData = computed(() => {
+  console.log("Filter Changed!!");
+  console.log(selectedOptions.value);
+
+  // 如果 selectedOptions 為 undefined 或空陣列，則返回原始資料
+  if (!selectedOptions.value || selectedOptions.value.length === 0) {
+    return productsFilterByCategories.value[selectedClass.value];
+  }
+
+  // 使用 reduce 來遍歷每個 selectedOptions 並篩選資料
+  return selectedOptions.value.reduce(
+    (filteredItems: foodItem[], option: filterOption) => {
+      // 找出符合條件的項目
+      const filtered = productsFilterByCategories.value[
+        selectedClass.value
+      ].filter((item) => {
+        switch (option.class) {
+          case "protein":
+            return item.protein >= option.min && item.protein <= option.max;
+          case "calories":
+            return item.calories >= option.min && item.calories <= option.max;
+          case "carbohydrate":
+            return (
+              item.carbohydrate >= option.min && item.carbohydrate <= option.max
+            );
+          case "fat":
+            return item.fat >= option.min && item.fat <= option.max;
+          case "dietary_fibre":
+            return (
+              item.dietary_fibre >= option.min &&
+              item.dietary_fibre <= option.max
+            );
+          default:
+            return true; // 若不存在對應 class，則保留該項目
+        }
+      });
+
+      // 將符合條件的項目與之前的結果合併，並去除重複項目
+      return [...new Set([...filteredItems, ...filtered])];
+    },
+    [] // 初始為空陣列，表示沒有任何篩選條件
+  );
+});
 
 const classClicked = (item: { image: string; name: string }, index: number) => {
   dialogVisible.value = true;
@@ -54,6 +78,54 @@ const classClicked = (item: { image: string; name: string }, index: number) => {
   selectedCategory.value.image = item.image;
   selectedCategory.value.name = item.name;
 };
+const selectedOptions = ref();
+const filterOptions = ref([
+  {
+    name: "熱量",
+    key: "calories",
+    states: [
+      { class: "calories", name: "低熱量", min: 0, max: 100 },
+      { class: "calories", name: "中熱量", min: 101, max: 300 },
+      { class: "calories", name: "高熱量", min: 301, max: 9999 },
+    ],
+  },
+  {
+    name: "蛋白質",
+    key: "protein",
+    states: [
+      { class: "protein", name: "低蛋白", min: 0, max: 5 },
+      { class: "protein", name: "中蛋白", min: 6, max: 15 },
+      { class: "protein", name: "高蛋白", min: 16, max: 9999 },
+    ],
+  },
+  {
+    name: "醣類",
+    key: "carbohydrate",
+    states: [
+      { class: "carbohydrate", name: "低醣類", min: 0, max: 20 },
+      { class: "carbohydrate", name: "中醣類", min: 21, max: 50 },
+      { class: "carbohydrate", name: "高醣類", min: 51, max: 9999 },
+    ],
+  },
+  {
+    name: "脂肪",
+    key: "fat",
+    states: [
+      { class: "fat", name: "低脂肪", min: 0, max: 5 },
+      { class: "fat", name: "中脂肪", min: 6, max: 15 },
+      { class: "fat", name: "高脂肪", min: 16, max: 9999 },
+    ],
+  },
+  {
+    name: "膳食纖維",
+    key: "dietary_fibre",
+    states: [
+      { class: "dietary_fibre", name: "低膳食纖維", min: 0, max: 2 },
+      { class: "dietary_fibre", name: "中膳食纖維", min: 3, max: 6 },
+      { class: "dietary_fibre", name: "高膳食纖維", min: 7, max: 9999 },
+    ],
+  },
+]);
 
 const toast = useToast();
 
@@ -113,10 +185,7 @@ const selectedCategory = ref<{ name: string; image: string }>({
   image: "",
 });
 
-const closeDialog = () => {
-  clearFilter();
-  console.log("Close Result");
-};
+const closeDialog = () => {};
 const itemSelect = (e: any) => {
   console.log("Row clicked");
   console.log(e);
@@ -185,7 +254,9 @@ const getColor = (value: number, min_val: number, max_val: number) => {
 
   return `rgb(${r}, ${g}, ${b})`;
 };
-
+const removeTag = (index: number) => {
+  selectedOptions.value.splice(index, 1);
+};
 onMounted(() => {
   console.log("Food Table OnMounted");
   const ret = categories.map((category) =>
@@ -195,18 +266,9 @@ onMounted(() => {
   productsFilterByCategories.value = ret;
 });
 watch(selectedClass, (nv) => {
-  console.log("Selected Class");
-  console.log(selectedClass.value);
-  console.log(subclassOptions.value[selectedClass.value]);
-  console.log(nv);
+  filters.value["global"].value = null;
 });
 
-const closeFilter = () => {
-  console.log("Close filter");
-  //Clicked twice to close the filter
-  document.body.click(); // 自動關閉 filter popup
-  document.body.click();
-};
 const sel = ref([]);
 </script>
 <template>
@@ -219,17 +281,17 @@ const sel = ref([]);
       @hide="closeDialog"
       :header="selectedCategory.name"
       style="overflow-x: auto; width: 90%"
+      :dismissableMask="true"
     >
       <Toast position="top-center" baseZIndex="12" style="width: 20rem" />
 
       <DataTable
         :selection="productStore.selectedProducts"
-        :value="productsFilterByCategories[selectedClass]"
+        :value="filteredData"
         :globalFilterFields="['item', 'class']"
         :filters="filters"
         dataKey="id"
         tableStyle="min-width: 50rem"
-        filterDisplay="menu"
         paginator
         :rows="10"
         @row-click="itemSelect"
@@ -237,7 +299,7 @@ const sel = ref([]);
         highlightOnSelect
       >
         <template #header>
-          <div style="display: flex; justify-content: space-between ;">
+          <div style="display: flex align-items-center">
             <IconField>
               <InputIcon class="pi pi-search" style="margin-right: 1rem" />
               <InputText
@@ -245,12 +307,49 @@ const sel = ref([]);
                 placeholder="Keyword Search"
               />
             </IconField>
-            <Button :label="$t('food_table.confirm')" 
+            <!-- <CascadeSelect
+              style="width: 15rem"
+              v-model="selectedOptions"
+              :options="filterOptions"
+              optionLabel="name"
+              optionGroupLabel="name"
+              :optionGroupChildren="['states']"
+              placeholder="選擇要篩選的營養素!"
+              showClear
+            /> -->
+            <MultiSelect
+              v-model="selectedOptions"
+              :options="filterOptions"
+              optionLabel="name"
+              optionGroupLabel="name"
+              :optionGroupChildren="['states']"
+              :showToggleAll="false"
+              showClear
+            ></MultiSelect>
+            <div class="tags-container">
+              <span
+                v-for="(option, index) in selectedOptions"
+                :key="index"
+                class="tag"
+                @click="removeTag(index)"
+              >
+                <Button :label="option.name" icon="pi pi-times"></Button>
+              </span>
+            </div>
+            <Button
+              :label="'Clear'"
+              icon="pi pi-times"
+              style="margin-left: 0rem"
+              @click="selectedOptions = undefined"
+            />
+            <Button
+              :label="$t('food_table.confirm')"
               icon="pi pi-check"
-              style="margin-right: 0rem;"
+              style="margin-right: 0rem"
               @click="dialogVisible = false"
             />
           </div>
+          <div></div>
         </template>
 
         <Column selectionMode="multiple" style="width: 0.1%"></Column>
@@ -263,22 +362,10 @@ const sel = ref([]);
           field="subclass"
           :header="$t('food_class')"
           style="width: 1%"
-          :filter="true"
-          filterField="subclass"
           :showFilterMatchModes="false"
           :showApplyButton="false"
           :showClearButton="false"
         >
-          <template #filter="{ field, filterModel, filterCallback }">
-            <Dropdown
-              v-model="subclassOption"
-              :options="subclassOptions[selectedClass]"
-              optionLabel="name"
-              placeholder="Any"
-              @change="closeFilter"
-              showClear
-            />
-          </template>
         </Column>
         <Column
           field="gram"
@@ -309,16 +396,6 @@ const sel = ref([]);
               {{ data.calories }}
             </div>
           </template>
-          <template #filter="{ field, filterModel, filterCallback }">
-            <Dropdown
-              v-model="caloriesOption"
-              :options="caloriesFilterOptions"
-              optionLabel="name"
-              placeholder="Any"
-              @change="closeFilter"
-              showClear
-            />
-          </template>
         </Column>
         <Column
           sortable
@@ -344,24 +421,11 @@ const sel = ref([]);
               {{ data.carbohydrate }}
             </div>
           </template>
-          <template #filter="{ field, filterModel, filterCallback }">
-            <Dropdown
-              v-model="carbOption"
-              :options="carbFilterOptions"
-              optionLabel="name"
-              placeholder="Any"
-              @change="closeFilter"
-              showClear
-            />
-          </template>
         </Column>
         <Column
           sortable
           field="protein"
           :header="$t('protein')"
-          :filter="true"
-          filterField="protein"
-          :showFilterMatchModes="false"
           :showApplyButton="false"
           :showClearButton="false"
           style="width: 0.5%"
@@ -378,22 +442,6 @@ const sel = ref([]);
             >
               {{ data.protein }}
             </div>
-          </template>
-          <template #filter="{ field, filterModel, filterCallback }">
-            <Dropdown
-              v-model="proteinOption"
-              :options="proteinFilterOptions"
-              optionLabel="name"
-              placeholder="Any"
-              @change="closeFilter"
-              showClear
-            >
-              <template #option="slotProps">
-                <div class="flex items-center gap-2">
-                  <span>{{ slotProps.option.name }}</span>
-                </div>
-              </template>
-            </Dropdown>
           </template>
         </Column>
         <Column
@@ -419,22 +467,6 @@ const sel = ref([]);
             >
               {{ data.fat }}
             </div>
-          </template>
-          <template #filter="{ field, filterModel, filterCallback }">
-            <Dropdown
-              v-model="fatOption"
-              :options="fatFilterOptions"
-              optionLabel="name"
-              placeholder="Any"
-              @change="closeFilter"
-              showClear
-            >
-              <template #option="slotProps">
-                <div class="flex items-center gap-2">
-                  <span>{{ slotProps.option.name }}</span>
-                </div>
-              </template>
-            </Dropdown>
           </template>
         </Column>
 
