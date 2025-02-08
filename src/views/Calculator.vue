@@ -14,8 +14,12 @@ import CaloricResult from "@/components/CaloricResult.vue";
 import type { nutrient } from "@/interfaces/Calculator";
 import type { foodItem } from "@/interfaces/Calculator";
 import { getTableData } from "@/apis/tableData";
-
+import Toast from "primevue/toast";
+import { useToast } from "primevue/usetoast";
 import { useProductStore } from "@/stores/productStore";
+import InputText from "primevue/inputtext";
+import IconField from "primevue/iconfield";
+import InputIcon from "primevue/inputicon";
 const productStore = useProductStore();
 // Declare reactive variables using `ref`
 const age = ref<number>(0);
@@ -31,7 +35,7 @@ const dailyNeeds = ref<nutrient>({
   protein: 0,
   fat: 0,
 });
-
+const toast = useToast();
 const calculateDailyNeed = () => {
   if (gender.value === "Male") {
     dailyNeeds.value.calories =
@@ -72,7 +76,27 @@ const loadTableData = async () => {
 };
 
 const targetSection = ref<HTMLElement | null>(null);
-
+const itemSelect = (e: any) => {
+  console.log("Row clicked");
+  console.log(e);
+  const success = productStore.updateRow(e.data);
+  if (success) {
+    // Toast 提示
+    toast.add({
+      severity: "success",
+      summary: "",
+      detail: `${e?.data.item} is added`,
+      life: 1000,
+    });
+  } else {
+    toast.add({
+      severity: "warn",
+      summary: "",
+      detail: `${e?.data.item} is removed`,
+      life: 2000,
+    });
+  }
+};
 const scrollDown = () => {
   foodTableDisplay.value = true;
   calculatorDisplay.value = true;
@@ -312,9 +336,191 @@ onMounted(() => {
     "
     @click="calculate"
   />
+  <div></div>
 
-  <div ref="targetSection">
-    <FoodTable v-if="foodTableLoaded && foodTableDisplay" />
+  <div ref="targetSection" v-if="foodTableLoaded && foodTableDisplay">
+    <Toast position="top-center" baseZIndex="12" style="width: 20rem" />
+    <DataTable
+      :selection="productStore.selectedProducts"
+      :value="productStore.calculatorFilteredData"
+      :globalFilterFields="['item', 'class']"
+      :filters="productStore.calculatorFilters"
+      dataKey="id"
+      tableStyle="min-width: 50rem"
+      paginator
+      :rows="10"
+      @row-click="itemSelect"
+      rowHover
+      highlightOnSelect
+    >
+      <template #header>
+        <div style="display: flex align-items-center">
+          <IconField>
+            <InputIcon class="pi pi-search" style="margin-right: 1rem" />
+            <InputText
+              v-model="productStore.calculatorFilters['global'].value"
+              placeholder="Keyword Search"
+            />
+          </IconField>
+          <div class="tags-container">
+            <span
+              v-for="(option, index) in productStore.selectedOptions"
+              :key="index"
+              class="tag"
+              @click="productStore.removeTag(index)"
+            >
+              <Button :label="option.name" icon="pi pi-times"></Button>
+            </span>
+          </div>
+        </div>
+        <div></div>
+      </template>
+
+      <Column selectionMode="multiple" style="width: 0.1%"></Column>
+      <Column
+        field="item"
+        :header="$t('food_item')"
+        style="min-width: 150px; width: 1%"
+      ></Column>
+      <Column
+        field="subclass"
+        :header="$t('food_class')"
+        style="width: 1%"
+        :showFilterMatchModes="false"
+        :showApplyButton="false"
+        :showClearButton="false"
+      >
+      </Column>
+      <Column
+        field="gram"
+        :header="$t('food_gram')"
+        style="width: 0.5%"
+      ></Column>
+      <Column
+        sortable
+        field="calories"
+        :header="$t('calories')"
+        :filter="true"
+        filterField="calories"
+        :showFilterMatchModes="false"
+        :showApplyButton="false"
+        :showClearButton="false"
+        style="width: 0.5%"
+      >
+        <template #body="{ data }">
+          <div
+            :style="{
+              backgroundColor: productStore.getColor(data.calories, 0, 550),
+              color: 'black',
+              padding: '10px',
+              borderRadius: '5px',
+              textAlign: 'center',
+            }"
+          >
+            {{ data.calories }}
+          </div>
+        </template>
+      </Column>
+      <Column
+        sortable
+        field="carbohydrate"
+        :header="$t('carbohydrate')"
+        :filter="true"
+        filterField="carbohydrate"
+        :showFilterMatchModes="false"
+        :showApplyButton="false"
+        :showClearButton="false"
+        style="width: 0.5%"
+      >
+        <template #body="{ data }">
+          <div
+            :style="{
+              backgroundColor: productStore.getColor(data.carbohydrate, 0, 50),
+              color: 'black',
+              padding: '10px',
+              borderRadius: '5px',
+              textAlign: 'center',
+            }"
+          >
+            {{ data.carbohydrate }}
+          </div>
+        </template>
+      </Column>
+      <Column
+        sortable
+        field="protein"
+        :header="$t('protein')"
+        :showApplyButton="false"
+        :showClearButton="false"
+        style="width: 0.5%"
+      >
+        <template #body="{ data }">
+          <div
+            :style="{
+              backgroundColor: productStore.getColor(data.protein, 0, 25),
+              color: 'black',
+              padding: '10px',
+              borderRadius: '5px',
+              textAlign: 'center',
+            }"
+          >
+            {{ data.protein }}
+          </div>
+        </template>
+      </Column>
+      <Column
+        sortable
+        field="fat"
+        :header="$t('fat')"
+        :filter="true"
+        :showFilterMatchModes="false"
+        filterField="fat"
+        :showApplyButton="false"
+        :showClearButton="false"
+        style="width: 0.5%"
+      >
+        <template #body="{ data }">
+          <div
+            :style="{
+              backgroundColor: productStore.getColor(data.fat, 0, 25),
+              color: 'black',
+              padding: '10px',
+              borderRadius: '5px',
+              textAlign: 'center',
+            }"
+          >
+            {{ data.fat }}
+          </div>
+        </template>
+      </Column>
+
+      <Column
+        sortable
+        field="dietary_fibre"
+        :header="$t('food_dt_fibre')"
+        :filter="true"
+        :showFilterMatchModes="false"
+        filterField="dietary_fibre"
+        :showApplyButton="false"
+        :showClearButton="false"
+        style="width: 0.5%"
+      >
+        <template #body="{ data }">
+          <div
+            :style="{
+              backgroundColor: productStore.getColor(data.dietary_fibre, 0, 25),
+              color: 'black',
+              padding: '10px',
+              borderRadius: '5px',
+              textAlign: 'center',
+            }"
+          >
+            {{ data.dietary_fibre }}
+          </div>
+        </template>
+      </Column>
+    </DataTable>
+    <FoodTable />
   </div>
 
   <CaloricResult

@@ -252,9 +252,9 @@ export const subclassOptions = ref<
   ],
 ]);
 
-const filters = ref({
-  global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-});
+// const filters = ref({
+//   global: { value: null, matchMode: FilterMatchMode.CONTAINS },
+// });
 
 export {
   proteinOption,
@@ -270,5 +270,4 @@ export {
   carbFilterOptions,
   caloriesFilterOptions,
   fatFilterOptions,
-  filters,
 };
