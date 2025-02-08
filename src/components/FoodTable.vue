@@ -19,9 +19,7 @@ import { useToast } from "primevue/usetoast";
 import type { foodItem, filterOption } from "@/interfaces/Calculator";
 import { useProductStore } from "@/stores/productStore";
 import { filters } from "@/components/CategoriesData";
-const props = defineProps({});
 
-const selectedFilterOption = ref();
 const dialogVisible = ref(false);
 const selectedClass = ref<number>(0);
 const emit = defineEmits(["updateSelectedData", "update:visible"]);
@@ -265,11 +263,11 @@ onMounted(() => {
   ret[ret.length - 1] = productStore.products; //for the class 'All items'
   productsFilterByCategories.value = ret;
 });
+
+// Clean the search field
 watch(selectedClass, (nv) => {
   filters.value["global"].value = null;
 });
-
-const sel = ref([]);
 </script>
 <template>
   <head> </head>
@@ -307,16 +305,6 @@ const sel = ref([]);
                 placeholder="Keyword Search"
               />
             </IconField>
-            <!-- <CascadeSelect
-              style="width: 15rem"
-              v-model="selectedOptions"
-              :options="filterOptions"
-              optionLabel="name"
-              optionGroupLabel="name"
-              :optionGroupChildren="['states']"
-              placeholder="選擇要篩選的營養素!"
-              showClear
-            /> -->
             <MultiSelect
               v-model="selectedOptions"
               :options="filterOptions"

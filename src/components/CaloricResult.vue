@@ -282,8 +282,7 @@ onMounted(() => {
       tableStyle="min-width: 50rem"
       v-model:selection="productStore.selectedProducts"
     >
-      <Column :header="$t('移除')" 
-          header-style="width: 3rem">
+      <Column :header="$t('移除')" header-style="width: 3rem">
         <template #body="{ data }">
           <Button
             icon="pi pi-minus-circle"
@@ -291,10 +290,7 @@ onMounted(() => {
           ></Button>
         </template>
       </Column>
-      <Column
-        :header="$t('調整份數')"
-        header-style="width: 9rem"
-      >
+      <Column :header="$t('調整份數')" header-style="width: 9rem">
         <template #body="{ data }"
           ><div>
             <InputNumber
@@ -381,12 +377,11 @@ onMounted(() => {
   cursor: not-allowed;
 }
 
-.iptBtn-amount .p-inputnumber-increment-button{
+.iptBtn-amount .p-inputnumber-increment-button {
   width: 2rem;
 }
 
-.iptBtn-amount .p-inputnumber-decrement-button{
+.iptBtn-amount .p-inputnumber-decrement-button {
   width: 2rem;
 }
-
 </style>
