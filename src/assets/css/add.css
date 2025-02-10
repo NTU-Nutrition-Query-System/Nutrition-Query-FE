@@ -9,7 +9,7 @@
  .sb-bg-5 {
   background-color: #F9FAFC;}   
   
-.bg-yellow{background-image: url(../images/bg-yellow.jpg); background-size: cover; background-repeat: no-repeat;}
+.bg-yellow{background-image: url(../../assets/images/bg-yellow.jpg); background-size: cover; background-repeat: no-repeat;}
 
 .form_scroll { width: 100%; min-height: 1200px; border: none; height: 80px; overflow: auto; margin: 0px; }  
 

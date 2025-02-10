@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { onMounted, onUnmounted } from "vue";
 import { useI18n } from "vue-i18n";
 import { isMinusToken } from "typescript";
 import Dropdown from "primevue/dropdown";
@@ -27,23 +28,53 @@ const languages = [
 ];
 const items = ref([
   {
-    label: "Home",
+    label: "home",
     icon: "pi pi-home",
     route: "/",
   },
   {
-    label: "Calculator",
+    label: "calculator",
     icon: "pi pi-calculator",
     route: "/Calculator",
   },
 ]);
+
+const cursor = ref<HTMLDivElement | null>(null);
+
+const handleMouseMove = (e: MouseEvent) => {
+  if (cursor.value) {
+    cursor.value.style.top = `${e.pageY - 15}px`;
+    cursor.value.style.left = `${e.pageX - 15}px`;
+  }
+};
+
+const handleClick = () => {
+  if (cursor.value) {
+    cursor.value.classList.add("sb-click");
+    setTimeout(() => {
+      cursor.value?.classList.remove("sb-click");
+    }, 600);
+  }
+};
+
+onMounted(() => {
+  document.addEventListener("mousemove", handleMouseMove);
+  document.addEventListener("click", handleClick);
+});
+
+onUnmounted(() => {
+  document.removeEventListener("mousemove", handleMouseMove);
+  document.removeEventListener("click", handleClick);
+});
+
 </script>
+
 <template>
   <div class="sb-app">
     <!-- preloader -->
     <!-- <Preloader/> -->
     <!-- click effect -->
-    <div class="sb-click-effect"></div>
+    <div class="sb-click-effect" ref="cursor"></div>
     <!-- loader -->
     <div class="sb-load"></div>
     <NavBar :items="items" :languages="languages"/>
@@ -67,9 +98,9 @@ const items = ref([
 
 .content-area {
   flex-grow: 1;
-  padding: 20px;
-  background-color: #ecf0f1;
-  padding-top: 150px;
+  /* padding: 20px; */
+  /* background-color: #ecf0f1; */
+  /* padding-top: 150px; */
 }
 .MainPage {
   /* font-size: 2em; */

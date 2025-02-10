@@ -48,7 +48,7 @@ const handleClick = (index: number) => {
                             <li v-for="(item, index) in items" :key="index" @click="handleClick(index)"
                                 :class="{ 'sb-active': activeMenuItem === index }">
                                 <router-link v-if="item.route" :to="item.route">
-                                    <span data-no-swup>{{ item.label }}</span>
+                                    <span data-no-swup>{{ $t(`page.${item.label}`) }}</span>
                                 </router-link>
                                 <a v-else>{{ item.label }}</a>
                             </li>
@@ -83,7 +83,7 @@ const handleClick = (index: number) => {
 .sb-top-bar-frame {
     width: 100%;
     position: fixed;
-    z-index: 1;
+    z-index: 9999999;
     top: 0;
     left: 0;
     right: 0;

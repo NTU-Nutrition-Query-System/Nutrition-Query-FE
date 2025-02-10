@@ -5075,8 +5075,8 @@ illustration 9
 .sb-illustration-9 .sb-envelope-1 {
   position: absolute;
   z-index: 2;
-  width: 65%;
-  left: -43%;
+  width: 60%;
+  left: -60%;
   bottom: -5%;
   animation: anima3 3s 1s infinite ease-in-out;
 }
@@ -5096,7 +5096,7 @@ illustration 9
   position: absolute;
   z-index: 2;
   width: 35%;
-  right: -5%;
+  right: -15%;
   bottom: 0;
   animation: anima2 3s 1s infinite ease-in-out;
 }

@@ -20,6 +20,8 @@ import { useProductStore } from "@/stores/productStore";
 import InputText from "primevue/inputtext";
 import IconField from "primevue/iconfield";
 import InputIcon from "primevue/inputicon";
+import Banner from "@/components/common/Banner.vue";
+
 const productStore = useProductStore();
 // Declare reactive variables using `ref`
 const age = ref<number>(0);
@@ -111,20 +113,202 @@ onMounted(() => {
 </script>
 
 <template>
+
   <head>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   </head>
 
-  <div
-    class="calculator"
-    :class="{ expanded: isExpanded }"
-    style="margin-top: 0.5rem"
-  >
-    <div
-      style="
+  <Banner title="page_title.calculator" subtitle="page_title.calculator_subtitle" page="calculator" />
+
+  <section>
+    <!-- 計算機 -->
+    <div class="container">
+      <div class="row d-flex justify-content-center align-items-center bg-yellow">
+        <div class="col-lg-5">
+          <div class="sb-contact-form-frame">
+            <div class="sb-illustration-9">
+              <img src="../assets/images/boy_milk.png" alt="envelope" class="sb-envelope-1">
+              <img src="../assets/images/caculator.png" alt="envelope" class="sb-envelope-2">
+              <div class="sb-cirkle-1"></div>
+              <div class="sb-cirkle-2"></div>
+              <div class="sb-cirkle-3"></div>
+            </div>
+            <div class="sb-form-content">
+              <div class="sb-main-content">
+                <div class="sb-features-item mb-3">
+                  <div class="sb-number ">Step 1</div>
+                </div>
+                <h3 class="sb-mb-30">{{ $t("calculator_input.title") }}</h3>
+                <form id="form">
+                  <div class="mb-3">
+                    <div class="form-check form-check-inline">
+                      <!-- <input class="form-check-input check-activity" type="radio" name="gender" id="boy" value="boy"> -->
+                      <RadioButton v-model="gender" value="Male" style="margin-left: 1rem" />
+                      <label class="form-check-label" for="boy">{{ $t("calculator_input.gender.male") }}</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <!-- <input class="form-check-input check-activity" type="radio" name="gender" id="girl" value="girl"> -->
+                      <RadioButton v-model="gender" value="Female" style="margin-left: 1rem" />
+                      <label class="form-check-label" for="girl">{{ $t("calculator_input.gender.female") }}</label>
+                    </div>
+                  </div>
+                  <!-- age -->
+                  <div class="sb-group-input">
+                    <input v-model="age" type="text" name="age" required>
+                    <span class="sb-bar"></span>
+                    <label>{{ $t("calculator_input.age") }}</label>
+                  </div>
+
+                  <!-- height -->
+                  <div class="sb-group-input">
+                    <input v-model="height" type="text" name="height" required>
+                    <span class="sb-bar"></span>
+                    <label>{{ $t("calculator_input.height") }}({{ $t("calculator_input.centimeter") }})</label>
+                  </div>
+
+                  <!-- weight -->
+                  <div class="sb-group-input">
+                    <input v-model="weight" type="text" name="weight" required>
+                    <span class="sb-bar"></span>
+                    <label>{{ $t("calculator_input.weight") }}({{ $t("calculator_input.kilogram") }})</label>
+                  </div>
+
+                  <!-- activity_factor -->
+                  <div class="mb-3">
+                    <span class="sb-text">{{ $t("calculator_input.activity_factor.title") }}</span><br>
+                    <div class="form-check text-left">
+                      <!-- <input v-model="activityFactor" value="1.3" class="form-check-input check-activity" type="radio" name="intensity" id="mild"> -->
+                      <RadioButton v-model="activityFactor" value="1.3" class="form-check-input check-activity" />
+                      <label class="ml-1 form-check-label" for="mild">{{ $t("calculator_input.activity_factor.mild")
+                        }}</label>
+                      <p class="ml-1 sb-text">{{ $t("calculator_input.activity_factor.tips.mild") }}</p>
+                    </div>
+                    <div class="form-check text-left">
+                      <!-- <input v-model="activityFactor" value="1.5" class="form-check-input check-activity" type="radio" name="intensity" id="moderate"> -->
+                      <RadioButton v-model="activityFactor" value="1.5" class="form-check-input check-activity" />
+                      <label class="ml-1 form-check-label" for="moderate">{{
+                        $t("calculator_input.activity_factor.moderate") }}</label>
+                      <p class="ml-1 sb-text">{{ $t("calculator_input.activity_factor.tips.moderate") }}</p>
+                    </div>
+                    <div class="form-check text-left">
+                      <!-- <input v-model="activityFactor" value="2" class="form-check-input check-activity" type="radio" name="intensity" id="severe"> -->
+                      <RadioButton v-model="activityFactor" value="2" class="form-check-input check-activity" />
+                      <label class="ml-1 form-check-label" for="severe">{{ $t("calculator_input.activity_factor.severe")
+                        }}</label>
+                      <p class="ml-1 sb-text">{{ $t("calculator_input.activity_factor.tips.severe") }}</p>
+                    </div>
+                  </div>
+
+                  <!-- button -->
+                  <button class="sb-btn sb-cf-submit sb-show-success" type="button" id="calculateButton"
+                    :label="$t('calculator_input.calculate')" @click="nextOnClicked">
+                    <span class="sb-icon">
+                      <img src="../assets/img/ui/icons/menu.svg" alt="icon">
+                    </span>
+                    <span>{{$t('calculator_input.calculate')}}</span>
+                  </button><br>
+                  <span class="sb-text sb-text-xs" id="scrollHint" style="display: none;">{{ $t("calculator_input.scroll_down") }} <i
+                      class="fas fa-sort-down"></i></span>
+                  <!-- button end -->
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 計算機End -->
+
+    <!-- 我的營養素 -->
+    <div class="container" id="Nutrients" v-if="isExpanded">
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-lg-5">
+          <div class="sb-illustration-9">
+            <div class="sb-cirkle-1"></div>
+            <div class="sb-cirkle-2"></div>
+            <div class="sb-cirkle-3"></div>
+          </div>
+          <div class="sb-form-content">
+            <div class="sb-main-content">
+              <h3 class="sb-mb-30">
+                <i class="fas fa-calendar-day"></i> {{ $t("calculator_result_title_my") }}
+                <span class="text-yellow">{{ $t("calculator_result_title_daily") }}</span>
+                {{ $t("calculator_result_title_nutrient") }}
+              </h3>
+              <div class="sb-menu-item sb-menu-item-sm" v-for="(value, key) in dailyNeeds" :key="key">
+                <div class="sb-card-tp">
+                  <h4 class="sb-card-title">{{ $t(key) }}:</h4>
+                  <div class="sb-price">{{ value.toFixed(2) }} <sub>({{key === "calories" ? "kcal" : "g"}})</sub>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-5">
+          <div class="sb-illustration-9">
+            <div class="sb-cirkle-1"></div>
+            <div class="sb-cirkle-2"></div>
+            <div class="sb-cirkle-3"></div>
+          </div>
+          <div class="sb-form-content">
+            <div class="sb-main-content">
+              <h3 class="sb-mb-30"><i class="fas fa-hamburger"></i>{{ $t("calculator_result_title_my") }}
+                <span class="text-yellow">{{ $t("calculator_result_title_meal") }}</span>
+                {{ $t("calculator_result_title_nutrient") }}</h3>
+              <div class="sb-menu-item sb-menu-item-sm" v-for="(value, key) in dailyNeeds" :key="key">
+                <div class="sb-card-tp">
+                  <h4 class="sb-card-title">{{ $t(key) }}:</h4>
+                  <div class="sb-price">{{ (value / 3.0).toFixed(2) }}<sub>({{key === "calories" ? "kcal" : "g"}})</sub></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row d-flex justify-content-center align-items-center align-items-center">
+        <div class="col-lg-5">
+          <div class="sb-contact-form-frame">
+            <div class="sb-illustration-9">
+              <img src="../assets/images/hamburger.png" alt="envelope" class="sb-envelope-1">
+              <img src="../assets/images/fruit.png" alt="envelope" class="sb-envelope-2">
+              <div class="sb-cirkle-1"></div>
+              <div class="sb-cirkle-2"></div>
+              <div class="sb-cirkle-3"></div>
+            </div>
+            <div class="sb-form-content">
+              <div class="sb-main-content">
+                <div class="sb-features-item mb-3">
+                  <div class="sb-number ">Step 2</div>
+                </div>
+                <h3 class="sb-mb-30">{{ $t("calculator_input.food_selection_prompt") }}
+                  <span class="sb-text"><br>{{ $t("calculator_input.view_selected_food") }}</span>
+                </h3>
+              
+                <!-- button -->
+                <a href="#food-select" data-no-swup>
+                  <button class="sb-btn sb-cf-submit sb-show-success" @click="scrollDown">
+                    <span class="sb-icon">
+                      <img src="../assets/img/ui/icons/arrow.svg" alt="icon">
+                    </span>
+                    <span>{{ $t('calculator_input.choosing') }}</span>
+                  </button>
+                </a>
+                <!-- button end -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> 
+  </section>
+
+
+
+  <!-- 
+  <div class="calculator" :class="{ expanded: isExpanded }" style="margin-top: 0.5rem">
+    <div style="
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -132,8 +316,7 @@ onMounted(() => {
         font-size: 28px;
         font-weight: bold;
         text-align: center;
-      "
-    >
+      ">
       {{ $t("calculator_input.title") }}
     </div>
     <div class="calc-gender-select" style="margin-top: 1rem">
@@ -147,51 +330,39 @@ onMounted(() => {
       }}</label>
     </div>
 
-    <div
-      style="
+    <div style="
         margin-top: 0.5rem;
         display: flex;
         align-items: center;
         justify-content: center;
-      "
-    >
-      <label class="calc-InputNum-label"
-        >{{ $t("calculator_input.age") }} :</label
-      >
+      ">
+      <label class="calc-InputNum-label">{{ $t("calculator_input.age") }} :</label>
       <InputNumber v-model="age" class="calc-InputNum" />
       <label class="calc-InputNum-unit">{{
         $t("calculator_input.years_old")
       }}</label>
     </div>
 
-    <div
-      style="
+    <div style="
         margin-top: 0.5rem;
         display: flex;
         align-items: center;
         justify-content: center;
-      "
-    >
-      <label class="calc-InputNum-label"
-        >{{ $t("calculator_input.height") }} :</label
-      >
+      ">
+      <label class="calc-InputNum-label">{{ $t("calculator_input.height") }} :</label>
       <InputNumber v-model="height" class="calc-InputNum" />
       <label class="calc-InputNum-unit">{{
         $t("calculator_input.centimeter")
       }}</label>
     </div>
 
-    <div
-      style="
+    <div style="
         margin-top: 0.5rem;
         display: flex;
         align-items: center;
         justify-content: center;
-      "
-    >
-      <label class="calc-InputNum-label"
-        >{{ $t("calculator_input.weight") }} :</label
-      >
+      ">
+      <label class="calc-InputNum-label">{{ $t("calculator_input.weight") }} :</label>
       <InputNumber v-model="weight" class="calc-InputNum" />
       <label class="calc-InputNum-unit">{{
         $t("calculator_input.kilogram")
@@ -227,35 +398,28 @@ onMounted(() => {
     </div>
     <div class="activity-tips">
       {{ $t("calculator_input.activity_factor.tips.severe") }}
-    </div>
+    </div> 
 
-    <div
-      style="
+    <div style="
         display: flex;
         justify-content: center;
         gap: 1rem;
         margin-top: 1rem;
-      "
-    >
-      <Button
-        class="tab"
-        :label="$t('calculator_input.calculate')"
-        @click="nextOnClicked"
-      />
+      ">
+      <Button class="tab" :label="$t('calculator_input.calculate')" @click="nextOnClicked" />
     </div>
   </div>
-  <div class="calculator" style="margin-top: 0.5rem" v-if="isExpanded">
+
+  -->
+  <!-- <div class="calculator" style="margin-top: 0.5rem">
     <div class="result">
       <h3>{{ $t("calculator_result_daily_title") }}</h3>
 
       <div class="display-row" v-for="(value, key) in dailyNeeds" :key="key">
         <label>{{ $t(key) }}:</label>
-        <!-- 熱量 -->
-        <span
-          >{{ value.toFixed(2) }} ({{
-            key === "calories" ? "kcal" : "g"
-          }})</span
-        >
+        <span>{{ value.toFixed(2) }} ({{
+          key === "calories" ? "kcal" : "g"
+        }})</span>
       </div>
 
       <h3 style="margin-top: 0.5rem">
@@ -264,23 +428,17 @@ onMounted(() => {
 
       <div class="display-row" v-for="(value, key) in dailyNeeds" :key="key">
         <label>{{ $t(key) }}:</label>
-        <span
-          >{{ (value / 3.0).toFixed(2) }} ({{
-            key === "calories" ? "kcal" : "g"
-          }})</span
-        >
+        <span>{{ (value / 3.0).toFixed(2) }} ({{
+          key === "calories" ? "kcal" : "g"
+        }})</span>
       </div>
 
-      <Button
-        class="tab"
-        :label="$t('calculator_input.choosing')"
-        @click="scrollDown"
-      />
+      <Button class="tab" :label="$t('calculator_input.choosing')" @click="scrollDown" />
       <div style="font-size: 16px; margin-top: 0.3rem" v-if="foodTableDisplay">
         {{ $t("calculator_input.scroll_down") }}
       </div>
     </div>
-  </div>
+  </div> -->
 
   <!-- foodTableDisplay.value = true; -->
 
@@ -289,40 +447,23 @@ onMounted(() => {
   with a circular shape.
   @property {string} value - Number displayed in the badge.
   -->
-  <OverlayBadge
-    class="overlaybadge-calc-btn"
-    style="
+  <OverlayBadge class="overlaybadge-calc-btn" style="
       position: fixed;
       bottom: 1.2rem;
       right: 1.2rem;
       z-index: 1000;
       margin-right: 1rem;
-    "
-    :value="productStore.selectedProducts.length"
-    size="large"
-    severity="danger"
-    v-if="productStore.selectedProducts.length > 0"
-  >
-    <Button
-      icon="pi pi-calculator"
-      :label="$t('calculate')"
-      class="calculator-btn"
-      style="
+    " :value="productStore.selectedProducts.length" size="large" severity="danger"
+    v-if="productStore.selectedProducts.length > 0">
+    <Button icon="pi pi-calculator" :label="$t('calculate')" class="calculator-btn" style="
         display: flex;
         flex-direction: column;
         border-radius: 25px;
         height: 4.5rem;
         width: 4.5rem;
-      "
-      @click="calculate"
-    />
+      " @click="calculate" />
   </OverlayBadge>
-  <Button
-    v-else-if="calculatorDisplay"
-    class="calculator-btn"
-    icon="pi pi-calculator"
-    :label="$t('calculate')"
-    style="
+  <Button v-else-if="calculatorDisplay" class="calculator-btn" icon="pi pi-calculator" :label="$t('calculate')" style="
       position: fixed;
       bottom: 1.2rem;
       right: 1.2rem;
@@ -333,42 +474,23 @@ onMounted(() => {
       border-radius: 25px;
       height: 4.5rem;
       width: 4.5rem;
-    "
-    @click="calculate"
-  />
+    " @click="calculate" />
   <div></div>
 
   <div ref="targetSection" v-if="foodTableLoaded && foodTableDisplay">
     <Toast position="top-center" baseZIndex="12" style="width: 20rem" />
-    <DataTable
-      :selection="productStore.selectedProducts"
-      :value="productStore.calculatorFilteredData"
-      :globalFilterFields="['item', 'class']"
-      :filters="productStore.calculatorFilters"
-      dataKey="id"
-      tableStyle="min-width: 50rem"
-      paginator
-      :rows="10"
-      @row-click="itemSelect"
-      rowHover
-      highlightOnSelect
-    >
+    <DataTable :selection="productStore.selectedProducts" :value="productStore.calculatorFilteredData"
+      :globalFilterFields="['item', 'class']" :filters="productStore.calculatorFilters" dataKey="id"
+      tableStyle="min-width: 50rem" paginator :rows="10" @row-click="itemSelect" rowHover highlightOnSelect>
       <template #header>
         <div style="display: flex align-items-center">
           <IconField>
             <InputIcon class="pi pi-search" style="margin-right: 1rem" />
-            <InputText
-              v-model="productStore.calculatorFilters['global'].value"
-              placeholder="Keyword Search"
-            />
+            <InputText v-model="productStore.calculatorFilters['global'].value" placeholder="Keyword Search" />
           </IconField>
           <div class="tags-container">
-            <span
-              v-for="(option, index) in productStore.selectedOptions"
-              :key="index"
-              class="tag"
-              @click="productStore.removeTag(index)"
-            >
+            <span v-for="(option, index) in productStore.selectedOptions" :key="index" class="tag"
+              @click="productStore.removeTag(index)">
               <Button :label="option.name" icon="pi pi-times"></Button>
             </span>
           </div>
@@ -377,144 +499,78 @@ onMounted(() => {
       </template>
 
       <Column selectionMode="multiple" style="width: 0.1%"></Column>
-      <Column
-        field="item"
-        :header="$t('food_item')"
-        style="min-width: 150px; width: 1%"
-      ></Column>
-      <Column
-        field="subclass"
-        :header="$t('food_class')"
-        style="width: 1%"
-        :showFilterMatchModes="false"
-        :showApplyButton="false"
-        :showClearButton="false"
-      >
+      <Column field="item" :header="$t('food_item')" style="min-width: 150px; width: 1%"></Column>
+      <Column field="subclass" :header="$t('food_class')" style="width: 1%" :showFilterMatchModes="false"
+        :showApplyButton="false" :showClearButton="false">
       </Column>
-      <Column
-        field="gram"
-        :header="$t('food_gram')"
-        style="width: 0.5%"
-      ></Column>
-      <Column
-        sortable
-        field="calories"
-        :header="$t('calories')"
-        :filter="true"
-        filterField="calories"
-        :showFilterMatchModes="false"
-        :showApplyButton="false"
-        :showClearButton="false"
-        style="width: 0.5%"
-      >
+      <Column field="gram" :header="$t('food_gram')" style="width: 0.5%"></Column>
+      <Column sortable field="calories" :header="$t('calories')" :filter="true" filterField="calories"
+        :showFilterMatchModes="false" :showApplyButton="false" :showClearButton="false" style="width: 0.5%">
         <template #body="{ data }">
-          <div
-            :style="{
-              backgroundColor: productStore.getColor(data.calories, 0, 550),
-              color: 'black',
-              padding: '10px',
-              borderRadius: '5px',
-              textAlign: 'center',
-            }"
-          >
+          <div :style="{
+            backgroundColor: productStore.getColor(data.calories, 0, 550),
+            color: 'black',
+            padding: '10px',
+            borderRadius: '5px',
+            textAlign: 'center',
+          }">
             {{ data.calories }}
           </div>
         </template>
       </Column>
-      <Column
-        sortable
-        field="carbohydrate"
-        :header="$t('carbohydrate')"
-        :filter="true"
-        filterField="carbohydrate"
-        :showFilterMatchModes="false"
-        :showApplyButton="false"
-        :showClearButton="false"
-        style="width: 0.5%"
-      >
+      <Column sortable field="carbohydrate" :header="$t('carbohydrate')" :filter="true" filterField="carbohydrate"
+        :showFilterMatchModes="false" :showApplyButton="false" :showClearButton="false" style="width: 0.5%">
         <template #body="{ data }">
-          <div
-            :style="{
-              backgroundColor: productStore.getColor(data.carbohydrate, 0, 50),
-              color: 'black',
-              padding: '10px',
-              borderRadius: '5px',
-              textAlign: 'center',
-            }"
-          >
+          <div :style="{
+            backgroundColor: productStore.getColor(data.carbohydrate, 0, 50),
+            color: 'black',
+            padding: '10px',
+            borderRadius: '5px',
+            textAlign: 'center',
+          }">
             {{ data.carbohydrate }}
           </div>
         </template>
       </Column>
-      <Column
-        sortable
-        field="protein"
-        :header="$t('protein')"
-        :showApplyButton="false"
-        :showClearButton="false"
-        style="width: 0.5%"
-      >
+      <Column sortable field="protein" :header="$t('protein')" :showApplyButton="false" :showClearButton="false"
+        style="width: 0.5%">
         <template #body="{ data }">
-          <div
-            :style="{
-              backgroundColor: productStore.getColor(data.protein, 0, 25),
-              color: 'black',
-              padding: '10px',
-              borderRadius: '5px',
-              textAlign: 'center',
-            }"
-          >
+          <div :style="{
+            backgroundColor: productStore.getColor(data.protein, 0, 25),
+            color: 'black',
+            padding: '10px',
+            borderRadius: '5px',
+            textAlign: 'center',
+          }">
             {{ data.protein }}
           </div>
         </template>
       </Column>
-      <Column
-        sortable
-        field="fat"
-        :header="$t('fat')"
-        :filter="true"
-        :showFilterMatchModes="false"
-        filterField="fat"
-        :showApplyButton="false"
-        :showClearButton="false"
-        style="width: 0.5%"
-      >
+      <Column sortable field="fat" :header="$t('fat')" :filter="true" :showFilterMatchModes="false" filterField="fat"
+        :showApplyButton="false" :showClearButton="false" style="width: 0.5%">
         <template #body="{ data }">
-          <div
-            :style="{
-              backgroundColor: productStore.getColor(data.fat, 0, 25),
-              color: 'black',
-              padding: '10px',
-              borderRadius: '5px',
-              textAlign: 'center',
-            }"
-          >
+          <div :style="{
+            backgroundColor: productStore.getColor(data.fat, 0, 25),
+            color: 'black',
+            padding: '10px',
+            borderRadius: '5px',
+            textAlign: 'center',
+          }">
             {{ data.fat }}
           </div>
         </template>
       </Column>
 
-      <Column
-        sortable
-        field="dietary_fibre"
-        :header="$t('food_dt_fibre')"
-        :filter="true"
-        :showFilterMatchModes="false"
-        filterField="dietary_fibre"
-        :showApplyButton="false"
-        :showClearButton="false"
-        style="width: 0.5%"
-      >
+      <Column sortable field="dietary_fibre" :header="$t('food_dt_fibre')" :filter="true" :showFilterMatchModes="false"
+        filterField="dietary_fibre" :showApplyButton="false" :showClearButton="false" style="width: 0.5%">
         <template #body="{ data }">
-          <div
-            :style="{
-              backgroundColor: productStore.getColor(data.dietary_fibre, 0, 25),
-              color: 'black',
-              padding: '10px',
-              borderRadius: '5px',
-              textAlign: 'center',
-            }"
-          >
+          <div :style="{
+            backgroundColor: productStore.getColor(data.dietary_fibre, 0, 25),
+            color: 'black',
+            padding: '10px',
+            borderRadius: '5px',
+            textAlign: 'center',
+          }">
             {{ data.dietary_fibre }}
           </div>
         </template>
@@ -523,14 +579,30 @@ onMounted(() => {
     <FoodTable />
   </div>
 
-  <CaloricResult
-    v-if="showResult"
-    v-model:visible="showResult"
-    v-model:needData="dailyNeeds"
-  ></CaloricResult>
+  <CaloricResult v-if="showResult" v-model:visible="showResult" v-model:needData="dailyNeeds"></CaloricResult>
 </template>
 
 <style>
+.bg-yellow {
+  background-image: url(../assets/images/bg-yellow.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 480px) {
+  .bg-yellow {
+    background-color: #F5C332;
+    background-image: none;
+  }
+}
+
+.text-yellow{
+  background-color: #F5C332; 
+  padding:2px 4px; 
+  margin: auto 2px; 
+  border-radius: 3px;
+}
+
 .calculator-description-title {
   text-align: center;
 }
@@ -579,12 +651,14 @@ onMounted(() => {
   text-align: center;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
+
 .calc-gender-select {
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
 }
+
 .calc-InputNum-label {
   min-width: 5rem;
   text-align: right;
@@ -620,7 +694,9 @@ onMounted(() => {
 
 .calculator-btn .p-button-icon {
   font-size: 2rem;
-  margin-right: 0 !important; /* Remove default icon spacing */
-  margin-bottom: -0.2rem; /* Space between icon and text */
+  margin-right: 0 !important;
+  /* Remove default icon spacing */
+  margin-bottom: -0.2rem;
+  /* Space between icon and text */
 }
 </style>
