@@ -688,7 +688,7 @@ buttons
   transform: scale(1);
   height: 55px;
   letter-spacing: 0;
-  font-size: 14px;
+  font-size: 16px;
   margin-right: 10px;
   margin-bottom: 10px;
   background-color: #F5C332;
@@ -2187,7 +2187,7 @@ menu
 }
 
 .sb-menu-item.sb-menu-item-sm .sb-card-tp .sb-card-title {
-  font-size: 14px;
+  font-size: 16px;
   -webkit-line-clamp: 2;
   line-clamp: 2;
 }
@@ -2197,7 +2197,7 @@ menu
 }
 
 .sb-menu-item.sb-menu-item-sm .sb-card-tp .sb-price sub {
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .sb-menu-item:hover .sb-cover-frame img {
@@ -2531,7 +2531,7 @@ contact
   height: 50px;
   position: relative;
   padding: 0 20px;
-  font-size: 14px;
+  font-size: 16px;
   background-color: #F9FAFC;
   display: block;
   width: 100%;
@@ -2555,7 +2555,7 @@ contact
 }
 
 .sb-group-input label {
-  font-size: 14px;
+  font-size: 16px;
   color: #6F6F87;
   font-weight: normal;
   position: absolute;
@@ -2571,7 +2571,7 @@ contact
 .sb-group-input textarea:valid~label {
   top: -25px;
   left: 0;
-  font-size: 12px;
+  font-size: 14px;
   color: #231E41;
 }
 

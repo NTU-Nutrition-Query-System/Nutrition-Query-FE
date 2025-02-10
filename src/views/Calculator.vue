@@ -143,13 +143,13 @@ onMounted(() => {
                   <div class="mb-3">
                     <div class="form-check form-check-inline">
                       <!-- <input class="form-check-input check-activity" type="radio" name="gender" id="boy" value="boy"> -->
-                      <RadioButton v-model="gender" value="Male" style="margin-left: 1rem" />
-                      <label class="form-check-label" for="boy">{{ $t("calculator_input.gender.male") }}</label>
+                      <RadioButton v-model="gender" value="Male" style="margin-left: 1rem"/>
+                      <label class="form-check-label" for="boy" style="margin-left: 0.3rem">{{ $t("calculator_input.gender.male") }}</label>
                     </div>
                     <div class="form-check form-check-inline">
                       <!-- <input class="form-check-input check-activity" type="radio" name="gender" id="girl" value="girl"> -->
                       <RadioButton v-model="gender" value="Female" style="margin-left: 1rem" />
-                      <label class="form-check-label" for="girl">{{ $t("calculator_input.gender.female") }}</label>
+                      <label class="form-check-label" for="girl" style="margin-left: 0.3rem">{{ $t("calculator_input.gender.female") }}</label>
                     </div>
                   </div>
                   <!-- age -->
@@ -176,26 +176,32 @@ onMounted(() => {
                   <!-- activity_factor -->
                   <div class="mb-3">
                     <span class="sb-text">{{ $t("calculator_input.activity_factor.title") }}</span><br>
-                    <div class="form-check text-left">
+                    
+                    <div class="form-check text-left" style="margin-top: 0.5rem;">
                       <!-- <input v-model="activityFactor" value="1.3" class="form-check-input check-activity" type="radio" name="intensity" id="mild"> -->
                       <RadioButton v-model="activityFactor" value="1.3" class="form-check-input check-activity" />
-                      <label class="ml-1 form-check-label" for="mild">{{ $t("calculator_input.activity_factor.mild")
-                        }}</label>
-                      <p class="ml-1 sb-text">{{ $t("calculator_input.activity_factor.tips.mild") }}</p>
+                      <label class="ml-1 form-check-label" for="mild">
+                        {{ $t("calculator_input.activity_factor.mild") }}
+                      </label>
+                      <p class="ml-1 sb-text sb-text-sm">{{ $t("calculator_input.activity_factor.tips.mild") }}</p>
                     </div>
-                    <div class="form-check text-left">
+                    
+                    <div class="form-check text-left" style="margin-top: 0.5rem;">
                       <!-- <input v-model="activityFactor" value="1.5" class="form-check-input check-activity" type="radio" name="intensity" id="moderate"> -->
                       <RadioButton v-model="activityFactor" value="1.5" class="form-check-input check-activity" />
-                      <label class="ml-1 form-check-label" for="moderate">{{
-                        $t("calculator_input.activity_factor.moderate") }}</label>
-                      <p class="ml-1 sb-text">{{ $t("calculator_input.activity_factor.tips.moderate") }}</p>
+                      <label class="ml-1 form-check-label" for="moderate">
+                        {{ $t("calculator_input.activity_factor.moderate") }}
+                      </label>
+                      <p class="ml-1 sb-text sb-text-sm">{{ $t("calculator_input.activity_factor.tips.moderate") }}</p>
                     </div>
-                    <div class="form-check text-left">
+                    
+                    <div class="form-check text-left" style="margin-top: 0.5rem;">
                       <!-- <input v-model="activityFactor" value="2" class="form-check-input check-activity" type="radio" name="intensity" id="severe"> -->
                       <RadioButton v-model="activityFactor" value="2" class="form-check-input check-activity" />
-                      <label class="ml-1 form-check-label" for="severe">{{ $t("calculator_input.activity_factor.severe")
-                        }}</label>
-                      <p class="ml-1 sb-text">{{ $t("calculator_input.activity_factor.tips.severe") }}</p>
+                      <label class="ml-1 form-check-label" for="severe">
+                        {{ $t("calculator_input.activity_factor.severe") }}
+                      </label>
+                      <p class="ml-1 sb-text sb-text-sm">{{ $t("calculator_input.activity_factor.tips.severe") }}</p>
                     </div>
                   </div>
 
@@ -238,7 +244,9 @@ onMounted(() => {
               <div class="sb-menu-item sb-menu-item-sm" v-for="(value, key) in dailyNeeds" :key="key">
                 <div class="sb-card-tp">
                   <h4 class="sb-card-title">{{ $t(key) }}:</h4>
-                  <div class="sb-price">{{ value.toFixed(2) }} <sub>({{key === "calories" ? "kcal" : "g"}})</sub>
+                  <div class="sb-price">
+                    {{ value.toFixed(2) }} 
+                    <sub>({{key === "calories" ? "kcal" : "g"}})</sub>
                   </div>
                 </div>
               </div>
@@ -280,7 +288,7 @@ onMounted(() => {
             <div class="sb-form-content">
               <div class="sb-main-content">
                 <div class="sb-features-item mb-3">
-                  <div class="sb-number ">Step 2</div>
+                  <div class="sb-number">Step 2</div>
                 </div>
                 <h3 class="sb-mb-30">{{ $t("calculator_input.food_selection_prompt") }}
                   <span class="sb-text"><br>{{ $t("calculator_input.view_selected_food") }}</span>
@@ -303,144 +311,6 @@ onMounted(() => {
       </div>
     </div> 
   </section>
-
-
-
-  <!-- 
-  <div class="calculator" :class="{ expanded: isExpanded }" style="margin-top: 0.5rem">
-    <div style="
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        font-size: 28px;
-        font-weight: bold;
-        text-align: center;
-      ">
-      {{ $t("calculator_input.title") }}
-    </div>
-    <div class="calc-gender-select" style="margin-top: 1rem">
-      <RadioButton v-model="gender" value="Male" style="margin-left: 1rem" />
-      <label style="margin-left: 0.3rem">{{
-        $t("calculator_input.gender.male")
-      }}</label>
-      <RadioButton v-model="gender" value="Female" style="margin-left: 1rem" />
-      <label style="margin-left: 0.3rem">{{
-        $t("calculator_input.gender.female")
-      }}</label>
-    </div>
-
-    <div style="
-        margin-top: 0.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      ">
-      <label class="calc-InputNum-label">{{ $t("calculator_input.age") }} :</label>
-      <InputNumber v-model="age" class="calc-InputNum" />
-      <label class="calc-InputNum-unit">{{
-        $t("calculator_input.years_old")
-      }}</label>
-    </div>
-
-    <div style="
-        margin-top: 0.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      ">
-      <label class="calc-InputNum-label">{{ $t("calculator_input.height") }} :</label>
-      <InputNumber v-model="height" class="calc-InputNum" />
-      <label class="calc-InputNum-unit">{{
-        $t("calculator_input.centimeter")
-      }}</label>
-    </div>
-
-    <div style="
-        margin-top: 0.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      ">
-      <label class="calc-InputNum-label">{{ $t("calculator_input.weight") }} :</label>
-      <InputNumber v-model="weight" class="calc-InputNum" />
-      <label class="calc-InputNum-unit">{{
-        $t("calculator_input.kilogram")
-      }}</label>
-    </div>
-
-    <div style="font-weight: bold; display: block; margin: 0.5 0.5rem">
-      {{ $t("calculator_input.activity_factor.title") }}
-    </div>
-    <div class="activity-radio-btn" style="margin-top: 0.5rem">
-      <RadioButton v-model="activityFactor" value="1.3" />
-      <label style="margin-left: 0.5rem">
-        {{ $t("calculator_input.activity_factor.mild") }}
-      </label>
-    </div>
-    <div class="activity-tips">
-      {{ $t("calculator_input.activity_factor.tips.mild") }}
-    </div>
-    <div class="activity-radio-btn" style="margin-top: 0.5rem">
-      <RadioButton v-model="activityFactor" value="1.5" />
-      <label style="margin-left: 0.5rem">
-        {{ $t("calculator_input.activity_factor.moderate") }}
-      </label>
-    </div>
-    <div class="activity-tips">
-      {{ $t("calculator_input.activity_factor.tips.moderate") }}
-    </div>
-    <div class="activity-radio-btn" style="margin-top: 0.5rem">
-      <RadioButton v-model="activityFactor" value="2" />
-      <label style="margin-left: 0.5rem">
-        {{ $t("calculator_input.activity_factor.severe") }}
-      </label>
-    </div>
-    <div class="activity-tips">
-      {{ $t("calculator_input.activity_factor.tips.severe") }}
-    </div> 
-
-    <div style="
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-        margin-top: 1rem;
-      ">
-      <Button class="tab" :label="$t('calculator_input.calculate')" @click="nextOnClicked" />
-    </div>
-  </div>
-
-  -->
-  <!-- <div class="calculator" style="margin-top: 0.5rem">
-    <div class="result">
-      <h3>{{ $t("calculator_result_daily_title") }}</h3>
-
-      <div class="display-row" v-for="(value, key) in dailyNeeds" :key="key">
-        <label>{{ $t(key) }}:</label>
-        <span>{{ value.toFixed(2) }} ({{
-          key === "calories" ? "kcal" : "g"
-        }})</span>
-      </div>
-
-      <h3 style="margin-top: 0.5rem">
-        {{ $t("calculator_result_meal_title") }}
-      </h3>
-
-      <div class="display-row" v-for="(value, key) in dailyNeeds" :key="key">
-        <label>{{ $t(key) }}:</label>
-        <span>{{ (value / 3.0).toFixed(2) }} ({{
-          key === "calories" ? "kcal" : "g"
-        }})</span>
-      </div>
-
-      <Button class="tab" :label="$t('calculator_input.choosing')" @click="scrollDown" />
-      <div style="font-size: 16px; margin-top: 0.3rem" v-if="foodTableDisplay">
-        {{ $t("calculator_input.scroll_down") }}
-      </div>
-    </div>
-  </div> -->
-
-  <!-- foodTableDisplay.value = true; -->
 
   <!--
   A fixed positioned overlay badge component in the bottom-right corner of the screen
@@ -475,18 +345,25 @@ onMounted(() => {
       height: 4.5rem;
       width: 4.5rem;
     " @click="calculate" />
-  <div></div>
+
 
   <div ref="targetSection" v-if="foodTableLoaded && foodTableDisplay">
     <Toast position="top-center" baseZIndex="12" style="width: 20rem" />
-    <DataTable :selection="productStore.selectedProducts" :value="productStore.calculatorFilteredData"
-      :globalFilterFields="['item', 'class']" :filters="productStore.calculatorFilters" dataKey="id"
-      tableStyle="min-width: 50rem" paginator :rows="10" @row-click="itemSelect" rowHover highlightOnSelect>
+      <div class="sb-contact-form-frame" style="margin-left: 3%; margin-right: 3%; width: 94%; padding: 1% 2%; text-align: left;">
+        <DataTable 
+          :selection="productStore.selectedProducts" 
+          :value="productStore.calculatorFilteredData"
+          :globalFilterFields="['item', 'class']" 
+          :filters="productStore.calculatorFilters"
+          :rows="10" 
+          @row-click="itemSelect" 
+          rowHover highlightOnSelect paginator
+          tableStyle="min-width: 50rem" dataKey="id">
       <template #header>
         <div style="display: flex align-items-center">
           <IconField>
             <InputIcon class="pi pi-search" style="margin-right: 1rem" />
-            <InputText v-model="productStore.calculatorFilters['global'].value" placeholder="Keyword Search" />
+                <InputText v-model="productStore.calculatorFilters['global'].value" placeholder="Search from ALL" />
           </IconField>
           <div class="tags-container">
             <span v-for="(option, index) in productStore.selectedOptions" :key="index" class="tag"
@@ -576,6 +453,7 @@ onMounted(() => {
         </template>
       </Column>
     </DataTable>
+      </div>
     <FoodTable />
   </div>
 

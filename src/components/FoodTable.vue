@@ -403,8 +403,11 @@ onMounted(() => {
               width: 50%;
               height: 4.5rem;
               border-radius: 0;
+              border: 0;
               margin: 0 0;
               font-size: 20px;
+              color: #333333;
+              background-color:  #F5C332;;
             "
             label="Open"
             @click="classClicked(item, index)"
