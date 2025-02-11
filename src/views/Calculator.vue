@@ -153,21 +153,21 @@ onMounted(() => {
                     </div>
                   </div>
                   <!-- age -->
-                  <div class="sb-group-input">
+                  <div class="sb-group-input" style="width: 40%; text-align: center; margin: 2rem auto">
                     <input v-model="age" type="text" name="age" required>
                     <span class="sb-bar"></span>
                     <label>{{ $t("calculator_input.age") }}</label>
                   </div>
 
                   <!-- height -->
-                  <div class="sb-group-input">
+                  <div class="sb-group-input" style="width: 40%; text-align: center; margin: 2rem auto">
                     <input v-model="height" type="text" name="height" required>
                     <span class="sb-bar"></span>
                     <label>{{ $t("calculator_input.height") }}({{ $t("calculator_input.centimeter") }})</label>
                   </div>
 
                   <!-- weight -->
-                  <div class="sb-group-input">
+                  <div class="sb-group-input" style="width: 40%; text-align: center; margin: 1rem auto">
                     <input v-model="weight" type="text" name="weight" required>
                     <span class="sb-bar"></span>
                     <label>{{ $t("calculator_input.weight") }}({{ $t("calculator_input.kilogram") }})</label>
