@@ -118,13 +118,12 @@ onMounted(() => {
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   </head>
 
-  <Banner title="page_title.calculator" subtitle="page_title.calculator_subtitle" page="calculator" />
-
-  <section>
+  <!-- TODO: fix the margin  -->
+  <section style="margin-top: 10rem;">
     <!-- 計算機 -->
     <div class="container">
       <div class="row d-flex justify-content-center align-items-center bg-yellow">
-        <div class="col-lg-5">
+        <div class="col-lg-7">
           <div class="sb-contact-form-frame">
             <div class="sb-illustration-9">
               <img src="../assets/images/boy_milk.png" alt="envelope" class="sb-envelope-1">
@@ -138,36 +137,36 @@ onMounted(() => {
                 <div class="sb-features-item mb-3">
                   <div class="sb-number ">Step 1</div>
                 </div>
-                <h3 class="sb-mb-30">{{ $t("calculator_input.title") }}</h3>
+                <h3 class="sb-mb-30" style="font-size: 30px;">{{ $t("calculator_input.title") }}</h3>
                 <form id="form">
                   <div class="mb-3">
                     <div class="form-check form-check-inline">
                       <!-- <input class="form-check-input check-activity" type="radio" name="gender" id="boy" value="boy"> -->
                       <RadioButton v-model="gender" value="Male" style="margin-left: 1rem"/>
-                      <label class="form-check-label" for="boy" style="margin-left: 0.3rem">{{ $t("calculator_input.gender.male") }}</label>
+                      <label class="form-check-label" for="boy" style="margin-left: 0.3rem; font-size: 24px;">{{ $t("calculator_input.gender.male") }}</label>
                     </div>
                     <div class="form-check form-check-inline">
                       <!-- <input class="form-check-input check-activity" type="radio" name="gender" id="girl" value="girl"> -->
                       <RadioButton v-model="gender" value="Female" style="margin-left: 1rem" />
-                      <label class="form-check-label" for="girl" style="margin-left: 0.3rem">{{ $t("calculator_input.gender.female") }}</label>
+                      <label class="form-check-label" for="girl" style="margin-left: 0.3rem; font-size: 24px;">{{ $t("calculator_input.gender.female") }}</label>
                     </div>
                   </div>
                   <!-- age -->
-                  <div class="sb-group-input" style="width: 40%; text-align: center; margin: 2rem auto">
+                  <div class="sb-group-input" style="width: 150px; text-align: center; margin: 2.5rem auto">
                     <input v-model="age" type="text" name="age" required>
                     <span class="sb-bar"></span>
                     <label>{{ $t("calculator_input.age") }}</label>
                   </div>
 
                   <!-- height -->
-                  <div class="sb-group-input" style="width: 40%; text-align: center; margin: 2rem auto">
+                  <div class="sb-group-input" style="width: 150px; text-align: center; margin: 2.5rem auto">
                     <input v-model="height" type="text" name="height" required>
                     <span class="sb-bar"></span>
                     <label>{{ $t("calculator_input.height") }}({{ $t("calculator_input.centimeter") }})</label>
                   </div>
 
                   <!-- weight -->
-                  <div class="sb-group-input" style="width: 40%; text-align: center; margin: 1rem auto">
+                  <div class="sb-group-input" style="width: 150px; text-align: center; margin: 2.5rem auto">
                     <input v-model="weight" type="text" name="weight" required>
                     <span class="sb-bar"></span>
                     <label>{{ $t("calculator_input.weight") }}({{ $t("calculator_input.kilogram") }})</label>
@@ -175,33 +174,33 @@ onMounted(() => {
 
                   <!-- activity_factor -->
                   <div class="mb-3">
-                    <span class="sb-text">{{ $t("calculator_input.activity_factor.title") }}</span><br>
-                    
+                    <h3 style="margin-top: 1.5rem; margin-bottom: 0rem; font-size: 30px;">{{ $t("calculator_input.activity_factor.title") }}</h3>
+
                     <div class="form-check text-left" style="margin-top: 0.5rem;">
                       <!-- <input v-model="activityFactor" value="1.3" class="form-check-input check-activity" type="radio" name="intensity" id="mild"> -->
                       <RadioButton v-model="activityFactor" value="1.3" class="form-check-input check-activity" />
-                      <label class="ml-1 form-check-label" for="mild">
+                      <label class="ml-1 form-check-label" for="mild" style="font-size: 24px; font-weight: bold;">
                         {{ $t("calculator_input.activity_factor.mild") }}
                       </label>
-                      <p class="ml-1 sb-text sb-text-sm">{{ $t("calculator_input.activity_factor.tips.mild") }}</p>
+                      <p class="ml-1 sb-text" style="font-size: 18px;">{{ $t("calculator_input.activity_factor.tips.mild") }}</p>
                     </div>
                     
                     <div class="form-check text-left" style="margin-top: 0.5rem;">
                       <!-- <input v-model="activityFactor" value="1.5" class="form-check-input check-activity" type="radio" name="intensity" id="moderate"> -->
                       <RadioButton v-model="activityFactor" value="1.5" class="form-check-input check-activity" />
-                      <label class="ml-1 form-check-label" for="moderate">
+                      <label class="ml-1 form-check-label" for="moderate" style="font-size: 24px; font-weight: bold;">
                         {{ $t("calculator_input.activity_factor.moderate") }}
                       </label>
-                      <p class="ml-1 sb-text sb-text-sm">{{ $t("calculator_input.activity_factor.tips.moderate") }}</p>
+                      <p class="ml-1 sb-text" style="font-size: 18px;">{{ $t("calculator_input.activity_factor.tips.moderate") }}</p>
                     </div>
                     
                     <div class="form-check text-left" style="margin-top: 0.5rem;">
                       <!-- <input v-model="activityFactor" value="2" class="form-check-input check-activity" type="radio" name="intensity" id="severe"> -->
                       <RadioButton v-model="activityFactor" value="2" class="form-check-input check-activity" />
-                      <label class="ml-1 form-check-label" for="severe">
+                      <label class="ml-1 form-check-label" for="severe" style="font-size: 24px; font-weight: bold;">
                         {{ $t("calculator_input.activity_factor.severe") }}
                       </label>
-                      <p class="ml-1 sb-text sb-text-sm">{{ $t("calculator_input.activity_factor.tips.severe") }}</p>
+                      <p class="ml-1 sb-text" style="font-size: 18px;">{{ $t("calculator_input.activity_factor.tips.severe") }}</p>
                     </div>
                   </div>
 
@@ -278,7 +277,7 @@ onMounted(() => {
         </div>
       </div>
       <div class="row d-flex justify-content-center align-items-center align-items-center">
-        <div class="col-lg-5">
+        <div class="col-lg-7">
           <div class="sb-contact-form-frame">
             <div class="sb-illustration-9">
               <img src="../assets/images/hamburger.png" alt="envelope" class="sb-envelope-1">
@@ -361,100 +360,100 @@ onMounted(() => {
           @row-click="itemSelect" 
           rowHover highlightOnSelect paginator
           tableStyle="min-width: 50rem" dataKey="id">
-      <template #header>
-        <div style="display: flex align-items-center">
-          <IconField>
-            <InputIcon class="pi pi-search" style="margin-right: 1rem" />
+          <template #header>
+            <div style="display: flex align-items-center">
+              <IconField>
+                <InputIcon class="pi pi-search" style="margin-right: 1rem" />
                 <InputText v-model="productStore.calculatorFilters['global'].value" placeholder="Search from ALL" />
-          </IconField>
-          <div class="tags-container">
-            <span v-for="(option, index) in productStore.selectedOptions" :key="index" class="tag"
-              @click="productStore.removeTag(index)">
-              <Button :label="option.name" icon="pi pi-times"></Button>
-            </span>
-          </div>
-        </div>
-        <div></div>
-      </template>
-
-      <Column selectionMode="multiple" style="width: 0.1%"></Column>
-      <Column field="item" :header="$t('food_item')" style="min-width: 150px; width: 1%"></Column>
-      <Column field="subclass" :header="$t('food_class')" style="width: 1%" :showFilterMatchModes="false"
-        :showApplyButton="false" :showClearButton="false">
-      </Column>
-      <Column field="gram" :header="$t('food_gram')" style="width: 0.5%"></Column>
-      <Column sortable field="calories" :header="$t('calories')" :filter="true" filterField="calories"
-        :showFilterMatchModes="false" :showApplyButton="false" :showClearButton="false" style="width: 0.5%">
-        <template #body="{ data }">
-          <div :style="{
-            backgroundColor: productStore.getColor(data.calories, 0, 550),
-            color: 'black',
-            padding: '10px',
-            borderRadius: '5px',
-            textAlign: 'center',
-          }">
-            {{ data.calories }}
-          </div>
-        </template>
-      </Column>
-      <Column sortable field="carbohydrate" :header="$t('carbohydrate')" :filter="true" filterField="carbohydrate"
-        :showFilterMatchModes="false" :showApplyButton="false" :showClearButton="false" style="width: 0.5%">
-        <template #body="{ data }">
-          <div :style="{
-            backgroundColor: productStore.getColor(data.carbohydrate, 0, 50),
-            color: 'black',
-            padding: '10px',
-            borderRadius: '5px',
-            textAlign: 'center',
-          }">
-            {{ data.carbohydrate }}
-          </div>
-        </template>
-      </Column>
-      <Column sortable field="protein" :header="$t('protein')" :showApplyButton="false" :showClearButton="false"
-        style="width: 0.5%">
-        <template #body="{ data }">
-          <div :style="{
-            backgroundColor: productStore.getColor(data.protein, 0, 25),
-            color: 'black',
-            padding: '10px',
-            borderRadius: '5px',
-            textAlign: 'center',
-          }">
-            {{ data.protein }}
-          </div>
-        </template>
-      </Column>
-      <Column sortable field="fat" :header="$t('fat')" :filter="true" :showFilterMatchModes="false" filterField="fat"
-        :showApplyButton="false" :showClearButton="false" style="width: 0.5%">
-        <template #body="{ data }">
-          <div :style="{
-            backgroundColor: productStore.getColor(data.fat, 0, 25),
-            color: 'black',
-            padding: '10px',
-            borderRadius: '5px',
-            textAlign: 'center',
-          }">
-            {{ data.fat }}
-          </div>
-        </template>
-      </Column>
-
-      <Column sortable field="dietary_fibre" :header="$t('food_dt_fibre')" :filter="true" :showFilterMatchModes="false"
-        filterField="dietary_fibre" :showApplyButton="false" :showClearButton="false" style="width: 0.5%">
-        <template #body="{ data }">
-          <div :style="{
-            backgroundColor: productStore.getColor(data.dietary_fibre, 0, 25),
-            color: 'black',
-            padding: '10px',
-            borderRadius: '5px',
-            textAlign: 'center',
-          }">
-            {{ data.dietary_fibre }}
-          </div>
-        </template>
-      </Column>
-    </DataTable>
+              </IconField>
+              <div class="tags-container">
+                <span v-for="(option, index) in productStore.selectedOptions" :key="index" class="tag"
+                  @click="productStore.removeTag(index)">
+                  <Button :label="option.name" icon="pi pi-times"></Button>
+                </span>
+              </div>
+            </div>
+            <div></div>
+          </template>
+    
+          <Column selectionMode="multiple" style="width: 0.1%"></Column>
+          <Column field="item" :header="$t('food_item')" style="min-width: 150px; width: 1%"></Column>
+          <Column field="subclass" :header="$t('food_class')" style="width: 1%" :showFilterMatchModes="false"
+            :showApplyButton="false" :showClearButton="false">
+          </Column>
+          <Column field="gram" :header="$t('food_gram')" style="width: 0.5%"></Column>
+          <Column sortable field="calories" :header="$t('calories')" :filter="true" filterField="calories"
+            :showFilterMatchModes="false" :showApplyButton="false" :showClearButton="false" style="width: 0.5%">
+            <template #body="{ data }">
+              <div :style="{
+                backgroundColor: productStore.getColor(data.calories, 0, 550),
+                color: 'black',
+                padding: '10px',
+                borderRadius: '5px',
+                textAlign: 'center',
+              }">
+                {{ data.calories }}
+              </div>
+            </template>
+          </Column>
+          <Column sortable field="carbohydrate" :header="$t('carbohydrate')" :filter="true" filterField="carbohydrate"
+            :showFilterMatchModes="false" :showApplyButton="false" :showClearButton="false" style="width: 0.5%">
+            <template #body="{ data }">
+              <div :style="{
+                backgroundColor: productStore.getColor(data.carbohydrate, 0, 50),
+                color: 'black',
+                padding: '10px',
+                borderRadius: '5px',
+                textAlign: 'center',
+              }">
+                {{ data.carbohydrate }}
+              </div>
+            </template>
+          </Column>
+          <Column sortable field="protein" :header="$t('protein')" :showApplyButton="false" :showClearButton="false"
+            style="width: 0.5%">
+            <template #body="{ data }">
+              <div :style="{
+                backgroundColor: productStore.getColor(data.protein, 0, 25),
+                color: 'black',
+                padding: '10px',
+                borderRadius: '5px',
+                textAlign: 'center',
+              }">
+                {{ data.protein }}
+              </div>
+            </template>
+          </Column>
+          <Column sortable field="fat" :header="$t('fat')" :filter="true" :showFilterMatchModes="false" filterField="fat"
+            :showApplyButton="false" :showClearButton="false" style="width: 0.5%">
+            <template #body="{ data }">
+              <div :style="{
+                backgroundColor: productStore.getColor(data.fat, 0, 25),
+                color: 'black',
+                padding: '10px',
+                borderRadius: '5px',
+                textAlign: 'center',
+              }">
+                {{ data.fat }}
+              </div>
+            </template>
+          </Column>
+    
+          <Column sortable field="dietary_fibre" :header="$t('food_dt_fibre')" :filter="true" :showFilterMatchModes="false"
+            filterField="dietary_fibre" :showApplyButton="false" :showClearButton="false" style="width: 0.5%">
+            <template #body="{ data }">
+              <div :style="{
+                backgroundColor: productStore.getColor(data.dietary_fibre, 0, 25),
+                color: 'black',
+                padding: '10px',
+                borderRadius: '5px',
+                textAlign: 'center',
+              }">
+                {{ data.dietary_fibre }}
+              </div>
+            </template>
+          </Column>
+        </DataTable>
       </div>
     <FoodTable />
   </div>
