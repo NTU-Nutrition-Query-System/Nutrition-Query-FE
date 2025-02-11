@@ -2,7 +2,7 @@
 import { useI18n } from "vue-i18n";
 import { onMounted, ref, watch, nextTick } from "vue";
 import Button from "primevue/button";
-import InputNumber from "primevue/inputnumber";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import InputGroup from "primevue/inputgroup";
 import FloatLabel from "primevue/floatlabel";
 import RadioButton from "primevue/radiobutton";
@@ -237,7 +237,7 @@ onMounted(() => {
           <div class="sb-form-content">
             <div class="sb-main-content">
               <h3 class="sb-mb-30">
-                <i class="fas fa-calendar-day"></i> {{ $t("calculator_result_title_my") }}
+                <font-awesome-icon :icon="['fas', 'calendar-day']" /> {{ $t("calculator_result_title_my") }}
                 <span class="text-yellow">{{ $t("calculator_result_title_daily") }}</span>
                 {{ $t("calculator_result_title_nutrient") }}
               </h3>
@@ -262,9 +262,11 @@ onMounted(() => {
           </div>
           <div class="sb-form-content">
             <div class="sb-main-content">
-              <h3 class="sb-mb-30"><i class="fas fa-hamburger"></i>{{ $t("calculator_result_title_my") }}
+              <h3 class="sb-mb-30">
+                <font-awesome-icon :icon="['fas', 'burger']" /> {{ $t("calculator_result_title_my") }}
                 <span class="text-yellow">{{ $t("calculator_result_title_meal") }}</span>
-                {{ $t("calculator_result_title_nutrient") }}</h3>
+                {{ $t("calculator_result_title_nutrient") }}
+              </h3>
               <div class="sb-menu-item sb-menu-item-sm" v-for="(value, key) in dailyNeeds" :key="key">
                 <div class="sb-card-tp">
                   <h4 class="sb-card-title">{{ $t(key) }}:</h4>
