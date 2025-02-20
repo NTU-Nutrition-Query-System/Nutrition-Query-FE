@@ -25,15 +25,7 @@
       <router-link to="/Calculator">
         <Button
           label="前往計算機"
-          style="
-            display: block;
-            width: 100%;
-            padding: 1rem;
-            font-size: 1.2rem;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-top: 1rem;
-          "
+          class="message-button"
         />
       </router-link>
     </div>
@@ -67,7 +59,6 @@ const messages = ref([
 <style scoped>
 .message-board {
   padding: 20px;
-  max-width: 800px;
   margin: 0 auto;
 }
 
@@ -106,5 +97,22 @@ const messages = ref([
   text-align: right;
   font-size: 0.85em;
   color: #888;
+}
+
+.message-button {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 1rem;
+  background-color: #F5C332;
+  border: none;
+}
+
+.message-button:hover {
+  border: none !important;
+  background-color: #f8d469 !important; 
 }
 </style>

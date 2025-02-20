@@ -1,110 +1,202 @@
 <template>
-  <div class="poster-container">
-    <!-- 標題區 -->
-    <div class="header">
-      <h1 class="main-title">113-2 台灣大學師培中心</h1>
-      <h2 class="sub-title">
-        生醫探索與科技結合假日營隊<br />
-        開放中等學校申請
-      </h2>
+  <!-- banner -->
+  <section class="sb-banner" >
+    <div class="sb-bg-1">
+      <div></div>
     </div>
-    <div class="floating-text-container">
-      <div class="floating-text-left">
-        想幫助學生了解<br />食物與葡萄糖的關係嗎?
-      </div>
-      <div class="floating-text-right">
-        希望學生可以運用自製Arduino葡萄糖檢測器進行濃度檢測實驗嗎?
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <!-- main title -->
+          <div class="sb-main-title-frame">
+            <div class="sb-main-title">
+              <span class="sb-suptitle sb-mb-20">113-2 臺灣大學師培中心</span>
+              <h1 class="sb-mb-30">生醫探索與科技<br>結合假日營隊</h1>
+              <h3 class="sb-mb-30">開放中等學校申請</h3>
+              <p class="sb-text sb-text-lg sb-mb-30">
+                想幫助學生了解食物與葡萄糖的關係嗎?<br>
+                希望學生可以運用自製Arduino葡萄糖檢測器進行濃度檢測實驗嗎?
+              </p>
+              <!-- button -->
+              <a href="calculator.html" data-no-swup class="sb-btn">
+                <span class="sb-icon">
+                  <img src="../assets/img/ui/icons/menu.svg" alt="icon">
+                </span>
+                <span>營養計算機</span>
+              </a>
+              <!-- button end -->
+              <!-- button -->
+              <a href="about.html" data-no-swup class="sb-btn sb-btn-2 sb-btn-gray">
+                <span class="sb-icon">
+                  <img src="../assets/img/ui/icons/arrow.svg" alt="icon">
+                </span>
+                <span>關於我們</span>
+              </a>
+              <!-- button end -->
+            </div>
+          </div>
+          <!-- main title end -->
+        </div>
+        <div class="col-lg-6">
+          <div class="sb-illustration-1">
+            <img src="../assets/images/girl.png" alt="girl" class="sb-girl">
+            <div class="sb-cirkle-1"></div>
+            <div class="sb-cirkle-2"></div>
+            <div class="sb-cirkle-3"></div>
+            <div class="sb-cirkle-4"></div>
+            <div class="sb-cirkle-5"></div>
+            <img src="../assets/img/illustrations/3.svg" alt="phones" class="sb-pik-1">
+            <img src="../assets/img/illustrations/1.svg" alt="phones" class="sb-pik-2">
+            <img src="../assets/img/illustrations/2.svg" alt="phones" class="sb-pik-3">
+          </div>
+        </div>
       </div>
     </div>
+  </section>
+  <!-- banner end -->
 
-    <!-- 第一排：三張圖片區域 -->
-    <div class="image-row">
-      <div class="image-card">
-        <h3 class="image-title">食物營養攝取</h3>
-        <img
-          src="../assets/imgs/Poster/img1.png"
-          alt="食物"
-          class="info-image"
-        />
-      </div>
-      <div class="image-card">
-        <h3 class="image-title">人體血糖運作</h3>
-        <img
-          src="../assets/imgs/Poster/img2.png"
-          alt="人體血糖運作"
-          class="info-image"
-        />
-      </div>
-      <div class="image-card">
-        <h3 class="image-title">Arduino 葡萄糖檢測</h3>
-        <img
-          src="../assets/imgs/Poster/img3.jpg"
-          alt="葡萄糖檢測"
-          class="info-image"
-        />
+  <!-- features -->
+  <section class="sb-p-60-0">
+    <div class="container">
+      <div class="row flex-md-row-reverse">
+        <div class="col-lg-6 align-self-center sb-mb-30">
+          <h2 class="sb-mb-60">以葡萄糖檢測生醫技術為主軸的中學生跨領域探索課程</h2>
+          <ul class="sb-features">
+            <li class="sb-features-item sb-mb-60">
+              <div class="sb-number">01</div>
+              <div class="sb-feature-text">
+                <h3 class="sb-mb-15">食物營養攝取</h3>
+                <p class="sb-text">讓學生了解食物的營養成分以及每日營養素需求</p>
+              </div>
+            </li>
+            <li class="sb-features-item sb-mb-60">
+              <div class="sb-number">02</div>
+              <div class="sb-feature-text">
+                <h3 class="sb-mb-15">人體血糖運作</h3>
+                <p class="sb-text">讓學生了解食物攝取後體內葡萄糖的變化</p>
+              </div>
+            </li>
+            <li class="sb-features-item sb-mb-60">
+              <div class="sb-number">03</div>
+              <div class="sb-feature-text">
+                <h3 class="sb-mb-15">Arduino 葡萄糖檢測</h3>
+                <p class="sb-text">Arduino軟硬體與葡萄糖檢測的生醫檢測原理</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-6 align-self-center">
+          <div class="sb-illustration-2 sb-mb-90">
+            <div class="sb-interior-frame">
+              <img src="../assets/images/boy.png" alt="interior" class="sb-interior">
+            </div>
+            <div class="sb-square"></div>
+            <div class="sb-cirkle-1"></div>
+            <div class="sb-cirkle-2"></div>
+            <div class="sb-cirkle-3"></div>
+            <div class="sb-cirkle-4"></div>
+            <div class="sb-experience">
+              <div class="sb-exp-content">
+                <img src="../assets/images/Arduino.png">
+                <p class="sb-h3">Arduino</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+  </section>
+  <!-- features end -->
 
-    <!-- 第二排：活動資訊與聯絡資訊 -->
-    <div class="info-section">
-      <Card>
-        <template #title>
-          <span class="title-text">活動資訊</span>
-        </template>
-        <template #content>
-          <div class="info-details" style="background-color: #f0f0f0">
-            <p>
-              <strong><i class="pi pi-user" /> 對象：</strong> 國高中學生
-            </p>
-            <p>
-              <strong><i class="pi pi-users" /> 人數：</strong> 每場
-              <b>20-24</b> 人
-            </p>
-            <p>
-              <strong><i class="pi pi-verified" /> 場次：</strong> 國高中各一場
-            </p>
-            <p>
-              <strong><i class="pi pi-calendar" /> 日期：</strong> 114 年
-              <b>2-4 </b>月
-            </p>
-            <p>
-              <strong><i class="pi pi-clock" /> 時間：</strong>
-              <b>09:00-16:00</b>
+  <!-- call to action -->
+  <section class="sb-call-to-action mb-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 align-self-center">
+          <div class="sb-cta-text">
+            <h2 class="sb-mb-15"><i class="fas fa-bullhorn"></i> 活動資訊</h2>
+            <h3 class="sb-mb-15">葡萄糖探測之旅</h3>
+            <p class="sb-text sb-mb-30">
+              <i class="far fa-user"></i> 對象： 國高中學生<br>
+              <i class="fas fa-users"></i> 人數： 每場 20-24 人<br>
+              <i class="fas fa-school"></i> 場次： 國高中各一場<br>
+              <i class="far fa-calendar"></i> 日期： 114 年 2-4 月<br>
+              <i class="far fa-clock"></i> 時間：09:00-16:00
             </p>
           </div>
-        </template>
-      </Card>
-
-      <div style="margin-top: 1rem">
-        <Panel header="更多資訊!" toggleable collapsed="true">
-          <p class="m-0">
-            本計畫透過國科會支持，近年來開發了結合科學與科技，以葡萄糖檢測生醫技術為主軸的中學生跨領域探索課程。目前的計畫名稱：跨領域<b>STEM</b>課程之開發：人體葡萄糖探測之旅的前端資料庫建立。
-            我們計畫的實施對象為國中或高中學生，目的在於鼓勵學生結合過去所學的生物、健體、化學、物理等課程，以及由此拓展到電子科技與程式設計的領域。這個營隊分為上下兩個部分，第一個部分為生物營養與血糖運作的探究，我們會使用自行開發的營養資料庫，提供給學生做探究使用；第二個部分為<b>Arduino</b>軟硬體與葡萄糖檢測的生醫檢測原理，以及葡萄糖檢測計建構，並且用這個感測計來進行葡萄糖濃度檢測的實驗。學生可以對於從食物、營養、到體內葡萄糖的變化有一個完整的了解，並且可以看到血糖檢測器背後的原理。
-          </p>
-          <br />
-          <p>
-            因為這是一個六個小時的一日營隊型的活動，因此可能會用到假日期間。如果學校認為這個營隊對於學生有幫助，我可以到貴校跟校長主任介紹更多課程的內容細節及所用的儀器。
-          </p>
-        </Panel>
-      </div>
-
-      <!-- 聯絡資訊與 QR Code -->
-      <div class="contact-section">
-        <h4>歡迎國高中學校與本計畫聯繫！</h4>
-        <p>
-          <i>
-            <i class="pi pi-inbox" />聯絡信箱 ：<strong
-              >skhsu900@gmail.com</strong
-            ><br />
-            <i class="pi pi-phone" />連絡電話：<strong>02-3366-5716 </strong
-            ><br />
-            或掃 QR Code 填表單</i
-          >
-        </p>
-        <img src="../assets/imgs/Poster/img4.png" alt="食物" class="qr-code" />
+        </div>
+        <div class="col-lg-4">
+          <div class="sb-cta-text mt-5">
+            <br>
+            <h3 class="sb-mb-15">營隊行程</h3>
+            <ul>
+              <li>09:00-10:30 食物營養與體內葡萄糖</li>
+              <li>10:40-12:00 血糖與生醫檢測原理</li>
+              <li>12:00-13:00 午餐</li>
+              <li>13:00-14:00 Arduino 溫度心跳檢測</li>
+              <li>14:00-15:00 葡萄糖溶液檢測實驗</li>
+              <li>15:00-16:00 實驗結果分析</li>
+              <li>16:00-16:30 血糖量測(需父母同意書)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="sb-illustration-6">
+            <img src="../assets/images/classroom.png" alt="活動資訊" class="sb-burger">
+            <div class="sb-cirkle-1"></div>
+            <div class="sb-cirkle-2"></div>
+            <div class="sb-cirkle-3"></div>
+            <div class="sb-cirkle-4"></div>
+            <div class="sb-cirkle-5"></div>
+            <img src="../assets/img/illustrations/2.svg" alt="phones" class="sb-pik-2">
+            <img src="../assets/img/illustrations/3.svg" alt="phones" class="sb-pik-3">
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
+  <!-- call to action end -->
+
+
+
+
+  <!-- call to action -->
+  <section class="sb-call-to-action">
+    <div class="sb-bg-3"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 align-self-center">
+          <div class="sb-cta-text">
+            <h2 class="sb-mb-30">歡迎國高中學校與本計畫聯繫！</h2>
+            <p class="sb-text sb-mb-30">
+              這是一個六個小時的一日營隊型的活動，因此可能會用到假日期間。如果學校認為這個營隊對於學生有幫助，可以到貴校跟校長主任介紹更多課程的內容細節及所用的儀器。
+            </p>
+            <p class="sb-text sb-mb-30">
+              <i class="far fa-envelope"></i> 聯絡信箱 ：<a href="mailto:skhsu900@gmail.com"
+                data-no-swup>skhsu900@gmail.com</a><br>
+              <i class="fas fa-phone"></i> 連絡電話：02-3366-5716<br>
+              <i class="far fa-file-alt"></i> 線上表單：<a href="https://forms.gle/bbyyYU81HH82zgZt8" data-no-swup
+                target="_blank">forms.gle/bbyyYU81HH82zgZt8</a><br>
+              或掃 QR Code 填表單
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="sb-illustration-3">
+            <img src="../assets/images/QR-CODE.png" alt="phones" class="sb-phones">
+            <div class="sb-cirkle-1"></div>
+            <div class="sb-cirkle-2"></div>
+            <div class="sb-cirkle-3"></div>
+            <div class="sb-cirkle-4"></div>
+            <img src="../assets/img/illustrations/1.svg" alt="phones" class="sb-pik-1">
+            <img src="../assets/img/illustrations/2.svg" alt="phones" class="sb-pik-2">
+            <img src="../assets/img/illustrations/3.svg" alt="phones" class="sb-pik-3">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- call to action end -->
 </template>
 
 <script setup lang="ts">
@@ -191,39 +283,51 @@ import Card from "primevue/card";
   width: 100px;
   margin-top: 10px;
 }
+
 .floating-text-container {
   display: flex;
-  justify-content: space-between; /* 子元素分散放置在兩端 */
-  align-items: center; /* 垂直居中對齊（可選） */
+  justify-content: space-between;
+  /* 子元素分散放置在兩端 */
+  align-items: center;
+  /* 垂直居中對齊（可選） */
 }
+
 .floating-text-left {
   position: relative;
   color: white;
   top: 1.5rem;
   font-size: 1.1rem;
   font-weight: bold;
-  background: rgba(0, 0, 0, 0.5); /* 半透明背景 */
+  background: rgba(0, 0, 0, 0.5);
+  /* 半透明背景 */
   padding: 10px;
   border-radius: 8px;
-  transform: rotate(-10deg); /* 斜角度調整 */
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* 陰影效果 */
+  transform: rotate(-10deg);
+  /* 斜角度調整 */
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  /* 陰影效果 */
   text-align: center;
   width: 40%;
 }
+
 .floating-text-right {
   position: relative;
   top: 1.5rem;
   color: white;
   font-size: 1.1rem;
   font-weight: bold;
-  background: rgba(0, 0, 0, 0.5); /* 半透明背景 */
+  background: rgba(0, 0, 0, 0.5);
+  /* 半透明背景 */
   padding: 10px;
   border-radius: 8px;
-  transform: rotate(10deg); /* 斜角度調整 */
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* 陰影效果 */
+  transform: rotate(10deg);
+  /* 斜角度調整 */
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  /* 陰影效果 */
   text-align: center;
   width: 40%;
 }
+
 .info-card-container {
   width: 100%;
   max-width: 400px;
@@ -233,12 +337,31 @@ import Card from "primevue/card";
 .info-details p {
   margin: 0.5rem 0;
   font-size: 1rem;
-  color: #333; /* 字體顏色 */
+  color: #333;
+  /* 字體顏色 */
 }
 
 .title-text {
   font-size: 1.2rem;
   font-weight: bold;
-  color: #e74c3c; /* 標題顏色 */
+  color: #e74c3c;
+  /* 標題顏色 */
+}
+
+@media (max-width: 768px) {
+  .sb-bg-1 {
+    border-left: solid 15px #FFFFFF;
+    border-right: solid 15px #FFFFFF;
+  }
+
+  .sb-bg-1 div:after {
+    height: 50vh;
+    top: 450px;
+  }
+
+  .sb-bg-3 {
+    width: 100%;
+    border: none;
+  }
 }
 </style>

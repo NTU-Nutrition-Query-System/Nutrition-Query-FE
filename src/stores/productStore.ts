@@ -102,9 +102,9 @@ export const useProductStore = defineStore("productStore", () => {
 
     // Define the color transitions based on the percentage
     const colors = [
-      { r: 76, g: 232, b: 90 }, // #4CE85A
-      { r: 224, g: 220, b: 72 }, // #E0DC48
-      { r: 242, g: 123, b: 39 }, // #F27B27
+      { r: 194, g: 242, b: 78 }, // #c2f24e
+      { r: 255, g: 210, b: 28 }, // #ffd21c
+      { r: 255, g: 134, b: 80 }, // #ff8650
     ];
 
     // Choose a color based on the percentage value

@@ -16,6 +16,13 @@ const messages = {
       calculator_subtitle: "Enter your data to calculate the nutrients you need for a day and a meal (calories, protein, carbohydrates, fat)!",
       about: "About us",
     },
+    button: {
+      confirm: "Confirm",
+      clear: "Clear",
+      cancel: "Cancel",
+      close: "Close",
+      open: "Open",
+    },
     calculator_input: {
       title: "Calculate my nutrition requirements per meal/day",
       gender:{
@@ -88,6 +95,13 @@ const messages = {
       calculator: "營養計算機",
       calculator_subtitle: "輸入資料，計算你一日及一餐所需的營養素(熱量、蛋白質、醣類、脂肪)喔！",
       about: "關於我們",
+    },
+    button: {
+      confirm: "確認",
+      clear: "清除",
+      cancel: "取消",
+      close: "關閉",
+      open: "開啟",
     },
     calculator_input: {
       title: "計算我的每日/每餐所需營養素",

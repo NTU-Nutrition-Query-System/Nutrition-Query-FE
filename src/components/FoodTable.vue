@@ -17,6 +17,7 @@ import MultiSelect from "primevue/multiselect";
 import { useToast } from "primevue/usetoast";
 import type { foodItem, filterOption } from "@/interfaces/Calculator";
 import { useProductStore } from "@/stores/productStore";
+import StandardSizeDialog from "./StandardSizeDialog.vue";
 
 const dialogVisible = ref(false);
 
@@ -146,7 +147,7 @@ onMounted(() => {
       :modal="true"
       @hide="closeDialog"
       :header="selectedCategory.name"
-      style="overflow-x: auto; width: 90%"
+      style="overflow-x: auto; width: 90%;"
       :dismissableMask="true"
     >
       <Toast position="top-center" baseZIndex="12" style="width: 20rem" />
@@ -166,14 +167,19 @@ onMounted(() => {
       >
         <template #header>
           <div style="display: flex align-items-center">
-            <IconField>
-              <InputIcon class="pi pi-search" style="margin-right: 1rem" />
-              <InputText
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <IconField>
+                <InputIcon class="pi pi-search" style="margin-right: 1rem" />
+                <InputText
                 v-model="productStore.filters['global'].value"
                 placeholder="Keyword Search"
-              />
-            </IconField>
-            <MultiSelect
+                />
+              </IconField>
+
+              <StandardSizeDialog />
+            </div>
+            
+            <!-- <MultiSelect
               v-model="productStore.selectedOptions"
               :options="productStore.filterOptions"
               optionLabel="name"
@@ -181,29 +187,30 @@ onMounted(() => {
               :optionGroupChildren="['states']"
               :showToggleAll="false"
               showClear
-            ></MultiSelect>
-            <div class="tags-container">
+            ></MultiSelect> -->
+            <!-- <div class="tags-container">
               <span
                 v-for="(option, index) in productStore.selectedOptions"
                 :key="index"
                 class="tag"
                 @click="productStore.removeTag(index)"
               >
-                <Button :label="option.name" icon="pi pi-times"></Button>
+                <Button :label="option.name" icon="pi pi-times" style="margin-left: 0.25rem; padding: 0.5rem"></Button>
               </span>
-            </div>
-            <Button
-              :label="'Clear'"
+              <Button
+              :label="$t('button.clear')"
               icon="pi pi-times"
-              style="margin-left: 0rem"
+              style="margin-left: 0.25rem; padding: 0.5rem"
               @click="productStore.selectedOptions = undefined"
             />
-            <Button
-              :label="$t('food_table.confirm')"
+            
+            </div> -->
+            <!-- <Button
+              :label="$t('button.confirm')"
               icon="pi pi-check"
               style="margin-right: 0rem"
               @click="dialogVisible = false"
-            />
+            />  -->
           </div>
           <div></div>
         </template>
@@ -360,6 +367,15 @@ onMounted(() => {
           </template>
         </Column>
       </DataTable>
+
+      <template #footer>
+        <Button
+              :label="$t('button.confirm')"
+              icon="pi pi-check"
+              style="margin-right: 0rem; margin-top: 1rem; background-color: var(--primary-color); border: none; color: black"
+              @click="dialogVisible = false"
+            />
+    </template>
     </Dialog>
   </div>
   <div class="card-container">
@@ -409,7 +425,7 @@ onMounted(() => {
               color: #333333;
               background-color:  #F5C332;;
             "
-            label="Open"
+            :label="$t('button.open')"
             @click="classClicked(item, index)"
           />
         </div>
@@ -419,6 +435,26 @@ onMounted(() => {
 </template>
 
 <style>
+.p-dialog .p-dialog-title {
+  text-align: center;
+  flex-grow: 1;
+  line-height: 120%;
+  font-size: 22px;
+  letter-spacing: -1px;
+}
+
+.p-dialog .p-dialog-header {
+  padding: 10px;
+}
+
+.p-datatable-header-cell[role="columnheader"] {
+  background-color: var(--primary-color);
+}
+
+.p-dialog-footer {
+  padding-bottom: 10px !important;
+}
+
 .disabled-datatable {
   pointer-events: none;
   opacity: 0.5;
