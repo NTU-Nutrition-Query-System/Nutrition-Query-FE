@@ -5,7 +5,7 @@ import { defineProps, ref, computed } from 'vue';
 // Receive items from parent
 const props = defineProps({
   languages: {
-    type: Array as () => Array<{ label: string; value: string; route?: string }>,
+    type: Array as () => Array<{ label: string; value: string; }>,
     required: true
   },
 });

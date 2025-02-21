@@ -10,7 +10,7 @@ const props = defineProps({
         required: true,
     },
     languages: {
-        type: Array as () => Array<{ label: string; value?: string }>,
+        type: Array as () => Array<{ label: string; value: string }>,
         required: true
     },
 });
