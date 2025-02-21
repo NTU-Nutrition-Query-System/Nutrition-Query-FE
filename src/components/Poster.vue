@@ -114,14 +114,14 @@
       <div class="row">
         <div class="col-lg-3 align-self-center">
           <div class="sb-cta-text">
-            <h2 class="sb-mb-15"><i class="fas fa-bullhorn"></i> 活動資訊</h2>
+            <h2 class="sb-mb-15"><font-awesome-icon :icon="['fas', 'bullhorn']" /> 活動資訊</h2>
             <h3 class="sb-mb-15">葡萄糖探測之旅</h3>
             <p class="sb-text sb-mb-30">
-              <i class="far fa-user"></i> 對象： 國高中學生<br>
-              <i class="fas fa-users"></i> 人數： 每場 20-24 人<br>
-              <i class="fas fa-school"></i> 場次： 國高中各一場<br>
-              <i class="far fa-calendar"></i> 日期： 114 年 2-4 月<br>
-              <i class="far fa-clock"></i> 時間：09:00-16:00
+              <font-awesome-icon :icon="['fas', 'user']" /> 對象： 國高中學生<br>
+              <font-awesome-icon :icon="['fas', 'users']" /> 人數： 每場 20-24 人<br>
+              <font-awesome-icon :icon="['fas', 'school']" /> 場次： 國高中各一場<br>
+              <font-awesome-icon :icon="['fas', 'calendar']" /> 日期： 114 年 2-4 月<br>
+              <font-awesome-icon :icon="['fas', 'clock']" /> 時間：09:00-16:00
             </p>
           </div>
         </div>
@@ -172,10 +172,10 @@
               這是一個六個小時的一日營隊型的活動，因此可能會用到假日期間。如果學校認為這個營隊對於學生有幫助，可以到貴校跟校長主任介紹更多課程的內容細節及所用的儀器。
             </p>
             <p class="sb-text sb-mb-30">
-              <i class="far fa-envelope"></i> 聯絡信箱 ：<a href="mailto:skhsu900@gmail.com"
+              <font-awesome-icon :icon="['fas', 'envelope']" /> 聯絡信箱 ：<a href="mailto:skhsu900@gmail.com"
                 data-no-swup>skhsu900@gmail.com</a><br>
-              <i class="fas fa-phone"></i> 連絡電話：02-3366-5716<br>
-              <i class="far fa-file-alt"></i> 線上表單：<a href="https://forms.gle/bbyyYU81HH82zgZt8" data-no-swup
+              <font-awesome-icon :icon="['fas', 'phone']" /> 連絡電話：02-3366-5716<br>
+              <font-awesome-icon :icon="['fas', 'file-alt']" /> 線上表單：<a href="https://forms.gle/bbyyYU81HH82zgZt8" data-no-swup
                 target="_blank">forms.gle/bbyyYU81HH82zgZt8</a><br>
               或掃 QR Code 填表單
             </p>

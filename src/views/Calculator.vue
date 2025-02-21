@@ -211,9 +211,11 @@ onMounted(() => {
                       <img src="../assets/img/ui/icons/menu.svg" alt="icon">
                     </span>
                     <span>{{$t('calculator_input.calculate')}}</span>
-                  </button><br>
-                  <span class="sb-text sb-text-xs" id="scrollHint" style="display: none;">{{ $t("calculator_input.scroll_down") }} <i
-                      class="fas fa-sort-down"></i></span>
+                  </button>
+                  <br>
+                  <span class="sb-text sb-text" id="scrollHint" v-if="isExpanded">{{ $t("calculator_input.scroll_down") }} 
+                    <font-awesome-icon :icon="['fas', 'sort-down']" />
+                  </span>
                   <!-- button end -->
                 </form>
               </div>
