@@ -347,8 +347,9 @@ onMounted(() => {
       width: 4.5rem;
     " @click="calculate" />
 
-
-  <FoodTable />   
+  <div ref="targetSection" v-if="foodTableLoaded && foodTableDisplay">    
+    <FoodTable />   
+  </div>
   <CaloricResult v-if="showResult" v-model:visible="showResult" v-model:needData="dailyNeeds"></CaloricResult>
 </template>
 
