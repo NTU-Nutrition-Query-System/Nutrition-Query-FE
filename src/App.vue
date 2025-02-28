@@ -9,6 +9,7 @@ import { useRouter } from "vue-router";
 
 import Preloader from "@/components/common/Preloader.vue";
 import NavBar from "@/components/common/NavBar.vue";
+import vue3GoogleLogin from "vue3-google-login";
 
 const router = useRouter();
 // const { locale } = useI18n();
@@ -66,7 +67,6 @@ onUnmounted(() => {
   document.removeEventListener("mousemove", handleMouseMove);
   document.removeEventListener("click", handleClick);
 });
-
 </script>
 
 <template>
@@ -77,7 +77,7 @@ onUnmounted(() => {
     <div class="sb-click-effect" ref="cursor"></div>
     <!-- loader -->
     <div class="sb-load"></div>
-    <NavBar :items="items" :languages="languages"/>
+    <NavBar :items="items" :languages="languages" />
 
     <div class="MainPage">
       <!-- Sidebar Navigation -->

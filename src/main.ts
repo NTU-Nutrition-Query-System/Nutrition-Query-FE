@@ -10,26 +10,30 @@ import "./assets/base.css";
 import ToastService from "primevue/toastservice";
 import "primeicons/primeicons.css";
 import { createPinia } from "pinia";
-
+import vue3GoogleLogin from "vue3-google-login";
 /* import the fontawesome core */
-import { library } from '@fortawesome/fontawesome-svg-core'
+import { library } from "@fortawesome/fontawesome-svg-core";
 
 /* import font awesome icon component */
 
-import { fas } from '@fortawesome/free-solid-svg-icons'
+import { fas } from "@fortawesome/free-solid-svg-icons";
 
-import { far } from '@fortawesome/free-regular-svg-icons'
+import { far } from "@fortawesome/free-regular-svg-icons";
 
-import { fab } from '@fortawesome/free-brands-svg-icons'
+import { fab } from "@fortawesome/free-brands-svg-icons";
 
-import { FontAwesomeIcon, FontAwesomeLayers, FontAwesomeLayersText } from '@fortawesome/vue-fontawesome'
+import {
+  FontAwesomeIcon,
+  FontAwesomeLayers,
+  FontAwesomeLayersText,
+} from "@fortawesome/vue-fontawesome";
 
 /* import specific icons */
-import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
+import { faUserSecret } from "@fortawesome/free-solid-svg-icons";
 
 /* add icons to the library */
-library.add(faUserSecret)
-library.add(fas, far, fab)
+library.add(faUserSecret);
+library.add(fas, far, fab);
 
 // Create the Vue app
 const app = createApp(App);
@@ -74,9 +78,12 @@ app.use(PrimeVue, {
 app.use(router);
 app.use(i18n);
 app.use(pinia);
-app.component('font-awesome-icon', FontAwesomeIcon)
-app.component('font-awesome-layers', FontAwesomeLayers)
-app.component('font-awesome-layers-text', FontAwesomeLayersText)
+app.use(vue3GoogleLogin, {
+  clientId: import.meta.env.VITE_GOOGLE_CLIENT_ID,
+});
+app.component("font-awesome-icon", FontAwesomeIcon);
+app.component("font-awesome-layers", FontAwesomeLayers);
+app.component("font-awesome-layers-text", FontAwesomeLayersText);
 
 // Mount the app to the #app element in the DOM
 app.mount("#app");
