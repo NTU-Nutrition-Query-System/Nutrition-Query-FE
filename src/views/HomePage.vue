@@ -1,12 +1,7 @@
 <template>
-  <head>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <div class="message-board">
-    <!-- <h2 class="board-title">公告板</h2>
+  <div class="sb-app">
+    <div class="message-board">
+      <!-- <h2 class="board-title">公告板</h2>
 
     <div class="messages">
       <p-card
@@ -27,20 +22,13 @@
       </p-card>
     </div> -->
     <Poster></Poster>
-    <router-link to="/Calculator">
-      <Button
-        label="前往計算機"
-        style="
-          display: block;
-          width: 100%;
-          padding: 1rem;
-          font-size: 1.2rem;
-          border-radius: 8px;
-          cursor: pointer;
-          margin-top: 1rem;
-        "
-      />
-    </router-link>
+      <router-link to="/Calculator">
+        <Button
+          label="前往計算機"
+          class="message-button"
+        />
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -48,7 +36,7 @@
 import { ref } from "vue";
 import Card from "primevue/card";
 import Button from "primevue/button";
-import Poster from "./Poster.vue";
+import Poster from "@/components/Poster.vue";
 const messages = ref([
   {
     title: "系統維護通知",
@@ -71,7 +59,6 @@ const messages = ref([
 <style scoped>
 .message-board {
   padding: 20px;
-  max-width: 800px;
   margin: 0 auto;
 }
 
@@ -110,5 +97,22 @@ const messages = ref([
   text-align: right;
   font-size: 0.85em;
   color: #888;
+}
+
+.message-button {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 1rem;
+  background-color: #F5C332;
+  border: none;
+}
+
+.message-button:hover {
+  border: none !important;
+  background-color: #f8d469 !important; 
 }
 </style>

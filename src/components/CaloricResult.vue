@@ -13,21 +13,23 @@ import Tab from "primevue/tab";
 import TabPanels from "primevue/tabpanels";
 import TabPanel from "primevue/tabpanel";
 import ProgressBar from "primevue/progressbar";
+import { useProductStore } from "@/stores/productStore";
+import Button from "primevue/button";
 import type {
   nutrient,
   foodItem,
   weightedFoodItem,
 } from "../interfaces/Calculator";
-
+import Toast from "primevue/toast";
+import { useToast } from "primevue/usetoast";
+const productStore = useProductStore();
 const { t } = useI18n();
 const { locale } = useI18n();
+
+const toast = useToast();
 const props = defineProps({
   visible: {
     type: Boolean,
-    required: true,
-  },
-  selectedData: {
-    type: Array as () => foodItem[],
     required: true,
   },
   needData: {
@@ -36,15 +38,17 @@ const props = defineProps({
   },
 });
 const selectedValue = computed<nutrient>(() => {
-  if (!cartData.value) {
+  if (!productStore.selectedProducts) {
     return {
       calories: 0,
       carbohydrate: 0,
       protein: 0,
       fat: 0,
-    }; // cartData.value 為 undefined 時的預設值
+    };
   }
-  return cartData.value.reduce<nutrient>(
+  console.log("Selected Value");
+
+  return productStore.selectedProducts.reduce<nutrient>(
     (acc, item) => {
       acc.calories += item.calories * item.weight;
       acc.protein += item.protein * item.weight;
@@ -126,19 +130,23 @@ const selectedIntake = computed(() => {
     },
   ];
 });
-const emit = defineEmits(["update:visible", "updateSelectedData"]);
+const emit = defineEmits(["update:visible"]);
 const isVisible = ref(props.visible);
 // Close dialog and emit update event
 const closeDialog = () => {
   isVisible.value = false;
   emit("update:visible", false);
-  emit("updateSelectedData", selectedCartData.value);
   console.log("Close Result");
 };
-const cartData = ref<weightedFoodItem[]>();
-const selectedCartData = ref<weightedFoodItem[]>();
-
-// Watch for changes in the prop and update the local state
+const deleteButtonClicked = (row: weightedFoodItem) => {
+  productStore.updateRow(row);
+  toast.add({
+    severity: "warn",
+    summary: "",
+    detail: `${row.item} is removed`,
+    life: 2000,
+  });
+};
 watch(
   () => props.visible,
   (newValue) => {
@@ -146,25 +154,10 @@ watch(
     isVisible.value = newValue;
   }
 );
-// watch(cartData, (newSelection) => {
-//   console.log("Result Data updated");
-//   console.log(cartData.value);
-//   console.log(props.selectedData);
-// });
-const handle_percentage = (percent: number) => {
-  return Math.min(100, percent);
-};
+
 onMounted(() => {
   console.log("Result onMounted");
-  console.log(props.selectedData);
-
-  cartData.value = props.selectedData.map((item) => ({
-    ...item,
-    weight: 1,
-  }));
-  selectedCartData.value = cartData.value;
 });
-const value3 = ref(5);
 </script>
 
 <template>
@@ -175,6 +168,7 @@ const value3 = ref(5);
     @hide="closeDialog"
     style="overflow-x: scroll; width: 80%"
   >
+    <Toast position="top-center" baseZIndex="12" style="width: 20rem" />
     <Tabs value="0">
       <TabList>
         <Tab value="0">每餐所需營養素&百分比</Tab>
@@ -216,9 +210,7 @@ const value3 = ref(5);
                 >
                   {{ slotProps.data.mealUptakePercentage }}%
                   <ProgressBar
-                    :value="
-                      handle_percentage(slotProps.data.mealUptakePercentage)
-                    "
+                    :value="Math.min(100, slotProps.data.mealUptakePercentage)"
                     :class="{
                       'custom-progress-bar':
                         slotProps.data.mealUptakePercentage > 100,
@@ -268,9 +260,7 @@ const value3 = ref(5);
                   {{ slotProps.data.dailyUptakePercentage }}%
                 </span>
                 <ProgressBar
-                  :value="
-                    handle_percentage(slotProps.data.dailyUptakePercentage)
-                  "
+                  :value="Math.min(100, slotProps.data.mealUptakePercentage)"
                   :class="{
                     'custom-progress-bar':
                       slotProps.data.dailyUptakePercentage > 100,
@@ -285,29 +275,26 @@ const value3 = ref(5);
       </TabPanels>
     </Tabs>
 
-    <!-- <div>
-            <div class="display-row" v-for="(value, key) in selectedValue" :key="key">
-                <label>{{$t(key)}}:</label>
-                <span>{{ (value).toFixed(2) }} ({{ key === 'calories' ? 'kcal' : 'g' }})</span>
-            </div>
-        </div> -->
     <br />
     <DataTable
-      :value="cartData"
+      :value="productStore.selectedProducts"
       dataKey="id"
       tableStyle="min-width: 50rem"
-      v-model:selection="selectedCartData"
+      v-model:selection="productStore.selectedProducts"
     >
-      <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
-      <Column
-        :header="$t('調整份數')"
-        header-style="width: 12%"
-        style="min-width: 180px"
-      >
+      <Column :header="$t('移除')" header-style="width: 3rem">
+        <template #body="{ data }">
+          <Button
+            icon="pi pi-minus-circle"
+            @click="deleteButtonClicked(data)"
+          ></Button>
+        </template>
+      </Column>
+      <Column :header="$t('調整份數')" header-style="width: 9rem">
         <template #body="{ data }"
           ><div>
             <InputNumber
-              inputId="horizontal-buttons"
+              class="iptBtn-amount"
               v-model="data.weight"
               showButtons
               buttonLayout="horizontal"
@@ -388,5 +375,13 @@ const value3 = ref(5);
 .small-buttons .p-inputnumber-button.p-disabled {
   opacity: 0.6; /* 禁用时的透明度 */
   cursor: not-allowed;
+}
+
+.iptBtn-amount .p-inputnumber-increment-button {
+  width: 2rem;
+}
+
+.iptBtn-amount .p-inputnumber-decrement-button {
+  width: 2rem;
 }
 </style>

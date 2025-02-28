@@ -247,28 +247,9 @@ export const subclassOptions = ref<
   ],
 ]);
 
-
-watch(subclassOption, () => {
-  console.log("Subclass option changed!");
-});
-const filters = ref({
-  global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-  protein: { value: proteinRange, matchMode: FilterMatchMode.BETWEEN },
-  carbohydrate: { value: carbRange, matchMode: FilterMatchMode.BETWEEN },
-  calories: { value: caloriesRange, matchMode: FilterMatchMode.BETWEEN },
-  fat: { value: fatRange, matchMode: FilterMatchMode.BETWEEN },
-  subclass: { value: subclassRange, matchMode: FilterMatchMode.CONTAINS },
-});
-
-const clearFilter = () => {
-  proteinOption.value =
-    carbOption.value =
-    caloriesOption.value =
-    fatOption.value =
-    subclassOption.value =
-      undefined;
-};
-
+// const filters = ref({
+//   global: { value: null, matchMode: FilterMatchMode.CONTAINS },
+// });
 export {
   proteinOption,
   carbOption,
@@ -283,6 +264,4 @@ export {
   carbFilterOptions,
   caloriesFilterOptions,
   fatFilterOptions,
-  filters,
-  clearFilter,
 };

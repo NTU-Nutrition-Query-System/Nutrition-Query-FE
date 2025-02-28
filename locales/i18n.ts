@@ -1,9 +1,28 @@
+import type router from "@/router";
 import { createI18n } from "vue-i18n";
 
 // Import your translation files
 const messages = {
   en: {
     select_language: "Languages",
+    page: {
+      home: "Home",
+      calculator: "Calculator",
+      food: "Food",
+      about: "About",
+    },
+    page_title: {
+      calculator: "Calculator",
+      calculator_subtitle: "Enter your data to calculate the nutrients you need for a day and a meal (calories, protein, carbohydrates, fat)!",
+      about: "About us",
+    },
+    button: {
+      confirm: "Confirm",
+      clear: "Clear",
+      cancel: "Cancel",
+      close: "Close",
+      open: "Open",
+    },
     calculator_input: {
       title: "Calculate my nutrition requirements per meal/day",
       gender:{
@@ -32,6 +51,8 @@ const messages = {
       calculate: "Calculate my requirements!",
       choosing: "choosing me foods!",
       scroll_down: "Scroll down",
+      food_selection_prompt: "Select food from below, then tap ‘View’ on the right.",
+      view_selected_food: "View selected food and calculate nutrients.",
     },
     calories: "Calories(kcal)",
     protein: "Protein(g)",
@@ -45,6 +66,10 @@ const messages = {
     calculator_input_gender: "Gender",
     calculator_result_daily_title: "My Daily Nutrient Requirements",
     calculator_result_meal_title: "My Meal Nutrient Requirements",
+    calculator_result_title_my: "My ",
+    calculator_result_title_daily: "Daily",
+    calculator_result_title_meal: "Meal",
+    calculator_result_title_nutrient: " Nutrient Requirements",
     food_item: "Item",
     food_class: "Category",
     food_gram: "Grams",
@@ -60,6 +85,24 @@ const messages = {
   },
   ch: {
     select_language: "語言",
+    page: {
+      home: "首頁",
+      calculator: "營養計算機",
+      food: "食物",
+      about: "關於",
+    },
+    page_title: {
+      calculator: "營養計算機",
+      calculator_subtitle: "輸入資料，計算你一日及一餐所需的營養素(熱量、蛋白質、醣類、脂肪)喔！",
+      about: "關於我們",
+    },
+    button: {
+      confirm: "確認",
+      clear: "清除",
+      cancel: "取消",
+      close: "關閉",
+      open: "開啟",
+    },
     calculator_input: {
       title: "計算我的每日/每餐所需營養素",
       gender:{
@@ -86,6 +129,8 @@ const messages = {
       calculate: "計算我的營養需求！",
       choosing: "開始選取食物！",
       scroll_down: "請往下滑",
+      food_selection_prompt: "從下方選擇食物，再點按右方「查看」",
+      view_selected_food: "查看已選食物以及計算營養素",
     },
     calories: "熱量(大卡)",
     protein: "蛋白質(克)",
@@ -99,6 +144,10 @@ const messages = {
     calculator_input_gender: "性別",
     calculator_result_daily_title: "我的一日營養素需求",
     calculator_result_meal_title: "我的一餐營養素需求",
+    calculator_result_title_my: "我的",
+    calculator_result_title_daily: "一日",
+    calculator_result_title_meal: "一餐",
+    calculator_result_title_nutrient: "營養素需求",
     food_item: "品項",
     food_class: "分類",
     food_gram: "克數",

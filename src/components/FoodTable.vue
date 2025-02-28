@@ -13,53 +13,21 @@ import Card from "primevue/card";
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
 import Toast from "primevue/toast";
-import Dropdown from "@/primevue/dropdown";
-import Tag from "@/primevue/tag";
+import MultiSelect from "primevue/multiselect";
 import { useToast } from "primevue/usetoast";
-import { FilterMatchMode } from "@primevue/core/api";
-import type { foodItem } from "@/interfaces/Calculator";
-import { getTableData } from "@/apis/tableData";
-import { fakeProducts } from "@/assets/fakeData";
-import { idText } from "typescript";
-import {
-  proteinOption,
-  carbOption,
-  caloriesOption,
-  fatOption,
-  proteinRange,
-  carbRange,
-  caloriesRange,
-  fatRange,
-  proteinFilterOptions,
-  carbFilterOptions,
-  caloriesFilterOptions,
-  fatFilterOptions,
-  filters,
-  clearFilter,
-  subclassOption,
-  subclassOptions,
-} from "@/components/CategoriesData";
-const props = defineProps({
-  selectedProduct: {
-    type: Array as () => foodItem[],
-    required: true,
-  },
-  products: {
-    type: Array as () => foodItem[],
-    required: true,
-  },
-});
-const FoodTableSelectedProducts = ref<foodItem[]>([]);
-const dialogVisible = ref(false);
-const selectedClass = ref<number>(0);
-const emit = defineEmits(["updateSelectedData", "update:visible"]);
+import type { foodItem, filterOption } from "@/interfaces/Calculator";
+import { useProductStore } from "@/stores/productStore";
+import StandardSizeDialog from "./StandardSizeDialog.vue";
 
-const productsFilterByCategories = ref<foodItem[][]>([]);
+const dialogVisible = ref(false);
+
+const emit = defineEmits(["updateSelectedData", "update:visible"]);
+const productStore = useProductStore();
 
 const classClicked = (item: { image: string; name: string }, index: number) => {
   dialogVisible.value = true;
-  selectedClass.value = index;
-  FoodTableSelectedProducts.value = props.selectedProduct;
+  productStore.selectedClass = index;
+
   selectedCategory.value.image = item.image;
   selectedCategory.value.name = item.name;
 };
@@ -123,116 +91,52 @@ const selectedCategory = ref<{ name: string; image: string }>({
 });
 
 const closeDialog = () => {
-  emit("updateSelectedData", FoodTableSelectedProducts.value);
-  clearFilter();
-  console.log("Close Result");
-  console.log(FoodTableSelectedProducts.value);
+  productStore.clearFilters();
 };
 const itemSelect = (e: any) => {
-  console.log("item selected!");
+  console.log("Row clicked");
   console.log(e);
-  toast.add({
-    severity: "success",
-    summary: "",
-    detail: `${e?.data.item} is added`,
-    life: 1000,
-  });
+  const success = productStore.updateRow(e.data);
+  if (success) {
+    //Toast 提示
+    toast.add({
+      severity: "success",
+      summary: "",
+      detail: `${e?.data.item} is added`,
+      life: 1000,
+    });
+  } else {
+    toast.add({
+      severity: "warn",
+      summary: "",
+      detail: `${e?.data.item} is removed`,
+      life: 2000,
+    });
+  }
 };
+
 const computeNumberOfItem = computed(() => {
   return (index: number): number => {
-    if (!props.selectedProduct || !categories[index]) {
+    if (!productStore.selectedProducts || !categories[index]) {
       return 0; // 如果資料不存在，返回 0
     }
     if (categories[index].name === "全部") {
-      return props.selectedProduct.length;
+      return productStore.selectedProducts.length;
     }
-    return props.selectedProduct.filter(
+    return productStore.selectedProducts.filter(
       (product: foodItem) => product.class === categories[index].name
     ).length;
   };
 });
-const itemUnselect = (e: any) => {
-  console.log("item unselected!");
-  console.log(e);
-  toast.add({
-    severity: "warn",
-    summary: "",
-    detail: `${e?.data.item} is removed`,
-    life: 2000,
-  });
-};
-const selectAll = (e: any) => {
-  console.log("select all");
-  toast.add({
-    severity: "success",
-    detail: `${categories[selectedClass.value].name} is added`,
-    life: 2000,
-  });
-};
-const unselectAll = (e: any) => {
-  console.log("select all");
-  toast.add({
-    severity: "warn",
-    detail: `${categories[selectedClass.value].name} is removed`,
-    life: 2000,
-  });
-};
-const getColor = (value: number, min_val: number, max_val: number) => {
-  const min = min_val;
-  const max = max_val;
-
-  // Calculate the percentage between min and max values (0 to 1)
-  const percentage = (value - min) / (max - min);
-
-  // Define the color transitions based on the percentage
-  const colors = [
-    { r: 76, g: 232, b: 90 }, // #4CE85A
-    { r: 224, g: 220, b: 72 }, // #E0DC48
-    { r: 242, g: 123, b: 39 }, // #F27B27
-  ];
-
-  // Choose a color based on the percentage value
-  let r, g, b;
-  if (percentage <= 0.33) {
-    r = colors[0].r;
-    g = colors[0].g;
-    b = colors[0].b;
-  } else if (percentage <= 0.66) {
-    r = colors[1].r;
-    g = colors[1].g;
-    b = colors[1].b;
-  } else {
-    r = colors[2].r;
-    g = colors[2].g;
-    b = colors[2].b;
-  }
-
-  return `rgb(${r}, ${g}, ${b})`;
-};
 
 onMounted(() => {
   console.log("Food Table OnMounted");
-  console.log(props.products);
-  console.log(subclassOptions.value[0]);
-  console.log(proteinFilterOptions.value);
   const ret = categories.map((category) =>
-    props.products.filter((item) => item.class === category.name)
+    productStore.products.filter((item) => item.class === category.name)
   );
-  ret[ret.length - 1] = props.products;
-  productsFilterByCategories.value = ret;
+  ret[ret.length - 1] = productStore.products; //for the class 'All items'
+  productStore.productsFilterByCategories = ret;
 });
-watch(selectedClass, (nv) => {
-  console.log("Selected Class");
-  console.log(selectedClass.value);
-  console.log(subclassOptions.value[selectedClass.value]);
-  console.log(nv);
-});
-const closeFilter = () => {
-  console.log("Close filter");
-  //Clicked twice to close the filter
-  document.body.click(); // 自動關閉 filter popup
-  document.body.click();
-};
 </script>
 <template>
   <head> </head>
@@ -243,37 +147,72 @@ const closeFilter = () => {
       :modal="true"
       @hide="closeDialog"
       :header="selectedCategory.name"
-      style="overflow-x: auto; width: 90%"
+      style="overflow-x: auto; width: 90%;"
+      :dismissableMask="true"
     >
       <Toast position="top-center" baseZIndex="12" style="width: 20rem" />
 
       <DataTable
-        v-model:selection="FoodTableSelectedProducts"
-        :key="props.selectedProduct"
-        :value="productsFilterByCategories[selectedClass]"
+        :selection="productStore.selectedProducts"
+        :value="productStore.filteredData"
         :globalFilterFields="['item', 'class']"
-        :filters="filters"
+        :filters="productStore.filters"
         dataKey="id"
         tableStyle="min-width: 50rem"
-        filterDisplay="menu"
         paginator
         :rows="10"
-        @row-select="itemSelect"
-        @row-unselect="itemUnselect"
-        @row-select-all="selectAll"
-        @row-unselect-all="unselectAll"
+        @row-click="itemSelect"
         rowHover
+        highlightOnSelect
       >
         <template #header>
-          <div>
-            <IconField>
-              <InputIcon class="pi pi-search" style="margin-right: 1rem" />
-              <InputText
-                v-model="filters['global'].value"
+          <div style="display: flex align-items-center">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <IconField>
+                <InputIcon class="pi pi-search" style="margin-right: 1rem" />
+                <InputText
+                v-model="productStore.filters['global'].value"
                 placeholder="Keyword Search"
-              />
-            </IconField>
+                />
+              </IconField>
+
+              <StandardSizeDialog />
+            </div>
+            
+            <!-- <MultiSelect
+              v-model="productStore.selectedOptions"
+              :options="productStore.filterOptions"
+              optionLabel="name"
+              optionGroupLabel="name"
+              :optionGroupChildren="['states']"
+              :showToggleAll="false"
+              showClear
+            ></MultiSelect> -->
+            <!-- <div class="tags-container">
+              <span
+                v-for="(option, index) in productStore.selectedOptions"
+                :key="index"
+                class="tag"
+                @click="productStore.removeTag(index)"
+              >
+                <Button :label="option.name" icon="pi pi-times" style="margin-left: 0.25rem; padding: 0.5rem"></Button>
+              </span>
+              <Button
+              :label="$t('button.clear')"
+              icon="pi pi-times"
+              style="margin-left: 0.25rem; padding: 0.5rem"
+              @click="productStore.selectedOptions = undefined"
+            />
+            
+            </div> -->
+            <!-- <Button
+              :label="$t('button.confirm')"
+              icon="pi pi-check"
+              style="margin-right: 0rem"
+              @click="dialogVisible = false"
+            />  -->
           </div>
+          <div></div>
         </template>
 
         <Column selectionMode="multiple" style="width: 0.1%"></Column>
@@ -286,22 +225,10 @@ const closeFilter = () => {
           field="subclass"
           :header="$t('food_class')"
           style="width: 1%"
-          :filter="true"
-          filterField="subclass"
           :showFilterMatchModes="false"
           :showApplyButton="false"
           :showClearButton="false"
         >
-          <template #filter="{ field, filterModel, filterCallback }">
-            <Dropdown
-              v-model="subclassOption"
-              :options="subclassOptions[selectedClass]"
-              optionLabel="name"
-              placeholder="Any"
-              @change="closeFilter"
-              showClear
-            />
-          </template>
         </Column>
         <Column
           field="gram"
@@ -322,7 +249,7 @@ const closeFilter = () => {
           <template #body="{ data }">
             <div
               :style="{
-                backgroundColor: getColor(data.calories, 0, 550),
+                backgroundColor: productStore.getColor(data.calories, 0, 550),
                 color: 'black',
                 padding: '10px',
                 borderRadius: '5px',
@@ -331,16 +258,6 @@ const closeFilter = () => {
             >
               {{ data.calories }}
             </div>
-          </template>
-          <template #filter="{ field, filterModel, filterCallback }">
-            <Dropdown
-              v-model="caloriesOption"
-              :options="caloriesFilterOptions"
-              optionLabel="name"
-              placeholder="Any"
-              @change="closeFilter"
-              showClear
-            />
           </template>
         </Column>
         <Column
@@ -357,7 +274,11 @@ const closeFilter = () => {
           <template #body="{ data }">
             <div
               :style="{
-                backgroundColor: getColor(data.carbohydrate, 0, 50),
+                backgroundColor: productStore.getColor(
+                  data.carbohydrate,
+                  0,
+                  50
+                ),
                 color: 'black',
                 padding: '10px',
                 borderRadius: '5px',
@@ -367,24 +288,11 @@ const closeFilter = () => {
               {{ data.carbohydrate }}
             </div>
           </template>
-          <template #filter="{ field, filterModel, filterCallback }">
-            <Dropdown
-              v-model="carbOption"
-              :options="carbFilterOptions"
-              optionLabel="name"
-              placeholder="Any"
-              @change="closeFilter"
-              showClear
-            />
-          </template>
         </Column>
         <Column
           sortable
           field="protein"
           :header="$t('protein')"
-          :filter="true"
-          filterField="protein"
-          :showFilterMatchModes="false"
           :showApplyButton="false"
           :showClearButton="false"
           style="width: 0.5%"
@@ -392,7 +300,7 @@ const closeFilter = () => {
           <template #body="{ data }">
             <div
               :style="{
-                backgroundColor: getColor(data.protein, 0, 25),
+                backgroundColor: productStore.getColor(data.protein, 0, 25),
                 color: 'black',
                 padding: '10px',
                 borderRadius: '5px',
@@ -401,22 +309,6 @@ const closeFilter = () => {
             >
               {{ data.protein }}
             </div>
-          </template>
-          <template #filter="{ field, filterModel, filterCallback }">
-            <Dropdown
-              v-model="proteinOption"
-              :options="proteinFilterOptions"
-              optionLabel="name"
-              placeholder="Any"
-              @change="closeFilter"
-              showClear
-            >
-              <template #option="slotProps">
-                <div class="flex items-center gap-2">
-                  <span>{{ slotProps.option.name }}</span>
-                </div>
-              </template>
-            </Dropdown>
           </template>
         </Column>
         <Column
@@ -433,7 +325,7 @@ const closeFilter = () => {
           <template #body="{ data }">
             <div
               :style="{
-                backgroundColor: getColor(data.fat, 0, 25),
+                backgroundColor: productStore.getColor(data.fat, 0, 25),
                 color: 'black',
                 padding: '10px',
                 borderRadius: '5px',
@@ -442,22 +334,6 @@ const closeFilter = () => {
             >
               {{ data.fat }}
             </div>
-          </template>
-          <template #filter="{ field, filterModel, filterCallback }">
-            <Dropdown
-              v-model="fatOption"
-              :options="fatFilterOptions"
-              optionLabel="name"
-              placeholder="Any"
-              @change="closeFilter"
-              showClear
-            >
-              <template #option="slotProps">
-                <div class="flex items-center gap-2">
-                  <span>{{ slotProps.option.name }}</span>
-                </div>
-              </template>
-            </Dropdown>
           </template>
         </Column>
 
@@ -475,7 +351,11 @@ const closeFilter = () => {
           <template #body="{ data }">
             <div
               :style="{
-                backgroundColor: getColor(data.dietary_fibre, 0, 25),
+                backgroundColor: productStore.getColor(
+                  data.dietary_fibre,
+                  0,
+                  25
+                ),
                 color: 'black',
                 padding: '10px',
                 borderRadius: '5px',
@@ -487,6 +367,15 @@ const closeFilter = () => {
           </template>
         </Column>
       </DataTable>
+
+      <template #footer>
+        <Button
+              :label="$t('button.confirm')"
+              icon="pi pi-check"
+              style="margin-right: 0rem; margin-top: 1rem; background-color: var(--primary-color); border: none; color: black"
+              @click="dialogVisible = false"
+            />
+    </template>
     </Dialog>
   </div>
   <div class="card-container">
@@ -496,12 +385,12 @@ const closeFilter = () => {
       @click="classClicked(item, index)"
     >
       <template #content>
-        <div style="width: 100%; margin: auto; position: relative">
+        <div style="width: 100%; position: relative">
           <OverlayBadge
             v-if="computeNumberOfItem(index) > 0"
             :value="computeNumberOfItem(index)"
             size="xlarge"
-            style="position: absolute; top: -6%; right: -6%"
+            style="position: absolute; right: 0"
           />
           <img
             :src="item.image"
@@ -509,21 +398,34 @@ const closeFilter = () => {
             style="object-fit: cover; justify-content: center"
           />
         </div>
-      </template>
-      <template #footer>
-        <div
-          style="
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-          "
-        >
-          <div style="font-size: 20px">
+        <div style="display: flex">
+          <label
+            style="
+              width: 40%;
+              margin: 0;
+              margin-left: 5%;
+              margin-right: 5%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              text-align: center;
+              font-size: 20px;
+            "
+          >
             {{ categories[index].name }}
-          </div>
+          </label>
           <Button
-            style="width: 30%"
-            label="Open"
+            style="
+              width: 50%;
+              height: 4.5rem;
+              border-radius: 0;
+              border: 0;
+              margin: 0 0;
+              font-size: 20px;
+              color: #333333;
+              background-color:  #F5C332;;
+            "
+            :label="$t('button.open')"
             @click="classClicked(item, index)"
           />
         </div>
@@ -533,6 +435,26 @@ const closeFilter = () => {
 </template>
 
 <style>
+.p-dialog .p-dialog-title {
+  text-align: center;
+  flex-grow: 1;
+  line-height: 120%;
+  font-size: 22px;
+  letter-spacing: -1px;
+}
+
+.p-dialog .p-dialog-header {
+  padding: 10px;
+}
+
+.p-datatable-header-cell[role="columnheader"] {
+  background-color: var(--primary-color);
+}
+
+.p-dialog-footer {
+  padding-bottom: 10px !important;
+}
+
 .disabled-datatable {
   pointer-events: none;
   opacity: 0.5;
@@ -549,6 +471,10 @@ const closeFilter = () => {
   border-radius: 8px;
   cursor: pointer;
   transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.food-class-card .p-card-body {
+  padding: 0rem;
 }
 
 .food-class-card:hover {
