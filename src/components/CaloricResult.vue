@@ -166,13 +166,12 @@ onMounted(() => {
     :header="$t('selection_result_title')"
     :modal="true"
     @hide="closeDialog"
-    style="overflow-x: scroll; width: 80%"
-  >
+    style="overflow-x: scroll; width: 80%">
     <Toast position="top-center" :baseZIndex=12 style="width: 20rem" />
     <Tabs value="0">
       <TabList>
-        <Tab value="0">每餐所需營養素&百分比</Tab>
-        <Tab value="1">每日所需營養素</Tab>
+        <Tab value="0">{{$t('selection_meal_requirement')}}</Tab>
+        <Tab value="1">{{$t('selection_daily_requirement')}}</Tab>
       </TabList>
       <TabPanels>
         <TabPanel value="0">
@@ -180,119 +179,127 @@ onMounted(() => {
             :value="selectedIntake"
             dataKey="id"
             tableStyle="min-width: 50rem"
-            class="custom-divider"
-          >
+            class="custom-divider">
             <Column
               field="nutrition"
-              :header="$t('selection_nutrition')"
-            ></Column>
-            <Column
-              field="intake"
-              :header="$t('selection_intake')"
-              class="first-column-divider"
-            ></Column>
+              :header="$t('selection_nutrition')">
+            </Column>
             <Column
               field="mealRequirement"
               :header="$t('selection_meal_requirement')"
-            ></Column>
+              class="first-column-divider">
+            </Column>
+            <Column
+              field="intake"
+              :header="$t('selection_intake')"
+            </Column>
             <Column
               field="mealUptakePercentage"
-              :header="$t('selection_meal_uptake_percentage')"
-            >
+              :header="$t('selection_meal_uptake_percentage')">
               <template #body="slotProps">
                 <span
-                  :style="{
-                    color:
-                      parseFloat(slotProps.data.mealUptakePercentage) > 100
-                        ? 'red'
-                        : 'green',
-                  }"
-                >
-                  {{ slotProps.data.mealUptakePercentage }}%
-                  <ProgressBar
-                    :value="Math.min(100, slotProps.data.mealUptakePercentage)"
-                    :class="{
-                      'custom-progress-bar':
-                        slotProps.data.mealUptakePercentage > 100,
-                    }"
-                  >
-                    {{ slotProps.data.mealUptakePercentage }}%
-                  </ProgressBar>
+                  style="display: flex; align-items: center; justify-content: center;"
+                  :class="{
+                    'precentBar-low-text':
+                    slotProps.data.mealUptakePercentage < 85,
+                    'precentBar-medium-text':
+                    slotProps.data.mealUptakePercentage >= 85 &&
+                    slotProps.data.mealUptakePercentage <= 115,
+                    'precentBar-high-text':
+                    slotProps.data.mealUptakePercentage > 115,
+                }">
+                {{ slotProps.data.mealUptakePercentage }}%
                 </span>
+                <ProgressBar
+                  :value="Math.min(100, slotProps.data.mealUptakePercentage)"
+                  :class="{
+                    'precentBar-low':
+                    slotProps.data.mealUptakePercentage < 85,
+                    'precentBar-medium':
+                    slotProps.data.mealUptakePercentage >= 85 &&
+                    slotProps.data.mealUptakePercentage <= 115,
+                    'precentBar-high':
+                    slotProps.data.mealUptakePercentage > 115,
+                }"/>
               </template>
             </Column>
-          </DataTable></TabPanel
-        >
+          </DataTable>
+        </TabPanel>
         <TabPanel value="1">
           <DataTable
             :value="selectedIntake"
             dataKey="id"
             tableStyle="min-width: 50rem"
-            class="custom-divider"
-          >
+            class="custom-divider">
             <Column
               field="nutrition"
-              :header="$t('selection_nutrition')"
-            ></Column>
-            <Column
-              field="intake"
-              :header="$t('selection_intake')"
-              class="first-column-divider"
-            ></Column>
-
+              :header="$t('selection_nutrition')">
+            </Column>
             <Column
               field="dailyRequirement"
               :header="$t('selection_daily_requirement')"
-            ></Column>
+              class="first-column-divider">
+            </Column>
+            <Column
+              field="intake"
+              :header="$t('selection_intake')"
+            </Column>
             <Column
               field="dailyUptakePercentage"
-              :header="$t('selection_daily_uptake_percentage')"
-            >
+              :header="$t('selection_daily_uptake_percentage')">
               <template #body="slotProps">
                 <span
-                  :style="{
-                    color:
-                      parseFloat(slotProps.data.dailyUptakePercentage) > 100
-                        ? 'red'
-                        : 'green',
-                  }"
-                >
-                  {{ slotProps.data.dailyUptakePercentage }}%
+                  style="display: flex; align-items: center; justify-content: center;"
+                  :class="{
+                    'precentBar-low-text':
+                    slotProps.data.dailyUptakePercentage < 85,
+                    'precentBar-medium-text':
+                    slotProps.data.dailyUptakePercentage >= 85 &&
+                    slotProps.data.dailyUptakePercentage <= 115,
+                    'precentBar-high-text':
+                    slotProps.data.dailyUptakePercentage > 115,
+                }">
+                {{ slotProps.data.dailyUptakePercentage }}%
                 </span>
                 <ProgressBar
-                  :value="Math.min(100, slotProps.data.mealUptakePercentage)"
+                  :value="Math.min(100, slotProps.data.dailyUptakePercentage)"
                   :class="{
-                    'custom-progress-bar':
-                      slotProps.data.dailyUptakePercentage > 100,
-                  }"
-                >
-                  {{ slotProps.data.dailyUptakePercentage }}%
-                </ProgressBar>
+                    'precentBar-low':
+                    slotProps.data.dailyUptakePercentage < 85,
+                    'precentBar-medium':
+                    slotProps.data.dailyUptakePercentage >= 85 &&
+                    slotProps.data.dailyUptakePercentage <= 115,
+                    'precentBar-high':
+                    slotProps.data.dailyUptakePercentage > 115,
+                }"/>
               </template>
             </Column>
           </DataTable>
         </TabPanel>
       </TabPanels>
     </Tabs>
-
-    <br />
+    <br/>
     <DataTable
       :value="productStore.selectedProducts"
       dataKey="id"
       tableStyle="min-width: 50rem"
-      v-model:selection="productStore.selectedProducts"
-    >
+      v-model:selection="productStore.selectedProducts">
       <Column :header="$t('移除')" header-style="width: 3rem">
         <template #body="{ data }">
           <Button
             icon="pi pi-minus-circle"
             @click="deleteButtonClicked(data)"
-          ></Button>
+            style="  
+              border: none;
+              color: #444444;
+              background-color: #F5C332
+            "
+          />
         </template>
       </Column>
       <Column :header="$t('調整份數')" header-style="width: 9rem">
-        <template #body="{ data }"
-          ><div>
+        <template #body="{ data }">
+          <div>
             <InputNumber
               class="iptBtn-amount"
               v-model="data.weight"
@@ -305,38 +312,38 @@ onMounted(() => {
               fluid
               incrementButtonClass="small-buttons"
             />
-          </div> </template
-      ></Column>
+          </div>
+        </template>
+      </Column>
       <Column field="item" :header="$t('food_item')">
-        <template #body="{ data }"
-          ><div>{{ data.item }}</div>
-        </template></Column
-      >
-      <Column field="gram" :header="$t('food_gram')"
-        ><template #body="{ data }"
-          ><div>{{ (data.gram * data.weight).toFixed(0) }}</div>
-        </template></Column
-      >
-      <Column field="calories" :header="$t('calories')"
-        ><template #body="{ data }"
-          ><div>{{ (data.calories * data.weight).toFixed(0) }}</div>
-        </template></Column
-      >
-      <Column field="carbohydrate" :header="$t('carbohydrate')"
-        ><template #body="{ data }"
-          ><div>{{ (data.carbohydrate * data.weight).toFixed(1) }}</div>
-        </template></Column
-      >
-      <Column field="protein" :header="$t('protein')"
-        ><template #body="{ data }"
-          ><div>{{ (data.protein * data.weight).toFixed(1) }}</div>
-        </template></Column
-      >
-      <Column field="fat" :header="$t('fat')"
-        ><template #body="{ data }"
-          ><div>{{ (data.fat * data.weight).toFixed(1) }}</div>
-        </template></Column
-      >
+        <template #body="{ data }">
+          <div>{{ data.item }}</div>
+        </template>
+      </Column>
+      <Column field="gram" :header="$t('food_gram')">
+        <template #body="{ data }">
+          <div>{{ (data.gram * data.weight).toFixed(0) }}</div>
+        </template>
+      </Column>
+      <Column field="calories" :header="$t('calories')">
+        <template #body="{ data }">
+          <div>{{ (data.calories * data.weight).toFixed(0) }}</div>
+        </template></Column>
+      <Column field="carbohydrate" :header="$t('carbohydrate')">
+        <template #body="{ data }">
+          <div>{{ (data.carbohydrate * data.weight).toFixed(1) }}</div>
+        </template>
+      </Column>
+      <Column field="protein" :header="$t('protein')">
+        <template #body="{ data }">
+          <div>{{ (data.protein * data.weight).toFixed(1) }}</div>
+        </template>
+      </Column>
+      <Column field="fat" :header="$t('fat')">
+        <template #body="{ data }">
+          <div>{{ (data.fat * data.weight).toFixed(1) }}</div>
+        </template>
+      </Column>
     </DataTable>
   </Dialog>
 </template>
@@ -351,9 +358,43 @@ onMounted(() => {
 .custom-divider .first-column-divider {
   border-right: 2px solid #dee2e6;
 }
-.custom-progress-bar .p-progressbar-value {
+
+.precentBar-low-text {
+  color: #FF8E0A;
+}
+
+.precentBar-low .p-progressbar-label {
+  color: #FF8E0A;
+}
+
+.precentBar-low .p-progressbar-value {
+  background-color: #FF8E0A;
+}
+
+.precentBar-medium-text {
+  color: #28a745;
+}
+
+.precentBar-medium .p-progressbar-label {
+  color: #28a745;
+}
+
+.precentBar-medium .p-progressbar-value{
+  background-color: #28a745;
+}
+
+.precentBar-high-text {
+  color: #ff4444;
+}
+
+.precentBar-high .p-progressbar-label {
+  color: #ff4444;
+}
+
+.precentBar-high .p-progressbar-value {
   background-color: #ff4444;
 }
+
 .p-dialog .p-dialog-title {
   font-family: "Inter", sans-serif !important;
   /* font-size: 2em; */
