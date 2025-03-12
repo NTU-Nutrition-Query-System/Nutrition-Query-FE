@@ -22,6 +22,7 @@ const messages = {
       cancel: "Cancel",
       close: "Close",
       open: "Open",
+      toCSV: "Download as CSV",
     },
     calculator_input: {
       title: "Calculate my nutrition requirements per meal/day",
@@ -102,6 +103,7 @@ const messages = {
       cancel: "取消",
       close: "關閉",
       open: "開啟",
+      toCSV: "下載成CSV檔",
     },
     calculator_input: {
       title: "計算我的每日/每餐所需營養素",

@@ -278,7 +278,18 @@ onMounted(() => {
         </TabPanel>
       </TabPanels>
     </Tabs>
-    <br/>
+    <Button 
+      style="  
+      margin-bottom: 1rem;
+      border: none;
+      color: #444444;
+      background-color: #F5C332;
+      width: 13rem"
+    >
+      <i class="pi pi-download"/>
+      {{$t('button.toCSV')}} 
+    </Button>
+    
     <DataTable
       :value="productStore.selectedProducts"
       dataKey="id"
@@ -297,14 +308,13 @@ onMounted(() => {
           />
         </template>
       </Column>
-      <Column :header="$t('調整份數')" header-style="width: 9rem">
+      <Column :header="$t('調整份數')" header-style="width: 6.2rem">
         <template #body="{ data }">
           <div>
             <InputNumber
               class="iptBtn-amount"
               v-model="data.weight"
               showButtons
-              buttonLayout="horizontal"
               :step=0.5
               :max=5
               :min=0.5
@@ -419,10 +429,16 @@ onMounted(() => {
 }
 
 .iptBtn-amount .p-inputnumber-increment-button {
-  width: 2rem;
+  width: 1.4rem;
+  color: #ffffff;
+  background-color: #F5C332;
+  border-radius: 3px;
 }
 
 .iptBtn-amount .p-inputnumber-decrement-button {
-  width: 2rem;
+  width: 1.4rem;
+  color: #ffffff;
+  background-color: #F5C332;
+  border-radius: 3px;
 }
 </style>
