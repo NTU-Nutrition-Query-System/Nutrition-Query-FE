@@ -315,41 +315,29 @@ onMounted(() => {
     </div> 
   </section>
 
-  <!--
-  A fixed positioned overlay badge component in the bottom-right corner of the screen
-  with a circular shape.
-  @property {string} value - Number displayed in the badge.
-  -->
-  <OverlayBadge class="overlaybadge-calc-btn" style="
-      position: fixed;
-      bottom: 1.2rem;
-      right: 1.2rem;
-      z-index: 1000;
-      margin-right: 1rem;
-    " :value="productStore.selectedProducts.length" size="large" severity="danger"
-    v-if="productStore.selectedProducts.length > 0">
-    <Button icon="pi pi-calculator" :label="$t('calculate')" class="calculator-btn" style="
-        display: flex;
-        flex-direction: column;
-        border-radius: 25px;
-        height: 4.5rem;
-        width: 4.5rem;
-      " @click="calculate" />
-  </OverlayBadge>
-  <Button v-else-if="calculatorDisplay" class="calculator-btn" icon="pi pi-calculator" :label="$t('calculate')" style="
-      position: fixed;
-      bottom: 1.2rem;
-      right: 1.2rem;
-      z-index: 1000;
-      margin-right: 1rem;
-      display: flex;
-      flex-direction: column;
-      border-radius: 25px;
-      height: 4.5rem;
-      width: 4.5rem;
-    " @click="calculate" />
-
+  
   <div ref="targetSection" v-if="foodTableLoaded && foodTableDisplay">    
+    <!--
+    A fixed positioned overlay badge component in the bottom-right corner of the screen
+    with a circular shape.
+    @property {string} value - Number displayed in the badge.
+    -->
+    <OverlayBadge v-if="productStore.selectedProducts.length > 0"
+      class="overlaybadge-calc-btn"
+      size="large" severity="danger"
+      style="position: fixed;
+        bottom: 1.2rem;
+        right: 1.2rem;
+        z-index: 1000;
+        margin-right: 1rem;"
+      :value="productStore.selectedProducts.length" 
+    >
+      <Button 
+        class="calculator-btn"
+        icon="pi pi-calculator" 
+        :label="$t('calculate')" 
+        @click="calculate" />
+    </OverlayBadge>
     <FoodTable />   
   </div>
   <CaloricResult v-if="showResult" v-model:visible="showResult" v-model:needData="dailyNeeds"></CaloricResult>
@@ -465,6 +453,16 @@ onMounted(() => {
   transform: scale(1.05);
 }
 
+.calculator-btn {
+  display: flex;
+  flex-direction: column;
+  border-radius: 25px !important;
+  height: 5rem;
+  width:  5rem;
+  border: none !important;
+  color: #444444 !important;
+  background-color: #F5C332 !important;
+}
 .calculator-btn .p-button-icon {
   font-size: 2rem;
   margin-right: 0 !important;

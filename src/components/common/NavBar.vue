@@ -127,7 +127,7 @@ const handleClick = (index: number) => {
 .sb-top-bar-frame .sb-top-bar {
   padding: 0 15px;
   position: relative;
-  height: 120px;
+  height: 80px;
   width: 100%;
   display: flex;
   justify-content: space-between;
