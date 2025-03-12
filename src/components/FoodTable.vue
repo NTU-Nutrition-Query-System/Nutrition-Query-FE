@@ -150,7 +150,7 @@ onMounted(() => {
       style="overflow-x: auto; width: 90%;"
       :dismissableMask="true"
     >
-      <Toast position="top-center" baseZIndex="12" style="width: 20rem" />
+      <Toast position="top-center" :baseZIndex=12 style="width: 20rem" />
 
       <DataTable
         :selection="productStore.selectedProducts"

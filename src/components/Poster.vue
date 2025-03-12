@@ -118,11 +118,11 @@
             <h3 class="sb-mb-15">葡萄糖探測之旅</h3>
             <!-- filepath: /e:/code/NTU-Nutrition-DB/Nutrition_Query_FE/src/components/Poster.vue -->
             <div class="sb-text sb-mb-30">
-              <font-awesome-icon :icon="['fas', 'user']" class="fa-icon"      style="width: 1.5rem;" />  對象： 國高中學生   <br>
+              <font-awesome-icon :icon="['fas', 'user']" class="fa-icon"      style="width: 1.5rem;" /> 對象： 國高中學生<br>
               <font-awesome-icon :icon="['fas', 'users']" class="fa-icon"     style="width: 1.5rem;" /> 人數： 每場20~24人<br>
-              <font-awesome-icon :icon="['fas', 'school']" class="fa-icon"    style="width: 1.5rem;" /> 場次： 國高中各一場 <br>
-              <font-awesome-icon :icon="['fas', 'calendar']" class="fa-icon"  style="width: 1.5rem;" /> 日期： 民國114~115  <br>
-              <font-awesome-icon :icon="['fas', 'clock']" class="fa-icon"     style="width: 1.5rem;" /> 時間： 09:00-16:30  <br>
+              <font-awesome-icon :icon="['fas', 'school']" class="fa-icon"    style="width: 1.5rem;" /> 場次： 國高中各一場<br>
+              <font-awesome-icon :icon="['fas', 'calendar']" class="fa-icon"  style="width: 1.5rem;" /> 日期： 民國114~115<br>
+              <font-awesome-icon :icon="['fas', 'clock']" class="fa-icon"     style="width: 1.5rem;" /> 時間： 09:00-16:30<br>
             </div>
           </div>
         </div>

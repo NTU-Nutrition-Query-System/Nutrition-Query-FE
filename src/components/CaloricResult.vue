@@ -168,7 +168,7 @@ onMounted(() => {
     @hide="closeDialog"
     style="overflow-x: scroll; width: 80%"
   >
-    <Toast position="top-center" baseZIndex="12" style="width: 20rem" />
+    <Toast position="top-center" :baseZIndex=12 style="width: 20rem" />
     <Tabs value="0">
       <TabList>
         <Tab value="0">每餐所需營養素&百分比</Tab>
@@ -298,10 +298,10 @@ onMounted(() => {
               v-model="data.weight"
               showButtons
               buttonLayout="horizontal"
-              :step="0.5"
-              max="5"
-              min="0.5"
-              maxFractionDigits="1"
+              :step=0.5
+              :max=5
+              :min=0.5
+              :maxFractionDigits=1
               fluid
               incrementButtonClass="small-buttons"
             />
