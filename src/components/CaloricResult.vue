@@ -182,17 +182,14 @@ onMounted(() => {
             class="custom-divider">
             <Column
               field="nutrition"
-              :header="$t('selection_nutrition')">
-            </Column>
+              :header="$t('selection_nutrition')"/>
             <Column
               field="mealRequirement"
               :header="$t('selection_meal_requirement')"
-              class="first-column-divider">
-            </Column>
+              class="first-column-divider"/>
             <Column
               field="intake"
-              :header="$t('selection_intake')"
-            </Column>
+              :header="$t('selection_intake')"/>
             <Column
               field="mealUptakePercentage"
               :header="$t('selection_meal_uptake_percentage')">
@@ -233,17 +230,14 @@ onMounted(() => {
             class="custom-divider">
             <Column
               field="nutrition"
-              :header="$t('selection_nutrition')">
-            </Column>
+              :header="$t('selection_nutrition')"/>
             <Column
               field="dailyRequirement"
               :header="$t('selection_daily_requirement')"
-              class="first-column-divider">
-            </Column>
+              class="first-column-divider"/>
             <Column
               field="intake"
-              :header="$t('selection_intake')"
-            </Column>
+              :header="$t('selection_intake')"/>
             <Column
               field="dailyUptakePercentage"
               :header="$t('selection_daily_uptake_percentage')">
