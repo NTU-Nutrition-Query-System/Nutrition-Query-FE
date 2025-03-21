@@ -90,7 +90,7 @@ const messages = {
       home: "首頁",
       calculator: "營養計算機",
       food: "食物",
-      about: "關於",
+      about: "關於我們",
     },
     page_title: {
       calculator: "營養計算機",
