@@ -6,10 +6,12 @@ import type {
   weightedFoodItem,
 } from "@/interfaces/Calculator";
 import { FilterMatchMode } from "@primevue/core/api";
+import { faSlideshare } from "@fortawesome/free-brands-svg-icons";
 export const useProductStore = defineStore("productStore", () => {
   const products = ref<weightedFoodItem[]>([]);
   const selectedProducts = ref<weightedFoodItem[]>([]);
   const customProducts = ref<weightedFoodItem[]>([]);
+  const customProductsCount = ref<number>(0);
   const foodTableLoaded = ref(false);
   const selectedOptions = ref();
   const filterOptions = ref([
@@ -72,6 +74,7 @@ export const useProductStore = defineStore("productStore", () => {
     foodTableLoaded.value = true;
     products.value.forEach((product) => {
       product.weight = 1.0;
+      product.is_customized = false;
     });
   };
   const updateRow = (row: weightedFoodItem) => {
@@ -88,7 +91,9 @@ export const useProductStore = defineStore("productStore", () => {
         (item: any) => item.id !== row.id
       );
       console.log("item unselected!");
-
+      if (row.is_customized === true) {
+        customProductsCount.value--;
+      }
       // 重新賦值，觸發重新渲染
       selectedProducts.value = [...selectedProducts.value];
       return false;
@@ -130,6 +135,7 @@ export const useProductStore = defineStore("productStore", () => {
     selectedOptions.value.splice(index, 1);
   };
   const selectedClass = ref<number>(0);
+
   const productsFilterByCategories = ref<foodItem[][]>([]);
   // Clean the search field
   const clearFilters = () => {
@@ -200,6 +206,7 @@ export const useProductStore = defineStore("productStore", () => {
 
     products,
     selectedProducts,
+    customProductsCount,
     foodTableLoaded,
     filters,
     selectedOptions,

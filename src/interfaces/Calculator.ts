@@ -19,6 +19,7 @@ export interface foodItem {
 
 export interface weightedFoodItem extends foodItem {
   weight: number;
+  is_customized: boolean;
 }
 export interface filterOption {
   class: "protein" | "calories" | "carbohydrate" | "fat" | "dietary_fibre"; // 可以擴展更多類型
