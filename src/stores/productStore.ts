@@ -9,6 +9,7 @@ import { FilterMatchMode } from "@primevue/core/api";
 export const useProductStore = defineStore("productStore", () => {
   const products = ref<weightedFoodItem[]>([]);
   const selectedProducts = ref<weightedFoodItem[]>([]);
+  const customProducts = ref<weightedFoodItem[]>([]);
   const foodTableLoaded = ref(false);
   const selectedOptions = ref();
   const filterOptions = ref([

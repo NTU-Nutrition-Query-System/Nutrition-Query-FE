@@ -23,6 +23,8 @@ const messages = {
       close: "Close",
       open: "Open",
       toCSV: "Download as CSV",
+      RecommendMeal: "Recommend Meal",
+      addCustomFood: "Add Custom Food",
     },
     calculator_input: {
       title: "Calculate my nutrition requirements per meal/day",
@@ -104,6 +106,8 @@ const messages = {
       close: "關閉",
       open: "開啟",
       toCSV: "下載成CSV檔",
+      RecommendMeal: "推薦餐點",
+      addCustomFood: "新增自訂食物",
     },
     calculator_input: {
       title: "計算我的每日/每餐所需營養素",

@@ -18,6 +18,7 @@ import { useToast } from "primevue/usetoast";
 import type { foodItem, filterOption } from "@/interfaces/Calculator";
 import { useProductStore } from "@/stores/productStore";
 import StandardSizeDialog from "./StandardSizeDialog.vue";
+import CustomFoodWindow from "./CustomFoodWindow.vue";
 
 const dialogVisible = ref(false);
 
@@ -80,6 +81,10 @@ const categories = [
     image: new URL("@/assets/imgs/ClassDressing.jpg", import.meta.url).href,
   },
   {
+    name: "客製化",
+    image: new URL("@/assets/imgs/girl_square.png", import.meta.url).href,
+  },
+  {
     name: "全部",
     image: new URL("@/assets/imgs/girl_square.png", import.meta.url).href,
   },
@@ -121,6 +126,10 @@ const computeNumberOfItem = computed(() => {
       return 0; // 如果資料不存在，返回 0
     }
     if (categories[index].name === "全部") {
+      console.log("All items: ", index, categories[index]);
+      return productStore.selectedProducts.length;
+    } else if (categories[index].name === "客製化") {
+      console.log("Custom: ", index, categories[index]);
       return productStore.selectedProducts.length;
     }
     return productStore.selectedProducts.filter(
@@ -137,6 +146,8 @@ onMounted(() => {
   ret[ret.length - 1] = productStore.products; //for the class 'All items'
   productStore.productsFilterByCategories = ret;
 });
+
+
 </script>
 <template>
   <head> </head>
@@ -178,6 +189,7 @@ onMounted(() => {
 
               <StandardSizeDialog />
             </div>
+            <CustomFoodWindow v-show="selectedCategory.name === '客製化'" />
             
             <!-- <MultiSelect
               v-model="productStore.selectedOptions"

@@ -677,6 +677,35 @@ social icons
 buttons
 
 ***************************/
+.btn-yellow{
+  background-color: var(--primary-color) !important; 
+  border: none !important; 
+  /* margin-bottom: 1rem; */
+  cursor: pointer;
+  opacity: 1;
+  border: none;
+  padding: 5px 5px;
+  margin: 5px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  transform: scale(1);
+  font-size: 16px;
+  margin-right: 5px;
+  margin-bottom: 10px;
+  transition: 0.3s ease-in-out;
+}
+
+.btn-yellow:hover{
+  filter: brightness(110%);
+}
+
+.btn-yellow-content{
+  white-space: nowrap;
+  display: inline-block;
+  color: black;
+}
+
 .sb-btn {
   opacity: 1;
   border: none;

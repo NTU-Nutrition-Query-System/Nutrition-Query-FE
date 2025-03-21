@@ -1,0 +1,102 @@
+<script setup lang="ts">
+import { ref } from "vue";
+import Card from "primevue/card";
+import Dialog from "primevue/dialog";
+import InputText from "primevue/inputtext";
+import type { foodItem } from "@/interfaces/Calculator";
+
+const dialogVisible = ref(false);
+
+const showDialog = () => {
+    // Hide the dialog
+    dialogVisible.value = true;
+};
+const closeDialog = () => {
+    // Hide the dialog
+    dialogVisible.value = false;
+};
+
+
+const food = ref<foodItem>({
+  id: 0,
+  item: "",
+  class: "",
+  gram: 0,
+  calories: 0,
+  carbohydrate: 0,
+  fat: 0,
+  protein: 0,
+  dietary_fibre: 0,
+});
+
+const addFood = () => {
+  console.log(food.value);
+
+};
+</script>
+
+<template>
+    <div style="display: flex; align-items: center;">
+        <Button 
+            class="btn-yellow"
+            @click="showDialog"
+        >
+            <div class="btn-yellow-content">
+                <font-awesome-icon :icon="['fas', 'fa-add']" style="height: 24px; width: 24px;" />
+                {{$t('button.addCustomFood')}} 
+            </div>
+        </Button>
+    </div>
+
+    <Dialog
+        v-model:visible="dialogVisible"
+        :header="$t('button.addCustomFood')"
+        @hide="closeDialog"
+        :modal="true"
+        :closable="true"
+        style="width: 80%; height: 80%;"
+    >
+        <div class="sb-group-input" style="width: 300px;  margin: 2.5rem auto">
+            <input v-model="food.item" type="text" name="item" required>
+            <span class="sb-bar"></span>
+            <label>{{ $t("food_item") }}</label>
+        </div>
+        <div class="sb-group-input" style="width: 300px;  margin: 2.5rem auto">
+            <input v-model="food.calories" type="text" name="calories" required>
+            <span class="sb-bar"></span>
+            <label>{{ $t("calories") }}</label>
+        </div>
+        <div class="sb-group-input" style="width: 300px;  margin: 2.5rem auto">
+            <input v-model="food.protein" type="text" name="protein" required>
+            <span class="sb-bar"></span>
+            <label>{{ $t("protein") }}</label>
+        </div>
+        <div class="sb-group-input" style="width: 300px;  margin: 2.5rem auto">
+            <input v-model="food.fat" type="text" name="fat" required>
+            <span class="sb-bar"></span>
+            <label>{{ $t("fat") }}</label>
+        </div>
+        <div class="sb-group-input" style="width: 300px;  margin: 2.5rem auto">
+            <input v-model="food.carbohydrate" type="text" name="carbohydrate" required>
+            <span class="sb-bar"></span>
+            <label>{{ $t("carbohydrate") }}</label>
+        </div>
+        <div class="sb-group-input" style="width: 300px;  margin: 2.5rem auto">
+            <input v-model="food.dietary_fibre" type="text" name="food_dt_fibre" required>
+            <span class="sb-bar"></span>
+            <label>{{ $t("food_dt_fibre") }}</label>
+        </div>
+        <Button 
+            class="btn-yellow"
+            @click="addFood" >
+            <div class="btn-yellow-content">
+                <font-awesome-icon :icon="['fas', 'fa-add']" style="height: 24px; width: 24px;" />
+                {{$t('button.addCustomFood')}}
+            </div>
+        </Button>
+    </Dialog>
+
+</template>
+
+<style scoped>
+</style>
