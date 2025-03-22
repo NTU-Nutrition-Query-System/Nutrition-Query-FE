@@ -2,7 +2,7 @@ import type {
   nutrient,
   weightedFoodItem,
 } from "../interfaces/Calculator";
-// Removed useI18n import as t will be passed as a parameter
+import type { CellStyle } from 'xlsx-js-style';
 
 import { ExcelBuilder, ExcelSchemaBuilder } from '@chronicstone/typed-xlsx';
 
@@ -27,26 +27,28 @@ export function exportResultToXlsx(
     filename = 'MyNutrition.xlsx',
   ): void {
     
+    const rightCenterAlignment = { alignment: { horizontal : "right", vertical: "center" } } as CellStyle;
+
     const selectedNutritionExportSchema = ExcelSchemaBuilder.create<(typeof selectedIntake)[number]>()
-      .column(t('selection_nutrition') as never, { key: 'nutrition' })
-      .column(t('selection_intake') as never, { key: 'intake' })
-      .column(t('selection_meal_requirement') as never, { key: 'mealRequirement' })
-      .column(t('selection_meal_uptake_percentage') as never, { key: 'mealUptakePercentage' })
-      .column(t('selection_daily_requirement') as never, { key: 'dailyRequirement' })
-      .column(t('selection_daily_uptake_percentage') as never, { key: 'dailyUptakePercentage' })
+      .column(t('selection_nutrition') as never, { key: 'nutrition', cellStyle: rightCenterAlignment })
+      .column(t('selection_intake') as never, { key: 'intake', cellStyle: rightCenterAlignment })
+      .column(t('selection_meal_requirement') as never, { key: 'mealRequirement', cellStyle: rightCenterAlignment })
+      .column(t('selection_meal_uptake_percentage') as never, { key: 'mealUptakePercentage', cellStyle: rightCenterAlignment })
+      .column(t('selection_daily_requirement') as never, { key: 'dailyRequirement', cellStyle: rightCenterAlignment })
+      .column(t('selection_daily_uptake_percentage') as never, { key: 'dailyUptakePercentage', cellStyle: rightCenterAlignment })
       .build();
 
     const selectedFoodExportSchema = ExcelSchemaBuilder.create<(typeof selectedFood)[number]>()
-      .column(t('food_item') as never, { key: 'item' })
-      .column(t('food_gram') as never, { key: 'gram' })
-      .column(t('calories') as never, { key: 'calories' })
-      .column(t('carbohydrate') as never, { key: 'carbohydrate' })
-      .column(t('protein') as never, { key: 'protein' })
-      .column(t('fat') as never, { key: 'fat' })
+      .column(t('food_item') as never, { key: 'item', cellStyle: rightCenterAlignment })
+      .column(t('food_gram') as never, { key: 'gram', cellStyle: rightCenterAlignment })
+      .column(t('calories') as never, { key: 'calories', cellStyle: rightCenterAlignment })
+      .column(t('carbohydrate') as never, { key: 'carbohydrate', cellStyle: rightCenterAlignment })
+      .column(t('protein') as never, { key: 'protein', cellStyle: rightCenterAlignment })
+      .column(t('fat') as never, { key: 'fat', cellStyle: rightCenterAlignment })
       .build();
 
     const buffer = ExcelBuilder.create()
-      .sheet('MyNutrition')
+      .sheet('MyNutrition', { tableSeparatorWidth: 10 })
       .addTable({
         data: selectedIntake,
         schema: selectedNutritionExportSchema,
