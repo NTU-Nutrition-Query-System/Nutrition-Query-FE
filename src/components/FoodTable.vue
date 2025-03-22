@@ -179,14 +179,10 @@ onMounted(() => {
         highlightOnSelect
       >
         <template #header>
-          <div style="display: flex align-items-center">
-            <div
-              style="
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-              "
-            >
+          <div style="
+            display: flex;
+            align-items: center;
+            justify-content: space-between;">
               <IconField>
                 <InputIcon class="pi pi-search" style="margin-right: 1rem" />
                 <InputText
@@ -194,45 +190,13 @@ onMounted(() => {
                   placeholder="Keyword Search"
                 />
               </IconField>
-
-              <StandardSizeDialog />
-            </div>
-            <CustomFoodWindow v-show="selectedCategory.name === '客製化'" />
-
-            <!-- <MultiSelect
-              v-model="productStore.selectedOptions"
-              :options="productStore.filterOptions"
-              optionLabel="name"
-              optionGroupLabel="name"
-              :optionGroupChildren="['states']"
-              :showToggleAll="false"
-              showClear
-            ></MultiSelect> -->
-            <!-- <div class="tags-container">
-              <span
-                v-for="(option, index) in productStore.selectedOptions"
-                :key="index"
-                class="tag"
-                @click="productStore.removeTag(index)"
-              >
-                <Button :label="option.name" icon="pi pi-times" style="margin-left: 0.25rem; padding: 0.5rem"></Button>
-              </span>
-              <Button
-              :label="$t('button.clear')"
-              icon="pi pi-times"
-              style="margin-left: 0.25rem; padding: 0.5rem"
-              @click="productStore.selectedOptions = undefined"
-            />
-
-            </div> -->
-            <!-- <Button
-              :label="$t('button.confirm')"
-              icon="pi pi-check"
-              style="margin-right: 0rem"
-              @click="dialogVisible = false"
-            />  -->
+              <div style="
+                  display: flex;
+                  align-items: center;">
+                <CustomFoodWindow v-show="selectedCategory.name === '客製化'" />
+                <StandardSizeDialog />
+              </div>
           </div>
-          <div></div>
         </template>
 
         <Column selectionMode="multiple" style="width: 0.1%"></Column>

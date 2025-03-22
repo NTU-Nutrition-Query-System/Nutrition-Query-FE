@@ -679,12 +679,12 @@ buttons
 ***************************/
 .btn-yellow{
   background-color: var(--primary-color) !important; 
+  color: #222222 !important;
   border: none !important; 
-  /* margin-bottom: 1rem; */
   cursor: pointer;
   opacity: 1;
-  border: none;
-  padding: 5px 5px;
+  padding: 10px 16px;
+  border-radius: 4px;
   margin: 5px;
   position: relative;
   display: inline-flex;
@@ -692,7 +692,7 @@ buttons
   transform: scale(1);
   font-size: 16px;
   margin-right: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   transition: 0.3s ease-in-out;
 }
 
@@ -701,9 +701,11 @@ buttons
 }
 
 .btn-yellow-content{
+  display: flex !important; 
+  align-items: center !important;
   white-space: nowrap;
   display: inline-block;
-  color: black;
+  color: #222222;
 }
 
 .sb-btn {

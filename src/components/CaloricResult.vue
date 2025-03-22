@@ -275,15 +275,9 @@ onMounted(() => {
     
     <Button 
       @click="exportResultToXlsx(selectedIntake, productStore.selectedProducts, t)"
-      class="sb-btn sb-cf-submit sb-show-success"
-      style="  
-      margin-bottom: 1rem;
-      border: none;
-      color: #444444;
-      background-color: #F5C332;"
-    >
+      class="btn-yellow" style=" margin-bottom: 1rem; ">
       <i class="pi pi-download"/>
-      {{$t('button.toXlsx')}} 
+      {{$t('button.toXlsx')}}
     </Button>
     
     <DataTable

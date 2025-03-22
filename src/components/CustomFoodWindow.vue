@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import Card from "primevue/card";
 import Dialog from "primevue/dialog";
-import InputText from "primevue/inputtext";
 import type { foodItem, weightedFoodItem } from "@/interfaces/Calculator";
 import { useProductStore } from "@/stores/productStore";
 import { useToast } from "primevue/usetoast";
@@ -22,7 +20,7 @@ const toast = useToast();
 const food = ref<weightedFoodItem>({
   id: 0,
   item: "",
-  class: "",
+  class: "客製化",
   gram: 0,
   calories: 0,
   carbohydrate: 0,
@@ -52,7 +50,7 @@ const addFood = () => {
   food.value = {
     id: 0,
     item: "",
-    class: "",
+    class: "客製化",
     gram: 0,
     calories: 0,
     carbohydrate: 0,
@@ -66,18 +64,19 @@ const addFood = () => {
 </script>
 
 <template>
-  <div style="display: flex; align-items: center">
+  
+  <div style="display: flex; align-items: center; margin-left: 10px;">
     <Button class="btn-yellow" @click="showDialog">
       <div class="btn-yellow-content">
-        <font-awesome-icon
-          :icon="['fas', 'fa-add']"
-          style="height: 24px; width: 24px"
-        />
+        <font-awesome-icon :icon="['fas', 'fa-add']" 
+                    style="height: 24px; width: 24px; margin-right: 5px;" />
         {{ $t("button.addCustomFood") }}
       </div>
     </Button>
   </div>
-  <Toast position="top-center" :baseZIndex="12" style="width: 20rem" />
+  <div>
+    <Toast position="top-center" :baseZIndex="12" style="width: 20rem" />
+  </div>
   <Dialog
     v-model:visible="dialogVisible"
     :header="$t('button.addCustomFood')"
@@ -126,15 +125,14 @@ const addFood = () => {
       <span class="sb-bar"></span>
       <label>{{ $t("food_dt_fibre") }}</label>
     </div>
-    <Button class="btn-yellow" @click="addFood">
+    <div style="display: flex; justify-content: center; margin-top: 2rem">
+      <Button class="btn-yellow" @click="addFood">
       <div class="btn-yellow-content">
-        <font-awesome-icon
-          :icon="['fas', 'fa-add']"
-          style="height: 24px; width: 24px"
-        />
+        <i class="pi pi-plus"/>
         {{ $t("button.addCustomFood") }}
       </div>
-    </Button>
+      </Button>
+    </div>
   </Dialog>
 </template>
 
