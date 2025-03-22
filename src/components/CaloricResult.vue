@@ -5,23 +5,23 @@ import { ref, watch, computed, onMounted } from "vue";
 import Dialog from "primevue/dialog";
 import DataTable from "primevue/datatable";
 import Column from "primevue/column";
-import ColumnGroup from "primevue/columngroup"; // optional
-import Row from "primevue/row"; // optional
 import Tabs from "primevue/tabs";
 import TabList from "primevue/tablist";
 import Tab from "primevue/tab";
 import TabPanels from "primevue/tabpanels";
 import TabPanel from "primevue/tabpanel";
 import ProgressBar from "primevue/progressbar";
-import { useProductStore } from "@/stores/productStore";
 import Button from "primevue/button";
+import Toast from "primevue/toast";
+import { useToast } from "primevue/usetoast";
 import type {
   nutrient,
   foodItem,
   weightedFoodItem,
 } from "../interfaces/Calculator";
-import Toast from "primevue/toast";
-import { useToast } from "primevue/usetoast";
+import { useProductStore } from "@/stores/productStore";
+import { exportResultToXlsx } from "@/components/ResultToXlsx";
+
 const productStore = useProductStore();
 const { t } = useI18n();
 const { locale } = useI18n();
@@ -272,16 +272,18 @@ onMounted(() => {
         </TabPanel>
       </TabPanels>
     </Tabs>
+    
     <Button 
+      @click="exportResultToXlsx(selectedIntake, productStore.selectedProducts, t)"
+      class="sb-btn sb-cf-submit sb-show-success"
       style="  
       margin-bottom: 1rem;
       border: none;
       color: #444444;
-      background-color: #F5C332;
-      width: 13rem"
+      background-color: #F5C332;"
     >
       <i class="pi pi-download"/>
-      {{$t('button.toCSV')}} 
+      {{$t('button.toXlsx')}} 
     </Button>
     
     <DataTable
@@ -294,7 +296,7 @@ onMounted(() => {
           <Button
             icon="pi pi-minus-circle"
             @click="deleteButtonClicked(data)"
-            style="  
+            style="
               border: none;
               color: #444444;
               background-color: #F5C332
