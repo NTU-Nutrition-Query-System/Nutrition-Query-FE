@@ -5,7 +5,27 @@ on:
       - 'main'
       - 'hot-fix**'
 jobs:
+  npm-build:
+    runs-on: ubuntu-latest
+    outputs:
+      build_result: ${{ steps.build_step.outputs.result }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.20.4
+      - name: Install dependencies
+        run: npm install
+      - name: Build
+        id: build_step
+        run: |
+          npm run build
+          echo "result=✅success" >> $GITHUB_OUTPUT
+        continue-on-error: true
   notify-TG:
+    needs: npm-build
     runs-on: ubuntu-latest
     steps:
       - name: notify TG
@@ -14,6 +34,9 @@ jobs:
           to: ${{ secrets.TG_BOT_ID }}
           token: ${{ secrets.TG_BOT_TOKEN }}
           message: |
+
             ${{ github.actor }} pushed to ${{ github.ref }}:
                         
             ${{ github.event.head_commit.message }}
+
+            Build ${{ needs.npm-build.outputs.build_result || '❌failed' }}
