@@ -21,6 +21,8 @@ import type {
 } from "../interfaces/Calculator";
 import { useProductStore } from "@/stores/productStore";
 import { exportResultToXlsx } from "@/components/ResultToXlsx";
+import RecommendMealWindow from "./RecommendMealWindow.vue";
+import CustomFoodWindow from "./CustomFoodWindow.vue";
 
 const productStore = useProductStore();
 const { t } = useI18n();
@@ -272,14 +274,19 @@ onMounted(() => {
         </TabPanel>
       </TabPanels>
     </Tabs>
+
+    <div style="display:flex">
+      <Button 
+        @click="exportResultToXlsx(selectedIntake, productStore.selectedProducts, t)"
+        class="btn-yellow">
+        <i class="pi pi-download"/>
+        {{$t('button.toXlsx')}}
+      </Button>
+      <CustomFoodWindow/>
+      <RecommendMealWindow/>
+    </div>
     
-    <Button 
-      @click="exportResultToXlsx(selectedIntake, productStore.selectedProducts, t)"
-      class="btn-yellow" style=" margin-bottom: 1rem; ">
-      <i class="pi pi-download"/>
-      {{$t('button.toXlsx')}}
-    </Button>
-    
+
     <DataTable
       :value="productStore.selectedProducts"
       dataKey="id"
@@ -322,7 +329,8 @@ onMounted(() => {
       </Column>
       <Column field="gram" :header="$t('food_gram')">
         <template #body="{ data }">
-          <div>{{ (data.gram * data.weight).toFixed(0) }}</div>
+          <div v-if="!data.is_customized" >{{ (data.gram * data.weight).toFixed(0) }}</div>
+          <div v-if="data.is_customized"></div>
         </template>
       </Column>
       <Column field="calories" :header="$t('calories')">

@@ -25,6 +25,7 @@ const messages = {
       toXlsx: "Download as Excel(.xlsx)",
       RecommendMeal: "Recommend Meal",
       addCustomFood: "Add Custom Food",
+      addCustomFoodtoList: "Add Food to Calculate",
     },
     calculator_input: {
       title: "Calculate my nutrition requirements per meal/day",
@@ -108,6 +109,7 @@ const messages = {
       toXlsx: "下載成Excel(.xlsx)檔",
       RecommendMeal: "推薦餐點",
       addCustomFood: "新增自訂食物",
+      addCustomFoodtoList: "新增食物至查看",
     },
     calculator_input: {
       title: "計算我的每日/每餐所需營養素",
