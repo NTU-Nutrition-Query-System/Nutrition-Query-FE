@@ -215,9 +215,14 @@ onMounted(() => {
         >
         </Column>
         <Column
+          field="unit"
+          :header="$t('food_unit')"
+          style="width: 0.3%"
+        ></Column>
+        <Column
           field="gram"
           :header="$t('food_gram')"
-          style="width: 0.5%"
+          style="width: 0.3%"
         ></Column>
         <Column
           sortable

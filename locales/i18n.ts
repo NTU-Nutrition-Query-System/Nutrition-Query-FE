@@ -77,6 +77,7 @@ const messages = {
     food_item: "Item",
     food_class: "Category",
     food_gram: "Grams",
+    food_unit: "Unit",
     food_dt_fibre: "Dietary fibre(g)",
     selection_result_title:
       "Am I not getting enough nutrients from the meals I selected?",
@@ -160,6 +161,7 @@ const messages = {
     food_item: "品項",
     food_class: "分類",
     food_gram: "克數",
+    food_unit: "單位",
     selection_result_title: "我選擇的餐食營養素夠不夠呢?",
     selection_nutrition: "營養素",
     selection_intake: "目前攝取量",

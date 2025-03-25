@@ -6,7 +6,7 @@ import type {
   weightedFoodItem,
 } from "@/interfaces/Calculator";
 import { FilterMatchMode } from "@primevue/core/api";
-import { faSlideshare } from "@fortawesome/free-brands-svg-icons";
+
 export const useProductStore = defineStore("productStore", () => {
   const products = ref<weightedFoodItem[]>([]);
   const selectedProducts = ref<weightedFoodItem[]>([]);

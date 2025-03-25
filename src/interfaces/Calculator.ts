@@ -9,6 +9,7 @@ export interface foodItem {
   item: string;
   class: string;
   subclass?: string;
+  unit: string;
   gram: number;
   calories: number;
   carbohydrate: number;

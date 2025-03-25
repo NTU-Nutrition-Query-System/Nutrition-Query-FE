@@ -327,6 +327,11 @@ onMounted(() => {
           <div>{{ data.item }}</div>
         </template>
       </Column>
+      <Column field="unit" :header="$t('food_unit')">
+        <template #body="{ data }">
+          <div>{{ data.unit }}</div>
+        </template>
+      </Column>
       <Column field="gram" :header="$t('food_gram')">
         <template #body="{ data }">
           <div v-if="!data.is_customized" >{{ (data.gram * data.weight).toFixed(0) }}</div>
