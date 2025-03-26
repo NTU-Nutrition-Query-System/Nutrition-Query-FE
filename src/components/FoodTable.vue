@@ -85,10 +85,6 @@ const categories = [
     image: new URL("@/assets/imgs/ClassDressing.jpg", import.meta.url).href,
   },
   {
-    name: "客製化",
-    image: new URL("@/assets/imgs/girl_square.png", import.meta.url).href,
-  },
-  {
     name: "全部",
     image: new URL("@/assets/imgs/girl_square.png", import.meta.url).href,
   },
