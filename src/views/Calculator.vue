@@ -298,14 +298,12 @@ onMounted(() => {
                 </h3>
               
                 <!-- button -->
-                <a href="#food-select" data-no-swup>
-                  <button class="sb-btn sb-cf-submit sb-show-success" @click="scrollDown">
-                    <span class="sb-icon">
-                      <img src="../assets/img/ui/icons/arrow.svg" alt="icon">
-                    </span>
-                    <span>{{ $t('calculator_input.choosing') }}</span>
-                  </button>
-                </a>
+                <button class="sb-btn sb-cf-submit sb-show-success" @click="scrollDown">
+                  <span class="sb-icon">
+                    <img src="../assets/img/ui/icons/arrow.svg" alt="icon">
+                  </span>
+                  <span>{{ $t('calculator_input.choosing') }}</span>
+                </button>
                 <!-- button end -->
               </div>
             </div>
