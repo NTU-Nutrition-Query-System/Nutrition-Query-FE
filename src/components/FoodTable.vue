@@ -21,8 +21,7 @@ import type {
   weightedFoodItem,
 } from "@/interfaces/Calculator";
 import { useProductStore } from "@/stores/productStore";
-import StandardSizeDialog from "./StandardSizeDialog.vue";
-import CustomFoodWindow from "./CustomFoodWindow.vue";
+import SizeReference from "./SizeReference.vue";
 
 const dialogVisible = ref(false);
 
@@ -189,8 +188,7 @@ onMounted(() => {
               <div style="
                   display: flex;
                   align-items: center;">
-                <CustomFoodWindow v-show="selectedCategory.name === '客製化'" />
-                <StandardSizeDialog />
+                <SizeReference />
               </div>
           </div>
         </template>
