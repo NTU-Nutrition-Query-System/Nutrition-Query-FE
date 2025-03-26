@@ -15,9 +15,14 @@ import Dialog from "primevue/dialog";
 import Toast from "primevue/toast";
 import MultiSelect from "primevue/multiselect";
 import { useToast } from "primevue/usetoast";
-import type { foodItem, filterOption } from "@/interfaces/Calculator";
+import type {
+  foodItem,
+  filterOption,
+  weightedFoodItem,
+} from "@/interfaces/Calculator";
 import { useProductStore } from "@/stores/productStore";
 import StandardSizeDialog from "./StandardSizeDialog.vue";
+import CustomFoodWindow from "./CustomFoodWindow.vue";
 
 const dialogVisible = ref(false);
 
@@ -121,6 +126,10 @@ const computeNumberOfItem = computed(() => {
       return 0; // 如果資料不存在，返回 0
     }
     if (categories[index].name === "全部") {
+      console.log("All items: ", index, categories[index]);
+      return productStore.selectedProducts.length;
+    } else if (categories[index].name === "客製化") {
+      console.log("Custom: ", index, categories[index]);
       return productStore.selectedProducts.length;
     }
     return productStore.selectedProducts.filter(
@@ -147,10 +156,10 @@ onMounted(() => {
       :modal="true"
       @hide="closeDialog"
       :header="selectedCategory.name"
-      style="overflow-x: auto; width: 90%;"
+      style="overflow-x: auto; width: 90%"
       :dismissableMask="true"
     >
-      <Toast position="top-center" :baseZIndex=12 style="width: 20rem" />
+      <Toast position="top-center" :baseZIndex="12" style="width: 20rem" />
 
       <DataTable
         :selection="productStore.selectedProducts"
@@ -166,53 +175,24 @@ onMounted(() => {
         highlightOnSelect
       >
         <template #header>
-          <div style="display: flex align-items-center">
-            <div style="display: flex; align-items: center; justify-content: space-between;">
+          <div style="
+            display: flex;
+            align-items: center;
+            justify-content: space-between;">
               <IconField>
                 <InputIcon class="pi pi-search" style="margin-right: 1rem" />
                 <InputText
-                v-model="productStore.filters['global'].value"
-                placeholder="Keyword Search"
+                  v-model="productStore.filters['global'].value"
+                  placeholder="Keyword Search"
                 />
               </IconField>
-
-              <StandardSizeDialog />
-            </div>
-            
-            <!-- <MultiSelect
-              v-model="productStore.selectedOptions"
-              :options="productStore.filterOptions"
-              optionLabel="name"
-              optionGroupLabel="name"
-              :optionGroupChildren="['states']"
-              :showToggleAll="false"
-              showClear
-            ></MultiSelect> -->
-            <!-- <div class="tags-container">
-              <span
-                v-for="(option, index) in productStore.selectedOptions"
-                :key="index"
-                class="tag"
-                @click="productStore.removeTag(index)"
-              >
-                <Button :label="option.name" icon="pi pi-times" style="margin-left: 0.25rem; padding: 0.5rem"></Button>
-              </span>
-              <Button
-              :label="$t('button.clear')"
-              icon="pi pi-times"
-              style="margin-left: 0.25rem; padding: 0.5rem"
-              @click="productStore.selectedOptions = undefined"
-            />
-            
-            </div> -->
-            <!-- <Button
-              :label="$t('button.confirm')"
-              icon="pi pi-check"
-              style="margin-right: 0rem"
-              @click="dialogVisible = false"
-            />  -->
+              <div style="
+                  display: flex;
+                  align-items: center;">
+                <CustomFoodWindow v-show="selectedCategory.name === '客製化'" />
+                <StandardSizeDialog />
+              </div>
           </div>
-          <div></div>
         </template>
 
         <Column selectionMode="multiple" style="width: 0.1%"></Column>
@@ -231,9 +211,14 @@ onMounted(() => {
         >
         </Column>
         <Column
+          field="unit"
+          :header="$t('food_unit')"
+          style="width: 0.3%"
+        ></Column>
+        <Column
           field="gram"
           :header="$t('food_gram')"
-          style="width: 0.5%"
+          style="width: 0.3%"
         ></Column>
         <Column
           sortable
@@ -370,12 +355,18 @@ onMounted(() => {
 
       <template #footer>
         <Button
-              :label="$t('button.confirm')"
-              icon="pi pi-check"
-              style="margin-right: 0rem; margin-top: 1rem; background-color: var(--primary-color); border: none; color: black"
-              @click="dialogVisible = false"
-            />
-    </template>
+          :label="$t('button.confirm')"
+          icon="pi pi-check"
+          style="
+            margin-right: 0rem;
+            margin-top: 1rem;
+            background-color: var(--primary-color);
+            border: none;
+            color: black;
+          "
+          @click="dialogVisible = false"
+        />
+      </template>
     </Dialog>
   </div>
   <div class="card-container">
@@ -423,7 +414,7 @@ onMounted(() => {
               margin: 0 0;
               font-size: 20px;
               color: #333333;
-              background-color:  #F5C332;;
+              background-color: #f5c332;
             "
             :label="$t('button.open')"
             @click="classClicked(item, index)"

@@ -9,6 +9,7 @@ import { useRouter } from "vue-router";
 
 import Preloader from "@/components/common/Preloader.vue";
 import NavBar from "@/components/common/NavBar.vue";
+import Footer from "@/components/common/Footer.vue";
 import vue3GoogleLogin from "vue3-google-login";
 
 const router = useRouter();
@@ -37,6 +38,11 @@ const items = ref([
     label: "calculator",
     icon: "pi pi-calculator",
     route: "/Calculator",
+  },
+  {
+    label: "about",
+    icon: "pi pi-about",
+    route: "/About",
   },
 ]);
 
@@ -86,6 +92,9 @@ onUnmounted(() => {
       </div>
     </div>
   </div>
+  <!-- footer -->
+  <Footer />
+    <!-- footer end -->
 </template>
 
 <style scoped>

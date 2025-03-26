@@ -17,11 +17,12 @@ const closeDialog = () => {
 
 <template>
     <div style="display: flex; align-items: center;">
-        <Button
-        style="background-color: var(--primary-color); border: none;"
-        @click="showDialog" >
-            <font-awesome-icon :icon="['fas', 'fa-bowl-rice']" style="height: 24px; width: 24px; color: black;" />
-            <span style="color: black;">參考份量</span>
+        <Button class="btn-yellow" @click="showDialog" >
+            <div class="btn-yellow-content">
+                <font-awesome-icon :icon="['fas', 'fa-bowl-rice']" 
+                    style="height: 24px; width: 24px; margin-right: 5px;" />
+                參考份量
+            </div>
         </Button>
     </div>
 

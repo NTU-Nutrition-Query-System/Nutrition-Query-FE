@@ -13,6 +13,7 @@
     "code-lint-all-quiet": "eslint --quiet -o ./code-lint-all-output.json -f json -c ./.vscode/code-lint-vue3-typescript.json --ignore-path ./.vscode/.eslintignore --no-eslintrc --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts ./ || exit 0"
   },
   "dependencies": {
+    "@chronicstone/typed-xlsx": "^0.2.17",
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-brands-svg-icons": "^6.7.2",
     "@fortawesome/free-regular-svg-icons": "^6.7.2",
