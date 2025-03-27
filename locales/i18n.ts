@@ -87,6 +87,21 @@ const messages = {
     selection_meal_uptake_percentage: "Uptake Percentage per Meal",
     selection_daily_requirement: "Daily Requirement",
     selection_daily_uptake_percentage: "Uptake Percentage per Day",
+    pivot: {
+      id: "ID",
+      item: "Item",
+      class: "Category",
+      subclass: "Subcategory",
+      unit: "Unit",
+      gram: "Gram",
+      calories: "Calories",
+      carbohydrate: "Carbohydrate",
+      protein: "Protein",
+      fat: "Fat",
+      dietary_fibre: "Dietary Fibre",
+      sugar: "Sugar",
+      sodium: "Sodium"
+    },
   },
   ch: {
     select_language: "語言",
@@ -169,6 +184,21 @@ const messages = {
     selection_meal_uptake_percentage: "每餐攝取百分比",
     selection_daily_requirement: "每日所需營養素",
     selection_daily_uptake_percentage: "每日攝取百分比",
+    pivot: {
+        id: "編號",
+        item: "項目",
+        class: "分類",
+        subclass: "細項",
+        unit: "單位",
+        gram: "克數(g)",
+        calories: "熱量(kcal)",
+        carbohydrate: "醣類(g)",
+        protein: "蛋白質(g)",
+        fat: "脂肪(g)",
+        dietary_fibre: "膳食纖維(g)",
+        sugar: "糖(g)",
+        sodium: "鈉(mg)"
+      },
   },
 };
 

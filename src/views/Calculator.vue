@@ -54,6 +54,8 @@ const calculateDailyNeed = () => {
   dailyNeeds.value.carbohydrate = (dailyNeeds.value.calories * 0.5) / 4;
 
   dailyNeeds.value.fat = (dailyNeeds.value.calories * 0.3) / 9;
+
+  productStore.setDailyNeeds(dailyNeeds.value);
 };
 
 const calculate = () => {
