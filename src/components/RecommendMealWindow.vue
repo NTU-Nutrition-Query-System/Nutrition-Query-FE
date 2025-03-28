@@ -80,14 +80,10 @@ const mealDetails = convertMeal();
 
 <template>
     <div style="display: flex; align-items: center;">
-        <Button 
-            class="btn-yellow"
-            @click="showDialog"
-        >
-            <div class="btn-yellow-content">
-                <font-awesome-icon :icon="['fas', 'fa-bowl-rice']" style="height: 24px; width: 24px; color: black;" />
-                {{$t('button.RecommendMeal')}} 
-            </div>
+        <Button class="btn-yellow" @click="showDialog">
+            <font-awesome-icon :icon="['fas', 'fa-bowl-rice']" 
+                style="height: 24px; width: 24px;"  />
+            {{$t('button.RecommendMeal')}} 
         </Button>
     </div>
 

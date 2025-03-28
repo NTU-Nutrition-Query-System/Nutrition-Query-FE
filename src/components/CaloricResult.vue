@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import InputNumber from "primevue/inputnumber";
-import { useI18n } from "vue-i18n";
 import { ref, watch, computed, onMounted } from "vue";
 import Dialog from "primevue/dialog";
 import DataTable from "primevue/datatable";
@@ -18,14 +17,15 @@ import type {
   nutrient,
   foodItem,
   weightedFoodItem,
-} from "../interfaces/Calculator";
+  CalculatedNutrition,
+} from "@/interfaces/Calculator";
 import { useProductStore } from "@/stores/productStore";
-import { exportResultToXlsx } from "@/components/ResultToXlsx";
+import ResultExport from "./ResultExport.vue";
 import RecommendMealWindow from "./RecommendMealWindow.vue";
 import CustomFoodWindow from "./CustomFoodWindow.vue";
-
-const productStore = useProductStore();
+import { useI18n } from "vue-i18n";
 const { t } = useI18n();
+const productStore = useProductStore();
 const { locale } = useI18n();
 
 const toast = useToast();
@@ -67,11 +67,11 @@ const selectedValue = computed<nutrient>(() => {
   );
 });
 
-const selectedIntake = computed(() => {
+const selectedIntake = computed<CalculatedNutrition[]>(() => {
   return [
     {
       id: 0,
-      nutrition: t("calories"),
+      nutrition: "calories",
       intake: selectedValue.value.calories.toFixed(1),
       mealRequirement: (props.needData.calories / 3).toFixed(1),
       mealUptakePercentage: (
@@ -85,8 +85,8 @@ const selectedIntake = computed(() => {
       ).toFixed(1),
     },
     {
-      id: 3,
-      nutrition: t("carbohydrate"),
+      id: 1,
+      nutrition: "carbohydrate",
       intake: selectedValue.value.carbohydrate.toFixed(1),
       mealRequirement: (props.needData.carbohydrate / 3).toFixed(1),
       mealUptakePercentage: (
@@ -100,8 +100,8 @@ const selectedIntake = computed(() => {
       ).toFixed(1),
     },
     {
-      id: 1,
-      nutrition: t("protein"),
+      id: 2,
+      nutrition: "protein",
       intake: selectedValue.value.protein.toFixed(1),
       mealRequirement: (props.needData.protein / 3).toFixed(1),
       mealUptakePercentage: (
@@ -116,8 +116,8 @@ const selectedIntake = computed(() => {
     },
 
     {
-      id: 2,
-      nutrition: t("fat"),
+      id: 3,
+      nutrition: "fat",
       intake: selectedValue.value.fat.toFixed(1),
       mealRequirement: (props.needData.fat / 3).toFixed(1),
       mealUptakePercentage: (
@@ -184,7 +184,11 @@ onMounted(() => {
             class="custom-divider">
             <Column
               field="nutrition"
-              :header="$t('selection_nutrition')"/>
+              :header="$t('selection_nutrition')">
+              <template #body="slotProps">
+                <span>{{$t(slotProps.data.nutrition)}}</span>
+              </template>
+            </Column>
             <Column
               field="mealRequirement"
               :header="$t('selection_meal_requirement')"
@@ -276,12 +280,7 @@ onMounted(() => {
     </Tabs>
 
     <div style="display:flex">
-      <Button 
-        @click="exportResultToXlsx(selectedIntake, productStore.selectedProducts, t)"
-        class="btn-yellow">
-        <i class="pi pi-download"/>
-        {{$t('button.toXlsx')}}
-      </Button>
+      <ResultExport :selectedIntake="selectedIntake" />
       <CustomFoodWindow/>
       <RecommendMealWindow/>
     </div>
@@ -292,7 +291,7 @@ onMounted(() => {
       dataKey="id"
       tableStyle="min-width: 50rem"
       v-model:selection="productStore.selectedProducts">
-      <Column :header="$t('移除')" header-style="width: 3rem">
+      <Column :header="$t('resultPage.remove')" header-style="width: 3rem">
         <template #body="{ data }">
           <Button
             icon="pi pi-minus-circle"
@@ -305,7 +304,7 @@ onMounted(() => {
           />
         </template>
       </Column>
-      <Column :header="$t('調整份數')" header-style="width: 6.2rem">
+      <Column :header="$t('resultPage.adjust')" header-style="width: 6.2rem">
         <template #body="{ data }">
           <div>
             <InputNumber

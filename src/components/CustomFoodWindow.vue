@@ -69,11 +69,9 @@ const addFood = () => {
   
   <div style="display: flex; align-items: center;">
     <Button class="btn-yellow" @click="showDialog">
-      <div class="btn-yellow-content">
         <font-awesome-icon :icon="['fas', 'fa-add']" 
-                    style="height: 24px; width: 24px; margin-right: 5px;" />
+          style="height: 24px; width: 24px; margin-right: 5px;" />
         {{ $t("button.addCustomFood") }}
-      </div>
     </Button>
   </div>
   <div>
@@ -149,10 +147,9 @@ const addFood = () => {
     </div>
     <div style="display: flex; justify-content: center; margin-top: 2rem">
       <Button class="btn-yellow" @click="addFood">
-      <div class="btn-yellow-content">
-        <i class="pi pi-plus"/>
-        {{ $t("button.addCustomFoodtoList") }}
-      </div>
+        <font-awesome-icon :icon="['fas', 'fa-add']" 
+          style="height: 24px; width: 24px; margin-right: 5px;" />
+        {{ $t("button.addCustomFood") }}
       </Button>
     </div>
   </Dialog>

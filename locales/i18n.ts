@@ -156,6 +156,13 @@ const messages = {
       food_selection_prompt: "從下方選擇食物，再點按右方「查看」",
       view_selected_food: "查看已選食物以及計算營養素",
     },
+    resultPage: {
+      remove: "移除",
+      adjust: "調整份量",
+      school_name: "學校名稱",
+      name: "姓名",
+      date: "日期",
+    },
     calories: "熱量(大卡)",
     protein: "蛋白質(克)",
     carbohydrate: "醣類(克)",
