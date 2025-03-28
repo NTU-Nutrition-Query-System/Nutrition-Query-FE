@@ -170,6 +170,8 @@ onMounted(() => {
         paginator
         :rows="10"
         @row-click="itemSelect"
+        @row-select="itemSelect"
+        @row-unselect="itemSelect"
         rowHover
         highlightOnSelect
       >
