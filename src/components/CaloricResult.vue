@@ -376,27 +376,27 @@ onMounted(() => {
 }
 
 .precentBar-low-text {
-  color: #FF8E0A;
+  color: #28a745;
 }
 
 .precentBar-low .p-progressbar-label {
-  color: #FF8E0A;
+  color: #28a745;
 }
 
 .precentBar-low .p-progressbar-value {
-  background-color: #FF8E0A;
+  background-color: #28a745;
 }
 
 .precentBar-medium-text {
-  color: #28a745;
+  color: #FF8E0A;
 }
 
 .precentBar-medium .p-progressbar-label {
-  color: #28a745;
+  color: #FF8E0A;
 }
 
 .precentBar-medium .p-progressbar-value{
-  background-color: #28a745;
+  background-color: #FF8E0A;
 }
 
 .precentBar-high-text {
