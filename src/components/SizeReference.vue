@@ -36,33 +36,37 @@ const closeDialog = () => {
     >
         <h3 style="text-align: center;">水果類</h3>
         <table>
-            <tr>
-                <td><span class="sb-description">1/2 碗</span><span style="font-size: 1.2em;">葡萄</span></td>
-                <td><span class="sb-description">1 碗</span><span style="font-size: 1.2em;">小番茄</span></td>
-            </tr>
-            <tr>
-                <td >
-                    <img class="sb-picture" src="../assets/images/one-half-bowl.jpg" alt="1/2 碗" />
-                </td>
-                <td >
-                    <img class="sb-picture" src="../assets/images/a-bowl.jpg" alt="1 碗" />
-                </td>
-            </tr>
+            <tbody>
+                <tr>
+                    <td><span class="sb-description">1/2 碗</span><span style="font-size: 1.2em;">葡萄</span></td>
+                    <td><span class="sb-description">1 碗</span><span style="font-size: 1.2em;">小番茄</span></td>
+                </tr>
+                <tr>
+                    <td >
+                        <img class="sb-picture" src="../assets/images/one-half-bowl.jpg" alt="1/2 碗" />
+                    </td>
+                    <td >
+                        <img class="sb-picture" src="../assets/images/a-bowl.jpg" alt="1 碗" />
+                    </td>
+                </tr>
+            </tbody>
         </table>
         <h3 style="text-align: center; padding-top: 30px;">蔬菜類</h3>
         <table>
-            <tr>
-                <td><span class="sb-description">1 格</span><span style="font-size: 1.2em;">地瓜葉</span></td>
-                <td><span class="sb-description">1 格</span><span style="font-size: 1.2em;">玉米筍</span></td>
-            </tr>
-            <tr>
-                <td >
-                    <img class="sb-picture" src="../assets/images/single-bento-item.jpg" alt="1格地瓜葉" />
-                </td>
-                <td >
-                    <img class="sb-picture" src="../assets/images/single-bento-item-2.jpg" alt="1格玉米筍" />
-                </td>
-            </tr>
+            <tbody>
+                <tr>
+                    <td><span class="sb-description">1 格</span><span style="font-size: 1.2em;">地瓜葉</span></td>
+                    <td><span class="sb-description">1 格</span><span style="font-size: 1.2em;">玉米筍</span></td>
+                </tr>
+                <tr>
+                    <td >
+                        <img class="sb-picture" src="../assets/images/single-bento-item.jpg" alt="1格地瓜葉" />
+                    </td>
+                    <td >
+                        <img class="sb-picture" src="../assets/images/single-bento-item-2.jpg" alt="1格玉米筍" />
+                    </td>
+                </tr>
+            </tbody>
         </table>
         
     </Dialog>

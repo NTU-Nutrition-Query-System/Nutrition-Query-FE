@@ -18,6 +18,16 @@ export interface foodItem {
   dietary_fibre: number;
 }
 
+export interface CalculatedNutrition {
+  id: number,
+  nutrition: string,
+  intake: string,
+  mealRequirement: string,
+  mealUptakePercentage: string,
+  dailyRequirement: string,
+  dailyUptakePercentage: string,
+};
+
 export interface weightedFoodItem extends foodItem {
   weight: number;
   is_customized: boolean;

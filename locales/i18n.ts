@@ -87,6 +87,21 @@ const messages = {
     selection_meal_uptake_percentage: "Uptake Percentage per Meal",
     selection_daily_requirement: "Daily Requirement",
     selection_daily_uptake_percentage: "Uptake Percentage per Day",
+    pivot: {
+      id: "ID",
+      item: "Item",
+      class: "Category",
+      subclass: "Subcategory",
+      unit: "Unit",
+      gram: "Gram",
+      calories: "Calories",
+      carbohydrate: "Carbohydrate",
+      protein: "Protein",
+      fat: "Fat",
+      dietary_fibre: "Dietary Fibre",
+      sugar: "Sugar",
+      sodium: "Sodium"
+    },
   },
   ch: {
     select_language: "語言",
@@ -141,6 +156,13 @@ const messages = {
       food_selection_prompt: "從下方選擇食物，再點按右方「查看」",
       view_selected_food: "查看已選食物以及計算營養素",
     },
+    resultPage: {
+      remove: "移除",
+      adjust: "調整份量",
+      school_name: "學校名稱",
+      name: "姓名",
+      date: "日期",
+    },
     calories: "熱量(大卡)",
     protein: "蛋白質(克)",
     carbohydrate: "醣類(克)",
@@ -169,6 +191,21 @@ const messages = {
     selection_meal_uptake_percentage: "每餐攝取百分比",
     selection_daily_requirement: "每日所需營養素",
     selection_daily_uptake_percentage: "每日攝取百分比",
+    pivot: {
+        id: "編號",
+        item: "項目",
+        class: "分類",
+        subclass: "細項",
+        unit: "單位",
+        gram: "克數(g)",
+        calories: "熱量(kcal)",
+        carbohydrate: "醣類(g)",
+        protein: "蛋白質(g)",
+        fat: "脂肪(g)",
+        dietary_fibre: "膳食纖維(g)",
+        sugar: "糖(g)",
+        sodium: "鈉(mg)"
+      },
   },
 };
 
