@@ -149,6 +149,7 @@ const deleteButtonClicked = (row: weightedFoodItem) => {
     life: 2000,
   });
 };
+
 watch(
   () => props.visible,
   (newValue) => {
@@ -156,10 +157,18 @@ watch(
     isVisible.value = newValue;
   }
 );
-
+const getRowStyle = (row:weightedFoodItem) => {
+  if (row.is_customized) {
+    return { '--p-datatable-row-background': 'rgba(255, 200, 120, 0.3)' }; // 橘色
+  } else{
+    return { '--p-datatable-row-background':  'rgba(0, 0, 0, 0)'};
+  }
+  return {};
+};
 onMounted(() => {
   console.log("Result onMounted");
 });
+
 </script>
 
 <template>
@@ -288,13 +297,15 @@ onMounted(() => {
       <CustomFoodWindow/>
       <RecommendMealWindow/>
     </div>
-    
+
 
     <DataTable
       :value="productStore.selectedProducts"
+      :rowStyle="getRowStyle"
       dataKey="id"
       tableStyle="min-width: 50rem"
-      v-model:selection="productStore.selectedProducts">
+      :selection="{}">
+
       <Column :header="$t('resultPage.remove')" header-style="width: 3rem">
         <template #body="{ data }">
           <Button
@@ -447,4 +458,5 @@ onMounted(() => {
   background-color: #F5C332;
   border-radius: 3px;
 }
+
 </style>
