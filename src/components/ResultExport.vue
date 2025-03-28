@@ -73,7 +73,6 @@ const props = defineProps({
       <input 
         v-model="personalInfoStore.personInfo.name"
         type="text" 
-        name="name" 
         required 
       />
       <label>姓名</label>
@@ -81,8 +80,7 @@ const props = defineProps({
     <div class="sb-group-input" style="width: 300px; margin: 2.5rem auto">
       <input 
         v-model="personalInfoStore.personInfo.schoolName" 
-        type="number" 
-        name="calories" 
+        type="text" 
         required 
       />
       <label>學校</label>

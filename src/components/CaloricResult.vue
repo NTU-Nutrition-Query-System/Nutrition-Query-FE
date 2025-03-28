@@ -236,7 +236,11 @@ onMounted(() => {
             class="custom-divider">
             <Column
               field="nutrition"
-              :header="$t('selection_nutrition')"/>
+              :header="$t('selection_nutrition')">
+              <template #body="slotProps">
+                <span>{{$t(slotProps.data.nutrition)}}</span>
+              </template>
+            </Column>
             <Column
               field="dailyRequirement"
               :header="$t('selection_daily_requirement')"
