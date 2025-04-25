@@ -57,3 +57,8 @@
 @media (max-width: 480px) {
  .bg-yellow{background-color: #F5C332; background-image: none;} 
   }
+
+  .p-datatable-table-container {
+    display: flex !important;
+    justify-content: center !important;
+}

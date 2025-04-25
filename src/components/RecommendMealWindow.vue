@@ -1,11 +1,18 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useI18n } from "vue-i18n";
 import Dialog from 'primevue/dialog';
 import Button from 'primevue/button';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
+import Carousel from 'primevue/carousel';
+import { getMealDetail } from '@/assets/data/recommendMeals';
+import type { foodItem } from '@/interfaces/Calculator';
+import { useProductStore } from "@/stores/productStore";
 
+const productStore = useProductStore();
 const dialogVisible = ref(false);
+const { t } = useI18n();
 
 const showDialog = () => {
     // Hide the dialog
@@ -16,50 +23,67 @@ const closeDialog = () => {
     dialogVisible.value = false;
 };
 
-const RecommendMealData = ref([
-  {
-    id: 1,
-    name: "家樂氏原味玉米片",
-    category: "西式餐點",
-    subcategory: "燕麥",
-    calories: "114.0 kcal",
-    carbs: 26.1,
-    fat: 0.3,
-    protein: 2.1
-  },
-  {
-    id: 2,
-    name: "全脂鮮奶",
-    category: "飲品",
-    subcategory: "乳品",
-    calories: "151.6 kcal",
-    carbs: 11.8,
-    fat: 8.4,
-    protein: 7.2
-  },
-  {
-    id: 3,
-    name: "奶皇包",
-    category: "中式餐點",
-    subcategory: "包子饅頭",
-    calories: "184.0 kcal",
-    carbs: 30.3,
-    fat: 4.9,
-    protein: 4.7
-  }
-]);
+type PivotTable = Record<string, Record<string, number | string>>;
+
+const pivotMeals = (meals : foodItem[]) => {
+    const pivot: PivotTable = {};
+    const headers = ["class", "subclass", "unit", "gram", "calories", "carbohydrate", "protein", "fat", "dietary_fibre", "sugar", "sodium"];
+
+    for (const attr of headers) {
+        pivot[attr] = { "項目": t(`pivot.${attr}`) };  // 使用 i18n 轉換
+    }
+
+    for (const meal of meals) {
+        for (const attr of headers) {
+            if (!pivot[attr]) {
+                pivot[attr] = {};
+            }
+            pivot[attr][meal.item] = meal[attr as keyof foodItem] as number | string;
+        }
+    }
+    console.log("pivot", pivot);
+    return pivot;
+}
+
+const convertMeal = () => {
+    const mealList = getMealDetail(productStore.dailyNeeds?.calories || 1500);
+    console.log("mealList", typeof(mealList), mealList);
+    const result = [];  
+    for (const meals of mealList) {
+        const pivot = pivotMeals(meals);
+        pivot["nutrition"] = meals[0].header;
+        result.push(pivot);
+    }
+    console.log("mealDetails", result);
+    console.log("mealDetails length", result.length);
+    return result;
+}
+
+const getPivotRowNames = (pivot: PivotTable) => {
+    if (!pivot || Object.keys(pivot).length === 0) return [];
+    
+    const firstColumn = Object.keys(pivot)[0]; // 隨便取一個 column
+    return pivot[firstColumn] ? Object.keys(pivot[firstColumn]) : [];
+};
+
+const recommendCalories = () => {
+    const recommends = [1500, 2000, 2500, 3000];
+    const dailyCalorie = productStore.dailyNeeds?.calories || 0;
+    return recommends.reduce((prev, curr) => 
+        Math.abs(curr - dailyCalorie) < Math.abs(prev - dailyCalorie) ? curr : prev
+    );
+}
+
+const mealDetails = convertMeal();
+
 </script>
 
 <template>
     <div style="display: flex; align-items: center;">
-        <Button 
-            class="btn-yellow"
-            @click="showDialog"
-        >
-            <div class="btn-yellow-content">
-                <font-awesome-icon :icon="['fas', 'fa-bowl-rice']" style="height: 24px; width: 24px; color: black;" />
-                {{$t('button.RecommendMeal')}} 
-            </div>
+        <Button class="btn-yellow" @click="showDialog">
+            <font-awesome-icon :icon="['fas', 'fa-bowl-rice']" 
+                style="height: 24px; width: 24px;"  />
+            {{$t('button.RecommendMeal')}} 
         </Button>
     </div>
 
@@ -71,23 +95,33 @@ const RecommendMealData = ref([
         :closable="true"
         style="width: 80%; height: 80%;"
     >
-        <DataTable 
-            :value="RecommendMealData" 
-            dataKey="id"
-            tableStyle="min-width: 50rem, max-width: 50rem"
-            :rows="10"
-            responsiveLayout="scroll"
-            rowHover
-            highlightOnSelect
+     <!-- <img class="sb-picture" src="../assets/imgs/RecommendMeal/1500-1.jpg"  />    -->
+        <Carousel 
+            :value="mealDetails" 
+            :numVisible="1" 
+            :numScroll="1" 
         >
-            <Column field="name" header="食物名稱"></Column>
-            <Column field="category" header="分類"></Column>
-            <Column field="subcategory" header="子分類"></Column>
-            <Column field="calories" header="熱量"></Column>
-            <Column field="carbs" header="醣類 (g)"></Column>
-            <Column field="fat" header="脂肪 (g)"></Column>
-            <Column field="protein" header="蛋白質 (g)"></Column>
-        </DataTable>
+            <template #item="item" style="display: flex; width: 100%;">
+                <h3 style="text-align: center;"> {{ recommendCalories() }}</h3>
+                <DataTable
+                    :value="item.data"
+                    :scrollable="true"
+                    table-style="min-width: 50rem; width: 100%;"
+                    columnResizeMode="expand"
+                    class="p-datatable-table-container"
+                >
+                    <Column 
+                        v-for="col of getPivotRowNames(item.data)" 
+                        :key="col" 
+                        :field="col" 
+                        :header="col"
+                        style="text-align: center; justify-content: center;"
+                    >
+                    </Column>
+                </DataTable>
+            </template>
+        </Carousel>
+
     </Dialog>
 </template>
 
@@ -121,5 +155,12 @@ table>tr>td {
     height: auto;
     border-radius: 20px;
 }
+
+.p-datatable-table-container {
+    display: flex !important;
+    justify-content: center !important;
+    align-content : center !important;
+}
+
 
 </style>

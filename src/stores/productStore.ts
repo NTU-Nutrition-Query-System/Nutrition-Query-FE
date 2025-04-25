@@ -4,6 +4,7 @@ import type {
   filterOption,
   foodItem,
   weightedFoodItem,
+  nutrient,
 } from "@/interfaces/Calculator";
 import { FilterMatchMode } from "@primevue/core/api";
 
@@ -12,6 +13,7 @@ export const useProductStore = defineStore("productStore", () => {
   const selectedProducts = ref<weightedFoodItem[]>([]);
   const customProducts = ref<weightedFoodItem[]>([]);
   const customProductsCount = ref<number>(0);
+  const dailyNeeds = ref<nutrient>();
   const foodTableLoaded = ref(false);
   const selectedOptions = ref();
   const filterOptions = ref([
@@ -197,12 +199,19 @@ export const useProductStore = defineStore("productStore", () => {
       [] // 初始為空陣列，表示沒有任何篩選條件
     );
   });
+
+  const setDailyNeeds = (data: nutrient) => {
+    dailyNeeds.value = data;
+  };
+
+
   return {
     removeTag,
     loadTableData,
     updateRow,
     getColor,
     clearFilters,
+    setDailyNeeds,
 
     products,
     selectedProducts,
@@ -216,5 +225,6 @@ export const useProductStore = defineStore("productStore", () => {
     selectedClass,
     calculatorFilteredData,
     calculatorFilters,
+    dailyNeeds,
   };
 });

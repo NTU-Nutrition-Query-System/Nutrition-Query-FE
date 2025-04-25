@@ -3,30 +3,24 @@ import { useI18n } from "vue-i18n";
 import { onMounted, ref, watch, nextTick } from "vue";
 import Button from "primevue/button";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import InputGroup from "primevue/inputgroup";
-import FloatLabel from "primevue/floatlabel";
 import RadioButton from "primevue/radiobutton";
 import OverlayBadge from "primevue/overlaybadge";
-import DataTable from "primevue/datatable";
-import Column from "primevue/column";
 import FoodTable from "@/components/FoodTable.vue";
 import CaloricResult from "@/components/CaloricResult.vue";
 import type { nutrient } from "@/interfaces/Calculator";
-import type { foodItem } from "@/interfaces/Calculator";
+import type { PersonalInfo } from "@/interfaces/PersonalInfo";
 import { getTableData } from "@/apis/tableData";
 import Toast from "primevue/toast";
 import { useToast } from "primevue/usetoast";
 import { useProductStore } from "@/stores/productStore";
-import InputText from "primevue/inputtext";
-import IconField from "primevue/iconfield";
-import InputIcon from "primevue/inputicon";
-import Banner from "@/components/common/Banner.vue";
+import { usePersonInfoStore } from "@/stores/personInfoStore";
 
 const productStore = useProductStore();
+const personalInfoStore = usePersonInfoStore();
 // Declare reactive variables using `ref`
-const age = ref<number>(0);
-const height = ref<number>(0);
-const weight = ref<number>(0);
+const age = ref<number>(personalInfoStore.personInfo.age);
+const height = ref<number>(personalInfoStore.personInfo.height);
+const weight = ref<number>(personalInfoStore.personInfo.weight);
 const activityFactor = ref<string>("1.3");
 const gender = ref("Male");
 const isExpanded = ref<boolean>(false);
@@ -41,19 +35,27 @@ const toast = useToast();
 const calculateDailyNeed = () => {
   if (gender.value === "Male") {
     dailyNeeds.value.calories =
-      (66 + 13.7 * weight.value + 5 * height.value - 6.8 * age.value) *
+      (66 + 
+     13.7 * personalInfoStore.personInfo.weight + 
+        5 * personalInfoStore.personInfo.height - 
+      6.8 * personalInfoStore.personInfo.age) *
       parseFloat(activityFactor.value);
   } else {
     dailyNeeds.value.calories =
-      (665 + 9.6 * weight.value + 1.8 * height.value - 4.7 * age.value) *
+      (665 + 
+       9.6 * personalInfoStore.personInfo.weight + 
+       1.8 * personalInfoStore.personInfo.height - 
+       4.7 * personalInfoStore.personInfo.age) *
       parseFloat(activityFactor.value);
   }
 
-  dailyNeeds.value.protein = weight.value * 1;
+  dailyNeeds.value.protein = personalInfoStore.personInfo.weight * 1;
 
   dailyNeeds.value.carbohydrate = (dailyNeeds.value.calories * 0.5) / 4;
 
   dailyNeeds.value.fat = (dailyNeeds.value.calories * 0.3) / 9;
+
+  productStore.setDailyNeeds(dailyNeeds.value);
 };
 
 const calculate = () => {
@@ -153,21 +155,21 @@ onMounted(() => {
                   </div>
                   <!-- age -->
                   <div class="sb-group-input" style="width: 150px; text-align: center; margin: 2.5rem auto">
-                    <input v-model="age" type="text" name="age" required>
+                    <input v-model="personalInfoStore.personInfo.age" type="text" name="age" required>
                     <span class="sb-bar"></span>
                     <label>{{ $t("calculator_input.age") }}</label>
                   </div>
 
                   <!-- height -->
                   <div class="sb-group-input" style="width: 150px; text-align: center; margin: 2.5rem auto">
-                    <input v-model="height" type="text" name="height" required>
+                    <input v-model="personalInfoStore.personInfo.height" type="text" name="height" required>
                     <span class="sb-bar"></span>
                     <label>{{ $t("calculator_input.height") }}({{ $t("calculator_input.centimeter") }})</label>
                   </div>
 
                   <!-- weight -->
                   <div class="sb-group-input" style="width: 150px; text-align: center; margin: 2.5rem auto">
-                    <input v-model="weight" type="text" name="weight" required>
+                    <input v-model="personalInfoStore.personInfo.weight" type="text" name="weight" required>
                     <span class="sb-bar"></span>
                     <label>{{ $t("calculator_input.weight") }}({{ $t("calculator_input.kilogram") }})</label>
                   </div>
