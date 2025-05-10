@@ -6,11 +6,11 @@ import zhTW from './zh-TW';
 // Import your translation files
 const messages = {
   en,
-  ch: zhTW,
+  zh: zhTW,
 };
 
 const i18n = createI18n({
-  locale: "ch", // Set the default locale
+  locale: "zh", // Set the default locale
   messages, // Set locale messages
 });
 

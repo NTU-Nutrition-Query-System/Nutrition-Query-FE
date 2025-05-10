@@ -23,6 +23,8 @@ import type {
 import { useProductStore } from "@/stores/productStore";
 import SizeReference from "./SizeReference.vue";
 
+const { locale } = useI18n();
+
 const dialogVisible = ref(false);
 
 const emit = defineEmits(["updateSelectedData", "update:visible"]);
@@ -40,51 +42,63 @@ const toast = useToast();
 
 const categories = [
   {
-    name: "中式餐點",
+    zh: "中式餐點",
+    en: "Chinese-style meal",
     image: new URL("@/assets/imgs/ClassChineseMeal.jpg", import.meta.url).href,
   },
   {
-    name: "西式餐點",
+    zh: "西式餐點",
+    en: "Western-style meal",
     image: new URL("@/assets/imgs/ClassWesternMeal.jpg", import.meta.url).href,
   },
   {
-    name: "飯糰壽司類",
+    zh: "飯糰壽司類",
+    en: "Sushi and rice ball",
     image: new URL("@/assets/imgs/ClassRiceBall.jpg", import.meta.url).href,
   },
   {
-    name: "蛋肉類",
+    zh: "蛋肉類",
+    en: "Egg and meat",
     image: new URL("@/assets/imgs/ClassMeatEgg.jpg", import.meta.url).href,
   },
   {
-    name: "蔬菜類",
+    zh: "蔬菜類",
+    en: "Vegetable",
     image: new URL("@/assets/imgs/ClassVegetabale.jpg", import.meta.url).href,
   },
   {
-    name: "水果類",
+    zh: "水果類",
+    en: "Fruit",
     image: new URL("@/assets/imgs/ClassFruit.jpg", import.meta.url).href,
   },
   {
-    name: "麵包蛋糕類",
+    zh: "麵包蛋糕類",
+    en: "Bread and cake",
     image: new URL("@/assets/imgs/ClassBreadCake.jpg", import.meta.url).href,
   },
   {
-    name: "飲品",
+    zh: "飲品",
+    en: "Drink",
     image: new URL("@/assets/imgs/ClassDrink.jpg", import.meta.url).href,
   },
   {
-    name: "油脂與堅果種子類",
+    zh: "油脂與堅果種子類",
+    en: "Oil and nuts",
     image: new URL("@/assets/imgs/ClassOilNuts.jpg", import.meta.url).href,
   },
   {
-    name: "零食類",
+    zh: "零食類",
+    en: "Snack",
     image: new URL("@/assets/imgs/ClassSnack.jpg", import.meta.url).href,
   },
   {
-    name: "醬料類",
+    zh: "醬料類",
+    en: "Condiment",
     image: new URL("@/assets/imgs/ClassDressing.jpg", import.meta.url).href,
   },
   {
-    name: "全部",
+    zh: "全部",
+    en: "All items",
     image: new URL("@/assets/imgs/girl_square.png", import.meta.url).href,
   },
 ];
@@ -106,14 +120,14 @@ const itemSelect = (e: any) => {
     toast.add({
       severity: "success",
       summary: "",
-      detail: `${e?.data.item} is added`,
+      detail: `${e?.data.name} is added`,
       life: 1000,
     });
   } else {
     toast.add({
       severity: "warn",
       summary: "",
-      detail: `${e?.data.item} is removed`,
+      detail: `${e?.data.name} is removed`,
       life: 2000,
     });
   }
@@ -124,10 +138,10 @@ const computeNumberOfItem = computed(() => {
     if (!productStore.selectedProducts || !categories[index]) {
       return 0; // 如果資料不存在，返回 0
     }
-    if (categories[index].name === "全部") {
+    if (categories[index].zh === "全部") {
       // console.log("All items: ", index, categories[index]);
       return productStore.selectedProducts.length;
-    } else if (categories[index].name === "客製化") {
+    } else if (categories[index].zh === "客製化") {
       // console.log("Custom: ", index, categories[index]);
       return productStore.selectedProducts.length;
     }
@@ -148,8 +162,8 @@ const hoverPosition = ref({ x: 0, y: 0 });
 const handleImageClick = async (data: any) => {
   // console.log("Image clicked for ID:", data.id);
   // console.log("Photo URL:", data.photo);
-  selectedImage.value = data.photo;
-  dialogTitle.value = data.item;
+  selectedImage.value = data.imageUri;
+  dialogTitle.value = data.name;
   displayDialog.value = true;
 };
 
@@ -212,6 +226,7 @@ onMounted(() => {
       <Toast position="top-center" :baseZIndex="12" style="width: 20rem" />
 
       <DataTable
+        :key="locale"
         :selection="productStore.selectedProducts"
         :value="productStore.filteredData"
         :globalFilterFields="['name', 'class']"
@@ -225,7 +240,6 @@ onMounted(() => {
         @row-unselect="itemSelect"
         rowHover
         highlightOnSelect
-        :key="$i18n.locale"
       >
         <template #header>
           <div style="
@@ -438,7 +452,7 @@ onMounted(() => {
     <Card
       class="food-class-card"
       v-for="(item, index) in categories"
-      @click="classClicked(item, index)"
+      @click="classClicked({ image: item.image, name: item.zh }, index)"
     >
       <template #content>
         <div style="width: 100%; position: relative">
@@ -468,7 +482,7 @@ onMounted(() => {
               font-size: 20px;
             "
           >
-            {{ categories[index].name }}
+            {{ locale === 'en' ? categories[index].en : categories[index].zh }}
           </label>
           <Button
             style="
@@ -482,7 +496,7 @@ onMounted(() => {
               background-color: #f5c332;
             "
             :label="$t('button.open')"
-            @click="classClicked(item, index)"
+            @click="classClicked({name: item.zh, image: item.image}, index)"
           />
         </div>
       </template>
