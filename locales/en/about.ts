@@ -9,7 +9,7 @@ export default {
     `This is a one-day, six-hour camp, which may be held during weekends or holidays. If your school finds this camp beneficial to students, we would be happy to visit and present the course details and instruments to your principal and staff.`,
   ],
   signature: {
-    name: "Shih-Kuan Hsu",
+    name: "Dr. Shihkuan Hsu",
     organization: "NTU Center for Teacher Education"
   }
 }
