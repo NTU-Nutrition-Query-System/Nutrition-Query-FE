@@ -70,8 +70,8 @@ export const useProductStore = defineStore("productStore", () => {
   const calculatorFilters = ref({
     global: { value: null, matchMode: FilterMatchMode.CONTAINS },
   });
-  const loadTableData = async (getTableData: () => Promise<any[]>) => {
-    const res = await getTableData(); //call api
+  const loadTableData = async (getTableData: (lang: string) => Promise<any[]>, lang: string = 'zh') => {
+    const res = await getTableData(lang); // call api
     products.value = res;
     foodTableLoaded.value = true;
     products.value.forEach((product) => {

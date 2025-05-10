@@ -225,6 +225,7 @@ onMounted(() => {
         @row-unselect="itemSelect"
         rowHover
         highlightOnSelect
+        :key="$i18n.locale"
       >
         <template #header>
           <div style="

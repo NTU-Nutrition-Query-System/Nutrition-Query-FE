@@ -24,7 +24,7 @@ const handleCalculation = (result: number) => {
 //   locale.value = currentLocale.value;
 // };
 const languages = [
-  { label: "中文", value: "ch" },
+  { label: "中文", value: "zh" },
   { label: "English", value: "en" },
 ];
 const items = ref([
