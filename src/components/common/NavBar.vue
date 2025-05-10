@@ -4,16 +4,23 @@ import { RouterLink } from "vue-router";
 import LanguageSelector from "@/components/common/LanguageSelector.vue";
 import Button from "@/primevue/button";
 import { decodeCredential } from "vue3-google-login";
+import type { CallbackTypes } from "vue3-google-login";
 import { GoogleLogin } from "vue3-google-login";
-import Image from "primevue/image";
-const userAvatar = ref<string | null>(null);
-const callback = (res: object) => {
-  const userCredential = res?.credential;
-  console.log(userCredential);
-  const userData = decodeCredential(res?.credential);
-  console.log("Google user: ");
+import Avatar from 'primevue/avatar';
+
+const userAvatar = ref<string>("");
+
+interface UserData {
+  sub: string;
+  name: string;
+  email: string;   // User's email address
+  picture: string; // Profile picture URL
+}
+
+const callback: CallbackTypes.CredentialCallback = (res) => {
+  const userData = decodeCredential(res.credential) as UserData;
   console.log(userData);
-  userAvatar.value = userData?.picture || ""; // Assign Google profile picture
+  userAvatar.value = userData.picture; // Assign Google profile picture
 };
 // Receive items from parent
 const props = defineProps({
@@ -80,10 +87,10 @@ const handleClick = (index: number) => {
             <div @click="toggleMenu" class="sb-menu-btn"><span></span></div>
           </div>
         </div>
+        <GoogleLogin :callback="callback" />
+        <Avatar :image="userAvatar" alt="Profile Image" size="large" shape="circle" />
       </div>
     </div>
-    <GoogleLogin :callback="callback" />
-    <Image :src="userAvatar" alt="Profile Image" preview />
   </div>
 
   <!-- top bar end -->
