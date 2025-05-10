@@ -98,8 +98,8 @@ const closeDialog = () => {
   productStore.clearFilters();
 };
 const itemSelect = (e: any) => {
-  console.log("Row clicked");
-  console.log(e);
+  // console.log("Row clicked");
+  // console.log(e);
   const success = productStore.updateRow(e.data);
   if (success) {
     //Toast 提示
@@ -125,10 +125,10 @@ const computeNumberOfItem = computed(() => {
       return 0; // 如果資料不存在，返回 0
     }
     if (categories[index].name === "全部") {
-      console.log("All items: ", index, categories[index]);
+      // console.log("All items: ", index, categories[index]);
       return productStore.selectedProducts.length;
     } else if (categories[index].name === "客製化") {
-      console.log("Custom: ", index, categories[index]);
+      // console.log("Custom: ", index, categories[index]);
       return productStore.selectedProducts.length;
     }
     return productStore.selectedProducts.filter(
@@ -137,8 +137,33 @@ const computeNumberOfItem = computed(() => {
   };
 });
 
+// === 圖片預覽 ===
+
+const displayDialog = ref<boolean>(false);
+const selectedImage = ref<string>('');
+const dialogTitle = ref<string>('');
+const hoveredImage = ref<string>('');  // 新增懸停圖片的 ref
+const hoverPosition = ref({ x: 0, y: 0 });
+
+const handleImageClick = async (data: any) => {
+  // console.log("Image clicked for ID:", data.id);
+  // console.log("Photo URL:", data.photo);
+  selectedImage.value = data.photo;
+  dialogTitle.value = data.item;
+  displayDialog.value = true;
+};
+
+const handleMouseover = async (event: MouseEvent, photoUrl: string) => {
+  hoveredImage.value = photoUrl; // 設定懸停時要顯示的圖片 URL
+  hoverPosition.value = { x: event.clientX + 10, y: event.clientY + 10 }; // 設定懸停圖片的位置
+};
+
+const handleMouseleave = () => {
+  hoveredImage.value = ''; // 清空懸停圖片 URL，隱藏預覽
+};
+
 onMounted(() => {
-  console.log("Food Table OnMounted");
+  // console.log("Food Table OnMounted");
   const ret = categories.map((category) =>
     productStore.products.filter((item) => item.class === category.name)
   );
@@ -150,6 +175,32 @@ onMounted(() => {
   <head> </head>
 
   <div>
+    <Dialog
+      v-model:visible="displayDialog"
+      :header="dialogTitle"
+      :modal="true"
+      :style="{ width: '30vw' }"
+      :dismissableMask="true"
+    >
+      <img v-if="selectedImage" :src="selectedImage" style="width: 100%" />
+    </Dialog>
+
+    <div
+      v-if="hoveredImage"
+      :style="{
+        position: 'fixed',
+        top: hoverPosition.y + 'px',
+        left: hoverPosition.x + 'px',
+        zIndex: 1000000,
+        border: '1px solid #ccc',
+        backgroundColor: 'white',
+        padding: '8px',
+        boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
+      }"
+    >
+      <img :src="hoveredImage" style="max-width: 200px; max-height: 200px" />
+    </div>
+
     <Dialog
       v-model:visible="dialogVisible"
       :modal="true"
@@ -200,7 +251,20 @@ onMounted(() => {
           field="item"
           :header="$t('food_item')"
           style="min-width: 150px; width: 1%"
-        ></Column>
+        >
+          <template #body="rowData">
+            <span>{{ rowData.data.item }}</span>
+            <Button
+              v-if="rowData.data.photo !== null"
+              icon="pi pi-image"
+              class="p-button-rounded p-button-sm"
+              style="margin-left: 8px; background-color: var(--primary-color); color: black; border: none;"
+              @click="handleImageClick(rowData.data)"
+              @mouseover="(event) => handleMouseover(event, rowData.data.photo)"  
+              @mouseleave="handleMouseleave" 
+            />
+          </template>
+        </Column>
         <Column
           field="subclass"
           :header="$t('food_class')"
