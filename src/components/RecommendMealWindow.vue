@@ -38,7 +38,7 @@ const pivotMeals = (meals : foodItem[]) => {
             if (!pivot[attr]) {
                 pivot[attr] = {};
             }
-            pivot[attr][meal.item] = meal[attr as keyof foodItem] as number | string;
+            pivot[attr][meal.name] = meal[attr as keyof foodItem] as number | string;
         }
     }
     console.log("pivot", pivot);

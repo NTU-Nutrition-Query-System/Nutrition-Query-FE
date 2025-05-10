@@ -37,11 +37,11 @@ export const useProductStore = defineStore("productStore", () => {
     },
     {
       name: "醣類",
-      key: "carbohydrate",
+      key: "carbon",
       states: [
-        { class: "carbohydrate", name: "低醣類", min: 0, max: 20 },
-        { class: "carbohydrate", name: "中醣類", min: 21, max: 50 },
-        { class: "carbohydrate", name: "高醣類", min: 51, max: 9999 },
+        { class: "carbon", name: "低醣類", min: 0, max: 20 },
+        { class: "carbon", name: "中醣類", min: 21, max: 50 },
+        { class: "carbon", name: "高醣類", min: 51, max: 9999 },
       ],
     },
     {
@@ -55,11 +55,11 @@ export const useProductStore = defineStore("productStore", () => {
     },
     {
       name: "膳食纖維",
-      key: "dietary_fibre",
+      key: "dietaryFibre",
       states: [
-        { class: "dietary_fibre", name: "低膳食纖維", min: 0, max: 2 },
-        { class: "dietary_fibre", name: "中膳食纖維", min: 3, max: 6 },
-        { class: "dietary_fibre", name: "高膳食纖維", min: 7, max: 9999 },
+        { class: "dietaryFibre", name: "低膳食纖維", min: 0, max: 2 },
+        { class: "dietaryFibre", name: "中膳食纖維", min: 3, max: 6 },
+        { class: "dietaryFibre", name: "高膳食纖維", min: 7, max: 9999 },
       ],
     },
   ]);
@@ -183,10 +183,10 @@ export const useProductStore = defineStore("productStore", () => {
               );
             case "fat":
               return item.fat >= option.min && item.fat <= option.max;
-            case "dietary_fibre":
+            case "dietaryFibre":
               return (
-                item.dietary_fibre >= option.min &&
-                item.dietary_fibre <= option.max
+                item.dietaryFibre >= option.min &&
+                item.dietaryFibre <= option.max
               );
             default:
               return true; // 若不存在對應 class，則保留該項目

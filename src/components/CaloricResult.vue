@@ -145,7 +145,7 @@ const deleteButtonClicked = (row: weightedFoodItem) => {
   toast.add({
     severity: "warn",
     summary: "",
-    detail: `${row.item} is removed`,
+    detail: `${row.name} is removed`,
     life: 2000,
   });
 };

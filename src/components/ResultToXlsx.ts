@@ -25,16 +25,16 @@ function convertupTakeToNutrition(selectedIntake: CalculatedNutrition[]): foodIt
   
       const result: foodItem[] = itemNames.map((name, index) => ({
         id: index + 1,
-        item: name,
+        name: name,
         unit: "",
         gram: 0,
-        class: "",
+        class: 0,
         subclass: "",
         calories: 0,
         carbohydrate: 0,
         protein: 0,
         fat: 0,
-        dietary_fibre: 0,
+        dietaryFibre: 0,
       }));
   
       selectedIntake.forEach(entry => {
@@ -85,7 +85,7 @@ export function exportResultToXlsx(
       .build();
 
     const selectedNutritionExportSchema = ExcelSchemaBuilder.create<(foodItem[])[number]>()
-      .column("" as never, { key: 'item', cellStyle: rightCenterAlignment, 
+      .column("" as never, { key: 'name', cellStyle: rightCenterAlignment, 
               transform: (value: string) => 
                 value === "intake" ? t('selection_intake') :
                 value === "mealRequirement"? t('selection_meal_requirement') : 
@@ -108,7 +108,7 @@ export function exportResultToXlsx(
       .build();
 
     const selectedFoodExportSchema = ExcelSchemaBuilder.create<(typeof selectedFood)[number]>()
-      .column(t('food_item') as never, { key: 'item', cellStyle: rightCenterAlignment })
+      .column(t('food_item') as never, { key: 'name', cellStyle: rightCenterAlignment })
       .column(t('food_gram') as never, { key: 'gram', cellStyle: rightCenterAlignment })
       .column(t('calories') as never, { key: 'calories', cellStyle: rightCenterAlignment })
       .column(t('carbohydrate') as never, { key: 'carbohydrate', cellStyle: rightCenterAlignment })

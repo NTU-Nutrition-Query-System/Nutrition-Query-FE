@@ -19,15 +19,15 @@ const closeDialog = () => {
 const toast = useToast();
 const food = ref<weightedFoodItem>({
   id: 0,
-  item: "",
-  class: "客製化",
+  name: "",
+  class: -1,
   unit: "1份",
   gram: 0,
   calories: 0,
   carbohydrate: 0,
   fat: 0,
   protein: 0,
-  dietary_fibre: 0,
+  dietaryFibre: 0,
   weight: 1,
   is_customized: true,
 });
@@ -42,7 +42,7 @@ const addFood = () => {
   toast.add({
     severity: "success",
     summary: "",
-    detail: `${new_food.item} 已新增至查看`,
+    detail: `${new_food.name} 已新增至查看`,
     life: 4000,
   });
   dialogVisible.value = false;
@@ -50,15 +50,15 @@ const addFood = () => {
   //   console.log(new_food);
   food.value = {
     id: 0,
-    item: "",
-    class: "客製化",
+    name: "",
+    class: -1,
     unit: "1份",
     gram: 0,
     calories: 0,
     carbohydrate: 0,
     fat: 0,
     protein: 0,
-    dietary_fibre: 0,
+    dietaryFibre: 0,
     weight: 1,
     is_customized: true,
   };
@@ -87,9 +87,9 @@ const addFood = () => {
   >
     <div class="sb-group-input" style="width: 300px; margin: 2.5rem auto">
       <input 
-        v-model="food.item" 
+        v-model="food.name" 
         type="text" 
-        name="item" 
+        name="name" 
         required 
       />
       <span class="sb-bar"></span>
@@ -137,7 +137,7 @@ const addFood = () => {
     </div>
     <div class="sb-group-input" style="width: 300px; margin: 2.5rem auto">
       <input
-        v-model="food.dietary_fibre"
+        v-model="food.dietaryFibre"
         type="number"
         name="food_dt_fibre"
         required

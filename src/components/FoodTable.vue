@@ -132,7 +132,7 @@ const computeNumberOfItem = computed(() => {
       return productStore.selectedProducts.length;
     }
     return productStore.selectedProducts.filter(
-      (product: foodItem) => product.class === categories[index].name
+      (product: foodItem) => product.class === index + 1
     ).length;
   };
 });
@@ -164,8 +164,8 @@ const handleMouseleave = () => {
 
 onMounted(() => {
   // console.log("Food Table OnMounted");
-  const ret = categories.map((category) =>
-    productStore.products.filter((item) => item.class === category.name)
+  const ret = categories.map((category, index) =>
+    productStore.products.filter((item) => item.class === index + 1)
   );
   ret[ret.length - 1] = productStore.products; //for the class 'All items'
   productStore.productsFilterByCategories = ret;
@@ -214,9 +214,9 @@ onMounted(() => {
       <DataTable
         :selection="productStore.selectedProducts"
         :value="productStore.filteredData"
-        :globalFilterFields="['item', 'class']"
+        :globalFilterFields="['name', 'class']"
         :filters="productStore.filters"
-        dataKey="id"
+        dataKey="order"
         tableStyle="min-width: 50rem"
         paginator
         :rows="10"
@@ -248,19 +248,19 @@ onMounted(() => {
 
         <Column selectionMode="multiple" style="width: 0.1%"></Column>
         <Column
-          field="item"
+          field="name"
           :header="$t('food_item')"
           style="min-width: 150px; width: 1%"
         >
           <template #body="rowData">
-            <span>{{ rowData.data.item }}</span>
+            <span>{{ rowData.data.name }}</span>
             <Button
-              v-if="rowData.data.photo !== null"
+              v-if="rowData.data.imageUri !== null"
               icon="pi pi-image"
               class="p-button-rounded p-button-sm"
               style="margin-left: 8px; background-color: var(--primary-color); color: black; border: none;"
               @click="handleImageClick(rowData.data)"
-              @mouseover="(event) => handleMouseover(event, rowData.data.photo)"  
+              @mouseover="(event) => handleMouseover(event, rowData.data.imageUri)"  
               @mouseleave="handleMouseleave" 
             />
           </template>
@@ -388,11 +388,11 @@ onMounted(() => {
 
         <Column
           sortable
-          field="dietary_fibre"
+          field="dietaryFibre"
           :header="$t('food_dt_fibre')"
           :filter="true"
           :showFilterMatchModes="false"
-          filterField="dietary_fibre"
+          filterField="dietaryFibre"
           :showApplyButton="false"
           :showClearButton="false"
           style="width: 0.5%"
@@ -401,7 +401,7 @@ onMounted(() => {
             <div
               :style="{
                 backgroundColor: productStore.getColor(
-                  data.dietary_fibre,
+                  data.dietaryFibre,
                   0,
                   25
                 ),
@@ -411,7 +411,7 @@ onMounted(() => {
                 textAlign: 'center',
               }"
             >
-              {{ data.dietary_fibre }}
+              {{ data.dietaryFibre }}
             </div>
           </template>
         </Column>
