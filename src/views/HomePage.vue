@@ -23,10 +23,10 @@
     </div> -->
     <Poster></Poster>
       <router-link to="/Calculator">
-        <Button
+        <!-- <Button
           label="前往計算機"
           class="message-button"
-        />
+        /> -->
       </router-link>
     </div>
   </div>
