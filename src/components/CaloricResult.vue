@@ -336,7 +336,7 @@ onMounted(() => {
           </div>
         </template>
       </Column>
-      <Column field="item" :header="$t('food_item')">
+      <Column field="name" :header="$t('food_item')">
         <template #body="{ data }">
           <div>{{ data.item }}</div>
         </template>
