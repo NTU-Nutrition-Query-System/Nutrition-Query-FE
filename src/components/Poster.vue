@@ -23,20 +23,20 @@
                 {{ $t('page_content.home.intro_questions[1]') }}
               </p>
               <!-- button -->
-              <a href="calculator" data-no-swup class="sb-btn">
+              <router-link to="/Calculator" class="sb-btn">
                 <span class="sb-icon">
                   <img src="../assets/img/ui/icons/menu.svg" alt="icon">
                 </span>
-                <span>{{ $t('page.calculator') }}</span>
-              </a>
+                <span data-no-swup>{{ $t(`page.calculator`) }}</span>
+              </router-link>
               <!-- button end -->
               <!-- button -->
-              <a href="about" data-no-swup class="sb-btn sb-btn-2 sb-btn-gray" style="margin-left: 20px;">
+              <router-link to="/Calculator" class="sb-btn sb-btn-2 sb-btn-gray" style="margin-left: 20px;">
                 <span class="sb-icon">
                   <img src="../assets/img/ui/icons/arrow.svg" alt="icon">
                 </span>
                 <span>{{ $t('page.about') }}</span>
-              </a>
+              </router-link>
               <!-- button end -->
             </div>
           </div>

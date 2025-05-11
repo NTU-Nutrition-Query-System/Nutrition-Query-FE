@@ -452,7 +452,7 @@ onMounted(() => {
     <Card
       class="food-class-card"
       v-for="(item, index) in categories"
-      @click="classClicked({ image: item.image, name: item.zh }, index)"
+      @click="classClicked({ image: item.image, name: locale === 'en' ? item.en : item.zh }, index)"
     >
       <template #content>
         <div style="width: 100%; position: relative">
@@ -496,7 +496,7 @@ onMounted(() => {
               background-color: #f5c332;
             "
             :label="$t('button.open')"
-            @click="classClicked({name: item.zh, image: item.image}, index)"
+            @click="classClicked({ image: item.image, name: locale === 'en' ? item.en : item.zh }, index)"
           />
         </div>
       </template>

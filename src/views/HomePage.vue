@@ -1,32 +1,9 @@
 <template>
   <div class="sb-app">
     <div class="message-board">
-      <!-- <h2 class="board-title">公告板</h2>
-
-    <div class="messages">
-      <p-card
-        v-for="(message, index) in messages"
-        :key="index"
-        class="message-card"
-      >
-        <template #header>
-          <div class="message-header">
-            <i class="pi pi-info-circle" />
-            <span class="message-title">{{ message.title }}</span>
-          </div>
-        </template>
-        <p>{{ message.content }}</p>
-        <template #footer>
-          <div class="message-footer">{{ message.date }}</div>
-        </template>
-      </p-card>
-    </div> -->
     <Poster></Poster>
       <router-link to="/Calculator">
-        <!-- <Button
-          label="前往計算機"
-          class="message-button"
-        /> -->
+        <span data-no-swup>{{ $t(`page.calculator`) }}</span>
       </router-link>
     </div>
   </div>
