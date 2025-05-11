@@ -413,19 +413,7 @@ onMounted(() => {
           style="width: 0.5%"
         >
           <template #body="{ data }">
-            <div
-              :style="{
-                backgroundColor: productStore.getColor(
-                  data.dietaryFibre,
-                  0,
-                  25
-                ),
-                color: 'black',
-                padding: '10px',
-                borderRadius: '5px',
-                textAlign: 'center',
-              }"
-            >
+            <div style="text-align: center;">
               {{ data.dietaryFibre }}
             </div>
           </template>
