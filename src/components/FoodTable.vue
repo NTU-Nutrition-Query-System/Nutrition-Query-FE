@@ -256,7 +256,7 @@ onMounted(() => {
               <div style="
                   display: flex;
                   align-items: center;">
-                <SizeReference />
+                <!-- <SizeReference /> -->
               </div>
           </div>
         </template>
