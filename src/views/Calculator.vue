@@ -76,8 +76,13 @@ const foodTableDisplay = ref<boolean>(false);
 const calculatorDisplay = ref<boolean>(false);
 const loadTableData = async () => {
   foodTableLoaded.value = true;
-  productStore.loadTableData(getTableData);
+  productStore.loadTableData(getTableData, locale.value);
 };
+
+// TODO: dont use watch
+watch(locale, () => {
+  productStore.loadTableData(getTableData, locale.value);
+}, { immediate: true });
 
 const targetSection = ref<HTMLElement | null>(null);
 const itemSelect = (e: any) => {

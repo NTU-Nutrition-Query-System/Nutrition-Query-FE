@@ -1,6 +1,6 @@
 <template>
   <!-- banner -->
-  <section class="sb-banner" >
+  <section class="sb-banner">
     <div class="sb-bg-1">
       <div></div>
     </div>
@@ -10,28 +10,33 @@
           <!-- main title -->
           <div class="sb-main-title-frame">
             <div class="sb-main-title">
-              <span class="sb-suptitle sb-mb-20">臺灣大學師培中心</span>
-              <h1 class="sb-mb-30">生醫探索與科技<br>結合假日營隊</h1>
-              <h3 class="sb-mb-30">開放中等學校申請</h3>
+              <span class="sb-suptitle sb-mb-20">
+                {{ $t('page_content.home.organizer') }}
+              </span>
+              <h1 class="sb-mb-30">
+                {{ $t('page_content.home.title_1') }}<br>
+                {{ $t('page_content.home.title_2') }}
+              </h1>
+              <h3 class="sb-mb-30">{{ $t('page_content.home.subtitle') }}</h3>
               <p class="sb-text sb-text-lg sb-mb-30">
-                想幫助學生了解食物與葡萄糖的關係嗎?<br>
-                希望學生可以運用自製Arduino葡萄糖檢測器進行濃度檢測實驗嗎?
+                {{ $t('page_content.home.intro_questions[0]') }}<br>
+                {{ $t('page_content.home.intro_questions[1]') }}
               </p>
               <!-- button -->
-              <a href="calculator" data-no-swup class="sb-btn">
+              <router-link to="/Calculator" class="sb-btn">
                 <span class="sb-icon">
                   <img src="../assets/img/ui/icons/menu.svg" alt="icon">
                 </span>
-                <span>營養計算機</span>
-              </a>
+                <span data-no-swup>{{ $t(`page.calculator`) }}</span>
+              </router-link>
               <!-- button end -->
               <!-- button -->
-              <a href="about" data-no-swup class="sb-btn sb-btn-2 sb-btn-gray">
+              <router-link to="/Calculator" class="sb-btn sb-btn-2 sb-btn-gray" style="margin-left: 20px;">
                 <span class="sb-icon">
                   <img src="../assets/img/ui/icons/arrow.svg" alt="icon">
                 </span>
-                <span>關於我們</span>
-              </a>
+                <span>{{ $t('page.about') }}</span>
+              </router-link>
               <!-- button end -->
             </div>
           </div>
@@ -60,27 +65,37 @@
     <div class="container">
       <div class="row flex-md-row-reverse">
         <div class="col-lg-6 align-self-center sb-mb-30">
-          <h2 class="sb-mb-60">以葡萄糖檢測生醫技術為主軸的中學生跨領域探索課程</h2>
+          <h2 class="sb-mb-60">
+            {{ $t('page_content.home.program_intro.title') }}
+          </h2>
           <ul class="sb-features">
             <li class="sb-features-item sb-mb-60">
               <div class="sb-number">01</div>
               <div class="sb-feature-text">
-                <h3 class="sb-mb-15">食物營養攝取</h3>
-                <p class="sb-text">讓學生了解食物的營養成分以及每日營養素需求</p>
+                <h3 class="sb-mb-15">
+                  {{ $t('page_content.home.program_intro.sections[0].title') }}
+                </h3>
+                <p class="sb-text">
+                  {{ $t('page_content.home.program_intro.sections[0].content') }}
+                </p>
               </div>
             </li>
             <li class="sb-features-item sb-mb-60">
               <div class="sb-number">02</div>
               <div class="sb-feature-text">
-                <h3 class="sb-mb-15">人體血糖運作</h3>
-                <p class="sb-text">讓學生了解食物攝取後體內葡萄糖的變化</p>
+                <h3 class="sb-mb-15">
+                  {{ $t('page_content.home.program_intro.sections[1].title') }}
+                </h3>
+                <p class="sb-text">
+                  {{ $t('page_content.home.program_intro.sections[1].content') }}
+                </p>
               </div>
             </li>
             <li class="sb-features-item sb-mb-60">
               <div class="sb-number">03</div>
               <div class="sb-feature-text">
-                <h3 class="sb-mb-15">Arduino 葡萄糖檢測</h3>
-                <p class="sb-text">Arduino軟硬體與葡萄糖檢測的生醫檢測原理</p>
+                <h3 class="sb-mb-15">{{ $t('page_content.home.program_intro.sections[2].title') }}</h3>
+                <p class="sb-text">{{ $t('page_content.home.program_intro.sections[2].content') }}</p>
               </div>
             </li>
           </ul>
@@ -114,30 +129,41 @@
       <div class="row">
         <div class="col-lg-3 align-self-center">
           <div class="sb-cta-text">
-            <h2 class="sb-mb-15"><font-awesome-icon :icon="['fas', 'bullhorn']" /> 活動資訊</h2>
-            <h3 class="sb-mb-15">葡萄糖探測之旅</h3>
+            <h2 class="sb-mb-15"><font-awesome-icon :icon="['fas', 'bullhorn']" />
+              {{ $t('page_content.home.event') }}
+            </h2>
+            <h3 class="sb-mb-15">
+              {{ $t('page_content.home.event_info.title') }}
+            </h3>
             <!-- filepath: /e:/code/NTU-Nutrition-DB/Nutrition_Query_FE/src/components/Poster.vue -->
             <div class="sb-text sb-mb-30">
-              <font-awesome-icon :icon="['fas', 'user']" class="fa-icon"      style="width: 1.5rem;" /> 對象： 國高中學生<br>
-              <font-awesome-icon :icon="['fas', 'users']" class="fa-icon"     style="width: 1.5rem;" /> 人數： 每場20~24人<br>
-              <font-awesome-icon :icon="['fas', 'school']" class="fa-icon"    style="width: 1.5rem;" /> 場次： 國高中各一場<br>
-              <font-awesome-icon :icon="['fas', 'calendar']" class="fa-icon"  style="width: 1.5rem;" /> 日期： 民國114~115<br>
-              <font-awesome-icon :icon="['fas', 'clock']" class="fa-icon"     style="width: 1.5rem;" /> 時間： 09:00-16:30<br>
+              <font-awesome-icon :icon="['fas', 'user']" class="fa-icon" style="width: 1.5rem;" /> 
+                {{ $t('page_content.home.event_info.target') }}<br>
+              <font-awesome-icon :icon="['fas', 'users']" class="fa-icon" style="width: 1.5rem;" /> 
+                {{ $t('page_content.home.event_info.people') }}<br>
+              <font-awesome-icon :icon="['fas', 'school']" class="fa-icon" style="width: 1.5rem;" /> 
+                {{ $t('page_content.home.event_info.sessions') }}<br>
+              <font-awesome-icon :icon="['fas', 'calendar']" class="fa-icon" style="width: 1.5rem;" /> 
+                {{ $t('page_content.home.event_info.date') }}<br>
+              <font-awesome-icon :icon="['fas', 'clock']" class="fa-icon" style="width: 1.5rem;" /> 
+                {{ $t('page_content.home.event_info.time') }}<br>
             </div>
           </div>
         </div>
         <div class="col-lg-4">
           <div class="sb-cta-text mt-5">
             <br>
-            <h3 class="sb-mb-15">營隊行程</h3>
+            <h3 class="sb-mb-15">
+              {{ $t('page_content.home.schedule.title') }}
+            </h3>
             <ul>
-              <li>09:00-10:30 食物營養與體內葡萄糖</li>
-              <li>10:40-12:00 血糖與生醫檢測原理</li>
-              <li>12:00-13:00 午餐</li>
-              <li>13:00-14:00 Arduino 溫度心跳檢測</li>
-              <li>14:00-15:00 葡萄糖溶液檢測實驗</li>
-              <li>15:00-16:00 實驗結果分析</li>
-              <li>16:00-16:30 血糖量測(需父母同意書)</li>
+              <li>{{ $t('page_content.home.schedule.items[0]') }}</li>
+              <li>{{ $t('page_content.home.schedule.items[1]') }}</li>
+              <li>{{ $t('page_content.home.schedule.items[2]') }}</li>
+              <li>{{ $t('page_content.home.schedule.items[3]') }}</li>
+              <li>{{ $t('page_content.home.schedule.items[4]') }}</li>
+              <li>{{ $t('page_content.home.schedule.items[5]') }}</li>
+              <li>{{ $t('page_content.home.schedule.items[6]') }}</li>
             </ul>
           </div>
         </div>

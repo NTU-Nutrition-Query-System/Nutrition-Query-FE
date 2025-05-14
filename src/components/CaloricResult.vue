@@ -145,7 +145,7 @@ const deleteButtonClicked = (row: weightedFoodItem) => {
   toast.add({
     severity: "warn",
     summary: "",
-    detail: `${row.item} is removed`,
+    detail: `${row.name} is removed`,
     life: 2000,
   });
 };
@@ -336,9 +336,9 @@ onMounted(() => {
           </div>
         </template>
       </Column>
-      <Column field="item" :header="$t('food_item')">
+      <Column field="name" :header="$t('food_item')">
         <template #body="{ data }">
-          <div>{{ data.item }}</div>
+          <div>{{ data.name }}</div>
         </template>
       </Column>
       <Column field="unit" :header="$t('food_unit')">
