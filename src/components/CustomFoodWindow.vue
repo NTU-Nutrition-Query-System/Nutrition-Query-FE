@@ -4,6 +4,12 @@ import Dialog from "primevue/dialog";
 import type { foodItem, weightedFoodItem } from "@/interfaces/Calculator";
 import { useProductStore } from "@/stores/productStore";
 import { useToast } from "primevue/usetoast";
+
+import { library as faLibrary } from "@fortawesome/fontawesome-svg-core";
+import { faAdd } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+faLibrary.add(faAdd);
+
 const productStore = useProductStore();
 
 const dialogVisible = ref(false);
@@ -66,12 +72,13 @@ const addFood = () => {
 </script>
 
 <template>
-  
-  <div style="display: flex; align-items: center;">
+  <div style="display: flex; align-items: center">
     <Button class="btn-yellow" @click="showDialog">
-        <font-awesome-icon :icon="['fas', 'fa-add']" 
-          style="height: 24px; width: 24px; margin-right: 5px;" />
-        {{ $t("button.addCustomFood") }}
+      <FontAwesomeIcon
+        :icon="['fas', 'fa-add']"
+        style="height: 24px; width: 24px; margin-right: 5px"
+      />
+      {{ $t("button.addCustomFood") }}
     </Button>
   </div>
   <div>
@@ -86,42 +93,22 @@ const addFood = () => {
     style="width: 40%; height: 80%"
   >
     <div class="sb-group-input" style="width: 300px; margin: 2.5rem auto">
-      <input 
-        v-model="food.name" 
-        type="text" 
-        name="name" 
-        required 
-      />
+      <input v-model="food.name" type="text" name="name" required />
       <span class="sb-bar"></span>
       <label>{{ $t("food_item") }}</label>
     </div>
     <div class="sb-group-input" style="width: 300px; margin: 2.5rem auto">
-      <input 
-        v-model="food.calories" 
-        type="number" 
-        name="calories" 
-        required 
-      />
+      <input v-model="food.calories" type="number" name="calories" required />
       <span class="sb-bar"></span>
       <label>{{ $t("calories") }}</label>
     </div>
     <div class="sb-group-input" style="width: 300px; margin: 2.5rem auto">
-      <input 
-        v-model="food.protein" 
-        type="number" 
-        name="protein" 
-        required 
-      />
+      <input v-model="food.protein" type="number" name="protein" required />
       <span class="sb-bar"></span>
       <label>{{ $t("protein") }}</label>
     </div>
     <div class="sb-group-input" style="width: 300px; margin: 2.5rem auto">
-      <input 
-        v-model="food.fat" 
-        type="number" 
-        name="fat" 
-        required 
-      />
+      <input v-model="food.fat" type="number" name="fat" required />
       <span class="sb-bar"></span>
       <label>{{ $t("fat") }}</label>
     </div>
@@ -147,8 +134,10 @@ const addFood = () => {
     </div>
     <div style="display: flex; justify-content: center; margin-top: 2rem">
       <Button class="btn-yellow" @click="addFood">
-        <font-awesome-icon :icon="['fas', 'fa-add']" 
-          style="height: 24px; width: 24px; margin-right: 5px;" />
+        <FontAwesomeIcon
+          :icon="['fas', 'fa-add']"
+          style="height: 24px; width: 24px; margin-right: 5px"
+        />
         {{ $t("button.addCustomFood") }}
       </Button>
     </div>

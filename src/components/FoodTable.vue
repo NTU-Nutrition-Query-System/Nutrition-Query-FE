@@ -44,62 +44,62 @@ const categories = [
   {
     zh: "中式餐點",
     en: "Chinese-style meal",
-    image: new URL("@/assets/imgs/ClassChineseMeal.jpg", import.meta.url).href,
+    image: new URL("@/assets/images/foodClasses/ClassChineseMeal.jpg", import.meta.url).href,
   },
   {
     zh: "西式餐點",
     en: "Western-style meal",
-    image: new URL("@/assets/imgs/ClassWesternMeal.jpg", import.meta.url).href,
+    image: new URL("@/assets/images/foodClasses/ClassWesternMeal.jpg", import.meta.url).href,
   },
   {
     zh: "飯糰壽司類",
     en: "Sushi and rice ball",
-    image: new URL("@/assets/imgs/ClassRiceBall.jpg", import.meta.url).href,
+    image: new URL("@/assets/images/foodClasses/ClassRiceBall.jpg", import.meta.url).href,
   },
   {
     zh: "蛋肉類",
     en: "Egg and meat",
-    image: new URL("@/assets/imgs/ClassMeatEgg.jpg", import.meta.url).href,
+    image: new URL("@/assets/images/foodClasses/ClassMeatEgg.jpg", import.meta.url).href,
   },
   {
     zh: "蔬菜類",
     en: "Vegetable",
-    image: new URL("@/assets/imgs/ClassVegetabale.jpg", import.meta.url).href,
+    image: new URL("@/assets/images/foodClasses/ClassVegetabale.jpg", import.meta.url).href,
   },
   {
     zh: "水果類",
     en: "Fruit",
-    image: new URL("@/assets/imgs/ClassFruit.jpg", import.meta.url).href,
+    image: new URL("@/assets/images/foodClasses/ClassFruit.jpg", import.meta.url).href,
   },
   {
     zh: "麵包蛋糕類",
     en: "Bread and cake",
-    image: new URL("@/assets/imgs/ClassBreadCake.jpg", import.meta.url).href,
+    image: new URL("@/assets/images/foodClasses/ClassBreadCake.jpg", import.meta.url).href,
   },
   {
     zh: "飲品",
     en: "Drink",
-    image: new URL("@/assets/imgs/ClassDrink.jpg", import.meta.url).href,
+    image: new URL("@/assets/images/foodClasses/ClassDrink.jpg", import.meta.url).href,
   },
   {
     zh: "油脂與堅果種子類",
     en: "Oil and nuts",
-    image: new URL("@/assets/imgs/ClassOilNuts.jpg", import.meta.url).href,
+    image: new URL("@/assets/images/foodClasses/ClassOilNuts.jpg", import.meta.url).href,
   },
   {
     zh: "零食類",
     en: "Snack",
-    image: new URL("@/assets/imgs/ClassSnack.jpg", import.meta.url).href,
+    image: new URL("@/assets/images/foodClasses/ClassSnack.jpg", import.meta.url).href,
   },
   {
     zh: "醬料類",
     en: "Condiment",
-    image: new URL("@/assets/imgs/ClassDressing.jpg", import.meta.url).href,
+    image: new URL("@/assets/images/foodClasses/ClassDressing.jpg", import.meta.url).href,
   },
   {
     zh: "全部",
     en: "All items",
-    image: new URL("@/assets/imgs/girl_square.png", import.meta.url).href,
+    image: new URL("@/assets/images/foodClasses/all.png", import.meta.url).href,
   },
 ];
 

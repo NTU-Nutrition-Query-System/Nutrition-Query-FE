@@ -3,7 +3,7 @@ import type {
   weightedFoodItem,
   CalculatedNutrition
 } from "@/interfaces/Calculator";
-import type { PersonalInfo } from "@/interfaces/PersonalInfo";
+
 import type { CellStyle } from 'xlsx-js-style';
 import { usePersonInfoStore } from "@/stores/personInfoStore";
 import { ExcelBuilder, ExcelSchemaBuilder } from '@chronicstone/typed-xlsx';

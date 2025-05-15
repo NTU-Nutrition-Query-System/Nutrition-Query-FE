@@ -6,14 +6,14 @@ import Button from "@/primevue/button";
 import { decodeCredential } from "vue3-google-login";
 import type { CallbackTypes } from "vue3-google-login";
 import { GoogleLogin } from "vue3-google-login";
-import Avatar from 'primevue/avatar';
+import Avatar from "primevue/avatar";
 
 const userAvatar = ref<string>("");
 
 interface UserData {
   sub: string;
   name: string;
-  email: string;   // User's email address
+  email: string; // User's email address
   picture: string; // Profile picture URL
 }
 
@@ -88,7 +88,12 @@ const handleClick = (index: number) => {
           </div>
         </div>
         <GoogleLogin :callback="callback" />
-        <Avatar :image="userAvatar" alt="Profile Image" size="large" shape="circle" />
+        <Avatar
+          :image="userAvatar"
+          alt="Profile Image"
+          size="large"
+          shape="circle"
+        />
       </div>
     </div>
   </div>
