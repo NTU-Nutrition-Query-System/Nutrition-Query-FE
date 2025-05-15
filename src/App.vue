@@ -1,28 +1,11 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { onMounted, onUnmounted } from "vue";
-import { useI18n } from "vue-i18n";
-import { isMinusToken } from "typescript";
-import Dropdown from "primevue/dropdown";
-// import Menubar from "primevue/menubar";
 import { useRouter } from "vue-router";
 
-import Preloader from "@/components/common/Preloader.vue";
 import NavBar from "@/components/common/NavBar.vue";
 import Footer from "@/components/common/Footer.vue";
 
-const router = useRouter();
-// const { locale } = useI18n();
-const calculationResult = ref(10);
-// const currentLocale = ref(locale.value);
-
-const handleCalculation = (result: number) => {
-  calculationResult.value = result;
-  console.log(result);
-};
-// const changeLocale = () => {
-//   locale.value = currentLocale.value;
-// };
 const languages = [
   { label: "中文", value: "zh" },
   { label: "English", value: "en" },
@@ -77,8 +60,6 @@ onUnmounted(() => {
 
 <template>
   <div class="sb-app">
-    <!-- preloader -->
-    <!-- <Preloader/> -->
     <!-- click effect -->
     <div class="sb-click-effect" ref="cursor"></div>
     <!-- loader -->

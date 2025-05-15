@@ -1,14 +1,13 @@
 import { createApp } from "vue";
-import App from "./App.vue";
+import App from "@/App.vue";
 import PrimeVue from "primevue/config"; // PrimeIcons styles
-import Aura from "@primevue/themes/aura";
 import Material from "@primevue/themes/material";
+import ToastService from "@/primevue/toastservice";
 import { definePreset } from "@primevue/themes";
-import router from "./router";
-import i18n from "../locales/i18n"; // Import i18n configuration
-import "./assets/base.css";
-import ToastService from "primevue/toastservice";
+import router from "@/router";
+import "@/assets/base.css";
 import "primeicons/primeicons.css";
+import i18n from "../locales/i18n"; // Import i18n configuration
 import { createPinia } from "pinia";
 
 /* import the fontawesome core */
