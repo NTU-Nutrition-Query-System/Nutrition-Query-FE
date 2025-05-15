@@ -1,13 +1,22 @@
 <script setup lang="ts">
 import ContactUs from "@/components/common/ContactUs.vue";
+import { library as faLibrary } from "@fortawesome/fontawesome-svg-core";
+import {
+  faUser,
+  faUsers,
+  faSchool,
+  faClock,
+  faBullhorn,
+  faCalendar,
+  faArrowRight
+} from "@fortawesome/free-solid-svg-icons";
+faLibrary.add(faUser, faUsers, faSchool, faClock, faBullhorn, faCalendar, faArrowRight);
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 </script>
 
 <template>
   <!-- banner -->
   <section class="sb-banner">
-    <div class="sb-bg-1">
-      <div></div>
-    </div>
     <div class="container">
       <div class="row">
         <div class="col-lg-6">
@@ -15,31 +24,38 @@ import ContactUs from "@/components/common/ContactUs.vue";
           <div class="sb-main-title-frame">
             <div class="sb-main-title">
               <span class="sb-suptitle sb-mb-20">
-                {{ $t('page_content.home.organizer') }}
+                {{ $t("page_content.home.organizer") }}
               </span>
               <h1 class="sb-mb-30">
-                {{ $t('page_content.home.title_1') }}<br>
-                {{ $t('page_content.home.title_2') }}
+                {{ $t("page_content.home.title_1") }}<br />
+                {{ $t("page_content.home.title_2") }}
               </h1>
-              <h3 class="sb-mb-30">{{ $t('page_content.home.subtitle') }}</h3>
+              <h3 class="sb-mb-30">{{ $t("page_content.home.subtitle") }}</h3>
               <p class="sb-text sb-text-lg sb-mb-30">
-                {{ $t('page_content.home.intro_questions[0]') }}<br>
-                {{ $t('page_content.home.intro_questions[1]') }}
+                {{ $t("page_content.home.intro_questions[0]") }}<br />
+                {{ $t("page_content.home.intro_questions[1]") }}
               </p>
               <!-- button -->
               <router-link to="/Calculator" class="sb-btn">
                 <span class="sb-icon">
-                  <img src="@/assets/img/ui/icons/menu.svg" alt="icon">
+                  <img src="@/assets/images/ui/icon/tableware.svg" alt="icon" />
                 </span>
                 <span data-no-swup>{{ $t(`page.calculator`) }}</span>
               </router-link>
               <!-- button end -->
               <!-- button -->
-              <router-link to="/About" class="sb-btn sb-btn-2 sb-btn-gray" style="margin-left: 20px;">
+              <router-link
+                to="/About"
+                class="sb-btn sb-btn-2 sb-btn-gray"
+                style="margin-left: 20px"
+              >
                 <span class="sb-icon">
-                  <img src="@/assets/img/ui/icons/arrow.svg" alt="icon">
+                  <font-awesome-icon 
+                    :icon="['fas', 'arrow-right']" 
+                    style="transform: rotate(-45deg);"
+                    size="xl" />
                 </span>
-                <span>{{ $t('page.about') }}</span>
+                <span>{{ $t("page.about") }}</span>
               </router-link>
               <!-- button end -->
             </div>
@@ -48,15 +64,12 @@ import ContactUs from "@/components/common/ContactUs.vue";
         </div>
         <div class="col-lg-6">
           <div class="sb-illustration-1">
-            <img src="@/assets/images/girl.png" alt="girl" class="sb-girl">
+            <img src="@/assets/images/girl.png" alt="girl" class="sb-girl" />
             <div class="sb-cirkle-1"></div>
             <div class="sb-cirkle-2"></div>
             <div class="sb-cirkle-3"></div>
             <div class="sb-cirkle-4"></div>
             <div class="sb-cirkle-5"></div>
-            <img src="@/assets/img/illustrations/3.svg" alt="phones" class="sb-pik-1">
-            <img src="@/assets/img/illustrations/1.svg" alt="phones" class="sb-pik-2">
-            <img src="@/assets/img/illustrations/2.svg" alt="phones" class="sb-pik-3">
           </div>
         </div>
       </div>
@@ -70,17 +83,19 @@ import ContactUs from "@/components/common/ContactUs.vue";
       <div class="row flex-md-row-reverse">
         <div class="col-lg-6 align-self-center sb-mb-30">
           <h2 class="sb-mb-60">
-            {{ $t('page_content.home.program_intro.title') }}
+            {{ $t("page_content.home.program_intro.title") }}
           </h2>
           <ul class="sb-features">
             <li class="sb-features-item sb-mb-60">
               <div class="sb-number">01</div>
               <div class="sb-feature-text">
                 <h3 class="sb-mb-15">
-                  {{ $t('page_content.home.program_intro.sections[0].title') }}
+                  {{ $t("page_content.home.program_intro.sections[0].title") }}
                 </h3>
                 <p class="sb-text">
-                  {{ $t('page_content.home.program_intro.sections[0].content') }}
+                  {{
+                    $t("page_content.home.program_intro.sections[0].content")
+                  }}
                 </p>
               </div>
             </li>
@@ -88,18 +103,26 @@ import ContactUs from "@/components/common/ContactUs.vue";
               <div class="sb-number">02</div>
               <div class="sb-feature-text">
                 <h3 class="sb-mb-15">
-                  {{ $t('page_content.home.program_intro.sections[1].title') }}
+                  {{ $t("page_content.home.program_intro.sections[1].title") }}
                 </h3>
                 <p class="sb-text">
-                  {{ $t('page_content.home.program_intro.sections[1].content') }}
+                  {{
+                    $t("page_content.home.program_intro.sections[1].content")
+                  }}
                 </p>
               </div>
             </li>
             <li class="sb-features-item sb-mb-60">
               <div class="sb-number">03</div>
               <div class="sb-feature-text">
-                <h3 class="sb-mb-15">{{ $t('page_content.home.program_intro.sections[2].title') }}</h3>
-                <p class="sb-text">{{ $t('page_content.home.program_intro.sections[2].content') }}</p>
+                <h3 class="sb-mb-15">
+                  {{ $t("page_content.home.program_intro.sections[2].title") }}
+                </h3>
+                <p class="sb-text">
+                  {{
+                    $t("page_content.home.program_intro.sections[2].content")
+                  }}
+                </p>
               </div>
             </li>
           </ul>
@@ -107,7 +130,11 @@ import ContactUs from "@/components/common/ContactUs.vue";
         <div class="col-lg-6 align-self-center">
           <div class="sb-illustration-2 sb-mb-90">
             <div class="sb-interior-frame">
-              <img src="@/assets/images/boy.png" alt="interior" class="sb-interior">
+              <img
+                src="@/assets/images/boy.png"
+                alt="interior"
+                class="sb-interior"
+              />
             </div>
             <div class="sb-square"></div>
             <div class="sb-cirkle-1"></div>
@@ -116,7 +143,7 @@ import ContactUs from "@/components/common/ContactUs.vue";
             <div class="sb-cirkle-4"></div>
             <div class="sb-experience">
               <div class="sb-exp-content">
-                <img src="@/assets/images/Arduino.png">
+                <img src="@/assets/images/Arduino.png" />
                 <p class="sb-h3">Arduino</p>
               </div>
             </div>
@@ -133,54 +160,77 @@ import ContactUs from "@/components/common/ContactUs.vue";
       <div class="row">
         <div class="col-lg-3 align-self-center">
           <div class="sb-cta-text">
-            <h2 class="sb-mb-15"><font-awesome-icon :icon="['fas', 'bullhorn']" />
-              {{ $t('page_content.home.event') }}
+            <h2 class="sb-mb-15">
+              <FontAwesomeIcon :icon="['fas', 'bullhorn']" />
+              {{ $t("page_content.home.event") }}
             </h2>
             <h3 class="sb-mb-15">
-              {{ $t('page_content.home.event_info.title') }}
+              {{ $t("page_content.home.event_info.title") }}
             </h3>
             <!-- filepath: /e:/code/NTU-Nutrition-DB/Nutrition_Query_FE/src/components/Poster.vue -->
             <div class="sb-text sb-mb-30">
-              <font-awesome-icon :icon="['fas', 'user']" class="fa-icon" style="width: 1.5rem;" /> 
-                {{ $t('page_content.home.event_info.target') }}<br>
-              <font-awesome-icon :icon="['fas', 'users']" class="fa-icon" style="width: 1.5rem;" /> 
-                {{ $t('page_content.home.event_info.people') }}<br>
-              <font-awesome-icon :icon="['fas', 'school']" class="fa-icon" style="width: 1.5rem;" /> 
-                {{ $t('page_content.home.event_info.sessions') }}<br>
-              <font-awesome-icon :icon="['fas', 'calendar']" class="fa-icon" style="width: 1.5rem;" /> 
-                {{ $t('page_content.home.event_info.date') }}<br>
-              <font-awesome-icon :icon="['fas', 'clock']" class="fa-icon" style="width: 1.5rem;" /> 
-                {{ $t('page_content.home.event_info.time') }}<br>
+              <FontAwesomeIcon
+                :icon="['fas', 'user']"
+                class="fa-icon"
+                style="width: 1.5rem"
+              />
+              {{ $t("page_content.home.event_info.target") }}<br />
+              <FontAwesomeIcon
+                :icon="['fas', 'users']"
+                class="fa-icon"
+                style="width: 1.5rem"
+              />
+              {{ $t("page_content.home.event_info.people") }}<br />
+              <FontAwesomeIcon
+                :icon="['fas', 'school']"
+                class="fa-icon"
+                style="width: 1.5rem"
+              />
+              {{ $t("page_content.home.event_info.sessions") }}<br />
+              <FontAwesomeIcon
+                :icon="['fas', 'calendar']"
+                class="fa-icon"
+                style="width: 1.5rem"
+              />
+              {{ $t("page_content.home.event_info.date") }}<br />
+              <FontAwesomeIcon
+                :icon="['fas', 'clock']"
+                class="fa-icon"
+                style="width: 1.5rem"
+              />
+              {{ $t("page_content.home.event_info.time") }}<br />
             </div>
           </div>
         </div>
         <div class="col-lg-4">
           <div class="sb-cta-text mt-5">
-            <br>
+            <br />
             <h3 class="sb-mb-15">
-              {{ $t('page_content.home.schedule.title') }}
+              {{ $t("page_content.home.schedule.title") }}
             </h3>
             <ul>
-              <li>{{ $t('page_content.home.schedule.items[0]') }}</li>
-              <li>{{ $t('page_content.home.schedule.items[1]') }}</li>
-              <li>{{ $t('page_content.home.schedule.items[2]') }}</li>
-              <li>{{ $t('page_content.home.schedule.items[3]') }}</li>
-              <li>{{ $t('page_content.home.schedule.items[4]') }}</li>
-              <li>{{ $t('page_content.home.schedule.items[5]') }}</li>
-              <li>{{ $t('page_content.home.schedule.items[6]') }}</li>
+              <li>{{ $t("page_content.home.schedule.items[0]") }}</li>
+              <li>{{ $t("page_content.home.schedule.items[1]") }}</li>
+              <li>{{ $t("page_content.home.schedule.items[2]") }}</li>
+              <li>{{ $t("page_content.home.schedule.items[3]") }}</li>
+              <li>{{ $t("page_content.home.schedule.items[4]") }}</li>
+              <li>{{ $t("page_content.home.schedule.items[5]") }}</li>
+              <li>{{ $t("page_content.home.schedule.items[6]") }}</li>
             </ul>
           </div>
         </div>
         <div class="col-lg-5">
           <div class="sb-illustration-6">
-            <img src="@/assets/images/classroom.png" alt="活動資訊" class="sb-burger">
+            <img
+              src="@/assets/images/classroom.png"
+              alt="活動資訊"
+              class="sb-burger"
+            />
             <div class="sb-cirkle-1"></div>
             <div class="sb-cirkle-2"></div>
             <div class="sb-cirkle-3"></div>
             <div class="sb-cirkle-4"></div>
             <div class="sb-cirkle-5"></div>
-            <img src="@/assets/img/illustrations/2.svg" alt="phones" class="sb-pik-2">
-            <img src="@/assets/img/illustrations/3.svg" alt="phones" class="sb-pik-3">
           </div>
         </div>
       </div>
@@ -337,8 +387,8 @@ import ContactUs from "@/components/common/ContactUs.vue";
 
 @media (max-width: 768px) {
   .sb-bg-1 {
-    border-left: solid 15px #FFFFFF;
-    border-right: solid 15px #FFFFFF;
+    border-left: solid 15px #ffffff;
+    border-right: solid 15px #ffffff;
   }
 
   .sb-bg-1 div:after {
