@@ -12,6 +12,8 @@ export default {
       about: "關於我們",
     },
     button: {
+      login: "登入",
+      logout: "登出",
       confirm: "確認",
       clear: "清除",
       cancel: "取消",

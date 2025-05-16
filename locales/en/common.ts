@@ -12,6 +12,8 @@ export default {
       about: "About us",
     },
     button: {
+      login: "Login",
+      logout: "Logout",
       confirm: "Confirm",
       clear: "Clear",
       cancel: "Cancel",

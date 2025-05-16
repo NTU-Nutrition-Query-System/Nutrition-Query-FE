@@ -1,27 +1,9 @@
 <script setup lang="ts">
-import { defineProps, onMounted, onUnmounted, ref } from "vue";
+import { defineProps, ref } from "vue";
 import { RouterLink } from "vue-router";
 import LanguageSelector from "@/components/common/LanguageSelector.vue";
-import Button from "@/primevue/button";
-import { decodeCredential } from "vue3-google-login";
-import type { CallbackTypes } from "vue3-google-login";
-import { GoogleLogin } from "vue3-google-login";
-import Avatar from "primevue/avatar";
+import userBtn from "@/components/common/userBtn.vue";
 
-const userAvatar = ref<string>("");
-
-interface UserData {
-  sub: string;
-  name: string;
-  email: string; // User's email address
-  picture: string; // Profile picture URL
-}
-
-const callback: CallbackTypes.CredentialCallback = (res) => {
-  const userData = decodeCredential(res.credential) as UserData;
-  console.log(userData);
-  userAvatar.value = userData.picture; // Assign Google profile picture
-};
 // Receive items from parent
 const props = defineProps({
   items: {
@@ -75,9 +57,12 @@ const handleClick = (index: number) => {
                   </router-link>
                   <a v-else>{{ item.label }}</a>
                 </li>
-                <!-- language selector -->
-                <li class="sb-language-selector">
-                  <LanguageSelector :languages="languages" />
+                <li class="sb-right-most-item">
+                  <LanguageSelector
+                    class="sb-language-selector"
+                    :languages="languages"
+                  />
+                  <userBtn class="sb-user-btn" />
                 </li>
               </ul>
             </div>
@@ -87,13 +72,6 @@ const handleClick = (index: number) => {
             <div @click="toggleMenu" class="sb-menu-btn"><span></span></div>
           </div>
         </div>
-        <GoogleLogin :callback="callback" />
-        <Avatar
-          :image="userAvatar"
-          alt="Profile Image"
-          size="large"
-          shape="circle"
-        />
       </div>
     </div>
   </div>
@@ -137,7 +115,7 @@ const handleClick = (index: number) => {
 }
 
 .sb-top-bar-frame .sb-top-bar {
-  padding: 0 15px;
+  padding: 0 1rem;
   position: relative;
   height: 80px;
   width: 100%;
@@ -211,14 +189,31 @@ nav .sb-navigation .sb-navigation-list {
   }
 }
 
-nav .sb-navigation .sb-language-selector {
-  padding-left: 20rem;
+nav .sb-navigation .sb-right-most-item {
+  position: absolute;
+  right: 1rem;
+}
+
+nav .sb-navigation .sb-right-most-item .sb-language-selector {
+  margin-left: 1rem;
+}
+nav .sb-navigation .sb-right-most-item .sb-user-btn {
+  margin-left: 1rem;
 }
 
 @media (max-width: 992px) {
-  nav .sb-navigation .sb-language-selector {
+  nav .sb-navigation .sb-right-most-item {
+    right: 0rem;
     justify-items: center;
     padding: 0;
+  }
+  nav .sb-navigation .sb-right-most-item .sb-language-selector {
+    margin-top: 1rem;
+    margin-left: 0rem;
+  }
+  nav .sb-navigation .sb-right-most-item .sb-user-btn {
+    margin-top: 1rem;
+    margin-left: 0rem;
   }
 }
 

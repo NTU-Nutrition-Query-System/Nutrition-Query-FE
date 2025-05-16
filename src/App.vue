@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { onMounted, onUnmounted } from "vue";
-import { useRouter } from "vue-router";
 
 import NavBar from "@/components/common/NavBar.vue";
 import Footer from "@/components/common/Footer.vue";
-import vue3GoogleLogin from "vue3-google-login";
 
 const languages = [
   { label: "中文", value: "zh" },
