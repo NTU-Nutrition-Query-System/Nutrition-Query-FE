@@ -6,8 +6,8 @@ export interface nutrient {
 }
 export interface foodItem {
   id: number;
-  item: string;
-  class: string;
+  name: string;
+  class: number;
   subclass?: string;
   unit: string;
   gram: number;
@@ -15,7 +15,7 @@ export interface foodItem {
   carbohydrate: number;
   fat: number;
   protein: number;
-  dietary_fibre: number;
+  dietaryFibre: number;
 }
 
 export interface CalculatedNutrition {
@@ -33,7 +33,7 @@ export interface weightedFoodItem extends foodItem {
   is_customized: boolean;
 }
 export interface filterOption {
-  class: "protein" | "calories" | "carbohydrate" | "fat" | "dietary_fibre"; // 可以擴展更多類型
+  class: "protein" | "calories" | "carbohydrate" | "fat" | "dietaryFibre"; // 可以擴展更多類型
   min: number;
   max: number;
 }

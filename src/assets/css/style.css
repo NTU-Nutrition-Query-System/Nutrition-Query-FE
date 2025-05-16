@@ -1989,7 +1989,7 @@ banner
 
 .sb-banner.sb-banner-xs .sb-main-title-frame {
   height: auto;
-  padding: 170px 0 50px;
+  padding: 120px 0 50px;
 }
 
 .sb-banner.sb-banner-xs .sb-main-title-frame .sb-main-title {
@@ -2036,7 +2036,7 @@ banner
 
   .sb-banner .sb-main-title-frame {
     height: auto;
-    padding: 150px 0 30px;
+    padding: 120px 0 30px;
   }
 
   .sb-banner .sb-main-title-frame .sb-main-title {
@@ -2045,12 +2045,12 @@ banner
 
   .sb-banner.sb-banner-sm .sb-main-title-frame {
     height: auto;
-    padding: 150px 0 60px;
+    padding: 120px 0 60px;
   }
 
   .sb-banner.sb-banner-xs .sb-main-title-frame {
     height: auto;
-    padding: 150px 0 60px;
+    padding: 120px 0 60px;
   }
 
   .sb-banner.sb-banner-xs .sb-main-title-frame .sb-main-title {

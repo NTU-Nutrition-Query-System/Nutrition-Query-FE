@@ -4,6 +4,12 @@ import Dialog from "primevue/dialog";
 import type { foodItem, weightedFoodItem } from "@/interfaces/Calculator";
 import { useProductStore } from "@/stores/productStore";
 import { useToast } from "primevue/usetoast";
+
+import { library as faLibrary } from "@fortawesome/fontawesome-svg-core";
+import { faAdd } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+faLibrary.add(faAdd);
+
 const productStore = useProductStore();
 
 const dialogVisible = ref(false);
@@ -19,15 +25,15 @@ const closeDialog = () => {
 const toast = useToast();
 const food = ref<weightedFoodItem>({
   id: 0,
-  item: "",
-  class: "客製化",
+  name: "",
+  class: -1,
   unit: "1份",
   gram: 0,
   calories: 0,
   carbohydrate: 0,
   fat: 0,
   protein: 0,
-  dietary_fibre: 0,
+  dietaryFibre: 0,
   weight: 1,
   is_customized: true,
 });
@@ -42,7 +48,7 @@ const addFood = () => {
   toast.add({
     severity: "success",
     summary: "",
-    detail: `${new_food.item} 已新增至查看`,
+    detail: `${new_food.name} 已新增至查看`,
     life: 4000,
   });
   dialogVisible.value = false;
@@ -50,15 +56,15 @@ const addFood = () => {
   //   console.log(new_food);
   food.value = {
     id: 0,
-    item: "",
-    class: "客製化",
+    name: "",
+    class: -1,
     unit: "1份",
     gram: 0,
     calories: 0,
     carbohydrate: 0,
     fat: 0,
     protein: 0,
-    dietary_fibre: 0,
+    dietaryFibre: 0,
     weight: 1,
     is_customized: true,
   };
@@ -66,12 +72,13 @@ const addFood = () => {
 </script>
 
 <template>
-  
-  <div style="display: flex; align-items: center;">
+  <div style="display: flex; align-items: center">
     <Button class="btn-yellow" @click="showDialog">
-        <font-awesome-icon :icon="['fas', 'fa-add']" 
-          style="height: 24px; width: 24px; margin-right: 5px;" />
-        {{ $t("button.addCustomFood") }}
+      <FontAwesomeIcon
+        :icon="['fas', 'fa-add']"
+        style="height: 24px; width: 24px; margin-right: 5px"
+      />
+      {{ $t("button.addCustomFood") }}
     </Button>
   </div>
   <div>
@@ -86,42 +93,22 @@ const addFood = () => {
     style="width: 40%; height: 80%"
   >
     <div class="sb-group-input" style="width: 300px; margin: 2.5rem auto">
-      <input 
-        v-model="food.item" 
-        type="text" 
-        name="item" 
-        required 
-      />
+      <input v-model="food.name" type="text" name="name" required />
       <span class="sb-bar"></span>
       <label>{{ $t("food_item") }}</label>
     </div>
     <div class="sb-group-input" style="width: 300px; margin: 2.5rem auto">
-      <input 
-        v-model="food.calories" 
-        type="number" 
-        name="calories" 
-        required 
-      />
+      <input v-model="food.calories" type="number" name="calories" required />
       <span class="sb-bar"></span>
       <label>{{ $t("calories") }}</label>
     </div>
     <div class="sb-group-input" style="width: 300px; margin: 2.5rem auto">
-      <input 
-        v-model="food.protein" 
-        type="number" 
-        name="protein" 
-        required 
-      />
+      <input v-model="food.protein" type="number" name="protein" required />
       <span class="sb-bar"></span>
       <label>{{ $t("protein") }}</label>
     </div>
     <div class="sb-group-input" style="width: 300px; margin: 2.5rem auto">
-      <input 
-        v-model="food.fat" 
-        type="number" 
-        name="fat" 
-        required 
-      />
+      <input v-model="food.fat" type="number" name="fat" required />
       <span class="sb-bar"></span>
       <label>{{ $t("fat") }}</label>
     </div>
@@ -137,7 +124,7 @@ const addFood = () => {
     </div>
     <div class="sb-group-input" style="width: 300px; margin: 2.5rem auto">
       <input
-        v-model="food.dietary_fibre"
+        v-model="food.dietaryFibre"
         type="number"
         name="food_dt_fibre"
         required
@@ -147,8 +134,10 @@ const addFood = () => {
     </div>
     <div style="display: flex; justify-content: center; margin-top: 2rem">
       <Button class="btn-yellow" @click="addFood">
-        <font-awesome-icon :icon="['fas', 'fa-add']" 
-          style="height: 24px; width: 24px; margin-right: 5px;" />
+        <FontAwesomeIcon
+          :icon="['fas', 'fa-add']"
+          style="height: 24px; width: 24px; margin-right: 5px"
+        />
         {{ $t("button.addCustomFood") }}
       </Button>
     </div>

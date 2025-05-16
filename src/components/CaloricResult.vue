@@ -145,10 +145,11 @@ const deleteButtonClicked = (row: weightedFoodItem) => {
   toast.add({
     severity: "warn",
     summary: "",
-    detail: `${row.item} is removed`,
+    detail: `${row.name} is removed`,
     life: 2000,
   });
 };
+
 watch(
   () => props.visible,
   (newValue) => {
@@ -156,10 +157,18 @@ watch(
     isVisible.value = newValue;
   }
 );
-
+const getRowStyle = (row:weightedFoodItem) => {
+  if (row.is_customized) {
+    return { '--p-datatable-row-background': 'rgba(255, 200, 120, 0.3)' }; // 橘色
+  } else{
+    return { '--p-datatable-row-background':  'rgba(0, 0, 0, 0)'};
+  }
+  return {};
+};
 onMounted(() => {
   console.log("Result onMounted");
 });
+
 </script>
 
 <template>
@@ -236,7 +245,11 @@ onMounted(() => {
             class="custom-divider">
             <Column
               field="nutrition"
-              :header="$t('selection_nutrition')"/>
+              :header="$t('selection_nutrition')">
+              <template #body="slotProps">
+                <span>{{$t(slotProps.data.nutrition)}}</span>
+              </template>
+            </Column>
             <Column
               field="dailyRequirement"
               :header="$t('selection_daily_requirement')"
@@ -284,13 +297,15 @@ onMounted(() => {
       <CustomFoodWindow/>
       <RecommendMealWindow/>
     </div>
-    
+
 
     <DataTable
       :value="productStore.selectedProducts"
+      :rowStyle="getRowStyle"
       dataKey="id"
       tableStyle="min-width: 50rem"
-      v-model:selection="productStore.selectedProducts">
+      :selection="{}">
+
       <Column :header="$t('resultPage.remove')" header-style="width: 3rem">
         <template #body="{ data }">
           <Button
@@ -321,9 +336,9 @@ onMounted(() => {
           </div>
         </template>
       </Column>
-      <Column field="item" :header="$t('food_item')">
+      <Column field="name" :header="$t('food_item')">
         <template #body="{ data }">
-          <div>{{ data.item }}</div>
+          <div>{{ data.name }}</div>
         </template>
       </Column>
       <Column field="unit" :header="$t('food_unit')">
@@ -372,27 +387,27 @@ onMounted(() => {
 }
 
 .precentBar-low-text {
-  color: #FF8E0A;
+  color: #28a745;
 }
 
 .precentBar-low .p-progressbar-label {
-  color: #FF8E0A;
+  color: #28a745;
 }
 
 .precentBar-low .p-progressbar-value {
-  background-color: #FF8E0A;
+  background-color: #28a745;
 }
 
 .precentBar-medium-text {
-  color: #28a745;
+  color: #FF8E0A;
 }
 
 .precentBar-medium .p-progressbar-label {
-  color: #28a745;
+  color: #FF8E0A;
 }
 
 .precentBar-medium .p-progressbar-value{
-  background-color: #28a745;
+  background-color: #FF8E0A;
 }
 
 .precentBar-high-text {
@@ -443,4 +458,5 @@ onMounted(() => {
   background-color: #F5C332;
   border-radius: 3px;
 }
+
 </style>
