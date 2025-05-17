@@ -28,6 +28,13 @@ export default defineConfig({
           if (commonViewFiles.some((file) => id.includes(file))) {
             return "commonViews";
           }
+          if (id.includes("css")) {
+            if(id.includes("src")) {
+              return "src";
+            }
+            const parts = id.toString().split("/");
+            return parts[parts.length - 1];
+          }
           if (id.includes("node_modules/xlsx-js-style")) {
             return "xlsx";
           }
