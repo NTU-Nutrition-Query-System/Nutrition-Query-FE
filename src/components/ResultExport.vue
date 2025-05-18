@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import Dialog from "primevue/dialog";
 import Toast from "primevue/toast";
+import Button from "primevue/button";
 import { useToast } from "primevue/usetoast";
 import type { CalculatedNutrition } from "@/interfaces/Calculator";
 import { useProductStore } from "@/stores/productStore";

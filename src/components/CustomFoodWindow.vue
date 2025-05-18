@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import Dialog from "primevue/dialog";
+import Button from "primevue/button";
+import Toast from "primevue/toast";
 import type { foodItem, weightedFoodItem } from "@/interfaces/Calculator";
 import { useProductStore } from "@/stores/productStore";
 import { useToast } from "primevue/usetoast";
-
 import { library as faLibrary } from "@fortawesome/fontawesome-svg-core";
 import { faAdd } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";

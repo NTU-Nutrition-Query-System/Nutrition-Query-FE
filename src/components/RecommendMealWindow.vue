@@ -58,21 +58,21 @@ const pivotMeals = (meals: foodItem[]) => {
       pivot[attr][meal.name] = meal[attr as keyof foodItem] as number | string;
     }
   }
-  console.log("pivot", pivot);
+  // console.log("pivot", pivot);
   return pivot;
 };
 
 const convertMeal = () => {
   const mealList = getMealDetail(productStore.dailyNeeds?.calories || 1500);
-  console.log("mealList", typeof mealList, mealList);
+  // console.log("mealList", typeof mealList, mealList);
   const result = [];
   for (const meals of mealList) {
     const pivot = pivotMeals(meals);
     pivot["nutrition"] = meals[0].header;
     result.push(pivot);
   }
-  console.log("mealDetails", result);
-  console.log("mealDetails length", result.length);
+  // console.log("mealDetails", result);
+  // console.log("mealDetails length", result.length);
   return result;
 };
 
@@ -168,9 +168,16 @@ table > tr > td {
   border-radius: 20px;
 }
 
+::v-deep(.p-datatable-column-header-content) {
+  text-align: center !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
 .p-datatable-table-container {
   display: flex !important;
   justify-content: center !important;
   align-content: center !important;
+  text-align: center !important;
 }
 </style>
