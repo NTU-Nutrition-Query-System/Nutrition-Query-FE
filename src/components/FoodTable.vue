@@ -186,8 +186,6 @@ onMounted(() => {
 });
 </script>
 <template>
-  <head> </head>
-
   <div>
     <Dialog
       v-model:visible="displayDialog"
