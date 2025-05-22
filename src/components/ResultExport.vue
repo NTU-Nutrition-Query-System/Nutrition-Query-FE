@@ -75,7 +75,7 @@ const props = defineProps({
         type="text" 
         required 
       />
-      <label>姓名</label>
+      <label>{{$t('resultPage.name')}}</label>
     </div>
     <div class="sb-group-input" style="width: 300px; margin: 2.5rem auto">
       <input 
@@ -83,7 +83,7 @@ const props = defineProps({
         type="text" 
         required 
       />
-      <label>學校</label>
+      <label>{{$t('resultPage.school')}}</label>
     </div>
     <div style="display: flex; justify-content: center; margin-top: 2rem">
       <Button 

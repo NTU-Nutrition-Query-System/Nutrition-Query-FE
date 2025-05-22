@@ -1,58 +1,58 @@
 export default {
     organizer: "NTU Center for Teacher Education",
-    title_1: "Biomedical Exploration and Technology",
-    title_2: "Weekend Camp",
+    title_1: "Biomedical Exploration",
+    title_2: "Workshop",
     subtitle: "Open for Secondary School Applications",
     intro_questions: [
-      "Want to help students explore how food affects glucose levels?",
-      "nterested in letting them build their own Arduino-based glucose detector for hands-on experiments?"
+      "Students explore how food affects their glucose levels,",
+      "build Arduino sensors, and experiment with a glucose monitor."
     ],
     program_intro: {
-      title: "A Cross-Disciplinary Middle School Course on Glucose Detection and Biomedicine",
+      title: "An interdisciplinary course introducing glucose monitor that connects food, nutrition, and biomedical technology",
       sections: [
         {
-          title: "Food and Nutrition",
-          content: "Help students understand the nutritional content of food and the body’s daily nutrient needs."
+          title: "Food intake and nutritional needs",
+          content: "Students will learn about the nutritional value of food and how to evaluate their daily nutrition needs."
         },
         {
-          title: "How Blood Sugar Works",
-          content: "Guide students to explore how glucose levels in the body change after eating."
+          title: "Blood sugar and diabetes",
+          content: "Students will explore how eating and behavior change the body’s glucose level and their impacts on diabetes."
         },
         {
-          title: "Arduino-Based Glucose Detection",
-          content: "Introduce students to Arduino hardware and software, and the biomedical principles behind glucose sensing."
+          title: "Arduino-based sensor and glucose monitor",
+          content: "Students will use Arduino sensors to learn about the biomedical principles for glucose monitoring."
         }
       ]
     },
-    event: "Event Info",
+    event: "Participants and Schedule",
     event_info: {
       title: "The Glucose Discovery Journey",
       target: "For: Junior & Senior High",
-      people: "Participants: 20–24/session",
+      people: "Participants: About 20 students per session",
       sessions: "Sessions: 1 for junior high, 1 for senior high",
-      date: "Date: 2025-2026",
-      time: "Time: 09:00–16:30"
+      date: "Time frame: Year 2026 and 2027",
+      time: "Duration: Six hours for a one-day camp"
     },
     schedule: {
       title: "Camp Schedule",
       items: [
-        "09:00–10:30 Food & Glucose in the Body",
-        "10:40–12:00 lood Sugar & Detection Basics",
+        "09:00–10:30 Food intake and nutritional needs",
+        "10:40–12:00 Blood sugar and diabetes ",
         "12:00–13:00 Lunch",
-        "13:00–14:00 Arduino: Temp & Heart Rate",
-        "14:00–15:00 Glucose Solution Test",
-        "15:00–16:00 Experimental Result Analysis",
-        "16:00–16:30 Glucose Check (Parent Consent)"
+        "13:00–14:00 Arduino environment and sensors ",
+        "14:00–15:00 Arduino glucose monitor ",
+        "15:00–16:00 Glucose sensing experiment",
+        "16:00–16:30 Glucose test (with parent’s consent))"
       ]
     },
     contact: {
-      title: "Welcome to Contact Us",
+      title: "You are welcome to contact us",
       description: [
-        "This is a one-day, six-hour camp, typically held on weekends.",
-        "If your school finds this program beneficial for students, we would be happy to visit and introduce the course details and instruments to the principal or faculty members."
+        "if you are interested in hosting this program for your school or for a group of adolescents,",
+        "please send your inquiry to us with subject: Glucose monitor camp inquiry"
       ],
-      email: "Contact Email: ",
-      phone: "Contact Phone: ",
+      email: "Email: ",
+      phone: "Phone: ",
       form: "Online Form: Click or scan QR Code to fill out the form"
     }
   };

@@ -352,7 +352,10 @@ onMounted(() => {
                     @click="nextOnClicked"
                   >
                     <span class="sb-icon">
-                      <img src="@/assets/images/ui/icon/tableware.svg" alt="icon" />
+                      <img
+                        src="@/assets/images/ui/icon/tableware.svg"
+                        alt="icon"
+                      />
                     </span>
                     <span>{{ $t("calculator_input.calculate") }}</span>
                   </button>
@@ -401,8 +404,7 @@ onMounted(() => {
                 <div class="sb-card-tp">
                   <h4 class="sb-card-title">{{ $t(key) }}:</h4>
                   <div class="sb-price">
-                    {{ value.toFixed(2) }}
-                    <sub>({{ key === "calories" ? "kcal" : "g" }})</sub>
+                    {{ value.toFixed(2) }} ({{ key === "calories" ? "kcal" : "g" }})
                   </div>
                 </div>
               </div>
@@ -434,8 +436,7 @@ onMounted(() => {
                 <div class="sb-card-tp">
                   <h4 class="sb-card-title">{{ $t(key) }}:</h4>
                   <div class="sb-price">
-                    {{ (value / 3.0).toFixed(2)
-                    }}<sub>({{ key === "calories" ? "kcal" : "g" }})</sub>
+                    {{ (value / 3.0).toFixed(2)}} ({{ key === "calories" ? "kcal" : "g" }})
                   </div>
                 </div>
               </div>
@@ -481,7 +482,7 @@ onMounted(() => {
                   @click="scrollDown"
                 >
                   <span class="sb-icon">
-                    <i class="pi pi-arrow-up-right"/>
+                    <i class="pi pi-arrow-up-right" />
                   </span>
                   <span>{{ $t("calculator_input.choosing") }}</span>
                 </button>
@@ -650,6 +651,7 @@ onMounted(() => {
   color: #444444 !important;
   background-color: #f5c332 !important;
 }
+
 .calculator-btn .p-button-icon {
   font-size: 2rem;
   margin-right: 0 !important;
