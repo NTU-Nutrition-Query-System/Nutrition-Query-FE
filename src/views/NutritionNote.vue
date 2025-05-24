@@ -4,11 +4,12 @@ import ContactUs from "@/components/common/ContactUs.vue";
 
 import { useI18n } from 'vue-i18n'
 import { computed } from 'vue'
-
-const { locale, t, messages } = useI18n()
+const { locale } = useI18n()
+const { getLocaleMessage } = useI18n()
 
 const nutritionTableData = computed(() => {
-  return messages.value[locale.value]?.page_content?.nutritionNote?.table?.data || []
+  const message = getLocaleMessage(locale.value) as any
+  return message?.page_content?.nutritionNote?.table?.data || []
 })
 </script>
 
