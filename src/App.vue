@@ -26,6 +26,11 @@ const items = ref([
     icon: "pi pi-about",
     route: "/About",
   },
+  {
+    label: "nutrition_note",
+    icon: "pi pi-about",
+    route: "/NutritionNote",
+  },
 ]);
 
 const cursor = ref<HTMLDivElement | null>(null);

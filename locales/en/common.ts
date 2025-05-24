@@ -1,3 +1,5 @@
+import type NutritionNote from "@/views/NutritionNote.vue";
+
 export default {
   select_language: "Languages",
   page: {
@@ -5,12 +7,14 @@ export default {
     calculator: "Calculator",
     food: "Food",
     about: "About",
+    nutrition_note: "Nutrition Note",
   },
   page_title: {
     calculator: "Calculator",
     calculator_subtitle:
       "Enter your data to calculate the nutrients you need for a day and a meal (calories, protein, carbohydrates, fat)!",
     about: "About us",
+    nutrition_note: "Nutrition Note",
   },
   button: {
     login: "Login",
@@ -24,6 +28,7 @@ export default {
     RecommendMeal: "Recommend Meal",
     addCustomFood: "Add Custom Food",
     addCustomFoodtoList: "Add Food to Calculate",
+    calculator: "Nutrition Calculator",
   },
   calculator_input: {
     title: "Calculate daily nutrition needs",
