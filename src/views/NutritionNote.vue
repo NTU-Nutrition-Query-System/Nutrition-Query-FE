@@ -154,12 +154,24 @@ const nutritionTableData = computed(() => {
 }
 
 .bg-high {
+  color: 'black';
+  padding:'10px';
+  border-radius: '5px';
+  text-align: 'center';
   background-color: #ff8650;
 }
 .bg-mid {
+  color: 'black';
+  padding:'10px';
+  border-radius: '5px';
+  text-align: 'center';
   background-color: #ffd21c; 
 }
 .bg-low {
+  color: 'black';
+  padding:'10px';
+  border-radius: '5px';
+  text-align: 'center';
   background-color: #c2f24e;
 }
 </style>

@@ -23,6 +23,9 @@ export default {
       protein: "蛋白質",
       fat: "脂肪",
       background_color: "背景顏色標註",
+      high: "高",
+      medium: "中",
+      low: "低",
       data: [
         {
           "name": "高",

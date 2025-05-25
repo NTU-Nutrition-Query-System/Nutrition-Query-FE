@@ -23,6 +23,9 @@ export default {
       protein: "Protein",
       fat: "Fat",
       background_color: "Background Color",
+      high: "High",
+      medium: "Medium",
+      low: "Low",
       data: [
         {
           "name": "High",

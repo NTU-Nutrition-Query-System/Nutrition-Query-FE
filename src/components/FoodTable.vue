@@ -23,6 +23,7 @@ import type {
 import { useProductStore } from "@/stores/productStore";
 import SizeReference from "./SizeReference.vue";
 
+const i18n = useI18n()
 const { locale } = useI18n();
 
 const dialogVisible = ref(false);
@@ -256,6 +257,25 @@ onMounted(() => {
                   align-items: center;">
                 <!-- <SizeReference /> -->
               </div>
+
+              <table class="display-row nutrition-desc ">
+                <tr>
+                  <td>
+                    Level
+                  </td>
+                </tr>
+                <tr>
+                  <td class="bg-low">
+                    <span>{{ $t("page_content.nutritionNote.table.low") }}</span>
+                  </td>
+                  <td class="bg-mid">
+                    <span>{{ $t("page_content.nutritionNote.table.medium") }}</span>
+                  </td>
+                  <td class="bg-high">
+                    <span>{{ $t("page_content.nutritionNote.table.high") }}</span>
+                  </td>
+                </tr>
+              </table>
           </div>
         </template>
 
@@ -553,5 +573,54 @@ onMounted(() => {
 
 .card-container .Card {
   width: 100%; /* Ensures the cards take up full available width in each column */
+}
+
+
+.nutrition-desc {
+  border-collapse: collapse;
+  font-size: 16px;
+  text-align: center;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+
+  th {
+    background-color: var(--primary-color);
+    color: #333;
+    font-weight: bold;
+    padding: 12px;
+    border-bottom: 2px solid #ddd;
+  }
+
+  td {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+  }
+
+  tr:nth-child(even) {
+    background-color: #fcfcfc;
+  }
+}
+
+.bg-high {
+  color: 'black';
+  padding:'10px';
+  border-radius: '5px';
+  text-align: 'center';
+  background-color: #ff8650;
+}
+.bg-mid {
+  color: 'black';
+  padding:'10px';
+  border-radius: '5px';
+  text-align: 'center';
+  background-color: #ffd21c; 
+}
+.bg-low {
+  color: 'black';
+  padding:'10px';
+  border-radius: '5px';
+  text-align: 'center';
+  background-color: #c2f24e;
 }
 </style>
