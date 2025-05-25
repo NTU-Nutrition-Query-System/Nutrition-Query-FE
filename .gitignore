@@ -28,3 +28,9 @@ coverage
 *.sw?
 
 *.tsbuildinfo
+
+
+# 忽略 .env 檔案
+.env
+.env.local
+.env.production

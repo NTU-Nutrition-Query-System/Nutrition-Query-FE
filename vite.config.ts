@@ -67,6 +67,11 @@ export default defineConfig({
   },
   server: {
     proxy: {
+      "/auth": {
+        target: "https://mealdatabase.cloud.ntu.edu.tw/auth",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/auth/, ""), // remove /auth prefix
+      },
       "/api": {
         target: "https://mealdatabase.cloud.ntu.edu.tw/api",
         changeOrigin: true,

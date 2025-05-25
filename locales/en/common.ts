@@ -55,7 +55,7 @@ export default {
           "e.g. joining sport teams, jogging, weight or heavy lifting, yard work",
       },
     },
-    calculate: "Calcluate my nutrition needs",
+    calculate: "Calculate my nutrition needs",
     choosing: "Choose food items",
     scroll_down: "Scroll down",
     food_selection_prompt:

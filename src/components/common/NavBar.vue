@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { defineProps, onMounted, onUnmounted, ref } from "vue";
+import { defineProps, ref } from "vue";
 import { RouterLink } from "vue-router";
 import LanguageSelector from "@/components/common/LanguageSelector.vue";
+import userBtn from "@/components/common/userBtn.vue";
 
 // Receive items from parent
 const props = defineProps({
@@ -56,9 +57,12 @@ const handleClick = (index: number) => {
                   </router-link>
                   <a v-else>{{ item.label }}</a>
                 </li>
-                <!-- language selector -->
-                <li class="sb-language-selector">
-                  <LanguageSelector :languages="languages" />
+                <li class="sb-right-most-item">
+                  <LanguageSelector
+                    class="sb-language-selector"
+                    :languages="languages"
+                  />
+                  <userBtn class="sb-user-btn" />
                 </li>
               </ul>
             </div>
@@ -71,6 +75,7 @@ const handleClick = (index: number) => {
       </div>
     </div>
   </div>
+
   <!-- top bar end -->
 </template>
 
@@ -110,7 +115,7 @@ const handleClick = (index: number) => {
 }
 
 .sb-top-bar-frame .sb-top-bar {
-  padding: 0 15px;
+  padding: 0 1rem;
   position: relative;
   height: 80px;
   width: 100%;
@@ -184,14 +189,31 @@ nav .sb-navigation .sb-navigation-list {
   }
 }
 
-nav .sb-navigation .sb-language-selector {
-  padding-left: 20rem;
+nav .sb-navigation .sb-right-most-item {
+  position: absolute;
+  right: 1rem;
+}
+
+nav .sb-navigation .sb-right-most-item .sb-language-selector {
+  margin-left: 1rem;
+}
+nav .sb-navigation .sb-right-most-item .sb-user-btn {
+  margin-left: 1rem;
 }
 
 @media (max-width: 992px) {
-  nav .sb-navigation .sb-language-selector {
+  nav .sb-navigation .sb-right-most-item {
+    right: 0rem;
     justify-items: center;
     padding: 0;
+  }
+  nav .sb-navigation .sb-right-most-item .sb-language-selector {
+    margin-top: 1rem;
+    margin-left: 0rem;
+  }
+  nav .sb-navigation .sb-right-most-item .sb-user-btn {
+    margin-top: 1rem;
+    margin-left: 0rem;
   }
 }
 

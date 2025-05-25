@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { onMounted, onUnmounted } from "vue";
-import { useRouter } from "vue-router";
 
 import NavBar from "@/components/common/NavBar.vue";
 import Footer from "@/components/common/Footer.vue";
@@ -60,7 +59,6 @@ onUnmounted(() => {
   document.removeEventListener("mousemove", handleMouseMove);
   document.removeEventListener("click", handleClick);
 });
-
 </script>
 
 <template>
@@ -69,7 +67,7 @@ onUnmounted(() => {
     <div class="sb-click-effect" ref="cursor"></div>
     <!-- loader -->
     <div class="sb-load"></div>
-    <NavBar :items="items" :languages="languages"/>
+    <NavBar :items="items" :languages="languages" />
 
     <div class="MainPage">
       <!-- Sidebar Navigation -->
