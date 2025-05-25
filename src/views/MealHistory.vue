@@ -5,9 +5,6 @@ import { useI18n } from "vue-i18n";
 import DatePicker from "primevue/datepicker";
 import DataTable from "primevue/datatable";
 import Column from "primevue/column";
-import IconField from "primevue/iconfield";
-import InputText from "primevue/inputtext";
-import InputIcon from "primevue/inputicon";
 
 import type { DatePickerDateSlotOptions } from "primevue/datepicker";
 
@@ -79,36 +76,11 @@ const isDateEnabled = (date: Date) => {
       <DataTable
         :key="locale"
         :value="productStore.filteredData"
-        :globalFilterFields="['name', 'class']"
-        dataKey="order"
-        tableStyle="min-width: 50rem"
+        dataKey="id"
+        style="width: 85rem; margin-top: 1rem"
         paginator
         :rows="10"
-        rowHover
-        highlightOnSelect
       >
-        <template #header>
-          <div
-            style="
-              display: flex;
-              align-items: center;
-              justify-content: space-between;
-            "
-          >
-            <IconField>
-              <InputIcon class="pi pi-search" style="margin-right: 1rem" />
-              <InputText
-                v-model="productStore.filters['global'].value"
-                placeholder="Keyword Search"
-              />
-            </IconField>
-            <div style="display: flex; align-items: center">
-              <!-- <SizeReference /> -->
-            </div>
-          </div>
-        </template>
-
-        <Column selectionMode="multiple" style="width: 0.1%"></Column>
         <Column
           field="name"
           :header="$t('food_item')"
@@ -138,124 +110,30 @@ const isDateEnabled = (date: Date) => {
           style="width: 0.3%"
         ></Column>
         <Column
-          sortable
           field="calories"
           :header="$t('calories')"
-          :filter="true"
-          filterField="calories"
-          :showFilterMatchModes="false"
-          :showApplyButton="false"
-          :showClearButton="false"
           style="width: 0.5%"
-        >
-          <template #body="{ data }">
-            <div
-              :style="{
-                backgroundColor: productStore.getColor(data.calories, 0, 550),
-                color: 'black',
-                padding: '10px',
-                borderRadius: '5px',
-                textAlign: 'center',
-              }"
-            >
-              {{ data.calories }}
-            </div>
-          </template>
-        </Column>
+        ></Column>
         <Column
-          sortable
           field="carbohydrate"
           :header="$t('carbohydrate')"
-          :filter="true"
-          filterField="carbohydrate"
-          :showFilterMatchModes="false"
-          :showApplyButton="false"
-          :showClearButton="false"
           style="width: 0.5%"
-        >
-          <template #body="{ data }">
-            <div
-              :style="{
-                backgroundColor: productStore.getColor(
-                  data.carbohydrate,
-                  0,
-                  50
-                ),
-                color: 'black',
-                padding: '10px',
-                borderRadius: '5px',
-                textAlign: 'center',
-              }"
-            >
-              {{ data.carbohydrate }}
-            </div>
-          </template>
-        </Column>
+        ></Column>
         <Column
-          sortable
           field="protein"
           :header="$t('protein')"
-          :showApplyButton="false"
-          :showClearButton="false"
           style="width: 0.5%"
-        >
-          <template #body="{ data }">
-            <div
-              :style="{
-                backgroundColor: productStore.getColor(data.protein, 0, 25),
-                color: 'black',
-                padding: '10px',
-                borderRadius: '5px',
-                textAlign: 'center',
-              }"
-            >
-              {{ data.protein }}
-            </div>
-          </template>
-        </Column>
+        ></Column>
         <Column
-          sortable
           field="fat"
           :header="$t('fat')"
-          :filter="true"
-          :showFilterMatchModes="false"
-          filterField="fat"
-          :showApplyButton="false"
-          :showClearButton="false"
           style="width: 0.5%"
-        >
-          <template #body="{ data }">
-            <div
-              :style="{
-                backgroundColor: productStore.getColor(data.fat, 0, 25),
-                color: 'black',
-                padding: '10px',
-                borderRadius: '5px',
-                textAlign: 'center',
-              }"
-            >
-              {{ data.fat }}
-            </div>
-          </template>
-        </Column>
-
+        ></Column>
         <Column
-          sortable
           field="dietaryFibre"
           :header="$t('food_dt_fibre')"
-          :filter="true"
-          :showFilterMatchModes="false"
-          filterField="dietaryFibre"
-          :showApplyButton="false"
-          :showClearButton="false"
           style="width: 0.5%"
-        >
-          <template #body="{ data }">
-            <div style="text-align: center">
-              {{ data.dietaryFibre }}
-            </div>
-          </template>
-        </Column>
+        ></Column>
       </DataTable>
     </div>
   </section>
