@@ -87,9 +87,9 @@ export default {
   calculator_result_title_nutrient: " Nutrient Requirements",
   food_item: "Item",
   food_class: "Category",
-  food_gram: "Grams",
+  food_gram: "Weight (g)",
   food_unit: "Unit",
-  food_dt_fibre: "Dietary fibre(g)",
+  food_dt_fibre: "Dietary fibre (g)",
   selection_result_title:
     "Am I getting enough nutrition from the food I eat?",
   selection_nutrition: "Nutrients",
