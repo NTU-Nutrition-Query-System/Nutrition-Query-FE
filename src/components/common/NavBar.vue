@@ -197,6 +197,7 @@ nav .sb-navigation .sb-right-most-item {
 nav .sb-navigation .sb-right-most-item .sb-language-selector {
   margin-left: 1rem;
 }
+
 nav .sb-navigation .sb-right-most-item .sb-user-btn {
   margin-left: 1rem;
 }
