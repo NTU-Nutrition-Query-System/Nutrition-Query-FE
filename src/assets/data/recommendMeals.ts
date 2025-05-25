@@ -74,7 +74,7 @@ export const recommendMeals = [
 export const allFoods = [
   {
      "id":0,
-     "item":"原味蛋餅",
+     "name":"原味蛋餅",
      "class":"中式餐點",
      "subclass":"蛋餅",
      "photo":null,
@@ -90,7 +90,7 @@ export const allFoods = [
   },
   {
      "id":1,
-     "item":"鮪魚蛋餅",
+     "name":"鮪魚蛋餅",
      "class":"中式餐點",
      "subclass":"蛋餅",
      "photo":null,
@@ -106,7 +106,7 @@ export const allFoods = [
   },
   {
      "id":2,
-     "item":"起司蛋餅",
+     "name":"起司蛋餅",
      "class":"中式餐點",
      "subclass":"蛋餅",
      "photo":null,
@@ -122,7 +122,7 @@ export const allFoods = [
   },
   {
      "id":3,
-     "item":"蔬菜蛋餅",
+     "name":"蔬菜蛋餅",
      "class":"中式餐點",
      "subclass":"蛋餅",
      "photo":null,
@@ -138,7 +138,7 @@ export const allFoods = [
   },
   {
      "id":4,
-     "item":"玉米蛋餅",
+     "name":"玉米蛋餅",
      "class":"中式餐點",
      "subclass":"蛋餅",
      "photo":null,
@@ -154,7 +154,7 @@ export const allFoods = [
   },
   {
      "id":5,
-     "item":"火腿蛋餅",
+     "name":"火腿蛋餅",
      "class":"中式餐點",
      "subclass":"蛋餅",
      "photo":null,
@@ -170,7 +170,7 @@ export const allFoods = [
   },
   {
      "id":6,
-     "item":"豬排蛋餅",
+     "name":"豬排蛋餅",
      "class":"中式餐點",
      "subclass":"蛋餅",
      "photo":null,
@@ -186,7 +186,7 @@ export const allFoods = [
   },
   {
      "id":7,
-     "item":"起司火腿蔥抓餅",
+     "name":"起司火腿蔥抓餅",
      "class":"中式餐點",
      "subclass":"蛋餅",
      "photo":null,
@@ -202,7 +202,7 @@ export const allFoods = [
   },
   {
      "id":8,
-     "item":"蔥油餅",
+     "name":"蔥油餅",
      "class":"中式餐點",
      "subclass":"蛋餅",
      "photo":null,
@@ -218,7 +218,7 @@ export const allFoods = [
   },
   {
      "id":9,
-     "item":"白飯",
+     "name":"白飯",
      "class":"中式餐點",
      "subclass":"飯與粥",
      "photo":null,
@@ -234,7 +234,7 @@ export const allFoods = [
   },
   {
      "id":10,
-     "item":"稀飯",
+     "name":"稀飯",
      "class":"中式餐點",
      "subclass":"飯與粥",
      "photo":null,
@@ -250,7 +250,7 @@ export const allFoods = [
   },
   {
      "id":11,
-     "item":"香菇肉粥",
+     "name":"香菇肉粥",
      "class":"中式餐點",
      "subclass":"飯與粥",
      "photo":null,
@@ -266,7 +266,7 @@ export const allFoods = [
   },
   {
      "id":12,
-     "item":"嘉義劉里長雞肉飯",
+     "name":"嘉義劉里長雞肉飯",
      "class":"中式餐點",
      "subclass":"飯與粥",
      "photo":null,
@@ -282,7 +282,7 @@ export const allFoods = [
   },
   {
      "id":13,
-     "item":"生滾皮蛋煲粥",
+     "name":"生滾皮蛋煲粥",
      "class":"中式餐點",
      "subclass":"飯與粥",
      "photo":null,
@@ -298,7 +298,7 @@ export const allFoods = [
   },
   {
      "id":14,
-     "item":"肉燥飯",
+     "name":"肉燥飯",
      "class":"中式餐點",
      "subclass":"飯與粥",
      "photo":null,
@@ -314,7 +314,7 @@ export const allFoods = [
   },
   {
      "id":15,
-     "item":"虱目魚粥(小份)",
+     "name":"虱目魚粥(小份)",
      "class":"中式餐點",
      "subclass":"飯與粥",
      "photo":null,
@@ -330,7 +330,7 @@ export const allFoods = [
   },
   {
      "id":16,
-     "item":"中式炒麵",
+     "name":"中式炒麵",
      "class":"中式餐點",
      "subclass":"麵類",
      "photo":null,
@@ -346,7 +346,7 @@ export const allFoods = [
   },
   {
      "id":17,
-     "item":"黑胡椒鐵板麵(以美而美品項為例)",
+     "name":"黑胡椒鐵板麵(以美而美品項為例)",
      "class":"中式餐點",
      "subclass":"麵類",
      "photo":null,
@@ -362,7 +362,7 @@ export const allFoods = [
   },
   {
      "id":18,
-     "item":"蘑菇鐵板麵(以美而美品項為例)",
+     "name":"蘑菇鐵板麵(以美而美品項為例)",
      "class":"中式餐點",
      "subclass":"麵類",
      "photo":null,
@@ -378,7 +378,7 @@ export const allFoods = [
   },
   {
      "id":19,
-     "item":"蚵仔麵線",
+     "name":"蚵仔麵線",
      "class":"中式餐點",
      "subclass":"麵類",
      "photo":null,
@@ -394,7 +394,7 @@ export const allFoods = [
   },
   {
      "id":20,
-     "item":"麻醬涼麵(大滿足)",
+     "name":"麻醬涼麵(大滿足)",
      "class":"中式餐點",
      "subclass":"麵類",
      "photo":null,
@@ -410,7 +410,7 @@ export const allFoods = [
   },
   {
      "id":21,
-     "item":"日式炒烏龍麵",
+     "name":"日式炒烏龍麵",
      "class":"中式餐點",
      "subclass":"麵類",
      "photo":null,
@@ -426,7 +426,7 @@ export const allFoods = [
   },
   {
      "id":22,
-     "item":"燒餅",
+     "name":"燒餅",
      "class":"中式餐點",
      "subclass":"燒餅油條",
      "photo":null,
@@ -442,7 +442,7 @@ export const allFoods = [
   },
   {
      "id":23,
-     "item":"油條",
+     "name":"油條",
      "class":"中式餐點",
      "subclass":"燒餅油條",
      "photo":null,
@@ -458,7 +458,7 @@ export const allFoods = [
   },
   {
      "id":24,
-     "item":"燒餅油條夾蛋",
+     "name":"燒餅油條夾蛋",
      "class":"中式餐點",
      "subclass":"燒餅油條",
      "photo":null,
@@ -474,7 +474,7 @@ export const allFoods = [
   },
   {
      "id":25,
-     "item":"奶皇包",
+     "name":"奶皇包",
      "class":"中式餐點",
      "subclass":"包子饅頭",
      "photo":null,
@@ -490,7 +490,7 @@ export const allFoods = [
   },
   {
      "id":26,
-     "item":"鮮肉包",
+     "name":"鮮肉包",
      "class":"中式餐點",
      "subclass":"包子饅頭",
      "photo":null,
@@ -506,7 +506,7 @@ export const allFoods = [
   },
   {
      "id":27,
-     "item":"大鮮肉包",
+     "name":"大鮮肉包",
      "class":"中式餐點",
      "subclass":"包子饅頭",
      "photo":null,
@@ -522,7 +522,7 @@ export const allFoods = [
   },
   {
      "id":28,
-     "item":"高麗菜包",
+     "name":"高麗菜包",
      "class":"中式餐點",
      "subclass":"包子饅頭",
      "photo":null,
@@ -538,7 +538,7 @@ export const allFoods = [
   },
   {
      "id":29,
-     "item":"雪裡紅菜包",
+     "name":"雪裡紅菜包",
      "class":"中式餐點",
      "subclass":"包子饅頭",
      "photo":null,
@@ -554,7 +554,7 @@ export const allFoods = [
   },
   {
      "id":30,
-     "item":"竹筍包",
+     "name":"竹筍包",
      "class":"中式餐點",
      "subclass":"包子饅頭",
      "photo":null,
@@ -570,7 +570,7 @@ export const allFoods = [
   },
   {
      "id":31,
-     "item":"菜脯豬肉客家菜包",
+     "name":"菜脯豬肉客家菜包",
      "class":"中式餐點",
      "subclass":"包子饅頭",
      "photo":null,
@@ -586,7 +586,7 @@ export const allFoods = [
   },
   {
      "id":32,
-     "item":"蔥燒包",
+     "name":"蔥燒包",
      "class":"中式餐點",
      "subclass":"包子饅頭",
      "photo":null,
@@ -602,7 +602,7 @@ export const allFoods = [
   },
   {
      "id":33,
-     "item":"小籠包(5個)",
+     "name":"小籠包(5個)",
      "class":"中式餐點",
      "subclass":"包子饅頭",
      "photo":null,
@@ -618,7 +618,7 @@ export const allFoods = [
   },
   {
      "id":34,
-     "item":"刈包",
+     "name":"刈包",
      "class":"中式餐點",
      "subclass":"包子饅頭",
      "photo":null,
@@ -634,7 +634,7 @@ export const allFoods = [
   },
   {
      "id":35,
-     "item":"水煎包",
+     "name":"水煎包",
      "class":"中式餐點",
      "subclass":"包子饅頭",
      "photo":null,
@@ -650,7 +650,7 @@ export const allFoods = [
   },
   {
      "id":36,
-     "item":"高麗菜生煎包",
+     "name":"高麗菜生煎包",
      "class":"中式餐點",
      "subclass":"包子饅頭",
      "photo":null,
@@ -666,7 +666,7 @@ export const allFoods = [
   },
   {
      "id":37,
-     "item":"韭菜生煎包",
+     "name":"韭菜生煎包",
      "class":"中式餐點",
      "subclass":"包子饅頭",
      "photo":null,
@@ -682,7 +682,7 @@ export const allFoods = [
   },
   {
      "id":38,
-     "item":"韭菜盒子",
+     "name":"韭菜盒子",
      "class":"中式餐點",
      "subclass":"包子饅頭",
      "photo":null,
@@ -698,7 +698,7 @@ export const allFoods = [
   },
   {
      "id":39,
-     "item":"雜糧堅果饅頭",
+     "name":"雜糧堅果饅頭",
      "class":"中式餐點",
      "subclass":"包子饅頭",
      "photo":null,
@@ -714,7 +714,7 @@ export const allFoods = [
   },
   {
      "id":40,
-     "item":"白饅頭",
+     "name":"白饅頭",
      "class":"中式餐點",
      "subclass":"包子饅頭",
      "photo":null,
@@ -730,7 +730,7 @@ export const allFoods = [
   },
   {
      "id":41,
-     "item":"山東饅頭",
+     "name":"山東饅頭",
      "class":"中式餐點",
      "subclass":"包子饅頭",
      "photo":null,
@@ -746,7 +746,7 @@ export const allFoods = [
   },
   {
      "id":42,
-     "item":"全麥饅頭",
+     "name":"全麥饅頭",
      "class":"中式餐點",
      "subclass":"包子饅頭",
      "photo":null,
@@ -762,7 +762,7 @@ export const allFoods = [
   },
   {
      "id":43,
-     "item":"銀絲卷",
+     "name":"銀絲卷",
      "class":"中式餐點",
      "subclass":"包子饅頭",
      "photo":null,
@@ -778,7 +778,7 @@ export const allFoods = [
   },
   {
      "id":44,
-     "item":"起司銀絲卷",
+     "name":"起司銀絲卷",
      "class":"中式餐點",
      "subclass":"包子饅頭",
      "photo":null,
@@ -794,7 +794,7 @@ export const allFoods = [
   },
   {
      "id":45,
-     "item":"鮮蝦餛飩",
+     "name":"鮮蝦餛飩",
      "class":"中式餐點",
      "subclass":"水餃鍋貼餛飩",
      "photo":null,
@@ -810,7 +810,7 @@ export const allFoods = [
   },
   {
      "id":46,
-     "item":"鮮肉鍋貼",
+     "name":"鮮肉鍋貼",
      "class":"中式餐點",
      "subclass":"水餃鍋貼餛飩",
      "photo":null,
@@ -826,7 +826,7 @@ export const allFoods = [
   },
   {
      "id":47,
-     "item":"鍋貼(10個)",
+     "name":"鍋貼(10個)",
      "class":"中式餐點",
      "subclass":"水餃鍋貼餛飩",
      "photo":null,
@@ -842,7 +842,7 @@ export const allFoods = [
   },
   {
      "id":48,
-     "item":"玉米豬肉水餃",
+     "name":"玉米豬肉水餃",
      "class":"中式餐點",
      "subclass":"水餃鍋貼餛飩",
      "photo":null,
@@ -858,7 +858,7 @@ export const allFoods = [
   },
   {
      "id":49,
-     "item":"蘿蔔糕",
+     "name":"蘿蔔糕",
      "class":"中式餐點",
      "subclass":"蘿蔔糕米糕",
      "photo":null,
@@ -874,7 +874,7 @@ export const allFoods = [
   },
   {
      "id":50,
-     "item":"廣式芋頭糕",
+     "name":"廣式芋頭糕",
      "class":"中式餐點",
      "subclass":"蘿蔔糕米糕",
      "photo":null,
@@ -890,7 +890,7 @@ export const allFoods = [
   },
   {
      "id":51,
-     "item":"肉粽",
+     "name":"肉粽",
      "class":"中式餐點",
      "subclass":"蘿蔔糕米糕",
      "photo":null,
@@ -906,7 +906,7 @@ export const allFoods = [
   },
   {
      "id":52,
-     "item":"米血糕",
+     "name":"米血糕",
      "class":"中式餐點",
      "subclass":"蘿蔔糕米糕",
      "photo":null,
@@ -922,7 +922,7 @@ export const allFoods = [
   },
   {
      "id":53,
-     "item":"筒仔米糕",
+     "name":"筒仔米糕",
      "class":"中式餐點",
      "subclass":"蘿蔔糕米糕",
      "photo":null,
@@ -938,7 +938,7 @@ export const allFoods = [
   },
   {
      "id":54,
-     "item":"花生麵筋",
+     "name":"花生麵筋",
      "class":"中式餐點",
      "subclass":"小吃",
      "photo":null,
@@ -954,7 +954,7 @@ export const allFoods = [
   },
   {
      "id":55,
-     "item":"麵筋",
+     "name":"麵筋",
      "class":"中式餐點",
      "subclass":"小吃",
      "photo":null,
@@ -970,7 +970,7 @@ export const allFoods = [
   },
   {
      "id":56,
-     "item":"醬瓜",
+     "name":"醬瓜",
      "class":"中式餐點",
      "subclass":"小吃",
      "photo":null,
@@ -986,7 +986,7 @@ export const allFoods = [
   },
   {
      "id":57,
-     "item":"蔭瓜",
+     "name":"蔭瓜",
      "class":"中式餐點",
      "subclass":"小吃",
      "photo":null,
@@ -1002,7 +1002,7 @@ export const allFoods = [
   },
   {
      "id":58,
-     "item":"小魚乾",
+     "name":"小魚乾",
      "class":"中式餐點",
      "subclass":"小吃",
      "photo":null,
@@ -1018,7 +1018,7 @@ export const allFoods = [
   },
   {
      "id":59,
-     "item":"肉圓(清蒸)",
+     "name":"肉圓(清蒸)",
      "class":"中式餐點",
      "subclass":"小吃",
      "photo":null,
@@ -1034,7 +1034,7 @@ export const allFoods = [
   },
   {
      "id":60,
-     "item":"地瓜(1條)",
+     "name":"地瓜(1條)",
      "class":"中式餐點",
      "subclass":"小吃",
      "photo":"/api/getfoodphoto?id=60",
@@ -1050,7 +1050,7 @@ export const allFoods = [
   },
   {
      "id":61,
-     "item":"芋頭(半碗)",
+     "name":"芋頭(半碗)",
      "class":"中式餐點",
      "subclass":"小吃",
      "photo":"/api/getfoodphoto?id=61",
@@ -1066,7 +1066,7 @@ export const allFoods = [
   },
   {
      "id":62,
-     "item":"芋頭(1/4碗)",
+     "name":"芋頭(1/4碗)",
      "class":"中式餐點",
      "subclass":"小吃",
      "photo":"/api/getfoodphoto?id=62",
@@ -1082,7 +1082,7 @@ export const allFoods = [
   },
   {
      "id":63,
-     "item":"南瓜(1格)",
+     "name":"南瓜(1格)",
      "class":"中式餐點",
      "subclass":"小吃",
      "photo":null,
@@ -1098,7 +1098,7 @@ export const allFoods = [
   },
   {
      "id":64,
-     "item":"連梗玉米",
+     "name":"連梗玉米",
      "class":"中式餐點",
      "subclass":"小吃",
      "photo":null,
@@ -1114,7 +1114,7 @@ export const allFoods = [
   },
   {
      "id":65,
-     "item":"黑輪",
+     "name":"黑輪",
      "class":"中式餐點",
      "subclass":"小吃",
      "photo":null,
@@ -1130,7 +1130,7 @@ export const allFoods = [
   },
   {
      "id":66,
-     "item":"椒鹽海鮮丸",
+     "name":"椒鹽海鮮丸",
      "class":"中式餐點",
      "subclass":"小吃",
      "photo":null,
@@ -1146,7 +1146,7 @@ export const allFoods = [
   },
   {
      "id":67,
-     "item":"烤香腸",
+     "name":"烤香腸",
      "class":"中式餐點",
      "subclass":"小吃",
      "photo":null,
@@ -1162,7 +1162,7 @@ export const allFoods = [
   },
   {
      "id":68,
-     "item":"甜不辣",
+     "name":"甜不辣",
      "class":"中式餐點",
      "subclass":"小吃",
      "photo":"/api/getfoodphoto?id=68",
@@ -1178,7 +1178,7 @@ export const allFoods = [
   },
   {
      "id":69,
-     "item":"蚵仔煎",
+     "name":"蚵仔煎",
      "class":"中式餐點",
      "subclass":"小吃",
      "photo":null,
@@ -1194,7 +1194,7 @@ export const allFoods = [
   },
   {
      "id":70,
-     "item":"鮮筍排骨湯",
+     "name":"鮮筍排骨湯",
      "class":"中式餐點",
      "subclass":"中式湯品",
      "photo":null,
@@ -1210,7 +1210,7 @@ export const allFoods = [
   },
   {
      "id":71,
-     "item":"牛肉湯",
+     "name":"牛肉湯",
      "class":"中式餐點",
      "subclass":"中式湯品",
      "photo":null,
@@ -1226,7 +1226,7 @@ export const allFoods = [
   },
   {
      "id":72,
-     "item":"素肉排(1塊)",
+     "name":"素肉排(1塊)",
      "class":"中式餐點",
      "subclass":"小吃",
      "photo":"/api/getfoodphoto?id=72",
@@ -1242,7 +1242,7 @@ export const allFoods = [
   },
   {
      "id":73,
-     "item":"素鰻(1塊)",
+     "name":"素鰻(1塊)",
      "class":"中式餐點",
      "subclass":"小吃",
      "photo":"/api/getfoodphoto?id=73",
@@ -1258,7 +1258,7 @@ export const allFoods = [
   },
   {
      "id":111,
-     "item":"煎蛋吐司 (以美而美品項為例)",
+     "name":"煎蛋吐司 (以美而美品項為例)",
      "class":"西式餐點",
      "subclass":"三明治",
      "photo":null,
@@ -1274,7 +1274,7 @@ export const allFoods = [
   },
   {
      "id":112,
-     "item":"香雞吐司 (以美而美品項為例)",
+     "name":"香雞吐司 (以美而美品項為例)",
      "class":"西式餐點",
      "subclass":"三明治",
      "photo":null,
@@ -1290,7 +1290,7 @@ export const allFoods = [
   },
   {
      "id":113,
-     "item":"雞蛋沙拉三明治 (全家)",
+     "name":"雞蛋沙拉三明治 (全家)",
      "class":"西式餐點",
      "subclass":"三明治",
      "photo":null,
@@ -1306,7 +1306,7 @@ export const allFoods = [
   },
   {
      "id":114,
-     "item":"火腿蛋三明治",
+     "name":"火腿蛋三明治",
      "class":"西式餐點",
      "subclass":"三明治",
      "photo":null,
@@ -1322,7 +1322,7 @@ export const allFoods = [
   },
   {
      "id":115,
-     "item":"火腿起司三明治 (7-11)",
+     "name":"火腿起司三明治 (7-11)",
      "class":"西式餐點",
      "subclass":"三明治",
      "photo":null,
@@ -1338,7 +1338,7 @@ export const allFoods = [
   },
   {
      "id":116,
-     "item":"火腿起司蛋三明治 (全家)",
+     "name":"火腿起司蛋三明治 (全家)",
      "class":"西式餐點",
      "subclass":"三明治",
      "photo":null,
@@ -1354,7 +1354,7 @@ export const allFoods = [
   },
   {
      "id":117,
-     "item":"經典總匯三明治 (全家)",
+     "name":"經典總匯三明治 (全家)",
      "class":"西式餐點",
      "subclass":"三明治",
      "photo":null,
@@ -1370,7 +1370,7 @@ export const allFoods = [
   },
   {
      "id":118,
-     "item":"照燒雞溏心蛋三明治 (7-11)",
+     "name":"照燒雞溏心蛋三明治 (7-11)",
      "class":"西式餐點",
      "subclass":"三明治",
      "photo":null,
@@ -1386,7 +1386,7 @@ export const allFoods = [
   },
   {
      "id":119,
-     "item":"紐澳良風味烤雞鮮蔬三明治 (7-11)",
+     "name":"紐澳良風味烤雞鮮蔬三明治 (7-11)",
      "class":"西式餐點",
      "subclass":"三明治",
      "photo":null,
@@ -1402,7 +1402,7 @@ export const allFoods = [
   },
   {
      "id":120,
-     "item":"輕乳酪巧克力三明治 (全家)",
+     "name":"輕乳酪巧克力三明治 (全家)",
      "class":"西式餐點",
      "subclass":"三明治",
      "photo":null,
@@ -1418,7 +1418,7 @@ export const allFoods = [
   },
   {
      "id":121,
-     "item":"巧克力吐司 (以美而美品項為例)",
+     "name":"巧克力吐司 (以美而美品項為例)",
      "class":"西式餐點",
      "subclass":"三明治",
      "photo":null,
@@ -1434,7 +1434,7 @@ export const allFoods = [
   },
   {
      "id":122,
-     "item":"蛋堡 (以美而美品項為例)",
+     "name":"蛋堡 (以美而美品項為例)",
      "class":"西式餐點",
      "subclass":"漢堡",
      "photo":null,
@@ -1450,7 +1450,7 @@ export const allFoods = [
   },
   {
      "id":123,
-     "item":"吉士蛋堡 (麥當勞)",
+     "name":"吉士蛋堡 (麥當勞)",
      "class":"西式餐點",
      "subclass":"漢堡",
      "photo":null,
@@ -1466,7 +1466,7 @@ export const allFoods = [
   },
   {
      "id":124,
-     "item":"番茄吉士蛋堡 (摩斯漢堡)",
+     "name":"番茄吉士蛋堡 (摩斯漢堡)",
      "class":"西式餐點",
      "subclass":"漢堡",
      "photo":null,
@@ -1482,7 +1482,7 @@ export const allFoods = [
   },
   {
      "id":125,
-     "item":"青蔬滿福堡 (麥當勞)",
+     "name":"青蔬滿福堡 (麥當勞)",
      "class":"西式餐點",
      "subclass":"漢堡",
      "photo":null,
@@ -1498,7 +1498,7 @@ export const allFoods = [
   },
   {
      "id":126,
-     "item":"香雞漢堡 (以美而美品項為例)",
+     "name":"香雞漢堡 (以美而美品項為例)",
      "class":"西式餐點",
      "subclass":"漢堡",
      "photo":null,
@@ -1514,7 +1514,7 @@ export const allFoods = [
   },
   {
      "id":127,
-     "item":"卡拉雞漢堡 (以美而美品項為例)",
+     "name":"卡拉雞漢堡 (以美而美品項為例)",
      "class":"西式餐點",
      "subclass":"漢堡",
      "photo":null,
@@ -1530,7 +1530,7 @@ export const allFoods = [
   },
   {
      "id":128,
-     "item":"麥香雞堡 (麥當勞)",
+     "name":"麥香雞堡 (麥當勞)",
      "class":"西式餐點",
      "subclass":"漢堡",
      "photo":null,
@@ -1546,7 +1546,7 @@ export const allFoods = [
   },
   {
      "id":129,
-     "item":"蜜汁烤雞起司堡 (摩斯漢堡)",
+     "name":"蜜汁烤雞起司堡 (摩斯漢堡)",
      "class":"西式餐點",
      "subclass":"漢堡",
      "photo":null,
@@ -1562,7 +1562,7 @@ export const allFoods = [
   },
   {
      "id":130,
-     "item":"豬排漢堡 (以美而美品項為例)",
+     "name":"豬排漢堡 (以美而美品項為例)",
      "class":"西式餐點",
      "subclass":"漢堡",
      "photo":null,
@@ -1578,7 +1578,7 @@ export const allFoods = [
   },
   {
      "id":131,
-     "item":"豬肉起司堡 (全家)",
+     "name":"豬肉起司堡 (全家)",
      "class":"西式餐點",
      "subclass":"漢堡",
      "photo":null,
@@ -1594,7 +1594,7 @@ export const allFoods = [
   },
   {
      "id":132,
-     "item":"豬肉起司蛋堡  (全家)",
+     "name":"豬肉起司蛋堡  (全家)",
      "class":"西式餐點",
      "subclass":"漢堡",
      "photo":null,
@@ -1610,7 +1610,7 @@ export const allFoods = [
   },
   {
      "id":133,
-     "item":"豬肉滿福堡 (麥當勞)",
+     "name":"豬肉滿福堡 (麥當勞)",
      "class":"西式餐點",
      "subclass":"漢堡",
      "photo":null,
@@ -1626,7 +1626,7 @@ export const allFoods = [
   },
   {
      "id":134,
-     "item":"豬肉滿福堡加蛋 (麥當勞)",
+     "name":"豬肉滿福堡加蛋 (麥當勞)",
      "class":"西式餐點",
      "subclass":"漢堡",
      "photo":null,
@@ -1642,7 +1642,7 @@ export const allFoods = [
   },
   {
      "id":135,
-     "item":"超級大麥燒肉珍珠堡 (摩斯漢堡)",
+     "name":"超級大麥燒肉珍珠堡 (摩斯漢堡)",
      "class":"西式餐點",
      "subclass":"漢堡",
      "photo":null,
@@ -1658,7 +1658,7 @@ export const allFoods = [
   },
   {
      "id":136,
-     "item":"超級大麥薑燒珍珠堡 (摩斯漢堡)",
+     "name":"超級大麥薑燒珍珠堡 (摩斯漢堡)",
      "class":"西式餐點",
      "subclass":"漢堡",
      "photo":null,
@@ -1674,7 +1674,7 @@ export const allFoods = [
   },
   {
      "id":137,
-     "item":"超級大麥海洋珍珠堡 (摩斯漢堡)",
+     "name":"超級大麥海洋珍珠堡 (摩斯漢堡)",
      "class":"西式餐點",
      "subclass":"漢堡",
      "photo":null,
@@ -1690,7 +1690,7 @@ export const allFoods = [
   },
   {
      "id":138,
-     "item":"火腿蛋堡 (麥當勞)",
+     "name":"火腿蛋堡 (麥當勞)",
      "class":"西式餐點",
      "subclass":"漢堡",
      "photo":null,
@@ -1706,7 +1706,7 @@ export const allFoods = [
   },
   {
      "id":139,
-     "item":"火腿歐姆蛋堡 (摩斯漢堡)",
+     "name":"火腿歐姆蛋堡 (摩斯漢堡)",
      "class":"西式餐點",
      "subclass":"漢堡",
      "photo":null,
@@ -1722,7 +1722,7 @@ export const allFoods = [
   },
   {
      "id":140,
-     "item":"火腿蛋多穀貝果堡",
+     "name":"火腿蛋多穀貝果堡",
      "class":"西式餐點",
      "subclass":"漢堡",
      "photo":null,
@@ -1738,7 +1738,7 @@ export const allFoods = [
   },
   {
      "id":141,
-     "item":"培根雞蛋堡 (摩斯漢堡)",
+     "name":"培根雞蛋堡 (摩斯漢堡)",
      "class":"西式餐點",
      "subclass":"漢堡",
      "photo":null,
@@ -1754,7 +1754,7 @@ export const allFoods = [
   },
   {
      "id":142,
-     "item":"美式熱狗堡 (全家)",
+     "name":"美式熱狗堡 (全家)",
      "class":"西式餐點",
      "subclass":"漢堡",
      "photo":null,
@@ -1770,7 +1770,7 @@ export const allFoods = [
   },
   {
      "id":143,
-     "item":"經典雙牛起司堡 (全家)",
+     "name":"經典雙牛起司堡 (全家)",
      "class":"西式餐點",
      "subclass":"漢堡",
      "photo":null,
@@ -1786,7 +1786,7 @@ export const allFoods = [
   },
   {
      "id":144,
-     "item":"雙層牛肉吉士堡 (麥當勞)",
+     "name":"雙層牛肉吉士堡 (麥當勞)",
      "class":"西式餐點",
      "subclass":"漢堡",
      "photo":null,
@@ -1802,7 +1802,7 @@ export const allFoods = [
   },
   {
      "id":145,
-     "item":"麥香魚 (麥當勞)",
+     "name":"麥香魚 (麥當勞)",
      "class":"西式餐點",
      "subclass":"漢堡",
      "photo":null,
@@ -1818,7 +1818,7 @@ export const allFoods = [
   },
   {
      "id":146,
-     "item":"摩斯鱈魚堡 (摩斯漢堡)",
+     "name":"摩斯鱈魚堡 (摩斯漢堡)",
      "class":"西式餐點",
      "subclass":"漢堡",
      "photo":null,
@@ -1834,7 +1834,7 @@ export const allFoods = [
   },
   {
      "id":147,
-     "item":"馬鈴薯(1/2顆)",
+     "name":"馬鈴薯(1/2顆)",
      "class":"西式餐點",
      "subclass":"馬鈴薯",
      "photo":"/api/getfoodphoto?id=147",
@@ -1850,7 +1850,7 @@ export const allFoods = [
   },
   {
      "id":148,
-     "item":"蕃茄肉醬義大利麵",
+     "name":"蕃茄肉醬義大利麵",
      "class":"西式餐點",
      "subclass":"義大利麵",
      "photo":null,
@@ -1866,7 +1866,7 @@ export const allFoods = [
   },
   {
      "id":149,
-     "item":"薯餅",
+     "name":"薯餅",
      "class":"西式餐點",
      "subclass":"速食點心",
      "photo":null,
@@ -1882,7 +1882,7 @@ export const allFoods = [
   },
   {
      "id":150,
-     "item":"薯條(小)",
+     "name":"薯條(小)",
      "class":"西式餐點",
      "subclass":"速食點心",
      "photo":null,
@@ -1898,7 +1898,7 @@ export const allFoods = [
   },
   {
      "id":151,
-     "item":"薯條(中)",
+     "name":"薯條(中)",
      "class":"西式餐點",
      "subclass":"速食點心",
      "photo":null,
@@ -1914,7 +1914,7 @@ export const allFoods = [
   },
   {
      "id":152,
-     "item":"薯條(大)",
+     "name":"薯條(大)",
      "class":"西式餐點",
      "subclass":"速食點心",
      "photo":null,
@@ -1930,7 +1930,7 @@ export const allFoods = [
   },
   {
      "id":153,
-     "item":"黃金地瓜條",
+     "name":"黃金地瓜條",
      "class":"西式餐點",
      "subclass":"速食點心",
      "photo":null,
@@ -1946,7 +1946,7 @@ export const allFoods = [
   },
   {
      "id":154,
-     "item":"V型薯條 (摩斯漢堡)",
+     "name":"V型薯條 (摩斯漢堡)",
      "class":"西式餐點",
      "subclass":"速食點心",
      "photo":null,
@@ -1962,7 +1962,7 @@ export const allFoods = [
   },
   {
      "id":155,
-     "item":"雞塊 (1個)",
+     "name":"雞塊 (1個)",
      "class":"西式餐點",
      "subclass":"速食點心",
      "photo":null,
@@ -1978,7 +1978,7 @@ export const allFoods = [
   },
   {
      "id":156,
-     "item":"麥克雞塊(6塊)",
+     "name":"麥克雞塊(6塊)",
      "class":"西式餐點",
      "subclass":"速食點心",
      "photo":null,
@@ -1994,7 +1994,7 @@ export const allFoods = [
   },
   {
      "id":157,
-     "item":"摩斯雞塊(一包，約6塊)",
+     "name":"摩斯雞塊(一包，約6塊)",
      "class":"西式餐點",
      "subclass":"速食點心",
      "photo":null,
@@ -2010,7 +2010,7 @@ export const allFoods = [
   },
   {
      "id":158,
-     "item":"素雞塊 (1個)",
+     "name":"素雞塊 (1個)",
      "class":"西式餐點",
      "subclass":"速食點心",
      "photo":null,
@@ -2026,7 +2026,7 @@ export const allFoods = [
   },
   {
      "id":159,
-     "item":"熱狗",
+     "name":"熱狗",
      "class":"西式餐點",
      "subclass":"速食點心",
      "photo":null,
@@ -2042,7 +2042,7 @@ export const allFoods = [
   },
   {
      "id":160,
-     "item":"德國香腸",
+     "name":"德國香腸",
      "class":"西式餐點",
      "subclass":"速食點心",
      "photo":null,
@@ -2058,7 +2058,7 @@ export const allFoods = [
   },
   {
      "id":161,
-     "item":"原味熱狗",
+     "name":"原味熱狗",
      "class":"西式餐點",
      "subclass":"速食點心",
      "photo":null,
@@ -2074,7 +2074,7 @@ export const allFoods = [
   },
   {
      "id":162,
-     "item":"芝士熱狗",
+     "name":"芝士熱狗",
      "class":"西式餐點",
      "subclass":"速食點心",
      "photo":null,
@@ -2090,7 +2090,7 @@ export const allFoods = [
   },
   {
      "id":163,
-     "item":"健達巧克力",
+     "name":"健達巧克力",
      "class":"西式餐點",
      "subclass":"速食點心",
      "photo":null,
@@ -2106,7 +2106,7 @@ export const allFoods = [
   },
   {
      "id":164,
-     "item":"切片乾酪（起司）(一片)",
+     "name":"切片乾酪（起司）(一片)",
      "class":"西式餐點",
      "subclass":"起司",
      "photo":null,
@@ -2122,7 +2122,7 @@ export const allFoods = [
   },
   {
      "id":165,
-     "item":"乳酪餅",
+     "name":"乳酪餅",
      "class":"西式餐點",
      "subclass":"起司",
      "photo":null,
@@ -2138,7 +2138,7 @@ export const allFoods = [
   },
   {
      "id":166,
-     "item":"玉米濃湯",
+     "name":"玉米濃湯",
      "class":"西式餐點",
      "subclass":"西式湯品",
      "photo":null,
@@ -2154,7 +2154,7 @@ export const allFoods = [
   },
   {
      "id":167,
-     "item":"桂格奇亞籽麥片-特濃鮮奶",
+     "name":"桂格奇亞籽麥片-特濃鮮奶",
      "class":"西式餐點",
      "subclass":"燕麥",
      "photo":null,
@@ -2170,7 +2170,7 @@ export const allFoods = [
   },
   {
      "id":168,
-     "item":"桂格奇亞籽麥片-鮮奶減糖",
+     "name":"桂格奇亞籽麥片-鮮奶減糖",
      "class":"西式餐點",
      "subclass":"燕麥",
      "photo":null,
@@ -2186,7 +2186,7 @@ export const allFoods = [
   },
   {
      "id":169,
-     "item":"桂格奇亞籽麥片-草莓歐蕾",
+     "name":"桂格奇亞籽麥片-草莓歐蕾",
      "class":"西式餐點",
      "subclass":"燕麥",
      "photo":null,
@@ -2202,7 +2202,7 @@ export const allFoods = [
   },
   {
      "id":170,
-     "item":"桂格美味三合一麥片 經典麥香",
+     "name":"桂格美味三合一麥片 經典麥香",
      "class":"西式餐點",
      "subclass":"燕麥",
      "photo":null,
@@ -2218,7 +2218,7 @@ export const allFoods = [
   },
   {
      "id":171,
-     "item":"萬歲牌燕麥堅果-堅果纖蔬",
+     "name":"萬歲牌燕麥堅果-堅果纖蔬",
      "class":"西式餐點",
      "subclass":"燕麥",
      "photo":null,
@@ -2234,7 +2234,7 @@ export const allFoods = [
   },
   {
      "id":172,
-     "item":"雀巢可可脆片早餐脆片",
+     "name":"雀巢可可脆片早餐脆片",
      "class":"西式餐點",
      "subclass":"脆片",
      "photo":null,
@@ -2250,7 +2250,7 @@ export const allFoods = [
   },
   {
      "id":173,
-     "item":"家樂氏纖穀脆-超級莓果",
+     "name":"家樂氏纖穀脆-超級莓果",
      "class":"西式餐點",
      "subclass":"脆片",
      "photo":null,
@@ -2266,7 +2266,7 @@ export const allFoods = [
   },
   {
      "id":174,
-     "item":"家樂氏原味玉米片",
+     "name":"家樂氏原味玉米片",
      "class":"西式餐點",
      "subclass":"脆片",
      "photo":null,
@@ -2282,7 +2282,7 @@ export const allFoods = [
   },
   {
      "id":175,
-     "item":"榛果巧克力鬆餅",
+     "name":"榛果巧克力鬆餅",
      "class":"西式餐點",
      "subclass":"點心",
      "photo":null,
@@ -2298,7 +2298,7 @@ export const allFoods = [
   },
   {
      "id":176,
-     "item":"蜂蜜鬆餅(格子狀，如小木屋)",
+     "name":"蜂蜜鬆餅(格子狀，如小木屋)",
      "class":"西式餐點",
      "subclass":"點心",
      "photo":"/api/getfoodphoto?id=176",
@@ -2314,7 +2314,7 @@ export const allFoods = [
   },
   {
      "id":177,
-     "item":"法式蔬菜鹹派(以星巴克品項為例)",
+     "name":"法式蔬菜鹹派(以星巴克品項為例)",
      "class":"西式餐點",
      "subclass":"點心",
      "photo":null,
@@ -2330,7 +2330,7 @@ export const allFoods = [
   },
   {
      "id":178,
-     "item":"檸檬塔(以星巴克品項為例)",
+     "name":"檸檬塔(以星巴克品項為例)",
      "class":"西式餐點",
      "subclass":"點心",
      "photo":null,
@@ -2346,7 +2346,7 @@ export const allFoods = [
   },
   {
      "id":179,
-     "item":"蘋果派",
+     "name":"蘋果派",
      "class":"西式餐點",
      "subclass":"點心",
      "photo":null,
@@ -2362,7 +2362,7 @@ export const allFoods = [
   },
   {
      "id":415,
-     "item":"肉鬆菜脯糯米飯糰 (柱狀)",
+     "name":"肉鬆菜脯糯米飯糰 (柱狀)",
      "class":"飯糰壽司類",
      "subclass":"飯糰",
      "photo":null,
@@ -2378,7 +2378,7 @@ export const allFoods = [
   },
   {
      "id":416,
-     "item":"肉鬆飯糰（全家三角飯糰）",
+     "name":"肉鬆飯糰（全家三角飯糰）",
      "class":"飯糰壽司類",
      "subclass":"飯糰",
      "photo":null,
@@ -2394,7 +2394,7 @@ export const allFoods = [
   },
   {
      "id":417,
-     "item":"鮪魚飯糰 (全家)",
+     "name":"鮪魚飯糰 (全家)",
      "class":"飯糰壽司類",
      "subclass":"飯糰",
      "photo":null,
@@ -2410,7 +2410,7 @@ export const allFoods = [
   },
   {
      "id":418,
-     "item":"雞肉飯糰（7-11）",
+     "name":"雞肉飯糰（7-11）",
      "class":"飯糰壽司類",
      "subclass":"飯糰",
      "photo":null,
@@ -2426,7 +2426,7 @@ export const allFoods = [
   },
   {
      "id":419,
-     "item":"鮭魚飯糰（全家）",
+     "name":"鮭魚飯糰（全家）",
      "class":"飯糰壽司類",
      "subclass":"飯糰",
      "photo":null,
@@ -2442,7 +2442,7 @@ export const allFoods = [
   },
   {
      "id":420,
-     "item":"素飯糰",
+     "name":"素飯糰",
      "class":"飯糰壽司類",
      "subclass":"飯糰",
      "photo":null,
@@ -2458,7 +2458,7 @@ export const allFoods = [
   },
   {
      "id":421,
-     "item":"肉鬆飯糰（7-11阜杭豆漿）",
+     "name":"肉鬆飯糰（7-11阜杭豆漿）",
      "class":"飯糰壽司類",
      "subclass":"飯糰",
      "photo":null,
@@ -2474,7 +2474,7 @@ export const allFoods = [
   },
   {
      "id":422,
-     "item":"明太子飯糰（7-11）",
+     "name":"明太子飯糰（7-11）",
      "class":"飯糰壽司類",
      "subclass":"飯糰",
      "photo":null,
@@ -2490,7 +2490,7 @@ export const allFoods = [
   },
   {
      "id":423,
-     "item":"明太子龍蝦風味沙拉飯糰（全家）",
+     "name":"明太子龍蝦風味沙拉飯糰（全家）",
      "class":"飯糰壽司類",
      "subclass":"飯糰",
      "photo":null,
@@ -2506,7 +2506,7 @@ export const allFoods = [
   },
   {
      "id":424,
-     "item":"雪蟹蟹膏飯糰",
+     "name":"雪蟹蟹膏飯糰",
      "class":"飯糰壽司類",
      "subclass":"飯糰",
      "photo":null,
@@ -2522,7 +2522,7 @@ export const allFoods = [
   },
   {
      "id":425,
-     "item":"糖心蛋五目飯糰",
+     "name":"糖心蛋五目飯糰",
      "class":"飯糰壽司類",
      "subclass":"飯糰",
      "photo":null,
@@ -2538,7 +2538,7 @@ export const allFoods = [
   },
   {
      "id":426,
-     "item":"大飯糰辣炒豬肉 (全家)",
+     "name":"大飯糰辣炒豬肉 (全家)",
      "class":"飯糰壽司類",
      "subclass":"飯糰",
      "photo":null,
@@ -2554,7 +2554,7 @@ export const allFoods = [
   },
   {
      "id":427,
-     "item":"大飯糰韓式烤牛肉 (全家)",
+     "name":"大飯糰韓式烤牛肉 (全家)",
      "class":"飯糰壽司類",
      "subclass":"飯糰",
      "photo":null,
@@ -2570,7 +2570,7 @@ export const allFoods = [
   },
   {
      "id":428,
-     "item":"雙蔬鮪魚飯糰（7-11）",
+     "name":"雙蔬鮪魚飯糰（7-11）",
      "class":"飯糰壽司類",
      "subclass":"飯糰",
      "photo":null,
@@ -2586,7 +2586,7 @@ export const allFoods = [
   },
   {
      "id":429,
-     "item":"蔥鹽燒肉飯糰（7-11）",
+     "name":"蔥鹽燒肉飯糰（7-11）",
      "class":"飯糰壽司類",
      "subclass":"飯糰",
      "photo":null,
@@ -2602,7 +2602,7 @@ export const allFoods = [
   },
   {
      "id":430,
-     "item":"麻油雞飯糰（7-11）",
+     "name":"麻油雞飯糰（7-11）",
      "class":"飯糰壽司類",
      "subclass":"飯糰",
      "photo":null,
@@ -2618,7 +2618,7 @@ export const allFoods = [
   },
   {
      "id":431,
-     "item":"大口義式香草烤雞飯糰（全家）",
+     "name":"大口義式香草烤雞飯糰（全家）",
      "class":"飯糰壽司類",
      "subclass":"飯糰",
      "photo":null,
@@ -2634,7 +2634,7 @@ export const allFoods = [
   },
   {
      "id":432,
-     "item":"大口奶油蕈菇起司飯糰（全家）",
+     "name":"大口奶油蕈菇起司飯糰（全家）",
      "class":"飯糰壽司類",
      "subclass":"飯糰",
      "photo":null,
@@ -2650,7 +2650,7 @@ export const allFoods = [
   },
   {
      "id":433,
-     "item":"乾杯炭火燒肉飯糰（7-11）",
+     "name":"乾杯炭火燒肉飯糰（7-11）",
      "class":"飯糰壽司類",
      "subclass":"飯糰",
      "photo":null,
@@ -2666,7 +2666,7 @@ export const allFoods = [
   },
   {
      "id":434,
-     "item":"晶華霜降和牛飯糰（7-11）",
+     "name":"晶華霜降和牛飯糰（7-11）",
      "class":"飯糰壽司類",
      "subclass":"飯糰",
      "photo":null,
@@ -2682,7 +2682,7 @@ export const allFoods = [
   },
   {
      "id":435,
-     "item":"歐姆蛋包飯糰（7-11）",
+     "name":"歐姆蛋包飯糰（7-11）",
      "class":"飯糰壽司類",
      "subclass":"飯糰",
      "photo":null,
@@ -2698,7 +2698,7 @@ export const allFoods = [
   },
   {
      "id":436,
-     "item":"海陸雙拼手卷（全家）",
+     "name":"海陸雙拼手卷（全家）",
      "class":"飯糰壽司類",
      "subclass":"手卷",
      "photo":null,
@@ -2714,7 +2714,7 @@ export const allFoods = [
   },
   {
      "id":437,
-     "item":"鮪魚細捲 (全家)",
+     "name":"鮪魚細捲 (全家)",
      "class":"飯糰壽司類",
      "subclass":"手卷",
      "photo":null,
@@ -2730,7 +2730,7 @@ export const allFoods = [
   },
   {
      "id":438,
-     "item":"豆皮壽司 (一盒4個)",
+     "name":"豆皮壽司 (一盒4個)",
      "class":"飯糰壽司類",
      "subclass":"壽司",
      "photo":null,
@@ -2746,7 +2746,7 @@ export const allFoods = [
   },
   {
      "id":439,
-     "item":"海陸雙拼壽司組（7-11）",
+     "name":"海陸雙拼壽司組（7-11）",
      "class":"飯糰壽司類",
      "subclass":"壽司",
      "photo":null,
@@ -2762,7 +2762,7 @@ export const allFoods = [
   },
   {
      "id":180,
-     "item":"水煮蛋",
+     "name":"水煮蛋",
      "class":"蛋肉類",
      "subclass":"蛋",
      "photo":null,
@@ -2778,7 +2778,7 @@ export const allFoods = [
   },
   {
      "id":181,
-     "item":"茶葉蛋(平均值)",
+     "name":"茶葉蛋(平均值)",
      "class":"蛋肉類",
      "subclass":"蛋",
      "photo":null,
@@ -2794,7 +2794,7 @@ export const allFoods = [
   },
   {
      "id":182,
-     "item":"滷蛋(平均值)",
+     "name":"滷蛋(平均值)",
      "class":"蛋肉類",
      "subclass":"蛋",
      "photo":null,
@@ -2810,7 +2810,7 @@ export const allFoods = [
   },
   {
      "id":183,
-     "item":"荷包蛋(油1小匙)",
+     "name":"荷包蛋(油1小匙)",
      "class":"蛋肉類",
      "subclass":"蛋",
      "photo":null,
@@ -2826,7 +2826,7 @@ export const allFoods = [
   },
   {
      "id":184,
-     "item":"炒蛋(加油3大匙)",
+     "name":"炒蛋(加油3大匙)",
      "class":"蛋肉類",
      "subclass":"蛋",
      "photo":null,
@@ -2842,7 +2842,7 @@ export const allFoods = [
   },
   {
      "id":185,
-     "item":"日式茶碗蒸",
+     "name":"日式茶碗蒸",
      "class":"蛋肉類",
      "subclass":"蛋",
      "photo":null,
@@ -2858,7 +2858,7 @@ export const allFoods = [
   },
   {
      "id":186,
-     "item":"蒸蛋(1格)",
+     "name":"蒸蛋(1格)",
      "class":"蛋肉類",
      "subclass":"蛋",
      "photo":"/api/getfoodphoto?id=186",
@@ -2874,7 +2874,7 @@ export const allFoods = [
   },
   {
      "id":187,
-     "item":"麻辣蛋",
+     "name":"麻辣蛋",
      "class":"蛋肉類",
      "subclass":"蛋",
      "photo":null,
@@ -2890,7 +2890,7 @@ export const allFoods = [
   },
   {
      "id":188,
-     "item":"漢堡排",
+     "name":"漢堡排",
      "class":"蛋肉類",
      "subclass":"豬肉",
      "photo":"/api/getfoodphoto?id=188",
@@ -2906,7 +2906,7 @@ export const allFoods = [
   },
   {
      "id":189,
-     "item":"豬大里肌 (早餐店肉片一片)",
+     "name":"豬大里肌 (早餐店肉片一片)",
      "class":"蛋肉類",
      "subclass":"豬肉",
      "photo":"/api/getfoodphoto?id=189",
@@ -2922,7 +2922,7 @@ export const allFoods = [
   },
   {
      "id":190,
-     "item":"豬後腿肉 (家常菜)",
+     "name":"豬後腿肉 (家常菜)",
      "class":"蛋肉類",
      "subclass":"豬肉",
      "photo":null,
@@ -2938,7 +2938,7 @@ export const allFoods = [
   },
   {
      "id":191,
-     "item":"梅花肉 (烤肉)",
+     "name":"梅花肉 (烤肉)",
      "class":"蛋肉類",
      "subclass":"豬肉",
      "photo":null,
@@ -2954,7 +2954,7 @@ export const allFoods = [
   },
   {
      "id":192,
-     "item":"五花肉 (烤肉)",
+     "name":"五花肉 (烤肉)",
      "class":"蛋肉類",
      "subclass":"豬肉",
      "photo":null,
@@ -2970,7 +2970,7 @@ export const allFoods = [
   },
   {
      "id":193,
-     "item":"豬蹄膀 (滷肉)",
+     "name":"豬蹄膀 (滷肉)",
      "class":"蛋肉類",
      "subclass":"豬肉",
      "photo":null,
@@ -2986,7 +2986,7 @@ export const allFoods = [
   },
   {
      "id":194,
-     "item":"切片火腿(豬肉)",
+     "name":"切片火腿(豬肉)",
      "class":"蛋肉類",
      "subclass":"豬肉",
      "photo":null,
@@ -3002,7 +3002,7 @@ export const allFoods = [
   },
   {
      "id":195,
-     "item":"切片火腿(牛肉)",
+     "name":"切片火腿(牛肉)",
      "class":"蛋肉類",
      "subclass":"牛肉",
      "photo":null,
@@ -3018,7 +3018,7 @@ export const allFoods = [
   },
   {
      "id":196,
-     "item":"牛肉火鍋片",
+     "name":"牛肉火鍋片",
      "class":"蛋肉類",
      "subclass":"牛肉",
      "photo":null,
@@ -3034,7 +3034,7 @@ export const allFoods = [
   },
   {
      "id":197,
-     "item":"牛小排",
+     "name":"牛小排",
      "class":"蛋肉類",
      "subclass":"牛肉",
      "photo":null,
@@ -3050,7 +3050,7 @@ export const allFoods = [
   },
   {
      "id":198,
-     "item":"雞胸肉",
+     "name":"雞胸肉",
      "class":"蛋肉類",
      "subclass":"雞肉",
      "photo":null,
@@ -3066,7 +3066,7 @@ export const allFoods = [
   },
   {
      "id":199,
-     "item":"香蔥經典嫩雞胸",
+     "name":"香蔥經典嫩雞胸",
      "class":"蛋肉類",
      "subclass":"雞肉",
      "photo":null,
@@ -3082,7 +3082,7 @@ export const allFoods = [
   },
   {
      "id":200,
-     "item":"法式舒肥嫩雞胸",
+     "name":"法式舒肥嫩雞胸",
      "class":"蛋肉類",
      "subclass":"雞肉",
      "photo":null,
@@ -3098,7 +3098,7 @@ export const allFoods = [
   },
   {
      "id":201,
-     "item":"蒜辣烤腿排",
+     "name":"蒜辣烤腿排",
      "class":"蛋肉類",
      "subclass":"雞肉",
      "photo":null,
@@ -3114,7 +3114,7 @@ export const allFoods = [
   },
   {
      "id":202,
-     "item":"棒棒腿",
+     "name":"棒棒腿",
      "class":"蛋肉類",
      "subclass":"雞肉",
      "photo":"/api/getfoodphoto?id=202",
@@ -3130,7 +3130,7 @@ export const allFoods = [
   },
   {
      "id":203,
-     "item":"雞腿(大)(去骨)",
+     "name":"雞腿(大)(去骨)",
      "class":"蛋肉類",
      "subclass":"雞肉",
      "photo":null,
@@ -3146,7 +3146,7 @@ export const allFoods = [
   },
   {
      "id":204,
-     "item":"糖醋炸雞",
+     "name":"糖醋炸雞",
      "class":"蛋肉類",
      "subclass":"雞肉",
      "photo":null,
@@ -3162,7 +3162,7 @@ export const allFoods = [
   },
   {
      "id":205,
-     "item":"雞翅",
+     "name":"雞翅",
      "class":"蛋肉類",
      "subclass":"雞肉",
      "photo":null,
@@ -3178,7 +3178,7 @@ export const allFoods = [
   },
   {
      "id":206,
-     "item":"雞排",
+     "name":"雞排",
      "class":"蛋肉類",
      "subclass":"雞肉",
      "photo":null,
@@ -3194,7 +3194,7 @@ export const allFoods = [
   },
   {
      "id":207,
-     "item":"雞爪",
+     "name":"雞爪",
      "class":"蛋肉類",
      "subclass":"雞肉",
      "photo":null,
@@ -3210,7 +3210,7 @@ export const allFoods = [
   },
   {
      "id":208,
-     "item":"鴨肉",
+     "name":"鴨肉",
      "class":"蛋肉類",
      "subclass":"鴨肉",
      "photo":null,
@@ -3226,7 +3226,7 @@ export const allFoods = [
   },
   {
      "id":209,
-     "item":"沙威瑪",
+     "name":"沙威瑪",
      "class":"蛋肉類",
      "subclass":"羊肉",
      "photo":null,
@@ -3242,7 +3242,7 @@ export const allFoods = [
   },
   {
      "id":210,
-     "item":"虱目魚",
+     "name":"虱目魚",
      "class":"蛋肉類",
      "subclass":"海鮮",
      "photo":null,
@@ -3258,7 +3258,7 @@ export const allFoods = [
   },
   {
      "id":211,
-     "item":"秋刀魚",
+     "name":"秋刀魚",
      "class":"蛋肉類",
      "subclass":"海鮮",
      "photo":null,
@@ -3274,7 +3274,7 @@ export const allFoods = [
   },
   {
      "id":212,
-     "item":"鯖魚(1片)",
+     "name":"鯖魚(1片)",
      "class":"蛋肉類",
      "subclass":"海鮮",
      "photo":null,
@@ -3290,7 +3290,7 @@ export const allFoods = [
   },
   {
      "id":213,
-     "item":"鱈魚",
+     "name":"鱈魚",
      "class":"蛋肉類",
      "subclass":"海鮮",
      "photo":null,
@@ -3306,7 +3306,7 @@ export const allFoods = [
   },
   {
      "id":214,
-     "item":"蝦子",
+     "name":"蝦子",
      "class":"蛋肉類",
      "subclass":"海鮮",
      "photo":null,
@@ -3322,7 +3322,7 @@ export const allFoods = [
   },
   {
      "id":215,
-     "item":"蝦仁",
+     "name":"蝦仁",
      "class":"蛋肉類",
      "subclass":"海鮮",
      "photo":null,
@@ -3338,7 +3338,7 @@ export const allFoods = [
   },
   {
      "id":216,
-     "item":"螃蟹",
+     "name":"螃蟹",
      "class":"蛋肉類",
      "subclass":"海鮮",
      "photo":null,
@@ -3354,7 +3354,7 @@ export const allFoods = [
   },
   {
      "id":217,
-     "item":"花枝",
+     "name":"花枝",
      "class":"蛋肉類",
      "subclass":"海鮮",
      "photo":null,
@@ -3370,7 +3370,7 @@ export const allFoods = [
   },
   {
      "id":218,
-     "item":"蛤蠣(不含殼)(1顆)",
+     "name":"蛤蠣(不含殼)(1顆)",
      "class":"蛋肉類",
      "subclass":"海鮮",
      "photo":null,
@@ -3386,7 +3386,7 @@ export const allFoods = [
   },
   {
      "id":295,
-     "item":"小黃瓜(熟,1格)",
+     "name":"小黃瓜(熟,1格)",
      "class":"蔬菜類",
      "subclass":"瓜果類",
      "photo":"/api/getfoodphoto?id=295",
@@ -3402,7 +3402,7 @@ export const allFoods = [
   },
   {
      "id":296,
-     "item":"小黃瓜(生,1根)",
+     "name":"小黃瓜(生,1根)",
      "class":"蔬菜類",
      "subclass":"瓜果類",
      "photo":"/api/getfoodphoto?id=296",
@@ -3418,7 +3418,7 @@ export const allFoods = [
   },
   {
      "id":297,
-     "item":"番茄(大)(1格)",
+     "name":"番茄(大)(1格)",
      "class":"蔬菜類",
      "subclass":"茄果類",
      "photo":null,
@@ -3434,7 +3434,7 @@ export const allFoods = [
   },
   {
      "id":298,
-     "item":"胡蘿蔔(1格)",
+     "name":"胡蘿蔔(1格)",
      "class":"蔬菜類",
      "subclass":"根莖類",
      "photo":"/api/getfoodphoto?id=298",
@@ -3450,7 +3450,7 @@ export const allFoods = [
   },
   {
      "id":299,
-     "item":"白蘿蔔(1格)",
+     "name":"白蘿蔔(1格)",
      "class":"蔬菜類",
      "subclass":"根莖類",
      "photo":null,
@@ -3466,7 +3466,7 @@ export const allFoods = [
   },
   {
      "id":300,
-     "item":"玉米筍(1格)",
+     "name":"玉米筍(1格)",
      "class":"蔬菜類",
      "subclass":"瓜果類",
      "photo":"/api/getfoodphoto?id=300",
@@ -3482,7 +3482,7 @@ export const allFoods = [
   },
   {
      "id":301,
-     "item":"綠蘆筍(1格)",
+     "name":"綠蘆筍(1格)",
      "class":"蔬菜類",
      "subclass":"根莖類",
      "photo":null,
@@ -3498,7 +3498,7 @@ export const allFoods = [
   },
   {
      "id":302,
-     "item":"竹筍(1格)",
+     "name":"竹筍(1格)",
      "class":"蔬菜類",
      "subclass":"根莖類",
      "photo":null,
@@ -3514,7 +3514,7 @@ export const allFoods = [
   },
   {
      "id":303,
-     "item":"茭白筍(1格)",
+     "name":"茭白筍(1格)",
      "class":"蔬菜類",
      "subclass":"根莖類",
      "photo":null,
@@ -3530,7 +3530,7 @@ export const allFoods = [
   },
   {
      "id":304,
-     "item":"牛蒡(1格)",
+     "name":"牛蒡(1格)",
      "class":"蔬菜類",
      "subclass":"根莖類",
      "photo":null,
@@ -3546,7 +3546,7 @@ export const allFoods = [
   },
   {
      "id":305,
-     "item":"苜蓿芽(1碗)",
+     "name":"苜蓿芽(1碗)",
      "class":"蔬菜類",
      "subclass":"豆芽類",
      "photo":null,
@@ -3562,7 +3562,7 @@ export const allFoods = [
   },
   {
      "id":306,
-     "item":"綠豆芽(1碗)",
+     "name":"綠豆芽(1碗)",
      "class":"蔬菜類",
      "subclass":"豆芽類",
      "photo":null,
@@ -3578,7 +3578,7 @@ export const allFoods = [
   },
   {
      "id":307,
-     "item":"黃豆芽(1碗)",
+     "name":"黃豆芽(1碗)",
      "class":"蔬菜類",
      "subclass":"豆芽類",
      "photo":null,
@@ -3594,7 +3594,7 @@ export const allFoods = [
   },
   {
      "id":308,
-     "item":"花椰菜(1格)",
+     "name":"花椰菜(1格)",
      "class":"蔬菜類",
      "subclass":"花類",
      "photo":"/api/getfoodphoto?id=308",
@@ -3610,7 +3610,7 @@ export const allFoods = [
   },
   {
      "id":309,
-     "item":"萵苣(1格)",
+     "name":"萵苣(1格)",
      "class":"蔬菜類",
      "subclass":"葉菜類",
      "photo":null,
@@ -3626,7 +3626,7 @@ export const allFoods = [
   },
   {
      "id":310,
-     "item":"結球萵苣(生菜)(1碗)",
+     "name":"結球萵苣(生菜)(1碗)",
      "class":"蔬菜類",
      "subclass":"葉菜類",
      "photo":null,
@@ -3642,7 +3642,7 @@ export const allFoods = [
   },
   {
      "id":311,
-     "item":"凱薩沙拉",
+     "name":"凱薩沙拉",
      "class":"蔬菜類",
      "subclass":"沙拉",
      "photo":null,
@@ -3658,7 +3658,7 @@ export const allFoods = [
   },
   {
      "id":312,
-     "item":"彩蔬洋芋火腿沙拉",
+     "name":"彩蔬洋芋火腿沙拉",
      "class":"蔬菜類",
      "subclass":"沙拉",
      "photo":null,
@@ -3674,7 +3674,7 @@ export const allFoods = [
   },
   {
      "id":313,
-     "item":"田園沙拉",
+     "name":"田園沙拉",
      "class":"蔬菜類",
      "subclass":"沙拉",
      "photo":null,
@@ -3690,7 +3690,7 @@ export const allFoods = [
   },
   {
      "id":314,
-     "item":"洋芋沙拉佐生菜（7-11)",
+     "name":"洋芋沙拉佐生菜（7-11)",
      "class":"蔬菜類",
      "subclass":"沙拉",
      "photo":null,
@@ -3706,7 +3706,7 @@ export const allFoods = [
   },
   {
      "id":315,
-     "item":"凱薩風味雞肉蔬菜捲(7-11)",
+     "name":"凱薩風味雞肉蔬菜捲(7-11)",
      "class":"蔬菜類",
      "subclass":"沙拉",
      "photo":null,
@@ -3722,7 +3722,7 @@ export const allFoods = [
   },
   {
      "id":316,
-     "item":"青檸烤雞握沙拉(全家)",
+     "name":"青檸烤雞握沙拉(全家)",
      "class":"蔬菜類",
      "subclass":"沙拉",
      "photo":null,
@@ -3738,7 +3738,7 @@ export const allFoods = [
   },
   {
      "id":317,
-     "item":"洋蔥(1格)",
+     "name":"洋蔥(1格)",
      "class":"蔬菜類",
      "subclass":"根莖類",
      "photo":"/api/getfoodphoto?id=317",
@@ -3754,7 +3754,7 @@ export const allFoods = [
   },
   {
      "id":318,
-     "item":"紫色洋蔥(1碗)",
+     "name":"紫色洋蔥(1碗)",
      "class":"蔬菜類",
      "subclass":"根莖類",
      "photo":"/api/getfoodphoto?id=318",
@@ -3770,7 +3770,7 @@ export const allFoods = [
   },
   {
      "id":319,
-     "item":"甜椒(青椒)(1格)",
+     "name":"甜椒(青椒)(1格)",
      "class":"蔬菜類",
      "subclass":"茄果類",
      "photo":null,
@@ -3786,7 +3786,7 @@ export const allFoods = [
   },
   {
      "id":320,
-     "item":"甜椒(黃皮)(1格)",
+     "name":"甜椒(黃皮)(1格)",
      "class":"蔬菜類",
      "subclass":"茄果類",
      "photo":null,
@@ -3802,7 +3802,7 @@ export const allFoods = [
   },
   {
      "id":321,
-     "item":"甜椒(紅皮)(1格)",
+     "name":"甜椒(紅皮)(1格)",
      "class":"蔬菜類",
      "subclass":"茄果類",
      "photo":null,
@@ -3818,7 +3818,7 @@ export const allFoods = [
   },
   {
      "id":322,
-     "item":"空心菜(1格)",
+     "name":"空心菜(1格)",
      "class":"蔬菜類",
      "subclass":"葉菜類",
      "photo":null,
@@ -3834,7 +3834,7 @@ export const allFoods = [
   },
   {
      "id":323,
-     "item":"地瓜葉(1格)",
+     "name":"地瓜葉(1格)",
      "class":"蔬菜類",
      "subclass":"葉菜類",
      "photo":"/api/getfoodphoto?id=323",
@@ -3850,7 +3850,7 @@ export const allFoods = [
   },
   {
      "id":324,
-     "item":"芥蘭(1格)",
+     "name":"芥蘭(1格)",
      "class":"蔬菜類",
      "subclass":"葉菜類",
      "photo":null,
@@ -3866,7 +3866,7 @@ export const allFoods = [
   },
   {
      "id":325,
-     "item":"油菜(1格)",
+     "name":"油菜(1格)",
      "class":"蔬菜類",
      "subclass":"葉菜類",
      "photo":null,
@@ -3882,7 +3882,7 @@ export const allFoods = [
   },
   {
      "id":326,
-     "item":"茼蒿(1格)",
+     "name":"茼蒿(1格)",
      "class":"蔬菜類",
      "subclass":"葉菜類",
      "photo":null,
@@ -3898,7 +3898,7 @@ export const allFoods = [
   },
   {
      "id":327,
-     "item":"莧菜(1格)",
+     "name":"莧菜(1格)",
      "class":"蔬菜類",
      "subclass":"葉菜類",
      "photo":null,
@@ -3914,7 +3914,7 @@ export const allFoods = [
   },
   {
      "id":328,
-     "item":"菠菜(1格)",
+     "name":"菠菜(1格)",
      "class":"蔬菜類",
      "subclass":"葉菜類",
      "photo":null,
@@ -3930,7 +3930,7 @@ export const allFoods = [
   },
   {
      "id":329,
-     "item":"小白菜(1格)",
+     "name":"小白菜(1格)",
      "class":"蔬菜類",
      "subclass":"葉菜類",
      "photo":null,
@@ -3946,7 +3946,7 @@ export const allFoods = [
   },
   {
      "id":330,
-     "item":"青江菜(1格)",
+     "name":"青江菜(1格)",
      "class":"蔬菜類",
      "subclass":"葉菜類",
      "photo":null,
@@ -3962,7 +3962,7 @@ export const allFoods = [
   },
   {
      "id":331,
-     "item":"高麗菜(1格)",
+     "name":"高麗菜(1格)",
      "class":"蔬菜類",
      "subclass":"葉菜類",
      "photo":"/api/getfoodphoto?id=331",
@@ -3978,7 +3978,7 @@ export const allFoods = [
   },
   {
      "id":332,
-     "item":"大白菜(1格)",
+     "name":"大白菜(1格)",
      "class":"蔬菜類",
      "subclass":"葉菜類",
      "photo":null,
@@ -3994,7 +3994,7 @@ export const allFoods = [
   },
   {
      "id":333,
-     "item":"茄子(1格)",
+     "name":"茄子(1格)",
      "class":"蔬菜類",
      "subclass":"茄果類",
      "photo":null,
@@ -4010,7 +4010,7 @@ export const allFoods = [
   },
   {
      "id":334,
-     "item":"絲瓜(1格)",
+     "name":"絲瓜(1格)",
      "class":"蔬菜類",
      "subclass":"瓜果類",
      "photo":null,
@@ -4026,7 +4026,7 @@ export const allFoods = [
   },
   {
      "id":335,
-     "item":"大黃瓜/胡瓜(1格)",
+     "name":"大黃瓜/胡瓜(1格)",
      "class":"蔬菜類",
      "subclass":"瓜果類",
      "photo":null,
@@ -4042,7 +4042,7 @@ export const allFoods = [
   },
   {
      "id":336,
-     "item":"櫛瓜/西葫蘆(1條)",
+     "name":"櫛瓜/西葫蘆(1條)",
      "class":"蔬菜類",
      "subclass":"瓜果類",
      "photo":null,
@@ -4058,7 +4058,7 @@ export const allFoods = [
   },
   {
      "id":337,
-     "item":"櫛瓜/西葫蘆(1格)",
+     "name":"櫛瓜/西葫蘆(1格)",
      "class":"蔬菜類",
      "subclass":"瓜果類",
      "photo":null,
@@ -4074,7 +4074,7 @@ export const allFoods = [
   },
   {
      "id":338,
-     "item":"冬瓜(1格)",
+     "name":"冬瓜(1格)",
      "class":"蔬菜類",
      "subclass":"瓜果類",
      "photo":null,
@@ -4090,7 +4090,7 @@ export const allFoods = [
   },
   {
      "id":339,
-     "item":"瓠瓜/蒲瓜/葫蘆瓜(1格)",
+     "name":"瓠瓜/蒲瓜/葫蘆瓜(1格)",
      "class":"蔬菜類",
      "subclass":"瓜果類",
      "photo":null,
@@ -4106,7 +4106,7 @@ export const allFoods = [
   },
   {
      "id":340,
-     "item":"苦瓜(1格)",
+     "name":"苦瓜(1格)",
      "class":"蔬菜類",
      "subclass":"瓜果類",
      "photo":null,
@@ -4122,7 +4122,7 @@ export const allFoods = [
   },
   {
      "id":341,
-     "item":"黑木耳(1格)",
+     "name":"黑木耳(1格)",
      "class":"蔬菜類",
      "subclass":"菇菌類",
      "photo":"/api/getfoodphoto?id=341",
@@ -4138,7 +4138,7 @@ export const allFoods = [
   },
   {
      "id":342,
-     "item":"白木耳(1格)",
+     "name":"白木耳(1格)",
      "class":"蔬菜類",
      "subclass":"菇菌類",
      "photo":null,
@@ -4154,7 +4154,7 @@ export const allFoods = [
   },
   {
      "id":343,
-     "item":"洋菇(白色)(1格)",
+     "name":"洋菇(白色)(1格)",
      "class":"蔬菜類",
      "subclass":"菇菌類",
      "photo":null,
@@ -4170,7 +4170,7 @@ export const allFoods = [
   },
   {
      "id":344,
-     "item":"香菇(黑色)(1格)",
+     "name":"香菇(黑色)(1格)",
      "class":"蔬菜類",
      "subclass":"菇菌類",
      "photo":null,
@@ -4186,7 +4186,7 @@ export const allFoods = [
   },
   {
      "id":345,
-     "item":"草菇(黑色)",
+     "name":"草菇(黑色)",
      "class":"蔬菜類",
      "subclass":"菇菌類",
      "photo":null,
@@ -4202,7 +4202,7 @@ export const allFoods = [
   },
   {
      "id":346,
-     "item":"杏鮑菇(白色)",
+     "name":"杏鮑菇(白色)",
      "class":"蔬菜類",
      "subclass":"菇菌類",
      "photo":null,
@@ -4218,7 +4218,7 @@ export const allFoods = [
   },
   {
      "id":347,
-     "item":"金針菇(1格)",
+     "name":"金針菇(1格)",
      "class":"蔬菜類",
      "subclass":"菇菌類",
      "photo":null,
@@ -4234,7 +4234,7 @@ export const allFoods = [
   },
   {
      "id":348,
-     "item":"鴻禧菇",
+     "name":"鴻禧菇",
      "class":"蔬菜類",
      "subclass":"菇菌類",
      "photo":null,
@@ -4250,7 +4250,7 @@ export const allFoods = [
   },
   {
      "id":74,
-     "item":"蘋果",
+     "name":"蘋果",
      "class":"水果類",
      "subclass":"紅色",
      "photo":"/api/getfoodphoto?id=74",
@@ -4266,7 +4266,7 @@ export const allFoods = [
   },
   {
      "id":75,
-     "item":"小番茄 (1碗)",
+     "name":"小番茄 (1碗)",
      "class":"水果類",
      "subclass":"紅色",
      "photo":"/api/getfoodphoto?id=75",
@@ -4282,7 +4282,7 @@ export const allFoods = [
   },
   {
      "id":76,
-     "item":"香蕉",
+     "name":"香蕉",
      "class":"水果類",
      "subclass":"黃色",
      "photo":null,
@@ -4298,7 +4298,7 @@ export const allFoods = [
   },
   {
      "id":77,
-     "item":"橘子",
+     "name":"橘子",
      "class":"水果類",
      "subclass":"橘色",
      "photo":"/api/getfoodphoto?id=77",
@@ -4314,7 +4314,7 @@ export const allFoods = [
   },
   {
      "id":78,
-     "item":"柳丁",
+     "name":"柳丁",
      "class":"水果類",
      "subclass":"黃色",
      "photo":"/api/getfoodphoto?id=78",
@@ -4330,7 +4330,7 @@ export const allFoods = [
   },
   {
      "id":79,
-     "item":"葡萄(1/2碗)",
+     "name":"葡萄(1/2碗)",
      "class":"水果類",
      "subclass":"紫色",
      "photo":"/api/getfoodphoto?id=79",
@@ -4346,7 +4346,7 @@ export const allFoods = [
   },
   {
      "id":80,
-     "item":"藍莓(1盒)",
+     "name":"藍莓(1盒)",
      "class":"水果類",
      "subclass":"紫色",
      "photo":"/api/getfoodphoto?id=80",
@@ -4362,7 +4362,7 @@ export const allFoods = [
   },
   {
      "id":81,
-     "item":"泰國芭樂",
+     "name":"泰國芭樂",
      "class":"水果類",
      "subclass":"綠色",
      "photo":null,
@@ -4378,7 +4378,7 @@ export const allFoods = [
   },
   {
      "id":82,
-     "item":"芭樂",
+     "name":"芭樂",
      "class":"水果類",
      "subclass":"綠色",
      "photo":null,
@@ -4394,7 +4394,7 @@ export const allFoods = [
   },
   {
      "id":83,
-     "item":"紅心芭樂",
+     "name":"紅心芭樂",
      "class":"水果類",
      "subclass":"綠色",
      "photo":null,
@@ -4410,7 +4410,7 @@ export const allFoods = [
   },
   {
      "id":84,
-     "item":"黑珍珠蓮霧",
+     "name":"黑珍珠蓮霧",
      "class":"水果類",
      "subclass":"紅色",
      "photo":null,
@@ -4426,7 +4426,7 @@ export const allFoods = [
   },
   {
      "id":85,
-     "item":"蓮霧",
+     "name":"蓮霧",
      "class":"水果類",
      "subclass":"紅色",
      "photo":null,
@@ -4442,7 +4442,7 @@ export const allFoods = [
   },
   {
      "id":86,
-     "item":"櫻桃(7-8顆)",
+     "name":"櫻桃(7-8顆)",
      "class":"水果類",
      "subclass":"紅色",
      "photo":"/api/getfoodphoto?id=86",
@@ -4458,7 +4458,7 @@ export const allFoods = [
   },
   {
      "id":87,
-     "item":"荔枝",
+     "name":"荔枝",
      "class":"水果類",
      "subclass":"紅色",
      "photo":null,
@@ -4474,7 +4474,7 @@ export const allFoods = [
   },
   {
      "id":88,
-     "item":"草莓(1/2碗)",
+     "name":"草莓(1/2碗)",
      "class":"水果類",
      "subclass":"紅色",
      "photo":"/api/getfoodphoto?id=88",
@@ -4490,7 +4490,7 @@ export const allFoods = [
   },
   {
      "id":89,
-     "item":"乾紅棗(6粒)",
+     "name":"乾紅棗(6粒)",
      "class":"水果類",
      "subclass":"紅色",
      "photo":null,
@@ -4506,7 +4506,7 @@ export const allFoods = [
   },
   {
      "id":90,
-     "item":"白肉火龍果(1/2碗)",
+     "name":"白肉火龍果(1/2碗)",
      "class":"水果類",
      "subclass":"紅色",
      "photo":null,
@@ -4522,7 +4522,7 @@ export const allFoods = [
   },
   {
      "id":91,
-     "item":"紅肉火龍果(1/2碗)",
+     "name":"紅肉火龍果(1/2碗)",
      "class":"水果類",
      "subclass":"紅色",
      "photo":"/api/getfoodphoto?id=91",
@@ -4538,7 +4538,7 @@ export const allFoods = [
   },
   {
      "id":92,
-     "item":"愛文芒果(1/2碗)",
+     "name":"愛文芒果(1/2碗)",
      "class":"水果類",
      "subclass":"紅色",
      "photo":null,
@@ -4554,7 +4554,7 @@ export const allFoods = [
   },
   {
      "id":93,
-     "item":"金煌芒果",
+     "name":"金煌芒果",
      "class":"水果類",
      "subclass":"黃色",
      "photo":null,
@@ -4570,7 +4570,7 @@ export const allFoods = [
   },
   {
      "id":94,
-     "item":"龍眼",
+     "name":"龍眼",
      "class":"水果類",
      "subclass":"黃色",
      "photo":null,
@@ -4586,7 +4586,7 @@ export const allFoods = [
   },
   {
      "id":95,
-     "item":"龍眼乾(1湯匙)",
+     "name":"龍眼乾(1湯匙)",
      "class":"水果類",
      "subclass":"黃色",
      "photo":"/api/getfoodphoto?id=95",
@@ -4602,7 +4602,7 @@ export const allFoods = [
   },
   {
      "id":96,
-     "item":"水梨(1/2顆)",
+     "name":"水梨(1/2顆)",
      "class":"水果類",
      "subclass":"黃色",
      "photo":"/api/getfoodphoto?id=96",
@@ -4618,7 +4618,7 @@ export const allFoods = [
   },
   {
      "id":97,
-     "item":"鳳梨(1碗)",
+     "name":"鳳梨(1碗)",
      "class":"水果類",
      "subclass":"黃色",
      "photo":"/api/getfoodphoto?id=97",
@@ -4634,7 +4634,7 @@ export const allFoods = [
   },
   {
      "id":98,
-     "item":"榴槤",
+     "name":"榴槤",
      "class":"水果類",
      "subclass":"黃色",
      "photo":null,
@@ -4650,7 +4650,7 @@ export const allFoods = [
   },
   {
      "id":99,
-     "item":"桑葚",
+     "name":"桑葚",
      "class":"水果類",
      "subclass":"黑色",
      "photo":null,
@@ -4666,7 +4666,7 @@ export const allFoods = [
   },
   {
      "id":100,
-     "item":"黃金奇異果",
+     "name":"黃金奇異果",
      "class":"水果類",
      "subclass":"棕色",
      "photo":null,
@@ -4682,7 +4682,7 @@ export const allFoods = [
   },
   {
      "id":101,
-     "item":"百香果",
+     "name":"百香果",
      "class":"水果類",
      "subclass":"棕色",
      "photo":null,
@@ -4698,7 +4698,7 @@ export const allFoods = [
   },
   {
      "id":102,
-     "item":"美濃瓜",
+     "name":"美濃瓜",
      "class":"水果類",
      "subclass":"綠色",
      "photo":null,
@@ -4714,7 +4714,7 @@ export const allFoods = [
   },
   {
      "id":103,
-     "item":"哈密瓜",
+     "name":"哈密瓜",
      "class":"水果類",
      "subclass":"綠色",
      "photo":null,
@@ -4730,7 +4730,7 @@ export const allFoods = [
   },
   {
      "id":104,
-     "item":"甜瓜",
+     "name":"甜瓜",
      "class":"水果類",
      "subclass":"綠色",
      "photo":"/api/getfoodphoto?id=104",
@@ -4746,7 +4746,7 @@ export const allFoods = [
   },
   {
      "id":105,
-     "item":"西瓜",
+     "name":"西瓜",
      "class":"水果類",
      "subclass":"綠色",
      "photo":null,
@@ -4762,7 +4762,7 @@ export const allFoods = [
   },
   {
      "id":106,
-     "item":"小玉西瓜",
+     "name":"小玉西瓜",
      "class":"水果類",
      "subclass":"綠色",
      "photo":null,
@@ -4778,7 +4778,7 @@ export const allFoods = [
   },
   {
      "id":107,
-     "item":"西洋梨",
+     "name":"西洋梨",
      "class":"水果類",
      "subclass":"綠色",
      "photo":null,
@@ -4794,7 +4794,7 @@ export const allFoods = [
   },
   {
      "id":108,
-     "item":"棗子",
+     "name":"棗子",
      "class":"水果類",
      "subclass":"綠色",
      "photo":"/api/getfoodphoto?id=108",
@@ -4810,7 +4810,7 @@ export const allFoods = [
   },
   {
      "id":109,
-     "item":"木瓜",
+     "name":"木瓜",
      "class":"水果類",
      "subclass":"橘色",
      "photo":"/api/getfoodphoto?id=109",
@@ -4826,7 +4826,7 @@ export const allFoods = [
   },
   {
      "id":110,
-     "item":"甜柿",
+     "name":"甜柿",
      "class":"水果類",
      "subclass":"橘色",
      "photo":null,
@@ -4842,7 +4842,7 @@ export const allFoods = [
   },
   {
      "id":361,
-     "item":"白吐司 (一片)",
+     "name":"白吐司 (一片)",
      "class":"麵包蛋糕類",
      "subclass":"吐司",
      "photo":null,
@@ -4858,7 +4858,7 @@ export const allFoods = [
   },
   {
      "id":362,
-     "item":"全麥吐司",
+     "name":"全麥吐司",
      "class":"麵包蛋糕類",
      "subclass":"吐司",
      "photo":null,
@@ -4874,7 +4874,7 @@ export const allFoods = [
   },
   {
      "id":363,
-     "item":"草莓夾心土司",
+     "name":"草莓夾心土司",
      "class":"麵包蛋糕類",
      "subclass":"吐司",
      "photo":null,
@@ -4890,7 +4890,7 @@ export const allFoods = [
   },
   {
      "id":364,
-     "item":"裸麥吐司",
+     "name":"裸麥吐司",
      "class":"麵包蛋糕類",
      "subclass":"吐司",
      "photo":null,
@@ -4906,7 +4906,7 @@ export const allFoods = [
   },
   {
      "id":365,
-     "item":"葡萄吐司",
+     "name":"葡萄吐司",
      "class":"麵包蛋糕類",
      "subclass":"吐司",
      "photo":null,
@@ -4922,7 +4922,7 @@ export const allFoods = [
   },
   {
      "id":366,
-     "item":"起司吐司",
+     "name":"起司吐司",
      "class":"麵包蛋糕類",
      "subclass":"吐司",
      "photo":null,
@@ -4938,7 +4938,7 @@ export const allFoods = [
   },
   {
      "id":367,
-     "item":"紅豆雜糧吐司",
+     "name":"紅豆雜糧吐司",
      "class":"麵包蛋糕類",
      "subclass":"吐司",
      "photo":null,
@@ -4954,7 +4954,7 @@ export const allFoods = [
   },
   {
      "id":368,
-     "item":"鮮奶吐司",
+     "name":"鮮奶吐司",
      "class":"麵包蛋糕類",
      "subclass":"吐司",
      "photo":null,
@@ -4970,7 +4970,7 @@ export const allFoods = [
   },
   {
      "id":369,
-     "item":"核桃吐司",
+     "name":"核桃吐司",
      "class":"麵包蛋糕類",
      "subclass":"吐司",
      "photo":null,
@@ -4986,7 +4986,7 @@ export const allFoods = [
   },
   {
      "id":370,
-     "item":"生吐司(厚片)",
+     "name":"生吐司(厚片)",
      "class":"麵包蛋糕類",
      "subclass":"吐司",
      "photo":null,
@@ -5002,7 +5002,7 @@ export const allFoods = [
   },
   {
      "id":371,
-     "item":"酸種麵包",
+     "name":"酸種麵包",
      "class":"麵包蛋糕類",
      "subclass":"吐司",
      "photo":null,
@@ -5018,7 +5018,7 @@ export const allFoods = [
   },
   {
      "id":372,
-     "item":"全麥麵包",
+     "name":"全麥麵包",
      "class":"麵包蛋糕類",
      "subclass":"麵包",
      "photo":null,
@@ -5034,7 +5034,7 @@ export const allFoods = [
   },
   {
      "id":373,
-     "item":"法國麵包",
+     "name":"法國麵包",
      "class":"麵包蛋糕類",
      "subclass":"麵包",
      "photo":null,
@@ -5050,7 +5050,7 @@ export const allFoods = [
   },
   {
      "id":374,
-     "item":"小餐包",
+     "name":"小餐包",
      "class":"麵包蛋糕類",
      "subclass":"麵包",
      "photo":null,
@@ -5066,7 +5066,7 @@ export const allFoods = [
   },
   {
      "id":375,
-     "item":"奶酥麵包",
+     "name":"奶酥麵包",
      "class":"麵包蛋糕類",
      "subclass":"麵包",
      "photo":null,
@@ -5082,7 +5082,7 @@ export const allFoods = [
   },
   {
      "id":376,
-     "item":"炸彈奶酥麵包",
+     "name":"炸彈奶酥麵包",
      "class":"麵包蛋糕類",
      "subclass":"麵包",
      "photo":null,
@@ -5098,7 +5098,7 @@ export const allFoods = [
   },
   {
      "id":377,
-     "item":"菠蘿麵包",
+     "name":"菠蘿麵包",
      "class":"麵包蛋糕類",
      "subclass":"麵包",
      "photo":null,
@@ -5114,7 +5114,7 @@ export const allFoods = [
   },
   {
      "id":378,
-     "item":"巧克力菠蘿麵包",
+     "name":"巧克力菠蘿麵包",
      "class":"麵包蛋糕類",
      "subclass":"麵包",
      "photo":null,
@@ -5130,7 +5130,7 @@ export const allFoods = [
   },
   {
      "id":379,
-     "item":"紅豆麵包",
+     "name":"紅豆麵包",
      "class":"麵包蛋糕類",
      "subclass":"麵包",
      "photo":null,
@@ -5146,7 +5146,7 @@ export const allFoods = [
   },
   {
      "id":380,
-     "item":"克林姆麵包",
+     "name":"克林姆麵包",
      "class":"麵包蛋糕類",
      "subclass":"麵包",
      "photo":null,
@@ -5162,7 +5162,7 @@ export const allFoods = [
   },
   {
      "id":381,
-     "item":"草莓麵包",
+     "name":"草莓麵包",
      "class":"麵包蛋糕類",
      "subclass":"麵包",
      "photo":null,
@@ -5178,7 +5178,7 @@ export const allFoods = [
   },
   {
      "id":382,
-     "item":"榛果可可滿餡麵包",
+     "name":"榛果可可滿餡麵包",
      "class":"麵包蛋糕類",
      "subclass":"麵包",
      "photo":null,
@@ -5194,7 +5194,7 @@ export const allFoods = [
   },
   {
      "id":383,
-     "item":"雞蛋牛奶手排包",
+     "name":"雞蛋牛奶手排包",
      "class":"麵包蛋糕類",
      "subclass":"麵包",
      "photo":null,
@@ -5210,7 +5210,7 @@ export const allFoods = [
   },
   {
      "id":384,
-     "item":"起司牛奶麵包",
+     "name":"起司牛奶麵包",
      "class":"麵包蛋糕類",
      "subclass":"麵包",
      "photo":null,
@@ -5226,7 +5226,7 @@ export const allFoods = [
   },
   {
      "id":385,
-     "item":"起司火腿麵包",
+     "name":"起司火腿麵包",
      "class":"麵包蛋糕類",
      "subclass":"麵包",
      "photo":null,
@@ -5242,7 +5242,7 @@ export const allFoods = [
   },
   {
      "id":386,
-     "item":"起酥肉鬆麵包",
+     "name":"起酥肉鬆麵包",
      "class":"麵包蛋糕類",
      "subclass":"麵包",
      "photo":null,
@@ -5258,7 +5258,7 @@ export const allFoods = [
   },
   {
      "id":387,
-     "item":"鹽麴蔥花麵包",
+     "name":"鹽麴蔥花麵包",
      "class":"麵包蛋糕類",
      "subclass":"麵包",
      "photo":null,
@@ -5274,7 +5274,7 @@ export const allFoods = [
   },
   {
      "id":388,
-     "item":"香蒜起司麵包",
+     "name":"香蒜起司麵包",
      "class":"麵包蛋糕類",
      "subclass":"麵包",
      "photo":null,
@@ -5290,7 +5290,7 @@ export const allFoods = [
   },
   {
      "id":389,
-     "item":"海苔肉鬆沙拉麵包",
+     "name":"海苔肉鬆沙拉麵包",
      "class":"麵包蛋糕類",
      "subclass":"麵包",
      "photo":null,
@@ -5306,7 +5306,7 @@ export const allFoods = [
   },
   {
      "id":390,
-     "item":"可頌",
+     "name":"可頌",
      "class":"麵包蛋糕類",
      "subclass":"麵包",
      "photo":null,
@@ -5322,7 +5322,7 @@ export const allFoods = [
   },
   {
      "id":391,
-     "item":"起司可頌(以星巴克品項為例)",
+     "name":"起司可頌(以星巴克品項為例)",
      "class":"麵包蛋糕類",
      "subclass":"麵包",
      "photo":null,
@@ -5338,7 +5338,7 @@ export const allFoods = [
   },
   {
      "id":392,
-     "item":"海鹽羅宋",
+     "name":"海鹽羅宋",
      "class":"麵包蛋糕類",
      "subclass":"麵包",
      "photo":null,
@@ -5354,7 +5354,7 @@ export const allFoods = [
   },
   {
      "id":393,
-     "item":"巧克力派司",
+     "name":"巧克力派司",
      "class":"麵包蛋糕類",
      "subclass":"麵包",
      "photo":null,
@@ -5370,7 +5370,7 @@ export const allFoods = [
   },
   {
      "id":394,
-     "item":"手工拔絲麵包",
+     "name":"手工拔絲麵包",
      "class":"麵包蛋糕類",
      "subclass":"麵包",
      "photo":null,
@@ -5386,7 +5386,7 @@ export const allFoods = [
   },
   {
      "id":395,
-     "item":"貝果",
+     "name":"貝果",
      "class":"麵包蛋糕類",
      "subclass":"貝果",
      "photo":null,
@@ -5402,7 +5402,7 @@ export const allFoods = [
   },
   {
      "id":396,
-     "item":"奶酥貝果",
+     "name":"奶酥貝果",
      "class":"麵包蛋糕類",
      "subclass":"貝果",
      "photo":null,
@@ -5418,7 +5418,7 @@ export const allFoods = [
   },
   {
      "id":397,
-     "item":"培根貝果",
+     "name":"培根貝果",
      "class":"麵包蛋糕類",
      "subclass":"貝果",
      "photo":null,
@@ -5434,7 +5434,7 @@ export const allFoods = [
   },
   {
      "id":398,
-     "item":"花生貝果",
+     "name":"花生貝果",
      "class":"麵包蛋糕類",
      "subclass":"貝果",
      "photo":null,
@@ -5450,7 +5450,7 @@ export const allFoods = [
   },
   {
      "id":399,
-     "item":"原味乳酪貝果",
+     "name":"原味乳酪貝果",
      "class":"麵包蛋糕類",
      "subclass":"貝果",
      "photo":null,
@@ -5466,7 +5466,7 @@ export const allFoods = [
   },
   {
      "id":400,
-     "item":"巧克力貝果",
+     "name":"巧克力貝果",
      "class":"麵包蛋糕類",
      "subclass":"貝果",
      "photo":null,
@@ -5482,7 +5482,7 @@ export const allFoods = [
   },
   {
      "id":401,
-     "item":"火腿貝果",
+     "name":"火腿貝果",
      "class":"麵包蛋糕類",
      "subclass":"貝果",
      "photo":null,
@@ -5498,7 +5498,7 @@ export const allFoods = [
   },
   {
      "id":402,
-     "item":"燻雞貝果",
+     "name":"燻雞貝果",
      "class":"麵包蛋糕類",
      "subclass":"貝果",
      "photo":null,
@@ -5514,7 +5514,7 @@ export const allFoods = [
   },
   {
      "id":403,
-     "item":"核桃貝果",
+     "name":"核桃貝果",
      "class":"麵包蛋糕類",
      "subclass":"貝果",
      "photo":null,
@@ -5530,7 +5530,7 @@ export const allFoods = [
   },
   {
      "id":404,
-     "item":"藍莓乳酪貝果",
+     "name":"藍莓乳酪貝果",
      "class":"麵包蛋糕類",
      "subclass":"貝果",
      "photo":null,
@@ -5546,7 +5546,7 @@ export const allFoods = [
   },
   {
      "id":405,
-     "item":"哆啦Ａ夢小蛋糕",
+     "name":"哆啦Ａ夢小蛋糕",
      "class":"麵包蛋糕類",
      "subclass":"蛋糕",
      "photo":null,
@@ -5562,7 +5562,7 @@ export const allFoods = [
   },
   {
      "id":406,
-     "item":"提拉米蘇",
+     "name":"提拉米蘇",
      "class":"麵包蛋糕類",
      "subclass":"蛋糕",
      "photo":null,
@@ -5578,7 +5578,7 @@ export const allFoods = [
   },
   {
      "id":407,
-     "item":"巧克力蛋糕",
+     "name":"巧克力蛋糕",
      "class":"麵包蛋糕類",
      "subclass":"蛋糕",
      "photo":null,
@@ -5594,7 +5594,7 @@ export const allFoods = [
   },
   {
      "id":408,
-     "item":"蜂蜜蛋糕",
+     "name":"蜂蜜蛋糕",
      "class":"麵包蛋糕類",
      "subclass":"蛋糕",
      "photo":null,
@@ -5610,7 +5610,7 @@ export const allFoods = [
   },
   {
      "id":409,
-     "item":"蜜雪蛋糕",
+     "name":"蜜雪蛋糕",
      "class":"麵包蛋糕類",
      "subclass":"蛋糕",
      "photo":null,
@@ -5626,7 +5626,7 @@ export const allFoods = [
   },
   {
      "id":410,
-     "item":"杯子蛋糕",
+     "name":"杯子蛋糕",
      "class":"麵包蛋糕類",
      "subclass":"蛋糕",
      "photo":null,
@@ -5642,7 +5642,7 @@ export const allFoods = [
   },
   {
      "id":411,
-     "item":"千層蛋糕",
+     "name":"千層蛋糕",
      "class":"麵包蛋糕類",
      "subclass":"蛋糕",
      "photo":null,
@@ -5658,7 +5658,7 @@ export const allFoods = [
   },
   {
      "id":412,
-     "item":"經典起司蛋糕 (以星巴克品項為例)",
+     "name":"經典起司蛋糕 (以星巴克品項為例)",
      "class":"麵包蛋糕類",
      "subclass":"蛋糕",
      "photo":null,
@@ -5674,7 +5674,7 @@ export const allFoods = [
   },
   {
      "id":413,
-     "item":"松露生巧克力蛋糕 (以星巴克品項為例)",
+     "name":"松露生巧克力蛋糕 (以星巴克品項為例)",
      "class":"麵包蛋糕類",
      "subclass":"蛋糕",
      "photo":null,
@@ -5690,7 +5690,7 @@ export const allFoods = [
   },
   {
      "id":414,
-     "item":"岩漿巧克力蛋糕 (以星巴克品項為例)",
+     "name":"岩漿巧克力蛋糕 (以星巴克品項為例)",
      "class":"麵包蛋糕類",
      "subclass":"蛋糕",
      "photo":null,
@@ -5706,7 +5706,7 @@ export const allFoods = [
   },
   {
      "id":219,
-     "item":"水",
+     "name":"水",
      "class":"飲品",
      "subclass":"水",
      "photo":null,
@@ -5722,7 +5722,7 @@ export const allFoods = [
   },
   {
      "id":220,
-     "item":"全脂鮮奶",
+     "name":"全脂鮮奶",
      "class":"飲品",
      "subclass":"乳品",
      "photo":null,
@@ -5738,7 +5738,7 @@ export const allFoods = [
   },
   {
      "id":221,
-     "item":"低脂鮮奶",
+     "name":"低脂鮮奶",
      "class":"飲品",
      "subclass":"乳品",
      "photo":null,
@@ -5754,7 +5754,7 @@ export const allFoods = [
   },
   {
      "id":222,
-     "item":"統一木瓜牛乳",
+     "name":"統一木瓜牛乳",
      "class":"飲品",
      "subclass":"乳品",
      "photo":null,
@@ -5770,7 +5770,7 @@ export const allFoods = [
   },
   {
      "id":223,
-     "item":"瑞穗巧克力調味乳",
+     "name":"瑞穗巧克力調味乳",
      "class":"飲品",
      "subclass":"乳品",
      "photo":null,
@@ -5786,7 +5786,7 @@ export const allFoods = [
   },
   {
      "id":224,
-     "item":"瑞穗果汁調味乳",
+     "name":"瑞穗果汁調味乳",
      "class":"飲品",
      "subclass":"乳品",
      "photo":null,
@@ -5802,7 +5802,7 @@ export const allFoods = [
   },
   {
      "id":225,
-     "item":"瑞穗蘋果調味乳",
+     "name":"瑞穗蘋果調味乳",
      "class":"飲品",
      "subclass":"乳品",
      "photo":null,
@@ -5818,7 +5818,7 @@ export const allFoods = [
   },
   {
      "id":226,
-     "item":"AB優酪乳",
+     "name":"AB優酪乳",
      "class":"飲品",
      "subclass":"乳品",
      "photo":null,
@@ -5834,7 +5834,7 @@ export const allFoods = [
   },
   {
      "id":227,
-     "item":"AB草莓優酪乳",
+     "name":"AB草莓優酪乳",
      "class":"飲品",
      "subclass":"乳品",
      "photo":null,
@@ -5850,7 +5850,7 @@ export const allFoods = [
   },
   {
      "id":228,
-     "item":"AB無加糖優酪乳",
+     "name":"AB無加糖優酪乳",
      "class":"飲品",
      "subclass":"乳品",
      "photo":null,
@@ -5866,7 +5866,7 @@ export const allFoods = [
   },
   {
      "id":229,
-     "item":"自然零水蜜桃優酪乳",
+     "name":"自然零水蜜桃優酪乳",
      "class":"飲品",
      "subclass":"乳品",
      "photo":null,
@@ -5882,7 +5882,7 @@ export const allFoods = [
   },
   {
      "id":230,
-     "item":"活益比菲多發酵乳原味",
+     "name":"活益比菲多發酵乳原味",
      "class":"飲品",
      "subclass":"養樂多",
      "photo":null,
@@ -5898,7 +5898,7 @@ export const allFoods = [
   },
   {
      "id":231,
-     "item":"豆漿",
+     "name":"豆漿",
      "class":"飲品",
      "subclass":"米／豆漿",
      "photo":null,
@@ -5914,7 +5914,7 @@ export const allFoods = [
   },
   {
      "id":232,
-     "item":"無糖豆漿",
+     "name":"無糖豆漿",
      "class":"飲品",
      "subclass":"米／豆漿",
      "photo":null,
@@ -5930,7 +5930,7 @@ export const allFoods = [
   },
   {
      "id":233,
-     "item":"鹹豆漿",
+     "name":"鹹豆漿",
      "class":"飲品",
      "subclass":"米／豆漿",
      "photo":null,
@@ -5946,7 +5946,7 @@ export const allFoods = [
   },
   {
      "id":234,
-     "item":"統一陽光陽光黃金豆漿",
+     "name":"統一陽光陽光黃金豆漿",
      "class":"飲品",
      "subclass":"米／豆漿",
      "photo":null,
@@ -5962,7 +5962,7 @@ export const allFoods = [
   },
   {
      "id":235,
-     "item":"統一陽光低糖高纖豆漿",
+     "name":"統一陽光低糖高纖豆漿",
      "class":"飲品",
      "subclass":"米／豆漿",
      "photo":null,
@@ -5978,7 +5978,7 @@ export const allFoods = [
   },
   {
      "id":236,
-     "item":"統一陽光無糖高纖豆漿",
+     "name":"統一陽光無糖高纖豆漿",
      "class":"飲品",
      "subclass":"米／豆漿",
      "photo":null,
@@ -5994,7 +5994,7 @@ export const allFoods = [
   },
   {
      "id":237,
-     "item":"糙米漿",
+     "name":"糙米漿",
      "class":"飲品",
      "subclass":"米／豆漿",
      "photo":null,
@@ -6010,7 +6010,7 @@ export const allFoods = [
   },
   {
      "id":238,
-     "item":"光泉米漿米米杯",
+     "name":"光泉米漿米米杯",
      "class":"飲品",
      "subclass":"米／豆漿",
      "photo":null,
@@ -6026,7 +6026,7 @@ export const allFoods = [
   },
   {
      "id":239,
-     "item":"桂格顆粒燕麥飲(微甜)",
+     "name":"桂格顆粒燕麥飲(微甜)",
      "class":"飲品",
      "subclass":"燕麥飲",
      "photo":null,
@@ -6042,7 +6042,7 @@ export const allFoods = [
   },
   {
      "id":240,
-     "item":"阿華田",
+     "name":"阿華田",
      "class":"飲品",
      "subclass":"可可",
      "photo":null,
@@ -6058,7 +6058,7 @@ export const allFoods = [
   },
   {
      "id":241,
-     "item":"熱可可 (M) (摩斯漢堡)",
+     "name":"熱可可 (M) (摩斯漢堡)",
      "class":"飲品",
      "subclass":"可可",
      "photo":null,
@@ -6074,7 +6074,7 @@ export const allFoods = [
   },
   {
      "id":242,
-     "item":"熱巧克力 (麥當勞)",
+     "name":"熱巧克力 (麥當勞)",
      "class":"飲品",
      "subclass":"可可",
      "photo":null,
@@ -6090,7 +6090,7 @@ export const allFoods = [
   },
   {
      "id":243,
-     "item":"美式咖啡(無糖)(中杯)",
+     "name":"美式咖啡(無糖)(中杯)",
      "class":"飲品",
      "subclass":"咖啡",
      "photo":null,
@@ -6106,7 +6106,7 @@ export const allFoods = [
   },
   {
      "id":244,
-     "item":"美式咖啡(無糖)(大杯)",
+     "name":"美式咖啡(無糖)(大杯)",
      "class":"飲品",
      "subclass":"咖啡",
      "photo":null,
@@ -6122,7 +6122,7 @@ export const allFoods = [
   },
   {
      "id":245,
-     "item":"拿鐵咖啡(無糖)(中杯)",
+     "name":"拿鐵咖啡(無糖)(中杯)",
      "class":"飲品",
      "subclass":"咖啡",
      "photo":null,
@@ -6138,7 +6138,7 @@ export const allFoods = [
   },
   {
      "id":246,
-     "item":"拿鐵咖啡(無糖)(大杯)",
+     "name":"拿鐵咖啡(無糖)(大杯)",
      "class":"飲品",
      "subclass":"咖啡",
      "photo":null,
@@ -6154,7 +6154,7 @@ export const allFoods = [
   },
   {
      "id":247,
-     "item":"鮮柳橙汁 (摩斯漢堡)",
+     "name":"鮮柳橙汁 (摩斯漢堡)",
      "class":"飲品",
      "subclass":"果汁",
      "photo":null,
@@ -6170,7 +6170,7 @@ export const allFoods = [
   },
   {
      "id":248,
-     "item":"百香果汁",
+     "name":"百香果汁",
      "class":"飲品",
      "subclass":"果汁",
      "photo":null,
@@ -6186,7 +6186,7 @@ export const allFoods = [
   },
   {
      "id":249,
-     "item":"奇異果蘋果汁（聖德科斯）",
+     "name":"奇異果蘋果汁（聖德科斯）",
      "class":"飲品",
      "subclass":"果汁",
      "photo":null,
@@ -6202,7 +6202,7 @@ export const allFoods = [
   },
   {
      "id":250,
-     "item":"芭樂汁",
+     "name":"芭樂汁",
      "class":"飲品",
      "subclass":"果汁",
      "photo":null,
@@ -6218,7 +6218,7 @@ export const allFoods = [
   },
   {
      "id":251,
-     "item":"桑葚汁",
+     "name":"桑葚汁",
      "class":"飲品",
      "subclass":"果汁",
      "photo":null,
@@ -6234,7 +6234,7 @@ export const allFoods = [
   },
   {
      "id":252,
-     "item":"柳橙汁 (園之味)",
+     "name":"柳橙汁 (園之味)",
      "class":"飲品",
      "subclass":"果汁",
      "photo":null,
@@ -6250,7 +6250,7 @@ export const allFoods = [
   },
   {
      "id":253,
-     "item":"葡萄汁 (園之味)",
+     "name":"葡萄汁 (園之味)",
      "class":"飲品",
      "subclass":"果汁",
      "photo":null,
@@ -6266,7 +6266,7 @@ export const allFoods = [
   },
   {
      "id":254,
-     "item":"蘋果汁 (園之味)",
+     "name":"蘋果汁 (園之味)",
      "class":"飲品",
      "subclass":"果汁",
      "photo":null,
@@ -6282,7 +6282,7 @@ export const allFoods = [
   },
   {
      "id":255,
-     "item":"綜合果蔬汁 (園之味)",
+     "name":"綜合果蔬汁 (園之味)",
      "class":"飲品",
      "subclass":"果汁",
      "photo":null,
@@ -6298,7 +6298,7 @@ export const allFoods = [
   },
   {
      "id":256,
-     "item":"烏梅汁",
+     "name":"烏梅汁",
      "class":"飲品",
      "subclass":"果汁",
      "photo":null,
@@ -6314,7 +6314,7 @@ export const allFoods = [
   },
   {
      "id":257,
-     "item":"葡萄蒟蒻 (摩斯漢堡)",
+     "name":"葡萄蒟蒻 (摩斯漢堡)",
      "class":"飲品",
      "subclass":"果汁",
      "photo":null,
@@ -6330,7 +6330,7 @@ export const allFoods = [
   },
   {
      "id":258,
-     "item":"蜂蜜檸檬蒟蒻 (摩斯漢堡)",
+     "name":"蜂蜜檸檬蒟蒻 (摩斯漢堡)",
      "class":"飲品",
      "subclass":"果汁",
      "photo":null,
@@ -6346,7 +6346,7 @@ export const allFoods = [
   },
   {
      "id":259,
-     "item":"冰紅茶(L) (摩斯漢堡)",
+     "name":"冰紅茶(L) (摩斯漢堡)",
      "class":"飲品",
      "subclass":"茶",
      "photo":null,
@@ -6362,7 +6362,7 @@ export const allFoods = [
   },
   {
      "id":260,
-     "item":"紅茶 (無糖)",
+     "name":"紅茶 (無糖)",
      "class":"飲品",
      "subclass":"茶",
      "photo":null,
@@ -6378,7 +6378,7 @@ export const allFoods = [
   },
   {
      "id":261,
-     "item":"麥香紅茶",
+     "name":"麥香紅茶",
      "class":"飲品",
      "subclass":"茶",
      "photo":null,
@@ -6394,7 +6394,7 @@ export const allFoods = [
   },
   {
      "id":262,
-     "item":"純喫茶紅茶",
+     "name":"純喫茶紅茶",
      "class":"飲品",
      "subclass":"茶",
      "photo":null,
@@ -6410,7 +6410,7 @@ export const allFoods = [
   },
   {
      "id":263,
-     "item":"純喫茶綠茶",
+     "name":"純喫茶綠茶",
      "class":"飲品",
      "subclass":"茶",
      "photo":null,
@@ -6426,7 +6426,7 @@ export const allFoods = [
   },
   {
      "id":264,
-     "item":"純喫茶檸檬紅茶",
+     "name":"純喫茶檸檬紅茶",
      "class":"飲品",
      "subclass":"茶",
      "photo":null,
@@ -6442,7 +6442,7 @@ export const allFoods = [
   },
   {
      "id":265,
-     "item":"純喫茶無糖綠茶",
+     "name":"純喫茶無糖綠茶",
      "class":"飲品",
      "subclass":"茶",
      "photo":null,
@@ -6458,7 +6458,7 @@ export const allFoods = [
   },
   {
      "id":266,
-     "item":"烏龍茶(無糖)",
+     "name":"烏龍茶(無糖)",
      "class":"飲品",
      "subclass":"茶",
      "photo":null,
@@ -6474,7 +6474,7 @@ export const allFoods = [
   },
   {
      "id":267,
-     "item":"古道梅子綠茶",
+     "name":"古道梅子綠茶",
      "class":"飲品",
      "subclass":"茶",
      "photo":null,
@@ -6490,7 +6490,7 @@ export const allFoods = [
   },
   {
      "id":268,
-     "item":"愛之味麥仔茶",
+     "name":"愛之味麥仔茶",
      "class":"飲品",
      "subclass":"茶",
      "photo":null,
@@ -6506,7 +6506,7 @@ export const allFoods = [
   },
   {
      "id":269,
-     "item":"鮮奶茶(無糖)(小杯)",
+     "name":"鮮奶茶(無糖)(小杯)",
      "class":"飲品",
      "subclass":"茶",
      "photo":null,
@@ -6522,7 +6522,7 @@ export const allFoods = [
   },
   {
      "id":270,
-     "item":"麥香奶茶",
+     "name":"麥香奶茶",
      "class":"飲品",
      "subclass":"茶",
      "photo":null,
@@ -6538,7 +6538,7 @@ export const allFoods = [
   },
   {
      "id":271,
-     "item":"麥香綠茶",
+     "name":"麥香綠茶",
      "class":"飲品",
      "subclass":"茶",
      "photo":null,
@@ -6554,7 +6554,7 @@ export const allFoods = [
   },
   {
      "id":272,
-     "item":"飲冰室茶集 紅奶茶",
+     "name":"飲冰室茶集 紅奶茶",
      "class":"飲品",
      "subclass":"茶",
      "photo":null,
@@ -6570,7 +6570,7 @@ export const allFoods = [
   },
   {
      "id":273,
-     "item":"飲冰室茶集 綠奶茶",
+     "name":"飲冰室茶集 綠奶茶",
      "class":"飲品",
      "subclass":"茶",
      "photo":null,
@@ -6586,7 +6586,7 @@ export const allFoods = [
   },
   {
      "id":274,
-     "item":"飲冰室茶集 烏龍奶茶",
+     "name":"飲冰室茶集 烏龍奶茶",
      "class":"飲品",
      "subclass":"茶",
      "photo":null,
@@ -6602,7 +6602,7 @@ export const allFoods = [
   },
   {
      "id":275,
-     "item":"烏龍奶茶(去冰,微糖)(大杯)",
+     "name":"烏龍奶茶(去冰,微糖)(大杯)",
      "class":"飲品",
      "subclass":"茶",
      "photo":null,
@@ -6618,7 +6618,7 @@ export const allFoods = [
   },
   {
      "id":276,
-     "item":"烏龍奶茶(去冰，半糖)(大杯)",
+     "name":"烏龍奶茶(去冰，半糖)(大杯)",
      "class":"飲品",
      "subclass":"茶",
      "photo":null,
@@ -6634,7 +6634,7 @@ export const allFoods = [
   },
   {
      "id":277,
-     "item":"烏龍奶茶(去冰，全糖)(大杯)",
+     "name":"烏龍奶茶(去冰，全糖)(大杯)",
      "class":"飲品",
      "subclass":"茶",
      "photo":null,
@@ -6650,7 +6650,7 @@ export const allFoods = [
   },
   {
      "id":278,
-     "item":"珍珠奶茶(去冰,微糖)(大杯)",
+     "name":"珍珠奶茶(去冰,微糖)(大杯)",
      "class":"飲品",
      "subclass":"茶",
      "photo":null,
@@ -6666,7 +6666,7 @@ export const allFoods = [
   },
   {
      "id":279,
-     "item":"奶茶沖泡包",
+     "name":"奶茶沖泡包",
      "class":"飲品",
      "subclass":"茶",
      "photo":null,
@@ -6682,7 +6682,7 @@ export const allFoods = [
   },
   {
      "id":280,
-     "item":"蜜蘋香橙伯爵",
+     "name":"蜜蘋香橙伯爵",
      "class":"飲品",
      "subclass":"茶",
      "photo":null,
@@ -6698,7 +6698,7 @@ export const allFoods = [
   },
   {
      "id":281,
-     "item":"舒跑",
+     "name":"舒跑",
      "class":"飲品",
      "subclass":"運動飲料",
      "photo":null,
@@ -6714,7 +6714,7 @@ export const allFoods = [
   },
   {
      "id":282,
-     "item":"寶礦力",
+     "name":"寶礦力",
      "class":"飲品",
      "subclass":"運動飲料",
      "photo":null,
@@ -6730,7 +6730,7 @@ export const allFoods = [
   },
   {
      "id":283,
-     "item":"Fin",
+     "name":"Fin",
      "class":"飲品",
      "subclass":"運動飲料",
      "photo":null,
@@ -6746,7 +6746,7 @@ export const allFoods = [
   },
   {
      "id":284,
-     "item":"可口可樂",
+     "name":"可口可樂",
      "class":"飲品",
      "subclass":"可樂",
      "photo":null,
@@ -6762,7 +6762,7 @@ export const allFoods = [
   },
   {
      "id":440,
-     "item":"橄欖油 (一茶匙)",
+     "name":"橄欖油 (一茶匙)",
      "class":"油脂與堅果種子類",
      "subclass":"油",
      "photo":null,
@@ -6778,7 +6778,7 @@ export const allFoods = [
   },
   {
      "id":441,
-     "item":"大豆沙拉油",
+     "name":"大豆沙拉油",
      "class":"油脂與堅果種子類",
      "subclass":"油",
      "photo":null,
@@ -6794,7 +6794,7 @@ export const allFoods = [
   },
   {
      "id":442,
-     "item":"葵花子油",
+     "name":"葵花子油",
      "class":"油脂與堅果種子類",
      "subclass":"油",
      "photo":null,
@@ -6810,7 +6810,7 @@ export const allFoods = [
   },
   {
      "id":443,
-     "item":"玉米油",
+     "name":"玉米油",
      "class":"油脂與堅果種子類",
      "subclass":"油",
      "photo":null,
@@ -6826,7 +6826,7 @@ export const allFoods = [
   },
   {
      "id":444,
-     "item":"花生油",
+     "name":"花生油",
      "class":"油脂與堅果種子類",
      "subclass":"油",
      "photo":null,
@@ -6842,7 +6842,7 @@ export const allFoods = [
   },
   {
      "id":445,
-     "item":"堅果 (綜合)",
+     "name":"堅果 (綜合)",
      "class":"油脂與堅果種子類",
      "subclass":"堅果",
      "photo":null,
@@ -6858,7 +6858,7 @@ export const allFoods = [
   },
   {
      "id":446,
-     "item":"花生(生,去殼)",
+     "name":"花生(生,去殼)",
      "class":"油脂與堅果種子類",
      "subclass":"堅果",
      "photo":null,
@@ -6874,7 +6874,7 @@ export const allFoods = [
   },
   {
      "id":447,
-     "item":"瓜子",
+     "name":"瓜子",
      "class":"油脂與堅果種子類",
      "subclass":"堅果",
      "photo":null,
@@ -6890,7 +6890,7 @@ export const allFoods = [
   },
   {
      "id":448,
-     "item":"葵花子",
+     "name":"葵花子",
      "class":"油脂與堅果種子類",
      "subclass":"堅果",
      "photo":null,
@@ -6906,7 +6906,7 @@ export const allFoods = [
   },
   {
      "id":449,
-     "item":"杏仁果",
+     "name":"杏仁果",
      "class":"油脂與堅果種子類",
      "subclass":"堅果",
      "photo":null,
@@ -6922,7 +6922,7 @@ export const allFoods = [
   },
   {
      "id":450,
-     "item":"腰果",
+     "name":"腰果",
      "class":"油脂與堅果種子類",
      "subclass":"堅果",
      "photo":null,
@@ -6938,7 +6938,7 @@ export const allFoods = [
   },
   {
      "id":451,
-     "item":"開心果",
+     "name":"開心果",
      "class":"油脂與堅果種子類",
      "subclass":"堅果",
      "photo":null,
@@ -6954,7 +6954,7 @@ export const allFoods = [
   },
   {
      "id":452,
-     "item":"核桃仁",
+     "name":"核桃仁",
      "class":"油脂與堅果種子類",
      "subclass":"堅果",
      "photo":null,
@@ -6970,7 +6970,7 @@ export const allFoods = [
   },
   {
      "id":453,
-     "item":"酪梨",
+     "name":"酪梨",
      "class":"油脂與堅果種子類",
      "subclass":"酪梨",
      "photo":null,
@@ -6986,7 +6986,7 @@ export const allFoods = [
   },
   {
      "id":285,
-     "item":"牛奶巧克力片",
+     "name":"牛奶巧克力片",
      "class":"零食類",
      "subclass":"巧克力",
      "photo":null,
@@ -7002,7 +7002,7 @@ export const allFoods = [
   },
   {
      "id":286,
-     "item":"統一雞蛋布丁",
+     "name":"統一雞蛋布丁",
      "class":"零食類",
      "subclass":"布丁",
      "photo":null,
@@ -7018,7 +7018,7 @@ export const allFoods = [
   },
   {
      "id":287,
-     "item":"洋芋片 (1包)",
+     "name":"洋芋片 (1包)",
      "class":"零食類",
      "subclass":"洋芋片",
      "photo":null,
@@ -7034,7 +7034,7 @@ export const allFoods = [
   },
   {
      "id":288,
-     "item":"統一肉燥麵",
+     "name":"統一肉燥麵",
      "class":"零食類",
      "subclass":"泡麵",
      "photo":null,
@@ -7050,7 +7050,7 @@ export const allFoods = [
   },
   {
      "id":289,
-     "item":"統一滿漢蔥燒牛肉麵",
+     "name":"統一滿漢蔥燒牛肉麵",
      "class":"零食類",
      "subclass":"泡麵",
      "photo":null,
@@ -7066,7 +7066,7 @@ export const allFoods = [
   },
   {
      "id":290,
-     "item":"炒泡麵",
+     "name":"炒泡麵",
      "class":"零食類",
      "subclass":"泡麵",
      "photo":null,
@@ -7082,7 +7082,7 @@ export const allFoods = [
   },
   {
      "id":291,
-     "item":"維力炸醬麵",
+     "name":"維力炸醬麵",
      "class":"零食類",
      "subclass":"泡麵",
      "photo":null,
@@ -7098,7 +7098,7 @@ export const allFoods = [
   },
   {
      "id":292,
-     "item":"阿Q桶麵",
+     "name":"阿Q桶麵",
      "class":"零食類",
      "subclass":"泡麵",
      "photo":null,
@@ -7114,7 +7114,7 @@ export const allFoods = [
   },
   {
      "id":293,
-     "item":"來一客鮮蝦魚板麵",
+     "name":"來一客鮮蝦魚板麵",
      "class":"零食類",
      "subclass":"泡麵",
      "photo":null,
@@ -7130,7 +7130,7 @@ export const allFoods = [
   },
   {
      "id":294,
-     "item":"來一客韓式泡菜麵",
+     "name":"來一客韓式泡菜麵",
      "class":"零食類",
      "subclass":"泡麵",
      "photo":null,
@@ -7146,7 +7146,7 @@ export const allFoods = [
   },
   {
      "id":349,
-     "item":"凱撒沙拉醬 (一大匙)",
+     "name":"凱撒沙拉醬 (一大匙)",
      "class":"醬料類",
      "subclass":"沙拉醬",
      "photo":null,
@@ -7162,7 +7162,7 @@ export const allFoods = [
   },
   {
      "id":350,
-     "item":"千島沙拉醬（一大匙）",
+     "name":"千島沙拉醬（一大匙）",
      "class":"醬料類",
      "subclass":"沙拉醬",
      "photo":null,
@@ -7178,7 +7178,7 @@ export const allFoods = [
   },
   {
      "id":351,
-     "item":"油醋醬（一大匙）",
+     "name":"油醋醬（一大匙）",
      "class":"醬料類",
      "subclass":"沙拉醬",
      "photo":null,
@@ -7194,7 +7194,7 @@ export const allFoods = [
   },
   {
      "id":352,
-     "item":"蜂蜜芥末醬",
+     "name":"蜂蜜芥末醬",
      "class":"醬料類",
      "subclass":"沙拉醬",
      "photo":null,
@@ -7210,7 +7210,7 @@ export const allFoods = [
   },
   {
      "id":353,
-     "item":"糖醋醬 (一大匙)",
+     "name":"糖醋醬 (一大匙)",
      "class":"醬料類",
      "subclass":"沙拉醬",
      "photo":null,
@@ -7226,7 +7226,7 @@ export const allFoods = [
   },
   {
      "id":354,
-     "item":"蜂蜜",
+     "name":"蜂蜜",
      "class":"醬料類",
      "subclass":"蜂蜜",
      "photo":null,
@@ -7242,7 +7242,7 @@ export const allFoods = [
   },
   {
      "id":355,
-     "item":"花生醬(一大匙)",
+     "name":"花生醬(一大匙)",
      "class":"醬料類",
      "subclass":"花生醬",
      "photo":null,
@@ -7258,7 +7258,7 @@ export const allFoods = [
   },
   {
      "id":356,
-     "item":"草莓果醬(一大匙)",
+     "name":"草莓果醬(一大匙)",
      "class":"醬料類",
      "subclass":"果醬",
      "photo":null,
@@ -7274,7 +7274,7 @@ export const allFoods = [
   },
   {
      "id":357,
-     "item":"葡萄果醬(一大匙)",
+     "name":"葡萄果醬(一大匙)",
      "class":"醬料類",
      "subclass":"果醬",
      "photo":null,
@@ -7290,7 +7290,7 @@ export const allFoods = [
   },
   {
      "id":358,
-     "item":"柚子果醬(一大匙)",
+     "name":"柚子果醬(一大匙)",
      "class":"醬料類",
      "subclass":"果醬",
      "photo":null,
@@ -7306,7 +7306,7 @@ export const allFoods = [
   },
   {
      "id":359,
-     "item":"桑葚果醬(一大匙)",
+     "name":"桑葚果醬(一大匙)",
      "class":"醬料類",
      "subclass":"果醬",
      "photo":null,
@@ -7322,7 +7322,7 @@ export const allFoods = [
   },
   {
      "id":360,
-     "item":"麻醬",
+     "name":"麻醬",
      "class":"醬料類",
      "subclass":"芝麻醬",
      "photo":null,
@@ -7338,7 +7338,7 @@ export const allFoods = [
   },
   {
      "id":205,
-     "item":"雞翅",
+     "name":"雞翅",
      "class":"中式餐點",
      "subclass":"小吃",
      "photo":null,
@@ -7354,7 +7354,7 @@ export const allFoods = [
   },
   {
      "id":206,
-     "item":"雞排",
+     "name":"雞排",
      "class":"中式餐點",
      "subclass":"小吃",
      "photo":null,
@@ -7370,7 +7370,7 @@ export const allFoods = [
   },
   {
      "id":207,
-     "item":"雞爪",
+     "name":"雞爪",
      "class":"中式餐點",
      "subclass":"小吃",
      "photo":null,
@@ -7386,7 +7386,7 @@ export const allFoods = [
   },
   {
      "id":209,
-     "item":"沙威瑪",
+     "name":"沙威瑪",
      "class":"中式餐點",
      "subclass":"小吃",
      "photo":null,
@@ -7402,7 +7402,7 @@ export const allFoods = [
   },
   {
      "id":188,
-     "item":"漢堡排",
+     "name":"漢堡排",
      "class":"西式餐點",
      "subclass":"漢堡",
      "photo":"/api/getfoodphoto?id=188",
@@ -7418,7 +7418,7 @@ export const allFoods = [
   },
   {
      "id":194,
-     "item":"切片火腿(豬肉)",
+     "name":"切片火腿(豬肉)",
      "class":"西式餐點",
      "subclass":"速食點心",
      "photo":null,
@@ -7434,7 +7434,7 @@ export const allFoods = [
   },
   {
      "id":195,
-     "item":"切片火腿(牛肉)",
+     "name":"切片火腿(牛肉)",
      "class":"西式餐點",
      "subclass":"速食點心",
      "photo":null,
@@ -7450,7 +7450,7 @@ export const allFoods = [
   },
   {
      "id":0,
-     "item":"原味蛋餅",
+     "name":"原味蛋餅",
      "class":"蛋肉類",
      "subclass":"蛋",
      "photo":null,
@@ -7466,7 +7466,7 @@ export const allFoods = [
   },
   {
      "id":1,
-     "item":"鮪魚蛋餅",
+     "name":"鮪魚蛋餅",
      "class":"蛋肉類",
      "subclass":"蛋",
      "photo":null,
@@ -7482,7 +7482,7 @@ export const allFoods = [
   },
   {
      "id":2,
-     "item":"起司蛋餅",
+     "name":"起司蛋餅",
      "class":"蛋肉類",
      "subclass":"蛋",
      "photo":null,
@@ -7498,7 +7498,7 @@ export const allFoods = [
   },
   {
      "id":3,
-     "item":"蔬菜蛋餅",
+     "name":"蔬菜蛋餅",
      "class":"蛋肉類",
      "subclass":"蛋",
      "photo":null,
@@ -7514,7 +7514,7 @@ export const allFoods = [
   },
   {
      "id":4,
-     "item":"玉米蛋餅",
+     "name":"玉米蛋餅",
      "class":"蛋肉類",
      "subclass":"蛋",
      "photo":null,
@@ -7530,7 +7530,7 @@ export const allFoods = [
   },
   {
      "id":5,
-     "item":"火腿蛋餅",
+     "name":"火腿蛋餅",
      "class":"蛋肉類",
      "subclass":"蛋",
      "photo":null,
@@ -7546,7 +7546,7 @@ export const allFoods = [
   },
   {
      "id":6,
-     "item":"豬排蛋餅",
+     "name":"豬排蛋餅",
      "class":"蛋肉類",
      "subclass":"蛋",
      "photo":null,
@@ -7562,7 +7562,7 @@ export const allFoods = [
   },
   {
      "id":77,
-     "item":"橘子",
+     "name":"橘子",
      "class":"水果類",
      "subclass":"綠色",
      "photo":"/api/getfoodphoto?id=77",
@@ -7578,7 +7578,7 @@ export const allFoods = [
   },
   {
      "id":79,
-     "item":"葡萄(1/2碗)",
+     "name":"葡萄(1/2碗)",
      "class":"水果類",
      "subclass":"紅色",
      "photo":"/api/getfoodphoto?id=79",
@@ -7594,7 +7594,7 @@ export const allFoods = [
   },
   {
      "id":83,
-     "item":"紅心芭樂",
+     "name":"紅心芭樂",
      "class":"水果類",
      "subclass":"紅色",
      "photo":null,
@@ -7610,7 +7610,7 @@ export const allFoods = [
   },
   {
      "id":92,
-     "item":"愛文芒果(1/2碗)",
+     "name":"愛文芒果(1/2碗)",
      "class":"水果類",
      "subclass":"橘色",
      "photo":null,
@@ -7626,7 +7626,7 @@ export const allFoods = [
   },
   {
      "id":97,
-     "item":"鳳梨(1碗)",
+     "name":"鳳梨(1碗)",
      "class":"水果類",
      "subclass":"綠色",
      "photo":"/api/getfoodphoto?id=97",
@@ -7642,7 +7642,7 @@ export const allFoods = [
   },
   {
      "id":98,
-     "item":"榴槤",
+     "name":"榴槤",
      "class":"水果類",
      "subclass":"棕色",
      "photo":null,
@@ -7658,7 +7658,7 @@ export const allFoods = [
   },
   {
      "id":100,
-     "item":"黃金奇異果",
+     "name":"黃金奇異果",
      "class":"水果類",
      "subclass":"黃色",
      "photo":null,
@@ -7674,7 +7674,7 @@ export const allFoods = [
   },
   {
      "id":101,
-     "item":"百香果",
+     "name":"百香果",
      "class":"水果類",
      "subclass":"黃色",
      "photo":null,
@@ -7690,7 +7690,7 @@ export const allFoods = [
   },
   {
      "id":105,
-     "item":"西瓜",
+     "name":"西瓜",
      "class":"水果類",
      "subclass":"紅色",
      "photo":null,
@@ -7706,7 +7706,7 @@ export const allFoods = [
   },
   {
      "id":106,
-     "item":"小玉西瓜",
+     "name":"小玉西瓜",
      "class":"水果類",
      "subclass":"黃色",
      "photo":null,
@@ -7722,7 +7722,7 @@ export const allFoods = [
   },
   {
      "id":107,
-     "item":"西洋梨",
+     "name":"西洋梨",
      "class":"水果類",
      "subclass":"紅色",
      "photo":null,
@@ -7738,7 +7738,7 @@ export const allFoods = [
   },
   {
      "id":109,
-     "item":"木瓜",
+     "name":"木瓜",
      "class":"水果類",
      "subclass":"綠色",
      "photo":"/api/getfoodphoto?id=109",
@@ -7754,7 +7754,7 @@ export const allFoods = [
   },
   {
      "id":121,
-     "item":"巧克力吐司 (以美而美品項為例)",
+     "name":"巧克力吐司 (以美而美品項為例)",
      "class":"麵包蛋糕類",
      "subclass":"吐司",
      "photo":null,
@@ -7770,7 +7770,7 @@ export const allFoods = [
   },
   {
      "id":140,
-     "item":"火腿蛋多穀貝果堡",
+     "name":"火腿蛋多穀貝果堡",
      "class":"麵包蛋糕類",
      "subclass":"貝果",
      "photo":null,
@@ -7786,7 +7786,7 @@ export const allFoods = [
   },
   {
      "id":166,
-     "item":"玉米濃湯",
+     "name":"玉米濃湯",
      "class":"飲品",
      "subclass":"西式湯品",
      "photo":null,
@@ -7802,7 +7802,7 @@ export const allFoods = [
   },
   {
      "id":355,
-     "item":"花生醬(一大匙)",
+     "name":"花生醬(一大匙)",
      "class":"油脂與堅果種子類",
      "subclass":"堅果",
      "photo":null,
@@ -7818,7 +7818,7 @@ export const allFoods = [
   },
   {
      "id":178,
-     "item":"檸檬塔(以星巴克品項為例)",
+     "name":"檸檬塔(以星巴克品項為例)",
      "class":"零食類",
      "subclass":"西式點心",
      "photo":null,
@@ -7834,7 +7834,7 @@ export const allFoods = [
   },
   {
      "id":179,
-     "item":"蘋果派",
+     "name":"蘋果派",
      "class":"零食類",
      "subclass":"西式點心",
      "photo":null,

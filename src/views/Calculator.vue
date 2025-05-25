@@ -63,7 +63,7 @@ const calculateDailyNeed = () => {
 
 const calculate = () => {
   showResult.value = true;
-  console.log(selectedProduct.value);
+  // console.log(selectedProduct.value);
 };
 
 const nextOnClicked = () => {

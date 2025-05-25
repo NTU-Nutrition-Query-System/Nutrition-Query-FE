@@ -5,12 +5,14 @@ export default {
     calculator: "營養計算機",
     food: "食物",
     about: "關於我們",
+    nutrition_note: "營養說明",
   },
   page_title: {
     calculator: "營養計算機",
     calculator_subtitle:
       "輸入資料，計算你一日及一餐所需的營養素(熱量、蛋白質、醣類、脂肪)喔！",
     about: "關於我們",
+    nutrition_note: "營養說明",
   },
   button: {
     login: "登入",
@@ -24,6 +26,7 @@ export default {
     RecommendMeal: "推薦餐點",
     addCustomFood: "新增自訂食物",
     addCustomFoodtoList: "新增食物至查看",
+    calculator: "營養計算機",
   },
   calculator_input: {
     title: "計算我的每日/每餐所需營養素",

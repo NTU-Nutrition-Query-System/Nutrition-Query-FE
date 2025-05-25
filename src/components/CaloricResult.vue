@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import InputNumber from "primevue/inputnumber";
 import { ref, watch, computed, onMounted } from "vue";
+import { defineAsyncComponent } from "vue";
 import Dialog from "primevue/dialog";
 import DataTable from "primevue/datatable";
 import Column from "primevue/column";
@@ -20,9 +21,9 @@ import type {
   CalculatedNutrition,
 } from "@/interfaces/Calculator";
 import { useProductStore } from "@/stores/productStore";
-import ResultExport from "./ResultExport.vue";
-import RecommendMealWindow from "./RecommendMealWindow.vue";
-import CustomFoodWindow from "./CustomFoodWindow.vue";
+import RecommendMealWindow from "@/components/RecommendMealWindow.vue";
+import CustomFoodWindow from "@/components/CustomFoodWindow.vue";
+const ResultExport = defineAsyncComponent(() => import("./ResultExport.vue"));
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 const productStore = useProductStore();
@@ -48,7 +49,7 @@ const selectedValue = computed<nutrient>(() => {
       fat: 0,
     };
   }
-  console.log("Selected Value");
+  // console.log("Selected Value");
 
   return productStore.selectedProducts.reduce<nutrient>(
     (acc, item) => {
@@ -132,13 +133,12 @@ const selectedIntake = computed<CalculatedNutrition[]>(() => {
     },
   ];
 });
-const emit = defineEmits(["update:visible"]);
+const visibleEmit = defineEmits(["update:visible"]);
 const isVisible = ref(props.visible);
 // Close dialog and emit update event
 const closeDialog = () => {
   isVisible.value = false;
-  emit("update:visible", false);
-  console.log("Close Result");
+  visibleEmit("update:visible", false);
 };
 const deleteButtonClicked = (row: weightedFoodItem) => {
   productStore.updateRow(row);
@@ -150,13 +150,6 @@ const deleteButtonClicked = (row: weightedFoodItem) => {
   });
 };
 
-watch(
-  () => props.visible,
-  (newValue) => {
-    console.log("updated!");
-    isVisible.value = newValue;
-  }
-);
 const getRowStyle = (row:weightedFoodItem) => {
   if (row.is_customized) {
     return { '--p-datatable-row-background': 'rgba(255, 200, 120, 0.3)' }; // 橘色
@@ -165,9 +158,6 @@ const getRowStyle = (row:weightedFoodItem) => {
   }
   return {};
 };
-onMounted(() => {
-  console.log("Result onMounted");
-});
 
 </script>
 

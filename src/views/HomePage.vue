@@ -40,7 +40,7 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
                 <span class="sb-icon">
                   <img src="@/assets/images/ui/icon/tableware.svg" alt="icon" />
                 </span>
-                <span data-no-swup>{{ $t(`page.calculator`) }}</span>
+                <span data-no-swup>{{ $t(`button.calculator`) }}</span>
               </router-link>
               <!-- button end -->
               <!-- button -->

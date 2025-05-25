@@ -1,25 +1,19 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { ref, watch, computed, onMounted, toValue } from "vue";
+import { ref, watch, computed, onMounted } from "vue";
 import DataTable from "primevue/datatable";
 import InputText from "primevue/inputtext";
 import IconField from "primevue/iconfield";
 import InputIcon from "primevue/inputicon";
 import OverlayBadge from "primevue/overlaybadge";
 import Column from "primevue/column";
-import ColumnGroup from "primevue/columngroup"; // optional
-import Row from "primevue/row"; // optional
 import Card from "primevue/card";
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
 import Toast from "primevue/toast";
 import MultiSelect from "primevue/multiselect";
 import { useToast } from "primevue/usetoast";
-import type {
-  foodItem,
-  filterOption,
-  weightedFoodItem,
-} from "@/interfaces/Calculator";
+import type { foodItem } from "@/interfaces/Calculator";
 import { useProductStore } from "@/stores/productStore";
 import SizeReference from "./SizeReference.vue";
 
@@ -44,57 +38,90 @@ const categories = [
   {
     zh: "中式餐點",
     en: "Chinese-style meal",
-    image: new URL("@/assets/images/foodClasses/ClassChineseMeal.jpg", import.meta.url).href,
+    image: new URL(
+      "@/assets/images/foodClasses/ClassChineseMeal.jpg",
+      import.meta.url
+    ).href,
   },
   {
     zh: "西式餐點",
     en: "Western-style meal",
-    image: new URL("@/assets/images/foodClasses/ClassWesternMeal.jpg", import.meta.url).href,
+    image: new URL(
+      "@/assets/images/foodClasses/ClassWesternMeal.jpg",
+      import.meta.url
+    ).href,
   },
   {
     zh: "飯糰壽司類",
     en: "Sushi and rice ball",
-    image: new URL("@/assets/images/foodClasses/ClassRiceBall.jpg", import.meta.url).href,
+    image: new URL(
+      "@/assets/images/foodClasses/ClassRiceBall.jpg",
+      import.meta.url
+    ).href,
   },
   {
     zh: "蛋肉類",
     en: "Egg and meat",
-    image: new URL("@/assets/images/foodClasses/ClassMeatEgg.jpg", import.meta.url).href,
+    image: new URL(
+      "@/assets/images/foodClasses/ClassMeatEgg.jpg",
+      import.meta.url
+    ).href,
   },
   {
     zh: "蔬菜類",
     en: "Vegetable",
-    image: new URL("@/assets/images/foodClasses/ClassVegetabale.jpg", import.meta.url).href,
+    image: new URL(
+      "@/assets/images/foodClasses/ClassVegetabale.jpg",
+      import.meta.url
+    ).href,
   },
   {
     zh: "水果類",
     en: "Fruit",
-    image: new URL("@/assets/images/foodClasses/ClassFruit.jpg", import.meta.url).href,
+    image: new URL(
+      "@/assets/images/foodClasses/ClassFruit.jpg",
+      import.meta.url
+    ).href,
   },
   {
     zh: "麵包蛋糕類",
     en: "Bread and cake",
-    image: new URL("@/assets/images/foodClasses/ClassBreadCake.jpg", import.meta.url).href,
+    image: new URL(
+      "@/assets/images/foodClasses/ClassBreadCake.jpg",
+      import.meta.url
+    ).href,
   },
   {
     zh: "飲品",
     en: "Drink",
-    image: new URL("@/assets/images/foodClasses/ClassDrink.jpg", import.meta.url).href,
+    image: new URL(
+      "@/assets/images/foodClasses/ClassDrink.jpg",
+      import.meta.url
+    ).href,
   },
   {
     zh: "油脂與堅果種子類",
     en: "Oil and nuts",
-    image: new URL("@/assets/images/foodClasses/ClassOilNuts.jpg", import.meta.url).href,
+    image: new URL(
+      "@/assets/images/foodClasses/ClassOilNuts.jpg",
+      import.meta.url
+    ).href,
   },
   {
     zh: "零食類",
     en: "Snack",
-    image: new URL("@/assets/images/foodClasses/ClassSnack.jpg", import.meta.url).href,
+    image: new URL(
+      "@/assets/images/foodClasses/ClassSnack.jpg",
+      import.meta.url
+    ).href,
   },
   {
     zh: "醬料類",
     en: "Condiment",
-    image: new URL("@/assets/images/foodClasses/ClassDressing.jpg", import.meta.url).href,
+    image: new URL(
+      "@/assets/images/foodClasses/ClassDressing.jpg",
+      import.meta.url
+    ).href,
   },
   {
     zh: "全部",
@@ -111,6 +138,7 @@ const selectedCategory = ref<{ name: string; image: string }>({
 const closeDialog = () => {
   productStore.clearFilters();
 };
+
 const itemSelect = (e: any) => {
   // console.log("Row clicked");
   // console.log(e);
@@ -154,9 +182,9 @@ const computeNumberOfItem = computed(() => {
 // === 圖片預覽 ===
 
 const displayDialog = ref<boolean>(false);
-const selectedImage = ref<string>('');
-const dialogTitle = ref<string>('');
-const hoveredImage = ref<string>('');  // 新增懸停圖片的 ref
+const selectedImage = ref<string>("");
+const dialogTitle = ref<string>("");
+const hoveredImage = ref<string>(""); // 新增懸停圖片的 ref
 const hoverPosition = ref({ x: 0, y: 0 });
 
 const handleImageClick = async (data: any) => {
@@ -173,7 +201,7 @@ const handleMouseover = async (event: MouseEvent, photoUrl: string) => {
 };
 
 const handleMouseleave = () => {
-  hoveredImage.value = ''; // 清空懸停圖片 URL，隱藏預覽
+  hoveredImage.value = ""; // 清空懸停圖片 URL，隱藏預覽
 };
 
 onMounted(() => {
@@ -184,263 +212,298 @@ onMounted(() => {
   ret[ret.length - 1] = productStore.products; //for the class 'All items'
   productStore.productsFilterByCategories = ret;
 });
+
+watch(productStore.lastUpdated, () => {
+  const ret = categories.map((category, index) =>
+    productStore.products.filter((item) => item.class === index + 1)
+  );
+  ret[ret.length - 1] = productStore.products; //for the class 'All items'
+  productStore.productsFilterByCategories = ret;
+});
 </script>
 <template>
-  <head> </head>
+  <Dialog
+    v-model:visible="displayDialog"
+    :header="dialogTitle"
+    :modal="true"
+    :style="{ width: '30vw' }"
+    :dismissableMask="true"
+  >
+    <img v-if="selectedImage" :src="selectedImage" style="width: 100%" />
+  </Dialog>
 
-  <div>
-    <Dialog
-      v-model:visible="displayDialog"
-      :header="dialogTitle"
-      :modal="true"
-      :style="{ width: '30vw' }"
-      :dismissableMask="true"
+  <div
+    v-if="hoveredImage"
+    :style="{
+      position: 'fixed',
+      top: hoverPosition.y + 'px',
+      left: hoverPosition.x + 'px',
+      zIndex: 1000000,
+      border: '1px solid #ccc',
+      backgroundColor: 'white',
+      padding: '8px',
+      boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
+    }"
+  >
+    <img :src="hoveredImage" style="max-width: 200px; max-height: 200px" />
+  </div>
+
+  <Dialog
+    v-model:visible="dialogVisible"
+    :modal="true"
+    @hide="closeDialog"
+    style="overflow-x: auto; width: 90%"
+    :dismissableMask="true"
+    :header="selectedCategory.name"
+  >
+    <Toast position="top-center" :baseZIndex="12" style="width: 20rem" />
+
+    <DataTable
+      :selection="productStore.selectedProducts"
+      :value="productStore.filteredData"
+      :globalFilterFields="['name', 'class']"
+      :filters="productStore.filters"
+      dataKey="order"
+      tableStyle="min-width: 50rem"
+      paginator
+      :rows="10"
+      @row-click="itemSelect"
+      @row-select="itemSelect"
+      @row-unselect="itemSelect"
+      rowHover
+      highlightOnSelect
     >
-      <img v-if="selectedImage" :src="selectedImage" style="width: 100%" />
-    </Dialog>
-
-    <div
-      v-if="hoveredImage"
-      :style="{
-        position: 'fixed',
-        top: hoverPosition.y + 'px',
-        left: hoverPosition.x + 'px',
-        zIndex: 1000000,
-        border: '1px solid #ccc',
-        backgroundColor: 'white',
-        padding: '8px',
-        boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-      }"
-    >
-      <img :src="hoveredImage" style="max-width: 200px; max-height: 200px" />
-    </div>
-
-    <Dialog
-      v-model:visible="dialogVisible"
-      :modal="true"
-      @hide="closeDialog"
-      :header="selectedCategory.name"
-      style="overflow-x: auto; width: 90%"
-      :dismissableMask="true"
-    >
-      <Toast position="top-center" :baseZIndex="12" style="width: 20rem" />
-
-      <DataTable
-        :key="locale"
-        :selection="productStore.selectedProducts"
-        :value="productStore.filteredData"
-        :globalFilterFields="['name', 'class']"
-        :filters="productStore.filters"
-        dataKey="order"
-        tableStyle="min-width: 50rem"
-        paginator
-        :rows="10"
-        @row-click="itemSelect"
-        @row-select="itemSelect"
-        @row-unselect="itemSelect"
-        rowHover
-        highlightOnSelect
-      >
-        <template #header>
-          <div style="
+      <template #header>
+        <div
+          style="
             display: flex;
             align-items: center;
-            justify-content: space-between;">
-              <IconField>
-                <InputIcon class="pi pi-search" style="margin-right: 1rem" />
-                <InputText
-                  v-model="productStore.filters['global'].value"
-                  placeholder="Keyword Search"
-                />
-              </IconField>
-              <div style="
-                  display: flex;
-                  align-items: center;">
-                <!-- <SizeReference /> -->
-              </div>
+            justify-content: space-between;
+          "
+        >
+          <IconField>
+            <InputIcon class="pi pi-search" style="margin-right: 1rem" />
+            <InputText
+              v-model="productStore.filters['global'].value"
+              placeholder="Keyword Search"
+            />
+          </IconField>
+          <div style="display: flex; align-items: center">
+            <!-- <SizeReference /> -->
+          </div>
+
+          <table class="display-row nutrition-desc">
+            <thead>
+              <tr>
+                <td>Level</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="bg-low">
+                  <span>{{ $t("page_content.nutritionNote.table.low") }}</span>
+                </td>
+                <td class="bg-mid">
+                  <span>{{
+                    $t("page_content.nutritionNote.table.medium")
+                  }}</span>
+                </td>
+                <td class="bg-high">
+                  <span>{{ $t("page_content.nutritionNote.table.high") }}</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </template>
+
+      <Column selectionMode="multiple" style="width: 0.1%"></Column>
+      <Column
+        field="name"
+        :header="$t('food_item')"
+        style="min-width: 150px; width: 1%"
+      >
+        <template #body="rowData">
+          <span>{{ rowData.data.name }}</span>
+          <Button
+            v-if="rowData.data.imageUri !== null"
+            icon="pi pi-image"
+            class="p-button-rounded p-button-sm"
+            style="
+              margin-left: 8px;
+              background-color: var(--primary-color);
+              color: black;
+              border: none;
+            "
+            @click="handleImageClick(rowData.data)"
+            @mouseover="
+              (event) => handleMouseover(event, rowData.data.imageUri)
+            "
+            @mouseleave="handleMouseleave"
+          />
+        </template>
+      </Column>
+      <Column
+        field="subclass"
+        :header="$t('food_class')"
+        style="width: 1%"
+        :showFilterMatchModes="false"
+        :showApplyButton="false"
+        :showClearButton="false"
+      >
+      </Column>
+      <Column
+        field="unit"
+        :header="$t('food_unit')"
+        style="width: 0.3%"
+      ></Column>
+      <Column
+        field="gram"
+        :header="$t('food_gram')"
+        style="width: 0.3%"
+      ></Column>
+      <Column
+        sortable
+        field="calories"
+        :header="$t('calories')"
+        :filter="true"
+        filterField="calories"
+        :showFilterMatchModes="false"
+        :showApplyButton="false"
+        :showClearButton="false"
+        style="width: 0.5%"
+      >
+        <template #body="{ data }">
+          <div
+            :style="{
+              backgroundColor: productStore.getColor(data.calories, 0, 550),
+              color: 'black',
+              padding: '10px',
+              borderRadius: '5px',
+              textAlign: 'center',
+            }"
+          >
+            {{ data.calories }}
           </div>
         </template>
+      </Column>
+      <Column
+        sortable
+        field="carbohydrate"
+        :header="$t('carbohydrate')"
+        :filter="true"
+        filterField="carbohydrate"
+        :showFilterMatchModes="false"
+        :showApplyButton="false"
+        :showClearButton="false"
+        style="width: 0.5%"
+      >
+        <template #body="{ data }">
+          <div
+            :style="{
+              backgroundColor: productStore.getColor(data.carbohydrate, 0, 50),
+              color: 'black',
+              padding: '10px',
+              borderRadius: '5px',
+              textAlign: 'center',
+            }"
+          >
+            {{ data.carbohydrate }}
+          </div>
+        </template>
+      </Column>
+      <Column
+        sortable
+        field="protein"
+        :header="$t('protein')"
+        :showApplyButton="false"
+        :showClearButton="false"
+        style="width: 0.5%"
+      >
+        <template #body="{ data }">
+          <div
+            :style="{
+              backgroundColor: productStore.getColor(data.protein, 0, 25),
+              color: 'black',
+              padding: '10px',
+              borderRadius: '5px',
+              textAlign: 'center',
+            }"
+          >
+            {{ data.protein }}
+          </div>
+        </template>
+      </Column>
+      <Column
+        sortable
+        field="fat"
+        :header="$t('fat')"
+        :filter="true"
+        :showFilterMatchModes="false"
+        filterField="fat"
+        :showApplyButton="false"
+        :showClearButton="false"
+        style="width: 0.5%"
+      >
+        <template #body="{ data }">
+          <div
+            :style="{
+              backgroundColor: productStore.getColor(data.fat, 0, 25),
+              color: 'black',
+              padding: '10px',
+              borderRadius: '5px',
+              textAlign: 'center',
+            }"
+          >
+            {{ data.fat }}
+          </div>
+        </template>
+      </Column>
 
-        <Column selectionMode="multiple" style="width: 0.1%"></Column>
-        <Column
-          field="name"
-          :header="$t('food_item')"
-          style="min-width: 150px; width: 1%"
-        >
-          <template #body="rowData">
-            <span>{{ rowData.data.name }}</span>
-            <Button
-              v-if="rowData.data.imageUri !== null"
-              icon="pi pi-image"
-              class="p-button-rounded p-button-sm"
-              style="margin-left: 8px; background-color: var(--primary-color); color: black; border: none;"
-              @click="handleImageClick(rowData.data)"
-              @mouseover="(event) => handleMouseover(event, rowData.data.imageUri)"  
-              @mouseleave="handleMouseleave" 
-            />
-          </template>
-        </Column>
-        <Column
-          field="subclass"
-          :header="$t('food_class')"
-          style="width: 1%"
-          :showFilterMatchModes="false"
-          :showApplyButton="false"
-          :showClearButton="false"
-        >
-        </Column>
-        <Column
-          field="unit"
-          :header="$t('food_unit')"
-          style="width: 0.3%"
-        ></Column>
-        <Column
-          field="gram"
-          :header="$t('food_gram')"
-          style="width: 0.3%"
-        ></Column>
-        <Column
-          sortable
-          field="calories"
-          :header="$t('calories')"
-          :filter="true"
-          filterField="calories"
-          :showFilterMatchModes="false"
-          :showApplyButton="false"
-          :showClearButton="false"
-          style="width: 0.5%"
-        >
-          <template #body="{ data }">
-            <div
-              :style="{
-                backgroundColor: productStore.getColor(data.calories, 0, 550),
-                color: 'black',
-                padding: '10px',
-                borderRadius: '5px',
-                textAlign: 'center',
-              }"
-            >
-              {{ data.calories }}
-            </div>
-          </template>
-        </Column>
-        <Column
-          sortable
-          field="carbohydrate"
-          :header="$t('carbohydrate')"
-          :filter="true"
-          filterField="carbohydrate"
-          :showFilterMatchModes="false"
-          :showApplyButton="false"
-          :showClearButton="false"
-          style="width: 0.5%"
-        >
-          <template #body="{ data }">
-            <div
-              :style="{
-                backgroundColor: productStore.getColor(
-                  data.carbohydrate,
-                  0,
-                  50
-                ),
-                color: 'black',
-                padding: '10px',
-                borderRadius: '5px',
-                textAlign: 'center',
-              }"
-            >
-              {{ data.carbohydrate }}
-            </div>
-          </template>
-        </Column>
-        <Column
-          sortable
-          field="protein"
-          :header="$t('protein')"
-          :showApplyButton="false"
-          :showClearButton="false"
-          style="width: 0.5%"
-        >
-          <template #body="{ data }">
-            <div
-              :style="{
-                backgroundColor: productStore.getColor(data.protein, 0, 25),
-                color: 'black',
-                padding: '10px',
-                borderRadius: '5px',
-                textAlign: 'center',
-              }"
-            >
-              {{ data.protein }}
-            </div>
-          </template>
-        </Column>
-        <Column
-          sortable
-          field="fat"
-          :header="$t('fat')"
-          :filter="true"
-          :showFilterMatchModes="false"
-          filterField="fat"
-          :showApplyButton="false"
-          :showClearButton="false"
-          style="width: 0.5%"
-        >
-          <template #body="{ data }">
-            <div
-              :style="{
-                backgroundColor: productStore.getColor(data.fat, 0, 25),
-                color: 'black',
-                padding: '10px',
-                borderRadius: '5px',
-                textAlign: 'center',
-              }"
-            >
-              {{ data.fat }}
-            </div>
-          </template>
-        </Column>
+      <Column
+        sortable
+        field="dietaryFibre"
+        :header="$t('food_dt_fibre')"
+        :filter="true"
+        :showFilterMatchModes="false"
+        filterField="dietaryFibre"
+        :showApplyButton="false"
+        :showClearButton="false"
+        style="width: 0.5%"
+      >
+        <template #body="{ data }">
+          <div style="text-align: center">
+            {{ data.dietaryFibre }}
+          </div>
+        </template>
+      </Column>
+    </DataTable>
 
-        <Column
-          sortable
-          field="dietaryFibre"
-          :header="$t('food_dt_fibre')"
-          :filter="true"
-          :showFilterMatchModes="false"
-          filterField="dietaryFibre"
-          :showApplyButton="false"
-          :showClearButton="false"
-          style="width: 0.5%"
-        >
-          <template #body="{ data }">
-            <div style="text-align: center;">
-              {{ data.dietaryFibre }}
-            </div>
-          </template>
-        </Column>
-      </DataTable>
-
-      <template #footer>
-        <Button
-          :label="$t('button.confirm')"
-          icon="pi pi-check"
-          style="
-            margin-right: 0rem;
-            margin-top: 1rem;
-            background-color: var(--primary-color);
-            border: none;
-            color: black;
-          "
-          @click="dialogVisible = false"
-        />
-      </template>
-    </Dialog>
-  </div>
+    <template #footer>
+      <Button
+        :label="$t('button.confirm')"
+        icon="pi pi-check"
+        style="
+          margin-right: 0rem;
+          margin-top: 1rem;
+          background-color: var(--primary-color);
+          border: none;
+          color: black;
+        "
+        @click="dialogVisible = false"
+      />
+    </template>
+  </Dialog>
   <div class="card-container">
     <Card
       class="food-class-card"
       v-for="(item, index) in categories"
-      @click="classClicked({ image: item.image, name: locale === 'en' ? item.en : item.zh }, index)"
+      @click="
+        classClicked(
+          { image: item.image, name: locale === 'en' ? item.en : item.zh },
+          index
+        )
+      "
     >
       <template #content>
         <div style="width: 100%; position: relative">
@@ -470,7 +533,7 @@ onMounted(() => {
               font-size: 20px;
             "
           >
-            {{ locale === 'en' ? categories[index].en : categories[index].zh }}
+            {{ locale === "en" ? categories[index].en : categories[index].zh }}
           </label>
           <Button
             style="
@@ -484,7 +547,15 @@ onMounted(() => {
               background-color: #f5c332;
             "
             :label="$t('button.open')"
-            @click="classClicked({ image: item.image, name: locale === 'en' ? item.en : item.zh }, index)"
+            @click="
+              classClicked(
+                {
+                  image: item.image,
+                  name: locale === 'en' ? item.en : item.zh,
+                },
+                index
+              )
+            "
           />
         </div>
       </template>
@@ -555,5 +626,53 @@ onMounted(() => {
 
 .card-container .Card {
   width: 100%; /* Ensures the cards take up full available width in each column */
+}
+
+.nutrition-desc {
+  border-collapse: collapse;
+  font-size: 16px;
+  text-align: center;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+
+  th {
+    background-color: var(--primary-color);
+    color: #333;
+    font-weight: bold;
+    padding: 12px;
+    border-bottom: 2px solid #ddd;
+  }
+
+  td {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+  }
+
+  tr:nth-child(even) {
+    background-color: #fcfcfc;
+  }
+}
+
+.bg-high {
+  color: "black";
+  padding: "10px";
+  border-radius: "5px";
+  text-align: "center";
+  background-color: #ff8650;
+}
+.bg-mid {
+  color: "black";
+  padding: "10px";
+  border-radius: "5px";
+  text-align: "center";
+  background-color: #ffd21c;
+}
+.bg-low {
+  color: "black";
+  padding: "10px";
+  border-radius: "5px";
+  text-align: "center";
+  background-color: #c2f24e;
 }
 </style>
