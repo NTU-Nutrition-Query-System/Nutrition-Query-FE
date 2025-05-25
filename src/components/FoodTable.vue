@@ -213,7 +213,7 @@ onMounted(() => {
   productStore.productsFilterByCategories = ret;
 });
 
-watch(productStore.lastUpdated, () => {
+watch(() => productStore.lastUpdated, () => {
   const ret = categories.map((category, index) =>
     productStore.products.filter((item) => item.class === index + 1)
   );
@@ -221,6 +221,7 @@ watch(productStore.lastUpdated, () => {
   productStore.productsFilterByCategories = ret;
 });
 </script>
+
 <template>
   <Dialog
     v-model:visible="displayDialog"
