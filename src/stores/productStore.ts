@@ -16,7 +16,7 @@ export const useProductStore = defineStore("productStore", () => {
   const dailyNeeds = ref<nutrient>();
   const foodTableLoaded = ref(false);
   const selectedOptions = ref();
-  const lastUpdated = ref<Date>(new Date());
+  const lastUpdated = ref<number>(Date.now());
   const filterOptions = ref([
     {
       name: "熱量",
@@ -79,7 +79,7 @@ export const useProductStore = defineStore("productStore", () => {
       product.weight = 1.0;
       product.is_customized = false;
     });
-    lastUpdated.value = new Date();
+    lastUpdated.value = Date.now();
   };
   const updateRow = (row: weightedFoodItem) => {
     if (!selectedProducts.value.some((item: any) => item.id === row.id)) {
