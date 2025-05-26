@@ -1,7 +1,7 @@
 import { googleAuthCodeLogin } from "vue3-google-login";
 import { googleLogin } from "@/apis/google-login";
 import { useAuthStore } from "@/stores/authStore";
-import type { GoogleLoginResponse } from "@/stores/authStore";
+import type { userInfo } from "@/stores/authStore";
 
 export const loginCallback = async () => {
     try {
@@ -9,10 +9,10 @@ export const loginCallback = async () => {
       if (response) {
         const backendResponse = (await googleLogin(
           response.code
-        )) as GoogleLoginResponse;
-        if (backendResponse) {
+        ));
+        if (backendResponse.status === "success") {
           const authStore = useAuthStore();
-          authStore.login(backendResponse);
+          authStore.login(backendResponse.userInfo as userInfo, backendResponse.accessToken);
         } else {
           console.error("Backend response is null");
         }
