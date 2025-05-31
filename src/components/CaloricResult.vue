@@ -23,6 +23,7 @@ import type {
 import { useProductStore } from "@/stores/productStore";
 import RecommendMealWindow from "@/components/RecommendMealWindow.vue";
 import CustomFoodWindow from "@/components/CustomFoodWindow.vue";
+import saveRecord from "./saveRecord.vue";
 const ResultExport = defineAsyncComponent(() => import("./ResultExport.vue"));
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
@@ -283,6 +284,7 @@ const getRowStyle = (row:weightedFoodItem) => {
     </Tabs>
 
     <div style="display:flex">
+      <saveRecord :food-items="productStore.selectedProducts"/>
       <ResultExport :selectedIntake="selectedIntake" />
       <CustomFoodWindow/>
       <RecommendMealWindow/>

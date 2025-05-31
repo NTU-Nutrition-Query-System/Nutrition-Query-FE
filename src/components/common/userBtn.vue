@@ -1,21 +1,25 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, computed, watch } from "vue";
 import Avatar from "primevue/avatar";
 import Button from "primevue/button";
 import Menu from "primevue/menu";
 import { useAuthStore } from "@/stores/authStore";
 import { loginCallback } from "@/components/common/googleLogin";
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const authStore = useAuthStore();
 
 const menu = ref();
-const items = ref([
+const items = computed(() => [
   {
-    label: authStore.userInfo?.name,
+    label: authStore.userInfo?.name || 'User',
     items: [
       {
         label: "History",
         icon: "pi pi-history",
+        route: '/MealHistory'
       },
       {
         label: 'Logout',
@@ -27,6 +31,19 @@ const items = ref([
     ],
   },
 ]);
+
+const menuKey = ref(0);
+
+// Watch for auth state changes and force menu update
+watch(
+  () => authStore.isLoggedIn,
+  (newValue) => {
+    if (newValue) {
+      // User just logged in, force menu rerender
+      menuKey.value++;
+    }
+  }
+);
 
 const toggle = (event : any) => {
   menu.value.toggle(event);
@@ -48,7 +65,26 @@ const toggle = (event : any) => {
         style="width: 2.5rem; height: 2.5rem"
       />
     </button>
-    <Menu ref="menu" id="overlay_menu" :model="items" :popup="true" />
+    <Menu 
+      ref="menu" 
+      id="overlay_menu" 
+      :model="items" 
+      :popup="true"
+      :key="menuKey"
+    >
+      <template #item="{ item, props }">
+        <router-link v-if="item.route" v-slot="{ href, navigate }" :to="item.route" custom>
+          <a :href="href" v-bind="props.action" @click="navigate">
+            <span :class="item.icon"></span>
+            <span>{{ item.label }}</span>
+          </a>
+        </router-link>
+        <a v-else :href="item.url" :target="item.target" v-bind="props.action">
+          <span :class="item.icon"></span>
+          <span>{{ item.label }}</span>
+        </a>
+      </template>
+    </Menu>
   </div>
   <button
     v-else

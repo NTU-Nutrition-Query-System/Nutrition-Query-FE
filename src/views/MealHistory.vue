@@ -8,9 +8,9 @@ import Column from "primevue/column";
 
 import type { DatePickerDateSlotOptions } from "primevue/datepicker";
 
-import { useProductStore } from "@/stores/productStore";
+import { useRecordStore } from "@/stores/recordStore";
 
-const productStore = useProductStore();
+const recordStore = useRecordStore();
 
 const primevue = usePrimeVue();
 const { locale, tm } = useI18n();
@@ -29,13 +29,28 @@ watch(locale, () => {
 });
 
 // Only these dates will be enabled
-const enabledDates = [
-  new Date(2025, 4, 15),
-  new Date(2025, 4, 17),
-  new Date(2025, 4, 18),
-];
+const enabledDates = ref<Date[]>([]);
 
-const date = ref(enabledDates[enabledDates.length - 1]); // Default date is the last of enabledDates
+const datatablekey = ref(0); // Key to force DataTable to re-render
+
+onMounted(() => {
+  datatablekey.value = 0;
+  recordStore.fetchRecords().then(() => {
+    // Initialize enabledDates with the dates of records
+    const ret = recordStore.getDateofRecords();
+    if (Array.isArray(ret)) {
+      enabledDates.value = ret.map((date: Date) => new Date(date));
+    } else {
+      console.error("getDateofRecords did not return an array:", ret);
+      enabledDates.value = [];
+    }
+    selectedDate.value = enabledDates.value[enabledDates.value.length - 1]; // Set default date to the last of enabledDates
+    console.log("datatablekey:", typeof selectedDate, selectedDate.value );
+    datatablekey.value++; // Increment key to ensure DataTable re-renders with new data
+  });
+});
+
+const selectedDate = ref(new Date); // Default date is the last of enabledDates
 
 const cvtToDate = (date: DatePickerDateSlotOptions) => {
   return new Date(date.year, date.month, date.day);
@@ -49,20 +64,23 @@ const isSameDate = (a: Date, b: Date) => {
   );
 };
 
+const reRenderDataTable = () => {
+  datatablekey.value++;
+};
+
 const isDateEnabled = (date: Date) => {
-  return enabledDates.some((d) => isSameDate(d, date));
+  return enabledDates.value.some((d) => isSameDate(d, date));
 };
 </script>
 
 <template>
-  <section style="margin-top: 6rem">
+  <section style="margin-top: 6rem; width: 100%;;">
     <div class="container" style="justify-items: center">
-      <h2>Meal History</h2>
-      <!-- <DatePicker v-model="date" inline style="margin-top: 1rem;"/> -->
       <DatePicker
-        v-model="date"
+        v-model="selectedDate"
         style="margin-top: 1rem"
         inline
+        @date-select="reRenderDataTable"
         :pt="{
             day: (date : any) => ({
               class: {
@@ -74,12 +92,12 @@ const isDateEnabled = (date: Date) => {
       >
       </DatePicker>
       <DataTable
-        :key="locale"
-        :value="productStore.filteredData"
+        v-if="datatablekey != 0"
+        :key="datatablekey"
+        :value="recordStore.getFoodRecordsByDate(selectedDate)"
         dataKey="id"
-        style="width: 85rem; margin-top: 1rem"
-        paginator
-        :rows="10"
+        table-style="width: 100%; min-width: 50rem; max-width: 100%"
+        style="margin-top: 1rem; width: 100%;"
       >
         <Column
           field="name"
@@ -90,20 +108,6 @@ const isDateEnabled = (date: Date) => {
             <span>{{ rowData.data.name }}</span>
           </template>
         </Column>
-        <Column
-          field="subclass"
-          :header="$t('food_class')"
-          style="width: 1%"
-          :showFilterMatchModes="false"
-          :showApplyButton="false"
-          :showClearButton="false"
-        >
-        </Column>
-        <Column
-          field="unit"
-          :header="$t('food_unit')"
-          style="width: 0.3%"
-        ></Column>
         <Column
           field="gram"
           :header="$t('food_gram')"
@@ -127,11 +131,6 @@ const isDateEnabled = (date: Date) => {
         <Column
           field="fat"
           :header="$t('fat')"
-          style="width: 0.5%"
-        ></Column>
-        <Column
-          field="dietaryFibre"
-          :header="$t('food_dt_fibre')"
           style="width: 0.5%"
         ></Column>
       </DataTable>
