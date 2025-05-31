@@ -6,9 +6,9 @@ export const relogin = async (accessToken: string) => {
       "/auth/relogin",
       null,
       {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
       }
     );
     if (response.status !== 200) {

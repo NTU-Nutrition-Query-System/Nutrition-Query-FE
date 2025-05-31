@@ -12,6 +12,8 @@ import { useToast } from "primevue/usetoast";
 import { useProductStore } from "@/stores/productStore";
 import { usePersonInfoStore } from "@/stores/personInfoStore";
 
+import { uploadPersonalInfo } from "@/apis/uploadPersonalInfo";
+
 import { library as faLibrary } from "@fortawesome/fontawesome-svg-core";
 import {
   faSortDown,
@@ -69,6 +71,7 @@ const calculate = () => {
 const nextOnClicked = () => {
   isExpanded.value = true;
   calculateDailyNeed();
+  uploadPersonalInfo();
 };
 const selectedProduct = ref([]);
 
