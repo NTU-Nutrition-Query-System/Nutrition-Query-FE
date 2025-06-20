@@ -8,6 +8,7 @@ export default {
     food: "Food",
     about: "About",
     nutrition_note: "Nutrition Note",
+    history: "History",
   },
   page_title: {
     calculator: "Calculator",

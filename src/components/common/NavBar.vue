@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { defineProps, ref } from "vue";
+import { defineProps, ref, watch } from "vue";
 import { RouterLink } from "vue-router";
 import LanguageSelector from "@/components/common/LanguageSelector.vue";
 import userBtn from "@/components/common/userBtn.vue";
+import { useAuthStore } from "@/stores/authStore";
 
 // Receive items from parent
 const props = defineProps({
@@ -16,6 +17,8 @@ const props = defineProps({
   },
 });
 
+var items = props.items;
+
 const activeMenuItem = ref<number | null>(null);
 const isMenuActive = ref(false);
 
@@ -28,6 +31,28 @@ const handleClick = (index: number) => {
   activeMenuItem.value = activeMenuItem.value === index ? null : index;
   isMenuActive.value = false;
 };
+
+const navbarKey = ref(0);
+
+const authStore = useAuthStore();
+
+watch(
+  () => authStore.isLoggedIn,
+  (newValue) => {
+    if (newValue) {
+      items = items.concat([
+        {
+          label: "history",
+          route: "/MealHistory",
+        },
+      ]);
+    } else {
+      items = items.filter(item => item.label !== "history");
+    }
+    navbarKey.value++;
+  }
+);
+
 </script>
 
 <template>
@@ -44,7 +69,7 @@ const handleClick = (index: number) => {
         <!-- menu -->
         <div class="sb-right-side">
           <nav id="sb-dynamic-menu" class="sb-menu-transition">
-            <div class="sb-navigation" :class="{ 'sb-active': isMenuActive }">
+            <div class="sb-navigation" :key="navbarKey" :class="{ 'sb-active': isMenuActive }">
               <ul class="sb-navigation-list">
                 <li
                   v-for="(item, index) in items"

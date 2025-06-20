@@ -12,22 +12,18 @@ const languages = [
 const items = ref([
   {
     label: "home",
-    icon: "pi pi-home",
     route: "/",
   },
   {
     label: "calculator",
-    icon: "pi pi-calculator",
     route: "/Calculator",
   },
   {
     label: "nutrition_note",
-    icon: "pi pi-about",
     route: "/NutritionNote",
   },
   {
     label: "about",
-    icon: "pi pi-about",
     route: "/About",
   },
 ]);

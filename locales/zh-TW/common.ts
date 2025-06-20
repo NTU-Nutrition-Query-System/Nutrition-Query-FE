@@ -6,6 +6,7 @@ export default {
     food: "食物",
     about: "關於我們",
     nutrition_note: "營養說明",
+    history: "歷史紀錄",
   },
   page_title: {
     calculator: "營養計算機",
