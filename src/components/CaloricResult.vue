@@ -174,6 +174,7 @@ const getRowStyle = (row:weightedFoodItem) => {
       <TabList>
         <Tab value="0">{{$t('selection_meal_requirement')}}</Tab>
         <Tab value="1">{{$t('selection_daily_requirement')}}</Tab>
+        <Tab value="2">{{$t('儲存到紀錄')}}</Tab>
       </TabList>
       <TabPanels>
         <TabPanel value="0">
@@ -280,11 +281,13 @@ const getRowStyle = (row:weightedFoodItem) => {
             </Column>
           </DataTable>
         </TabPanel>
+        <TabPanel value="2">
+          <saveRecord :food-items="productStore.selectedProducts"/>
+        </TabPanel>
       </TabPanels>
     </Tabs>
 
     <div style="display:flex">
-      <saveRecord :food-items="productStore.selectedProducts"/>
       <ResultExport :selectedIntake="selectedIntake" />
       <CustomFoodWindow/>
       <RecommendMealWindow/>

@@ -1,11 +1,11 @@
 <script setup lang="ts">
 
-import { ref, defineProps } from "vue";
+import { ref, watch, defineProps } from "vue";
 import { useI18n } from "vue-i18n";
-import Dialog from "primevue/dialog";
 import DatePicker from "primevue/datepicker";
 import Button from "primevue/button";
 import Toast from "primevue/toast";
+import { usePrimeVue } from "primevue/config";
 import { useToast } from "primevue/usetoast";
 import { uploadRecord } from "@/apis/uploadRecord";
 import { useAuthStore } from "@/stores/authStore";
@@ -13,6 +13,22 @@ const { t } = useI18n();
 const toast = useToast();
 
 import type { foodItem } from "@/interfaces/Calculator";
+
+const { locale, tm } = useI18n();
+const primevue = usePrimeVue();
+primevue.config.locale = Object.assign(
+  {},
+  primevue.config.locale,
+  tm("DatePicker")
+);
+
+watch(locale, () => {
+  primevue.config.locale = Object.assign(
+    {},
+    primevue.config.locale,
+    tm("DatePicker")
+  );
+});
 
 const props = defineProps({
   foodItems: {
@@ -78,35 +94,20 @@ const checkInfomation = () => {
 </script>
 
 <template>
-  <div style="display: flex; align-items: center;">
+  <Toast position="top-center" :auto-z-index=true style="width: 20rem" />
+  <div class="sb-group-input" style="width: 300px; margin: 2.5rem auto">
+    <span>選擇時間</span>
+    <DatePicker id="datepicker-12h" v-model="datetime12h" fluid show-time :step-minute=30 />
+  </div>
+  <div style="display: flex; justify-content: center; margin-top: 2rem">
     <Button 
-        @click="openDialog()"
-        class="btn-yellow">
-        <i class="pi pi-upload"/>
-        儲存至個人紀錄
+      @click="checkInfomation"
+      class="btn-yellow">
+      <i class="pi pi-upload"/>
+      儲存至個人紀錄
     </Button>
   </div>
-  <Toast position="top-center" :auto-z-index=true style="width: 20rem" />
-  <Dialog
-    :modal="true"
-    @hide="closeDialog"
-    style="overflow-x: auto; width: 30%"
-    :dismissableMask="true"
-    v-model:visible="dialogVisible"
-  >
-    <div class="sb-group-input" style="width: 300px; margin: 2.5rem auto">
-      <span>選擇紀錄時間</span>
-      <DatePicker id="datepicker-12h" v-model="datetime12h" fluid />
-    </div>
-    <div style="display: flex; justify-content: center; margin-top: 2rem">
-      <Button 
-        @click="checkInfomation"
-        class="btn-yellow">
-        <i class="pi pi-upload"/>
-        儲存至個人紀錄
-    </Button>
-    </div>
-  </Dialog>
+  
 
 </template>
 
