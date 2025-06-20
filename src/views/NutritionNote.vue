@@ -109,14 +109,10 @@ const nutritionTableData = computed(() => {
                     </tr>
                 </tbody>
             </table>
-            </div>
+          </div>
       </div>
     </div>
   </section>
-
-  <!-- call to action -->
-  <ContactUs />
-  <!-- call to action end -->
 </template>
 
 <style>
