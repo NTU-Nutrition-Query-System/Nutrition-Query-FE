@@ -23,6 +23,7 @@ import type {
 import { useProductStore } from "@/stores/productStore";
 import RecommendMealWindow from "@/components/RecommendMealWindow.vue";
 import CustomFoodWindow from "@/components/CustomFoodWindow.vue";
+import { useAuthStore } from "@/stores/authStore";
 import saveRecord from "./saveRecord.vue";
 const ResultExport = defineAsyncComponent(() => import("./ResultExport.vue"));
 import { useI18n } from "vue-i18n";
@@ -160,6 +161,25 @@ const getRowStyle = (row:weightedFoodItem) => {
   return {};
 };
 
+const tabValue = ref("0");
+const tabKey = ref(0);
+
+const checkLogined = () => {
+  const authStore = useAuthStore();
+  if (!authStore.isLoggedIn) {
+    toast.add({
+      severity: "warn",
+      summary: "",
+      detail: "請先登入",
+      life: 2000,
+    });
+    tabValue.value = "0"; // Reset to the first tab
+    tabKey.value++; // Force re-render of the tabs
+    return false;
+  }
+  return true;
+};
+
 </script>
 
 <template>
@@ -170,11 +190,11 @@ const getRowStyle = (row:weightedFoodItem) => {
     @hide="closeDialog"
     style="overflow-x: scroll; width: 80%">
     <Toast position="top-center" :baseZIndex=12 style="width: 20rem" />
-    <Tabs value="0">
+    <Tabs v-model:value="tabValue" :key="tabKey">
       <TabList>
         <Tab value="0">{{$t('selection_meal_requirement')}}</Tab>
         <Tab value="1">{{$t('selection_daily_requirement')}}</Tab>
-        <Tab value="2">{{$t('儲存到紀錄')}}</Tab>
+        <Tab value="2" @click="checkLogined">{{$t('儲存到紀錄')}}</Tab>
       </TabList>
       <TabPanels>
         <TabPanel value="0">
