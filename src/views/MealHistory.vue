@@ -5,15 +5,12 @@ import { useI18n } from "vue-i18n";
 import DatePicker from "primevue/datepicker";
 import DataTable from "primevue/datatable";
 import Column from "primevue/column";
-import IconField from "primevue/iconfield";
-import InputText from "primevue/inputtext";
-import InputIcon from "primevue/inputicon";
 
 import type { DatePickerDateSlotOptions } from "primevue/datepicker";
 
-import { useProductStore } from "@/stores/productStore";
+import { useRecordStore } from "@/stores/recordStore";
 
-const productStore = useProductStore();
+const recordStore = useRecordStore();
 
 const primevue = usePrimeVue();
 const { locale, tm } = useI18n();
@@ -32,13 +29,28 @@ watch(locale, () => {
 });
 
 // Only these dates will be enabled
-const enabledDates = [
-  new Date(2025, 4, 15),
-  new Date(2025, 4, 17),
-  new Date(2025, 4, 18),
-];
+const enabledDates = ref<Date[]>([]);
 
-const date = ref(enabledDates[enabledDates.length - 1]); // Default date is the last of enabledDates
+const datatablekey = ref(0); // Key to force DataTable to re-render
+
+onMounted(() => {
+  datatablekey.value = 0;
+  recordStore.fetchRecords().then(() => {
+    // Initialize enabledDates with the dates of records
+    const ret = recordStore.getDateofRecords();
+    if (Array.isArray(ret)) {
+      enabledDates.value = ret.map((date: Date) => new Date(date));
+    } else {
+      console.error("getDateofRecords did not return an array:", ret);
+      enabledDates.value = [];
+    }
+    selectedDate.value = enabledDates.value[enabledDates.value.length - 1]; // Set default date to the last of enabledDates
+    console.log("datatablekey:", typeof selectedDate, selectedDate.value );
+    datatablekey.value++; // Increment key to ensure DataTable re-renders with new data
+  });
+});
+
+const selectedDate = ref(new Date); // Default date is the last of enabledDates
 
 const cvtToDate = (date: DatePickerDateSlotOptions) => {
   return new Date(date.year, date.month, date.day);
@@ -52,20 +64,23 @@ const isSameDate = (a: Date, b: Date) => {
   );
 };
 
+const reRenderDataTable = () => {
+  datatablekey.value++;
+};
+
 const isDateEnabled = (date: Date) => {
-  return enabledDates.some((d) => isSameDate(d, date));
+  return enabledDates.value.some((d) => isSameDate(d, date));
 };
 </script>
 
 <template>
-  <section style="margin-top: 6rem">
+  <section style="margin-top: 6rem; width: 100%;;">
     <div class="container" style="justify-items: center">
-      <h2>Meal History</h2>
-      <!-- <DatePicker v-model="date" inline style="margin-top: 1rem;"/> -->
       <DatePicker
-        v-model="date"
+        v-model="selectedDate"
         style="margin-top: 1rem"
         inline
+        @date-select="reRenderDataTable"
         :pt="{
             day: (date : any) => ({
               class: {
@@ -77,38 +92,13 @@ const isDateEnabled = (date: Date) => {
       >
       </DatePicker>
       <DataTable
-        :key="locale"
-        :value="productStore.filteredData"
-        :globalFilterFields="['name', 'class']"
-        dataKey="order"
-        tableStyle="min-width: 50rem"
-        paginator
-        :rows="10"
-        rowHover
-        highlightOnSelect
+        v-if="datatablekey != 0"
+        :key="datatablekey"
+        :value="recordStore.getFoodRecordsByDate(selectedDate)"
+        dataKey="id"
+        table-style="width: 100%; min-width: 50rem; max-width: 100%"
+        style="margin-top: 1rem; width: 100%;"
       >
-        <template #header>
-          <div
-            style="
-              display: flex;
-              align-items: center;
-              justify-content: space-between;
-            "
-          >
-            <IconField>
-              <InputIcon class="pi pi-search" style="margin-right: 1rem" />
-              <InputText
-                v-model="productStore.filters['global'].value"
-                placeholder="Keyword Search"
-              />
-            </IconField>
-            <div style="display: flex; align-items: center">
-              <!-- <SizeReference /> -->
-            </div>
-          </div>
-        </template>
-
-        <Column selectionMode="multiple" style="width: 0.1%"></Column>
         <Column
           field="name"
           :header="$t('food_item')"
@@ -119,143 +109,30 @@ const isDateEnabled = (date: Date) => {
           </template>
         </Column>
         <Column
-          field="subclass"
-          :header="$t('food_class')"
-          style="width: 1%"
-          :showFilterMatchModes="false"
-          :showApplyButton="false"
-          :showClearButton="false"
-        >
-        </Column>
-        <Column
-          field="unit"
-          :header="$t('food_unit')"
-          style="width: 0.3%"
-        ></Column>
-        <Column
           field="gram"
           :header="$t('food_gram')"
           style="width: 0.3%"
         ></Column>
         <Column
-          sortable
           field="calories"
           :header="$t('calories')"
-          :filter="true"
-          filterField="calories"
-          :showFilterMatchModes="false"
-          :showApplyButton="false"
-          :showClearButton="false"
           style="width: 0.5%"
-        >
-          <template #body="{ data }">
-            <div
-              :style="{
-                backgroundColor: productStore.getColor(data.calories, 0, 550),
-                color: 'black',
-                padding: '10px',
-                borderRadius: '5px',
-                textAlign: 'center',
-              }"
-            >
-              {{ data.calories }}
-            </div>
-          </template>
-        </Column>
+        ></Column>
         <Column
-          sortable
           field="carbohydrate"
           :header="$t('carbohydrate')"
-          :filter="true"
-          filterField="carbohydrate"
-          :showFilterMatchModes="false"
-          :showApplyButton="false"
-          :showClearButton="false"
           style="width: 0.5%"
-        >
-          <template #body="{ data }">
-            <div
-              :style="{
-                backgroundColor: productStore.getColor(
-                  data.carbohydrate,
-                  0,
-                  50
-                ),
-                color: 'black',
-                padding: '10px',
-                borderRadius: '5px',
-                textAlign: 'center',
-              }"
-            >
-              {{ data.carbohydrate }}
-            </div>
-          </template>
-        </Column>
+        ></Column>
         <Column
-          sortable
           field="protein"
           :header="$t('protein')"
-          :showApplyButton="false"
-          :showClearButton="false"
           style="width: 0.5%"
-        >
-          <template #body="{ data }">
-            <div
-              :style="{
-                backgroundColor: productStore.getColor(data.protein, 0, 25),
-                color: 'black',
-                padding: '10px',
-                borderRadius: '5px',
-                textAlign: 'center',
-              }"
-            >
-              {{ data.protein }}
-            </div>
-          </template>
-        </Column>
+        ></Column>
         <Column
-          sortable
           field="fat"
           :header="$t('fat')"
-          :filter="true"
-          :showFilterMatchModes="false"
-          filterField="fat"
-          :showApplyButton="false"
-          :showClearButton="false"
           style="width: 0.5%"
-        >
-          <template #body="{ data }">
-            <div
-              :style="{
-                backgroundColor: productStore.getColor(data.fat, 0, 25),
-                color: 'black',
-                padding: '10px',
-                borderRadius: '5px',
-                textAlign: 'center',
-              }"
-            >
-              {{ data.fat }}
-            </div>
-          </template>
-        </Column>
-
-        <Column
-          sortable
-          field="dietaryFibre"
-          :header="$t('food_dt_fibre')"
-          :filter="true"
-          :showFilterMatchModes="false"
-          filterField="dietaryFibre"
-          :showApplyButton="false"
-          :showClearButton="false"
-          style="width: 0.5%"
-        >
-          <template #body="{ data }">
-            <div style="text-align: center">
-              {{ data.dietaryFibre }}
-            </div>
-          </template>
-        </Column>
+        ></Column>
       </DataTable>
     </div>
   </section>

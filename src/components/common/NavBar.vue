@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import { defineProps, onMounted, onUnmounted, ref } from "vue";
+import { defineProps, ref, watch } from "vue";
 import { RouterLink } from "vue-router";
 import LanguageSelector from "@/components/common/LanguageSelector.vue";
+import userBtn from "@/components/common/userBtn.vue";
+import { useAuthStore } from "@/stores/authStore";
 
 // Receive items from parent
 const props = defineProps({
@@ -15,6 +17,8 @@ const props = defineProps({
   },
 });
 
+var items = props.items;
+
 const activeMenuItem = ref<number | null>(null);
 const isMenuActive = ref(false);
 
@@ -27,6 +31,28 @@ const handleClick = (index: number) => {
   activeMenuItem.value = activeMenuItem.value === index ? null : index;
   isMenuActive.value = false;
 };
+
+const navbarKey = ref(0);
+
+const authStore = useAuthStore();
+
+watch(
+  () => authStore.isLoggedIn,
+  (newValue) => {
+    if (newValue) {
+      items = items.concat([
+        {
+          label: "history",
+          route: "/MealHistory",
+        },
+      ]);
+    } else {
+      items = items.filter(item => item.label !== "history");
+    }
+    navbarKey.value++;
+  }
+);
+
 </script>
 
 <template>
@@ -43,7 +69,7 @@ const handleClick = (index: number) => {
         <!-- menu -->
         <div class="sb-right-side">
           <nav id="sb-dynamic-menu" class="sb-menu-transition">
-            <div class="sb-navigation" :class="{ 'sb-active': isMenuActive }">
+            <div class="sb-navigation" :key="navbarKey" :class="{ 'sb-active': isMenuActive }">
               <ul class="sb-navigation-list">
                 <li
                   v-for="(item, index) in items"
@@ -56,12 +82,12 @@ const handleClick = (index: number) => {
                   </router-link>
                   <a v-else>{{ item.label }}</a>
                 </li>
-                <!-- language selector -->
                 <li class="sb-right-most-item">
                   <LanguageSelector
                     class="sb-language-selector"
                     :languages="languages"
                   />
+                  <userBtn class="sb-user-btn" />
                 </li>
               </ul>
             </div>
@@ -74,6 +100,7 @@ const handleClick = (index: number) => {
       </div>
     </div>
   </div>
+
   <!-- top bar end -->
 </template>
 
@@ -196,6 +223,10 @@ nav .sb-navigation .sb-right-most-item .sb-language-selector {
   margin-left: 1rem;
 }
 
+nav .sb-navigation .sb-right-most-item .sb-user-btn {
+  margin-left: 1rem;
+}
+
 @media (max-width: 992px) {
   nav .sb-navigation .sb-right-most-item {
     right: 0rem;
@@ -206,12 +237,9 @@ nav .sb-navigation .sb-right-most-item .sb-language-selector {
     margin-top: 1rem;
     margin-left: 0rem;
   }
-}
-
-@media (max-width: 992px) {
-  nav .sb-navigation .sb-language-selector {
-    justify-items: center;
-    padding: 0;
+  nav .sb-navigation .sb-right-most-item .sb-user-btn {
+    margin-top: 1rem;
+    margin-left: 0rem;
   }
 }
 

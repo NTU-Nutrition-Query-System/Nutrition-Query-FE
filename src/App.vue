@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { onMounted, onUnmounted } from "vue";
-import { useRouter } from "vue-router";
 
 import NavBar from "@/components/common/NavBar.vue";
 import Footer from "@/components/common/Footer.vue";
@@ -13,22 +12,18 @@ const languages = [
 const items = ref([
   {
     label: "home",
-    icon: "pi pi-home",
     route: "/",
   },
   {
     label: "calculator",
-    icon: "pi pi-calculator",
     route: "/Calculator",
   },
   {
     label: "nutrition_note",
-    icon: "pi pi-about",
     route: "/NutritionNote",
   },
   {
     label: "about",
-    icon: "pi pi-about",
     route: "/About",
   },
 ]);
@@ -60,7 +55,6 @@ onUnmounted(() => {
   document.removeEventListener("mousemove", handleMouseMove);
   document.removeEventListener("click", handleClick);
 });
-
 </script>
 
 <template>
@@ -69,7 +63,7 @@ onUnmounted(() => {
     <div class="sb-click-effect" ref="cursor"></div>
     <!-- loader -->
     <div class="sb-load"></div>
-    <NavBar :items="items" :languages="languages"/>
+    <NavBar :items="items" :languages="languages" />
 
     <div class="MainPage">
       <!-- Sidebar Navigation -->

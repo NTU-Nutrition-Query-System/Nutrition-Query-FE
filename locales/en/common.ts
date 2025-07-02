@@ -8,6 +8,7 @@ export default {
     food: "Food",
     about: "About",
     nutrition_note: "Nutrition Note",
+    history: "History",
   },
   page_title: {
     calculator: "Calculator",
@@ -55,7 +56,7 @@ export default {
           "e.g. joining sport teams, jogging, weight or heavy lifting, yard work",
       },
     },
-    calculate: "Calcluate my nutrition needs",
+    calculate: "Calculate my nutrition needs",
     choosing: "Choose food items",
     scroll_down: "Scroll down",
     food_selection_prompt:

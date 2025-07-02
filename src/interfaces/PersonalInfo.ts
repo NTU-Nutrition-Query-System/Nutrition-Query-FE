@@ -1,5 +1,4 @@
 export interface PersonalInfo{
-    uuid: string;
     name: string;
     schoolName: string;
     age: number;

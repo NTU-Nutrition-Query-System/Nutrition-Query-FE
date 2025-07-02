@@ -4,7 +4,6 @@ import type { PersonalInfo } from "@/interfaces/PersonalInfo";
 
 export const usePersonInfoStore = defineStore("personInfoStore", () => {
     const personInfo = ref<PersonalInfo>({
-        uuid: "",
         name: "",
         schoolName: "",
         age: 0,

@@ -9,7 +9,7 @@ import "@/assets/base.css";
 import "primeicons/primeicons.css";
 import i18n from "../locales/i18n"; // Import i18n configuration
 import { createPinia } from "pinia";
-
+import vue3GoogleLogin from "vue3-google-login";
 // Create the Vue app
 const app = createApp(App);
 const MyPreset = definePreset(Material, {
@@ -53,6 +53,9 @@ app.use(PrimeVue, {
 app.use(router);
 app.use(i18n);
 app.use(pinia);
+app.use(vue3GoogleLogin, {
+  clientId: import.meta.env.VITE_GOOGLE_CLIENT_ID,
+});
 
 // Mount the app to the #app element in the DOM
 app.mount("#app");
