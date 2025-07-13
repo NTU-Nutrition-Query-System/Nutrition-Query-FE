@@ -30,6 +30,7 @@
     "swiper": "^11.2.1",
     "swup": "^4.8.1",
     "vue": "^3.5.11",
+    "vue-data-ui": "^2.15.1",
     "vue-i18n": "^10.0.6",
     "vue-progressbar": "^0.7.5",
     "vue-router": "^4.4.5"

@@ -64,6 +64,7 @@ export default {
     school_name: "學校名稱",
     name: "姓名",
     date: "日期",
+    save: "儲存到紀錄",
   },
   calories: "熱量(大卡)",
   protein: "蛋白質(克)",

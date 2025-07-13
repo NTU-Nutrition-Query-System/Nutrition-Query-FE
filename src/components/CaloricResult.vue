@@ -24,6 +24,8 @@ import { useProductStore } from "@/stores/productStore";
 import RecommendMealWindow from "@/components/RecommendMealWindow.vue";
 import CustomFoodWindow from "@/components/CustomFoodWindow.vue";
 import { useAuthStore } from "@/stores/authStore";
+import { caloricResultConfig, caloricResultSeries } from "@/components/common/resultGaugeConfig";
+import { VueUiGauge } from "vue-data-ui";
 import saveRecord from "./saveRecord.vue";
 const ResultExport = defineAsyncComponent(() => import("./ResultExport.vue"));
 import { useI18n } from "vue-i18n";
@@ -194,15 +196,16 @@ const checkLogined = () => {
       <TabList>
         <Tab value="0">{{$t('selection_meal_requirement')}}</Tab>
         <Tab value="1">{{$t('selection_daily_requirement')}}</Tab>
-        <Tab value="2" @click="checkLogined">{{$t('儲存到紀錄')}}</Tab>
+        <Tab value="2" @click="checkLogined">{{$t('resultPage.save')}}</Tab>
       </TabList>
       <TabPanels>
         <TabPanel value="0">
           <DataTable
             :value="selectedIntake"
             dataKey="id"
-            tableStyle="min-width: 50rem"
-            class="custom-divider">
+            tableStyle="min-width: 50rem;"
+            class="custom-divider"
+            >
             <Column
               field="nutrition"
               :header="$t('selection_nutrition')">
@@ -221,30 +224,31 @@ const checkLogined = () => {
               field="mealUptakePercentage"
               :header="$t('selection_meal_uptake_percentage')">
               <template #body="slotProps">
-                <span
-                  style="display: flex; align-items: center; justify-content: center;"
+                <lable
                   :class="{
                     'precentBar-low-text':
-                    slotProps.data.mealUptakePercentage < 85,
+                    slotProps.data.mealUptakePercentage < 75,
                     'precentBar-medium-text':
-                    slotProps.data.mealUptakePercentage >= 85 &&
-                    slotProps.data.mealUptakePercentage <= 115,
+                    slotProps.data.mealUptakePercentage >= 75 &&
+                    slotProps.data.mealUptakePercentage <= 125,
                     'precentBar-high-text':
-                    slotProps.data.mealUptakePercentage > 115,
+                    slotProps.data.mealUptakePercentage > 125,
                 }">
                 {{ slotProps.data.mealUptakePercentage }}%
-                </span>
-                <ProgressBar
-                  :value="Math.min(100, slotProps.data.mealUptakePercentage)"
-                  :class="{
-                    'precentBar-low':
-                    slotProps.data.mealUptakePercentage < 85,
-                    'precentBar-medium':
-                    slotProps.data.mealUptakePercentage >= 85 &&
-                    slotProps.data.mealUptakePercentage <= 115,
-                    'precentBar-high':
-                    slotProps.data.mealUptakePercentage > 115,
-                }"/>
+                </lable>
+              </template>
+            </Column>
+            <Column field="mealUptakePercentage">
+              <template #body="slotProps">
+                <VueUiGauge 
+                  :config="caloricResultConfig" 
+                  :dataset="{
+                            series: caloricResultSeries,
+                            value: parseFloat(slotProps.data.mealUptakePercentage),
+                          }"
+                  style="width: 180px; height: 65px; position: relative; top: -20px;"
+                  >
+                </VueUiGauge>
               </template>
             </Column>
           </DataTable>
@@ -277,12 +281,12 @@ const checkLogined = () => {
                   style="display: flex; align-items: center; justify-content: center;"
                   :class="{
                     'precentBar-low-text':
-                    slotProps.data.dailyUptakePercentage < 85,
+                    slotProps.data.dailyUptakePercentage < 75,
                     'precentBar-medium-text':
-                    slotProps.data.dailyUptakePercentage >= 85 &&
-                    slotProps.data.dailyUptakePercentage <= 115,
+                    slotProps.data.dailyUptakePercentage >= 75 &&
+                    slotProps.data.dailyUptakePercentage <= 125,
                     'precentBar-high-text':
-                    slotProps.data.dailyUptakePercentage > 115,
+                    slotProps.data.dailyUptakePercentage > 125,
                 }">
                 {{ slotProps.data.dailyUptakePercentage }}%
                 </span>
@@ -290,12 +294,12 @@ const checkLogined = () => {
                   :value="Math.min(100, slotProps.data.dailyUptakePercentage)"
                   :class="{
                     'precentBar-low':
-                    slotProps.data.dailyUptakePercentage < 85,
+                    slotProps.data.dailyUptakePercentage < 75,
                     'precentBar-medium':
-                    slotProps.data.dailyUptakePercentage >= 85 &&
-                    slotProps.data.dailyUptakePercentage <= 115,
+                    slotProps.data.dailyUptakePercentage >= 75 &&
+                    slotProps.data.dailyUptakePercentage <= 125,
                     'precentBar-high':
-                    slotProps.data.dailyUptakePercentage > 115,
+                    slotProps.data.dailyUptakePercentage > 125,
                 }"/>
               </template>
             </Column>

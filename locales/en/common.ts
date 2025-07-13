@@ -69,6 +69,7 @@ export default {
     school_name: "School",
     name: "Name",
     date: "Date",
+    save: "Save to History",
   },
   calories: "Calories (kcal)",
   protein: "Protein (g)",

@@ -95,9 +95,17 @@ const checkInfomation = () => {
 
 <template>
   <Toast position="top-center" :auto-z-index=true style="width: 20rem" />
-  <div class="sb-group-input" style="width: 300px; margin: 2.5rem auto">
-    <span>選擇時間</span>
-    <DatePicker id="datepicker-12h" v-model="datetime12h" fluid show-time :step-minute=30 />
+  <div class="sb-group-input" style="width: 500px; margin: 2.5rem auto;">
+    <div style="display: inline-flex; justify-content: center;">
+      <div style="margin-right: 1rem;">
+        <span>選擇日期</span>
+        <DatePicker id="datepicker-12h" v-model="datetime12h"/>
+      </div>
+      <div>
+        <span>選擇時間</span>
+        <DatePicker id="timepicker-12h" v-model="datetime12h" timeOnly :step-minute=30 />
+      </div>
+    </div>
   </div>
   <div style="display: flex; justify-content: center; margin-top: 2rem">
     <Button 
