@@ -290,11 +290,8 @@ watch(() => productStore.lastUpdated, () => {
             />
           </IconField>
           <div style="display: flex; align-items: center">
-            <!-- <SizeReference /> -->
-          </div>
-
-          <table class="display-row nutrition-desc">
-            <thead>
+            <table class="display-row nutrition-desc">
+              <thead>
               <tr>
                 <td>Level</td>
               </tr>
@@ -314,7 +311,9 @@ watch(() => productStore.lastUpdated, () => {
                 </td>
               </tr>
             </tbody>
-          </table>
+            </table>
+            <SizeReference/>
+          </div>
         </div>
       </template>
 
