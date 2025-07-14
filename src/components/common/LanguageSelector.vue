@@ -15,6 +15,10 @@ const currentIndex = ref(0);
 
 // Compute current language
 const currentLanguage = computed(() => props.languages[currentIndex.value]);
+const nextLanguage = computed(() => {
+  const nextIndex = (currentIndex.value + 1) % props.languages.length;
+  return props.languages[nextIndex];
+});
 
 // Switch to next language
 const switchLanguage = () => {
@@ -31,7 +35,7 @@ locale.value = currentLanguage.value.value;
     <div class="language-selector">
       <!-- <label for="language-button" style="margin-right: 0.5rem">{{ $t("select_language") }}</label> -->
       <button id="language-button" @click="switchLanguage" class="language-button" style="height: 2.5rem">
-        {{ currentLanguage.label }}
+        {{ nextLanguage.label }}
       </button>
     </div>
   </div>
