@@ -21,7 +21,7 @@ export const useRecordStore = defineStore("RecordStore", () => {
         const groupedRecords: { [key: string]: foodItem[] } = {};
 
         records.records.forEach((record:any) => {
-          const recordDate = new Date(record.date).toISOString().split("T")[0];
+          const recordDate = new Date(record.date * 1000).toISOString();
           if (!groupedRecords[recordDate]) {
             groupedRecords[recordDate] = [];
           }

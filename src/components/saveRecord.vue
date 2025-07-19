@@ -53,7 +53,7 @@ const openDialog = () => {
 const closeDialog = () => {
   dialogVisible.value = false;
 };
-const datetime12h = ref();
+const datetime12h = ref(new Date());
 
 const checkInfomation = () => {
   if (!datetime12h.value) {
@@ -65,10 +65,11 @@ const checkInfomation = () => {
     });
     return false;
   }
+  datetime12h.value.setMilliseconds(0); // Clear milliseconds for consistency
+  datetime12h.value.setSeconds(0); // Clear seconds for consistency
   // Here you can add logic to save the record with datetime12h.value
   // For example, you might want to call an API or store it in a Vuex store
-  datetime12h.value.setHours(12, 0, 0, 0);
-  uploadRecord(datetime12h.value.getTime(), props.foodItems)
+  uploadRecord(datetime12h.value.getTime() / 1000, props.foodItems)
     .then(() => {
       toast.add({
         severity: "success",
