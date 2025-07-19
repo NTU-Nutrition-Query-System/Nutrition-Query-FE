@@ -25,9 +25,6 @@ faLibrary.add(faSortDown, faCalendarDay, faBurger);
 
 const productStore = useProductStore();
 const personalInfoStore = usePersonInfoStore();
-// Declare reactive variables using `ref`
-const activityFactor = ref<string>("1.3");
-const gender = ref("Male");
 const isExpanded = ref<boolean>(false);
 const showResult = ref<boolean>(false);
 const dailyNeeds = ref<nutrient>({
@@ -38,20 +35,20 @@ const dailyNeeds = ref<nutrient>({
 });
 const toast = useToast();
 const calculateDailyNeed = () => {
-  if (gender.value === "Male") {
+  if (personalInfoStore.personInfo.gender == 1) {
     dailyNeeds.value.calories =
       (66 +
         13.7 * personalInfoStore.personInfo.weight +
         5 * personalInfoStore.personInfo.height -
         6.8 * personalInfoStore.personInfo.age) *
-      parseFloat(activityFactor.value);
+      personalInfoStore.personInfo.activityFactor;
   } else {
     dailyNeeds.value.calories =
       (665 +
         9.6 * personalInfoStore.personInfo.weight +
         1.8 * personalInfoStore.personInfo.height -
         4.7 * personalInfoStore.personInfo.age) *
-      parseFloat(activityFactor.value);
+      personalInfoStore.personInfo.activityFactor;
   }
 
   dailyNeeds.value.protein = personalInfoStore.personInfo.weight * 1;
@@ -174,13 +171,12 @@ onMounted(() => {
                     <div class="form-check form-check-inline">
                       <!-- <input class="form-check-input check-activity" type="radio" name="gender" id="boy" value="boy"> -->
                       <RadioButton
-                        v-model="gender"
-                        value="Male"
+                        v-model="personalInfoStore.personInfo.gender"
+                        value=1
                         style="margin-left: 1rem"
                       />
                       <label
                         class="form-check-label"
-                        for="boy"
                         style="margin-left: 0.3rem; font-size: 24px"
                         >{{ $t("calculator_input.gender.male") }}</label
                       >
@@ -188,13 +184,12 @@ onMounted(() => {
                     <div class="form-check form-check-inline">
                       <!-- <input class="form-check-input check-activity" type="radio" name="gender" id="girl" value="girl"> -->
                       <RadioButton
-                        v-model="gender"
-                        value="Female"
+                        v-model="personalInfoStore.personInfo.gender"
+                        value=0
                         style="margin-left: 1rem"
                       />
                       <label
                         class="form-check-label"
-                        for="girl"
                         style="margin-left: 0.3rem; font-size: 24px"
                         >{{ $t("calculator_input.gender.female") }}</label
                       >
@@ -283,8 +278,8 @@ onMounted(() => {
                     >
                       <!-- <input v-model="activityFactor" value="1.3" class="form-check-input check-activity" type="radio" name="intensity" id="mild"> -->
                       <RadioButton
-                        v-model="activityFactor"
-                        value="1.3"
+                        v-model="personalInfoStore.personInfo.activityFactor"
+                        value=1.3
                         class="form-check-input check-activity"
                       />
                       <label
@@ -305,8 +300,8 @@ onMounted(() => {
                     >
                       <!-- <input v-model="activityFactor" value="1.5" class="form-check-input check-activity" type="radio" name="intensity" id="moderate"> -->
                       <RadioButton
-                        v-model="activityFactor"
-                        value="1.5"
+                        v-model="personalInfoStore.personInfo.activityFactor"
+                        value=1.5
                         class="form-check-input check-activity"
                       />
                       <label
@@ -329,8 +324,8 @@ onMounted(() => {
                     >
                       <!-- <input v-model="activityFactor" value="2" class="form-check-input check-activity" type="radio" name="intensity" id="severe"> -->
                       <RadioButton
-                        v-model="activityFactor"
-                        value="2"
+                        v-model="personalInfoStore.personInfo.activityFactor"
+                        value=2
                         class="form-check-input check-activity"
                       />
                       <label

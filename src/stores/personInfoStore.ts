@@ -6,9 +6,11 @@ export const usePersonInfoStore = defineStore("personInfoStore", () => {
     const personInfo = ref<PersonalInfo>({
         name: "",
         schoolName: "",
+        gender: 0,
         age: 0,
         weight: 0,
         height: 0,
+        activityFactor: 0,
     });
     
     return {
