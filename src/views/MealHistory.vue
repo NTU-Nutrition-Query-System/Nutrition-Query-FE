@@ -2,14 +2,17 @@
 import { ref, watch, onMounted } from "vue";
 import { usePrimeVue } from "primevue/config";
 import { useI18n } from "vue-i18n";
+import { useToast } from "primevue/usetoast";
 import DatePicker from "primevue/datepicker";
 import DataTable from "primevue/datatable";
 import Column from "primevue/column";
 
 import type { DatePickerDateSlotOptions } from "primevue/datepicker";
 
+import { useProductStore } from "@/stores/productStore";
 import { useRecordStore } from "@/stores/recordStore";
 
+const productStore = useProductStore();
 const recordStore = useRecordStore();
 
 const primevue = usePrimeVue();
@@ -45,7 +48,6 @@ onMounted(() => {
       enabledDates.value = [];
     }
     selectedDate.value = enabledDates.value[enabledDates.value.length - 1]; // Set default date to the last of enabledDates
-    console.log("datatablekey:", typeof selectedDate, selectedDate.value );
     datatablekey.value++; // Increment key to ensure DataTable re-renders with new data
   });
 });
@@ -71,26 +73,102 @@ const reRenderDataTable = () => {
 const isDateEnabled = (date: Date) => {
   return enabledDates.value.some((d) => isSameDate(d, date));
 };
+
+const toast = useToast();
+
 </script>
 
 <template>
   <section style="margin-top: 6rem; width: 100%;;">
     <div class="container" style="justify-items: center">
-      <DatePicker
-        v-model="selectedDate"
-        style="margin-top: 1rem"
-        inline
-        @date-select="reRenderDataTable"
-        :pt="{
-            day: (date : any) => ({
-              class: {
-                'p-disabled': !isDateEnabled(cvtToDate(date.context.date)),
-                'p-highlight': isSameDate(cvtToDate(date.context.date), new Date()),
-              }
-            })
-        }"
-      >
-      </DatePicker>
+      <div class="row d-flex justify-content-center align-items-center" style="width: 100%">
+        <div class="col-lg-5">
+          <div class="sb-form-content">
+            <div class="sb-main-content">
+              <h3 class="sb-mb-30">
+                <FontAwesomeIcon :icon="['fas', 'calendar-day']" />
+                {{ $t("calculator_result_title_my") }}
+                <span class="text-yellow">{{
+                  $t("calculator_result_title_daily")
+                }}</span>
+                {{ $t("calculator_result_title_nutrient") }}
+              </h3>
+              <div
+                class="sb-menu-item sb-menu-item-sm"
+                v-for="(value, key) in productStore.dailyNeeds"
+                :key="key"
+              >
+                <div class="sb-card-tp">
+                  <h4 class="sb-card-title">{{ $t(key) }}:</h4>
+                  <div class="sb-price">
+                    {{ value.toFixed(2) }} ({{ key === "calories" ? "kcal" : "g" }})
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-5">
+          <div class="sb-form-content">
+            <div class="sb-main-content">
+              <h3 class="sb-mb-30">
+                <FontAwesomeIcon :icon="['fas', 'burger']" />
+                {{ $t("calculator_result_title_my") }}
+                <span class="text-yellow">{{
+                  $t("calculator_result_title_meal")
+                }}</span>
+                {{ $t("calculator_result_title_nutrient") }}
+              </h3>
+              <div
+                class="sb-menu-item sb-menu-item-sm"
+                v-for="(value, key) in productStore.dailyNeeds"
+                :key="key"
+              >
+                <div class="sb-card-tp">
+                  <h4 class="sb-card-title">{{ $t(key) }}:</h4>
+                  <div class="sb-price">
+                    {{ (value / 3.0).toFixed(2)}} ({{ key === "calories" ? "kcal" : "g" }})
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      
+      <div style="width: 100%; display: flex; flex-direction: row; align-items: center;">
+        <DatePicker
+          :key="datatablekey"
+          v-model="selectedDate"
+          style="margin-top: 1rem"
+          inline
+          :pt="{
+              day: (date : any) => ({
+                class: {
+                  'p-disabled': !isDateEnabled(cvtToDate(date.context.date)),
+                  'p-highlight': isSameDate(cvtToDate(date.context.date), new Date()),
+                }
+              })
+          }"
+        >
+        </DatePicker>
+        <DataTable
+          :key="datatablekey"
+          :value="enabledDates"
+          selectionMode="single"
+          v-model:selection="selectedDate"
+          style=" margin-left: 1rem; width: 100%;"
+        >
+          <Column header="時間" style="width: 200px">
+            <template #body="rowData">
+              <span>{{ rowData.data.toLocaleString('zh-tw') }}</span>
+            </template>
+          </Column>
+        </DataTable>
+      </div>
       <DataTable
         v-if="datatablekey != 0"
         :key="datatablekey"
