@@ -290,17 +290,15 @@ const checkLogined = () => {
                 }">
                 {{ slotProps.data.dailyUptakePercentage }}%
                 </span>
-                <ProgressBar
-                  :value="Math.min(100, slotProps.data.dailyUptakePercentage)"
-                  :class="{
-                    'precentBar-low':
-                    slotProps.data.dailyUptakePercentage < 75,
-                    'precentBar-medium':
-                    slotProps.data.dailyUptakePercentage >= 75 &&
-                    slotProps.data.dailyUptakePercentage <= 125,
-                    'precentBar-high':
-                    slotProps.data.dailyUptakePercentage > 125,
-                }"/>
+                <VueUiGauge 
+                  :config="caloricResultConfig" 
+                  :dataset="{
+                            series: caloricResultSeries,
+                            value: Math.max(0, Math.min(200, parseFloat(slotProps.data.mealUptakePercentage))),
+                          }"
+                  style="width: 180px; height: 65px; position: relative; top: -20px;"
+                  >
+                </VueUiGauge>
               </template>
             </Column>
           </DataTable>
