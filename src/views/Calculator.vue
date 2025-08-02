@@ -8,6 +8,7 @@ import FoodTable from "@/components/FoodTable.vue";
 import CaloricResult from "@/components/CaloricResult.vue";
 import type { nutrient } from "@/interfaces/Calculator";
 import { getTableData } from "@/apis/tableData";
+import Toast from "@/primevue/toast";
 import { useToast } from "primevue/usetoast";
 import { useProductStore } from "@/stores/productStore";
 import { usePersonInfoStore } from "@/stores/personInfoStore";
@@ -66,6 +67,51 @@ const calculate = () => {
 };
 
 const nextOnClicked = () => {
+  if (!personalInfoStore.personInfo.gender) {
+    toast.add({
+      severity: "error",
+      summary: "",
+      detail: "請選擇性別",
+      life: 2000,
+    });
+    return;
+  }
+  if (personalInfoStore.personInfo.age === 0) {
+    toast.add({
+      severity: "error",
+      summary: "",
+      detail: "請輸入年齡",
+      life: 2000,
+    });
+    return;
+  } 
+  if (personalInfoStore.personInfo.height == 0) {
+    toast.add({
+      severity: "error",
+      summary: "",
+      detail: "請輸入身高",
+      life: 2000,
+    });
+    return;
+  }
+  if (personalInfoStore.personInfo.weight == 0) {
+    toast.add({
+      severity: "error",
+      summary: "",
+      detail: "請輸入體重",
+      life: 2000,
+    });
+    return;
+  }
+  if (!personalInfoStore.personInfo.activityFactor) {
+    toast.add({
+      severity: "error",
+      summary: "",
+      detail: "請選擇活動因子",
+      life: 2000,
+    });
+    return;
+  }
   isExpanded.value = true;
   calculateDailyNeed();
   uploadPersonalInfo();
@@ -160,6 +206,7 @@ onMounted(() => {
             </div>
             <div class="sb-form-content">
               <div class="sb-main-content">
+                <Toast position="top-center" :baseZIndex=1500 style="width: 20rem" />
                 <div class="sb-features-item mb-3">
                   <div class="sb-number">Step 1</div>
                 </div>
