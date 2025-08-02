@@ -196,7 +196,7 @@ const checkLogined = () => {
       <TabList>
         <Tab value="0">{{$t('selection_meal_requirement')}}</Tab>
         <Tab value="1">{{$t('selection_daily_requirement')}}</Tab>
-        <Tab value="2" @click="checkLogined">{{$t('resultPage.save')}}</Tab>
+        <!-- <Tab value="2" @click="checkLogined">{{$t('resultPage.save')}}</Tab> -->
       </TabList>
       <TabPanels>
         <TabPanel value="0">
@@ -305,9 +305,9 @@ const checkLogined = () => {
             </Column>
           </DataTable>
         </TabPanel>
-        <TabPanel value="2">
+        <!-- <TabPanel value="2">
           <saveRecord :food-items="productStore.selectedProducts"/>
-        </TabPanel>
+        </TabPanel> -->
       </TabPanels>
     </Tabs>
 
