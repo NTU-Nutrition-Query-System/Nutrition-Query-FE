@@ -10,7 +10,6 @@ import TabList from "primevue/tablist";
 import Tab from "primevue/tab";
 import TabPanels from "primevue/tabpanels";
 import TabPanel from "primevue/tabpanel";
-import ProgressBar from "primevue/progressbar";
 import Button from "primevue/button";
 import Toast from "primevue/toast";
 import { useToast } from "primevue/usetoast";
@@ -137,7 +136,9 @@ const selectedIntake = computed<CalculatedNutrition[]>(() => {
     },
   ];
 });
+
 const visibleEmit = defineEmits(["update:visible"]);
+
 const isVisible = ref(props.visible);
 // Close dialog and emit update event
 const closeDialog = () => {
@@ -224,7 +225,7 @@ const checkLogined = () => {
               field="mealUptakePercentage"
               :header="$t('selection_meal_uptake_percentage')">
               <template #body="slotProps">
-                <lable
+                <label
                   :class="{
                     'precentBar-low-text':
                     slotProps.data.mealUptakePercentage < 75,
@@ -235,7 +236,7 @@ const checkLogined = () => {
                     slotProps.data.mealUptakePercentage > 125,
                 }">
                 {{ slotProps.data.mealUptakePercentage }}%
-                </lable>
+                </label>
               </template>
             </Column>
             <Column field="mealUptakePercentage">
@@ -277,8 +278,7 @@ const checkLogined = () => {
               field="dailyUptakePercentage"
               :header="$t('selection_daily_uptake_percentage')">
               <template #body="slotProps">
-                <span
-                  style="display: flex; align-items: center; justify-content: center;"
+                <label
                   :class="{
                     'precentBar-low-text':
                     slotProps.data.dailyUptakePercentage < 75,
@@ -289,7 +289,11 @@ const checkLogined = () => {
                     slotProps.data.dailyUptakePercentage > 125,
                 }">
                 {{ slotProps.data.dailyUptakePercentage }}%
-                </span>
+                </label>
+              </template>
+            </Column>
+            <Column field="dailyUptakePercentage">
+              <template #body="slotProps">
                 <VueUiGauge 
                   :config="caloricResultConfig" 
                   :dataset="{
