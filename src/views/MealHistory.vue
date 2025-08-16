@@ -12,6 +12,13 @@ import type { DatePickerDateSlotOptions } from "primevue/datepicker";
 import { useProductStore } from "@/stores/productStore";
 import { useRecordStore } from "@/stores/recordStore";
 
+import { library as faLibrary } from "@fortawesome/fontawesome-svg-core";
+import { faCalendarDay, faBurger } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+faLibrary.add(faCalendarDay);
+faLibrary.add(faBurger);
+
+
 const productStore = useProductStore();
 const recordStore = useRecordStore();
 
