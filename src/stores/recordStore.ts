@@ -74,15 +74,9 @@ export const useRecordStore = defineStore("RecordStore", () => {
   };
 
   const getFoodAndTimeByDate = (date: Date) => {
-    const rec = foodRecords.value.find((record) => isSameDate(record.date, date));
-    if (!rec) return [];
-
-    console.log("getFoodAndTimeByDate", rec);
-
-    return rec.food.map((f) => ({
-      ...f,
-      date: rec.date,  
-    }));
+    return foodRecords.value.filter(
+      r => r.date.toDateString() === date.toDateString()
+    );
   };
 
   return {
