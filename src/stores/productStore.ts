@@ -8,12 +8,19 @@ import type {
 } from "@/interfaces/Calculator";
 import { FilterMatchMode } from "@primevue/core/api";
 
+import type { PersonalInfo } from "@/interfaces/PersonalInfo";
+
 export const useProductStore = defineStore("productStore", () => {
   const products = ref<weightedFoodItem[]>([]);
   const selectedProducts = ref<weightedFoodItem[]>([]);
   const customProducts = ref<weightedFoodItem[]>([]);
   const customProductsCount = ref<number>(0);
-  const dailyNeeds = ref<nutrient>();
+  const dailyNeeds = ref<nutrient>({
+    calories: 0,
+    carbohydrate: 0,
+    protein: 0,
+    fat: 0,
+  });
   const foodTableLoaded = ref(false);
   const selectedOptions = ref();
   const lastUpdated = ref<number>(Date.now());
@@ -68,10 +75,15 @@ export const useProductStore = defineStore("productStore", () => {
   const filters = ref({
     global: { value: null, matchMode: FilterMatchMode.CONTAINS },
   });
+
   const calculatorFilters = ref({
     global: { value: null, matchMode: FilterMatchMode.CONTAINS },
   });
-  const loadTableData = async (getTableData: (lang: string) => Promise<any[]>, lang: string = 'zh') => {
+
+  const loadTableData = async (
+    getTableData: (lang: string) => Promise<any[]>,
+    lang: string = "zh"
+  ) => {
     const res = await getTableData(lang); // call api
     products.value = res;
     foodTableLoaded.value = true;
@@ -81,6 +93,7 @@ export const useProductStore = defineStore("productStore", () => {
     });
     lastUpdated.value = Date.now();
   };
+
   const updateRow = (row: weightedFoodItem) => {
     if (!selectedProducts.value.some((item: any) => item.id === row.id)) {
       selectedProducts.value.push(row);
@@ -103,6 +116,7 @@ export const useProductStore = defineStore("productStore", () => {
       return false;
     }
   };
+
   const getColor = (value: number, min_val: number, max_val: number) => {
     const min = min_val;
     const max = max_val;
@@ -138,9 +152,11 @@ export const useProductStore = defineStore("productStore", () => {
   const removeTag = (index: number) => {
     selectedOptions.value.splice(index, 1);
   };
+
   const selectedClass = ref<number>(0);
 
   const productsFilterByCategories = ref<foodItem[][]>([]);
+
   // Clean the search field
   const clearFilters = () => {
     filters.value["global"].value = null;
@@ -160,6 +176,7 @@ export const useProductStore = defineStore("productStore", () => {
       )
     );
   });
+
   const filteredData = computed(() => {
     // 如果 selectedOptions 為 undefined 或空陣列，則返回原始資料
     if (!selectedOptions.value || selectedOptions.value.length === 0) {
@@ -206,6 +223,29 @@ export const useProductStore = defineStore("productStore", () => {
     dailyNeeds.value = data;
   };
 
+  const calculateDailyNeeds = (personalInfo: PersonalInfo) => {
+    if (personalInfo.gender == 1) {
+      dailyNeeds.value.calories =
+        (66 +
+          13.7 * personalInfo.weight +
+          5 * personalInfo.height -
+          6.8 * personalInfo.age) *
+        personalInfo.activityFactor;
+    } else {
+      dailyNeeds.value.calories =
+        (665 +
+          9.6 * personalInfo.weight +
+          1.8 * personalInfo.height -
+          4.7 * personalInfo.age) *
+        personalInfo.activityFactor;
+    }
+
+    dailyNeeds.value.protein = personalInfo.weight * 1;
+
+    dailyNeeds.value.carbohydrate = (dailyNeeds.value.calories * 0.5) / 4;
+
+    dailyNeeds.value.fat = (dailyNeeds.value.calories * 0.3) / 9;
+  };
 
   return {
     lastUpdated,
@@ -229,5 +269,6 @@ export const useProductStore = defineStore("productStore", () => {
     calculatorFilteredData,
     calculatorFilters,
     dailyNeeds,
+    calculateDailyNeeds,
   };
 });

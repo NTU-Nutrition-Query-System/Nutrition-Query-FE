@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { onMounted, ref } from "vue";
 import { relogin } from "@/apis/google-login";
-import { usePersonInfoStore } from "./personInfoStore";
+import { usePersonalInfoStore } from "./personInfoStore";
 import type { PersonalInfo } from "@/interfaces/PersonalInfo";
 export interface userInfo extends PersonalInfo {
   email: string;
@@ -45,7 +45,7 @@ export const useAuthStore = defineStore("authStore", () => {
 
   const login = (user: userInfo, accessToken: string) => {
     userInfo.value = user;
-    const personInfoStore = usePersonInfoStore();
+    const personInfoStore = usePersonalInfoStore();
     personInfoStore.personInfo = {
       name: user.name || "",
       schoolName: user.schoolName || "",

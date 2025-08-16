@@ -6,7 +6,7 @@ import Button from "primevue/button";
 import { useToast } from "primevue/usetoast";
 import type { CalculatedNutrition } from "@/interfaces/Calculator";
 import { useProductStore } from "@/stores/productStore";
-import { usePersonInfoStore } from "@/stores/personInfoStore";
+import { usePersonalInfoStore } from "@/stores/personInfoStore";
 import { exportResultToXlsx } from "@/components/ResultToXlsx";
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
@@ -14,23 +14,26 @@ const { t } = useI18n();
 const toast = useToast();
 const productStore = useProductStore();
 const dialogVisible = ref(false);
-const personalInfoStore = usePersonInfoStore();
+const personalInfoStore = usePersonalInfoStore();
 
 const checkInfomation = () => {
-    if (personalInfoStore.personInfo.name == "" || personalInfoStore.personInfo.schoolName == "") {
-        toast.add({
-            severity: "error",
-            summary: "",
-            detail: "請填寫姓名與學校",
-            life: 2000,
-        });
-        return false;
-    } else {
-      personalInfoStore.personInfo
-      exportResultToXlsx(props.selectedIntake, productStore.selectedProducts, t)
-    }
-    closeDialog();
-    return true;
+  if (
+    personalInfoStore.personInfo.name == "" ||
+    personalInfoStore.personInfo.schoolName == ""
+  ) {
+    toast.add({
+      severity: "error",
+      summary: "",
+      detail: "請填寫姓名與學校",
+      life: 2000,
+    });
+    return false;
+  } else {
+    personalInfoStore.personInfo;
+    exportResultToXlsx(props.selectedIntake, productStore.selectedProducts, t);
+  }
+  closeDialog();
+  return true;
 };
 
 const showDialog = () => {
@@ -51,12 +54,10 @@ const props = defineProps({
 </script>
 
 <template>
-  <div style="display: flex; align-items: center;">
-    <Button 
-        @click="showDialog()"
-        class="btn-yellow">
-        <i class="pi pi-download"/>
-        {{$t('button.toXlsx')}}
+  <div style="display: flex; align-items: center">
+    <Button @click="showDialog()" class="btn-yellow">
+      <i class="pi pi-download" />
+      {{ $t("button.toXlsx") }}
     </Button>
   </div>
   <div>
@@ -71,28 +72,21 @@ const props = defineProps({
     style="width: 40%; height: 80%"
   >
     <div class="sb-group-input" style="width: 300px; margin: 2.5rem auto">
-      <input 
-        v-model="personalInfoStore.personInfo.name"
-        type="text" 
-        required 
-      />
-      <label>{{$t('resultPage.name')}}</label>
+      <input v-model="personalInfoStore.personInfo.name" type="text" required />
+      <label>{{ $t("resultPage.name") }}</label>
     </div>
     <div class="sb-group-input" style="width: 300px; margin: 2.5rem auto">
-      <input 
-        v-model="personalInfoStore.personInfo.schoolName" 
-        type="text" 
-        required 
+      <input
+        v-model="personalInfoStore.personInfo.schoolName"
+        type="text"
+        required
       />
-      <label>{{$t('resultPage.school')}}</label>
+      <label>{{ $t("resultPage.school") }}</label>
     </div>
     <div style="display: flex; justify-content: center; margin-top: 2rem">
-      <Button 
-        class="btn-yellow" 
-        @click="checkInfomation()"
-      >
-        <i class="pi pi-download"/>
-        {{$t('button.toXlsx')}}
+      <Button class="btn-yellow" @click="checkInfomation()">
+        <i class="pi pi-download" />
+        {{ $t("button.toXlsx") }}
       </Button>
     </div>
   </Dialog>
