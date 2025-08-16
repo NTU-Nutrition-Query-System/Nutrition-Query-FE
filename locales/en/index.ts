@@ -2,6 +2,7 @@ import home from './home';
 import about from './about';
 import common from './common'; // 如果有通用翻譯
 import nutritionNote from './nutritionNote';
+import calculator from './calculator'; // 如果有計算器相關翻譯
 
 // import common from './common'; // 如果有通用翻譯
 
@@ -11,5 +12,6 @@ export default {
         home,
         about,
         nutritionNote,
+        calculator,
     },
 };

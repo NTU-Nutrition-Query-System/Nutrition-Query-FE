@@ -66,6 +66,7 @@ export default {
     date: "日期",
     save: "儲存到紀錄",
   },
+  edit: "調整",
   calories: "熱量(大卡)",
   protein: "蛋白質(克)",
   carbohydrate: "醣類(克)",
@@ -97,6 +98,7 @@ export default {
   pivot: {
     id: "編號",
     item: "項目",
+    weight: "份量",
     class: "分類",
     subclass: "細項",
     unit: "單位",
@@ -151,5 +153,7 @@ export default {
     ],
     today: "今天",
     clear: "清除",
+    time: "時間",
+    date: "日期",
   },
 };
