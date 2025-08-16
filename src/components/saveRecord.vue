@@ -196,6 +196,14 @@ const filteredRecords = computed(() => {
 <template>
   <Toast position="top-center" :auto-z-index=true style="width: 20rem" />
 
+  <div class="section-header">
+      <div class="section-icon">✓</div>
+      <div>
+          <span class="section-title">我的用餐記錄</span>
+          <span class="section-subtitle">已儲存到個人記錄</span>
+      </div>
+  </div>
+  
     <div style="width: 100%; display: flex; flex-direction: row; align-items: self-start; justify-content: space-around;">
       <DatePicker
         :key="datatablekey"
@@ -258,12 +266,19 @@ const filteredRecords = computed(() => {
 
     </div>
 
+    <div class="dashed-line"></div>
     
-    
+    <div class="section-header">
+       <div class="section-icon">⏳</div>
+       <div>
+           <span class="section-title">準備加入記錄</span>
+           <span class="section-subtitle">尚未儲存，可以修改</span>
+       </div>
+   </div>
 
   <div class="sb-group-input" style="width: 500px; margin: 2.5rem auto;">
     <div style="display: inline-flex; justify-content: center;">
-      
+      <div><span></span></div>
       <div style="margin-right: 1rem;">
         <span>選擇日期</span>
         <DatePicker id="datepicker-12h" v-model="datetime12h"/>
@@ -292,5 +307,64 @@ const filteredRecords = computed(() => {
   flex-direction: row;
   justify-content: right;
   margin-top: 1rem;
+}
+
+.dashed-line {
+    /* border-top: 3px dashed #ffc107; */
+    padding-top: 30px;
+    margin-top: 30px;
+}
+
+/* 已儲存記錄區塊 */
+.saved-section {
+    margin-bottom: 40px;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.section-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 12px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 14px;
+}
+
+.section-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.section-subtitle {
+    font-size: 14px;
+    color: #6c757d;
+    margin-left: 8px;
+}
+
+/* 待儲存區塊 */
+.pending-section {
+    border-top: 3px dashed #ffc107;
+    padding-top: 30px;
+}
+
+.pending-section .section-icon {
+    background: #ffc107;
+    color: #000;
+}
+
+.pending-section .section-title {
+    color: #856404;
 }
 </style>
