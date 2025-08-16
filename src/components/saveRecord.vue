@@ -107,14 +107,32 @@ const checkInfomation = () => {
   // For example, you might want to call an API or store it in a Vuex store
   uploadRecord(datetime12h.value.getTime() / 1000, props.foodItems)
     .then(() => {
-      toast.add({
-        severity: "success",
-        summary: "",
-        detail: "紀錄已儲存",
-        life: 2000,
-      });
+      toast.add({ severity: "success", detail: "紀錄已儲存", life: 2000 });
+      // 回傳另一個 async，讓後面的 then 接續
+      return recordStore.fetchRecords();
     })
-    .catch(error => {
+    .then(() => {
+      // Initialize enabledDates with the dates of records
+      const ret = recordStore.getDateofRecords();
+      if (Array.isArray(ret)) {
+        enabledDates.value = ret.map((date: Date) => new Date(date));
+      } else {
+        console.error("getDateofRecords did not return an array:", ret);
+        enabledDates.value = [];
+      }
+
+      datatablekey.value++;
+      selectedDate.value = datetime12h.value;
+      mealType.value =
+        datetime12h.value.getHours() < 11
+          ? "breakfast"
+          : datetime12h.value.getHours() < 17
+          ? "lunch"
+          : "dinner";
+
+      closeDialog();
+    })
+    .catch((error) => {
       console.error("Error saving record:", error);
       toast.add({
         severity: "error",
@@ -123,10 +141,8 @@ const checkInfomation = () => {
         life: 2000,
       });
     });
-
-  closeDialog();
-  return true;
-};
+    return true;
+  };
 
 const cvtToDate = (date: DatePickerDateSlotOptions) => {
   return new Date(date.year, date.month, date.day);
@@ -168,9 +184,11 @@ const getMealType = (date: Date) => {
 };
 
 const filteredRecords = computed(() => {
-  const records = recordStore.getFoodAndTimeByDate(selectedDate.value);
-  if (!mealType.value) return records;
-  return records.filter(r => getMealType(r.date) === mealType.value);
+  let records = recordStore.getFoodAndTimeByDate(selectedDate.value);
+  if (mealType.value) {
+    records = records.filter(r => getMealType(r.date) === mealType.value);
+  }
+  return records;
 });
 
 </script>
