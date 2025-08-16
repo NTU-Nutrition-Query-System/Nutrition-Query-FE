@@ -1,12 +1,12 @@
 import { defineStore } from "pinia";
 import { computed, ref, watch } from "vue";
-import type { foodItem } from "@/interfaces/Calculator";
+import type { weightedFoodItem, foodItem } from "@/interfaces/Calculator";
 import { isSameDate } from "@/utils/dateUtils";
 import { getRecord } from "@/apis/getRecord";
 
 export interface foodRecord {
   date: Date;
-  food: foodItem[];
+  food: weightedFoodItem[];
 }
 
 export const useRecordStore = defineStore("RecordStore", () => {
@@ -18,7 +18,7 @@ export const useRecordStore = defineStore("RecordStore", () => {
     try {
       const records = await getRecord();
       if (Array.isArray(records.records)) {
-        const groupedRecords: { [key: string]: foodItem[] } = {};
+        const groupedRecords: { [key: string]: weightedFoodItem[] } = {};
 
         records.records.forEach((record:any) => {
           const recordDate = new Date(record.date * 1000).toISOString();
@@ -37,6 +37,8 @@ export const useRecordStore = defineStore("RecordStore", () => {
             fat: record.fat,
             protein: record.protein,
             dietaryFibre: record.dietaryFibre,
+            weight: record.weight,
+            is_customized: record.is_customized,
           });
         });
 
@@ -71,9 +73,22 @@ export const useRecordStore = defineStore("RecordStore", () => {
     return rec.length > 0 ? rec[0].food : [];
   };
 
+  const getFoodAndTimeByDate = (date: Date) => {
+    const rec = foodRecords.value.find((record) => isSameDate(record.date, date));
+    if (!rec) return [];
+
+    console.log("getFoodAndTimeByDate", rec);
+
+    return rec.food.map((f) => ({
+      ...f,
+      date: rec.date,  
+    }));
+  };
+
   return {
     getDateofRecords,
     getFoodRecordsByDate,
+    getFoodAndTimeByDate,
     fetchRecords,
     foodRecords,
   };
