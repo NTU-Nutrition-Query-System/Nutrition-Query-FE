@@ -8,14 +8,15 @@ import Column from "primevue/column";
 import Carousel from "primevue/carousel";
 import { getMealDetail } from "@/assets/data/recommendMeals";
 import type { foodItem } from "@/interfaces/Calculator";
-import { useProductStore } from "@/stores/productStore";
 
 import { library as faLibrary } from "@fortawesome/fontawesome-svg-core";
 import { faBowlRice } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 faLibrary.add(faBowlRice);
 
-const productStore = useProductStore();
+import { usePersonalInfoStore } from "@/stores/personalInfoStore";
+const personalInfoStore = usePersonalInfoStore();
+
 const dialogVisible = ref(false);
 const { t } = useI18n();
 
@@ -63,7 +64,7 @@ const pivotMeals = (meals: foodItem[]) => {
 };
 
 const convertMeal = () => {
-  const mealList = getMealDetail(productStore.dailyNeeds?.calories || 1500);
+  const mealList = getMealDetail(personalInfoStore.dailyRequirement.calories || 1500);
   // console.log("mealList", typeof mealList, mealList);
   const result = [];
   for (const meals of mealList) {
@@ -85,7 +86,7 @@ const getPivotRowNames = (pivot: PivotTable) => {
 
 const recommendCalories = () => {
   const recommends = [1500, 2000, 2500, 3000];
-  const dailyCalorie = productStore.dailyNeeds?.calories || 0;
+  const dailyCalorie = personalInfoStore.dailyRequirement.calories || 0;
   return recommends.reduce((prev, curr) =>
     Math.abs(curr - dailyCalorie) < Math.abs(prev - dailyCalorie) ? curr : prev
   );

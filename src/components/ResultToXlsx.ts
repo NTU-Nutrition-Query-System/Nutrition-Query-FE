@@ -5,7 +5,7 @@ import type {
 } from "@/interfaces/Calculator";
 
 import type { CellStyle } from "xlsx-js-style";
-import { usePersonalInfoStore } from "@/stores/personInfoStore";
+import { usePersonalInfoStore } from "@/stores/personalInfoStore";
 import { ExcelBuilder, ExcelSchemaBuilder } from "@chronicstone/typed-xlsx";
 
 interface personIDinRow {
@@ -72,24 +72,24 @@ export function exportResultToXlsx(
     alignment: { horizontal: "right", vertical: "center" },
   } as CellStyle;
 
-  const PersonInfoStore = usePersonalInfoStore();
+  const personalInfoStore = usePersonalInfoStore();
 
   const infomation: personIDinRow[] = [
     {
       name: t("resultPage.school_name"),
-      value: PersonInfoStore.personInfo.schoolName,
+      value: personalInfoStore.personalInfo.schoolName,
     },
     {
       name: t("calculator_input.age"),
-      value: PersonInfoStore.personInfo.age.toString(),
+      value: personalInfoStore.personalInfo.age.toString(),
     },
     {
       name: t("calculator_input.weight"),
-      value: PersonInfoStore.personInfo.weight.toString(),
+      value: personalInfoStore.personalInfo.weight.toString(),
     },
     {
       name: t("calculator_input.height"),
-      value: PersonInfoStore.personInfo.height.toString(),
+      value: personalInfoStore.personalInfo.height.toString(),
     },
     { name: t("resultPage.date"), value: new Date().toLocaleDateString() },
   ];
@@ -99,7 +99,7 @@ export function exportResultToXlsx(
       key: "name",
       cellStyle: rightCenterAlignment,
     })
-    .column(PersonInfoStore.personInfo.name as never, {
+    .column(personalInfoStore.personalInfo.name as never, {
       key: "value",
       cellStyle: rightCenterAlignment,
     })
