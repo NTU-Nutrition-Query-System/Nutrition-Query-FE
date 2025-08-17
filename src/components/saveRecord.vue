@@ -201,6 +201,7 @@ const filteredRecords = computed(() => {
     records = records.filter(r => getMealType(r.date) === mealType.value);
   }
 
+  // 展開 food，合併日期資訊
   let result = records.flatMap(r =>
     r.food.map(f => ({
       date: r.date, // 保留日期方便顯示
@@ -208,9 +209,9 @@ const filteredRecords = computed(() => {
     }))
   );
 
-  console.log("Filtered records:", result);
+  // 依時間排序，從早到晚
+  result.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
-  // 將巢狀 food 展平成單筆 row
   return result;
 });
 
