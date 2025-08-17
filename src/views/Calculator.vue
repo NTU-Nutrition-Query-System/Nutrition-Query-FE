@@ -63,7 +63,7 @@ onMounted(() => {
   <!-- TODO: fix the margin  -->
   <Button
     class="nutrition-btn"
-    icon="pi pi-calculator"
+    icon="pi pi-sparkles"
     style="
       position: fixed;
       bottom: 7rem;
