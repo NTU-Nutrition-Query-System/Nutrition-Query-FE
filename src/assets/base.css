@@ -25,6 +25,9 @@
   --primary-color: #F5C332;
   --primary-color-hover: #F8D469;
   --primary-color-dark: #F5C332;
+  --secondary-color: #455a64; /* 主色 teal */
+  --secondary-color-hover: #37474f; /* hover 時稍微變深 */
+
 }
 
 /* 基礎樣式設置 */

@@ -708,6 +708,48 @@ buttons
   color: #222222;
 }
 
+.btn-secondary {
+  background-color: var(--secondary-color) !important;
+  color: #ffffff !important;
+  border: none !important;
+  cursor: pointer;
+  padding: 10px 16px;
+  border-radius: 4px;
+  margin: 5px;
+  display: inline-flex;
+  align-items: center;
+  font-size: 16px;
+  transition: 0.3s ease-in-out;
+}
+
+.btn-secondary:hover {
+  background-color: var(--secondary-color-hover) !important;
+}
+
+.btn-unselected {
+  background-color: #f0f0f0 !important;  /* 淺灰背景 */
+  color: #666666 !important;             /* 淺深灰字 */
+  border: none !important;
+  cursor: pointer;
+  opacity: 0.8;                          /* 稍微降低存在感 */
+  padding: 10px 16px;
+  border-radius: 4px;
+  margin: 5px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  transform: scale(1);
+  font-size: 16px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  transition: 0.3s ease-in-out;
+}
+
+.btn-unselected:hover {
+  background-color: #e2e2e2 !important;  /* hover 時稍微變深 */
+  opacity: 1;                            /* hover 時恢復正常 */
+}
+
 .sb-btn {
   opacity: 1;
   border: none;

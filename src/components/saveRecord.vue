@@ -7,6 +7,7 @@ import DataTable from "primevue/datatable";
 import Column from "primevue/column";
 import Button from "primevue/button";
 import Toast from "primevue/toast";
+import Tag from "primevue/tag";
 import { usePrimeVue } from "primevue/config";
 import { useToast } from "primevue/usetoast";
 import { uploadRecord } from "@/apis/uploadRecord";
@@ -22,7 +23,15 @@ const recordStore = useRecordStore();
 const { t, locale, tm } = useI18n();
 const primevue = usePrimeVue();
 const datatablekey = ref(0); // Key to force DataTable to re-render
-const mealType = ref<'breakfast' | 'lunch' | 'dinner' | null>(null);
+
+const mealType = ref<string | null>(null);
+
+const mealOptions = [
+  { label: "早餐 00:00-11:00", value: "breakfast" },
+  { label: "午餐 11:00-17:00", value: "lunch" },
+  { label: "晚餐 17:00-00:00", value: "dinner" },
+  { label: "全部", value: null }
+];
 
 primevue.config.locale = Object.assign(
   {},
@@ -184,11 +193,25 @@ const getMealType = (date: Date) => {
 };
 
 const filteredRecords = computed(() => {
+  // 先取出指定日期的所有紀錄
   let records = recordStore.getFoodAndTimeByDate(selectedDate.value);
+
+  // 如果有 mealType 過濾，就先篩掉不符合的紀錄
   if (mealType.value) {
     records = records.filter(r => getMealType(r.date) === mealType.value);
   }
-  return records;
+
+  let result = records.flatMap(r =>
+    r.food.map(f => ({
+      date: r.date, // 保留日期方便顯示
+      ...f
+    }))
+  );
+
+  console.log("Filtered records:", result);
+
+  // 將巢狀 food 展平成單筆 row
+  return result;
 });
 
 </script>
@@ -204,64 +227,104 @@ const filteredRecords = computed(() => {
       </div>
   </div>
   
-    <div style="width: 100%; display: flex; flex-direction: row; align-items: self-start; justify-content: space-around;">
-      <DatePicker
-        :key="datatablekey"
-        v-model="selectedDate"
-        style="margin-top: 1rem"
-        inline
-        :pt="{
-            day: (date : any) => ({
+    <div class="records-layout">
+      <div class="calendar-section">
+        <DatePicker
+          :key="datatablekey"
+          v-model="selectedDate"
+          inline
+          :pt="{
+            day: (date: any) => ({
               class: {
                 'p-disabled': !isDateEnabled(cvtToDate(date.context.date)),
                 'p-highlight': isSameDate(cvtToDate(date.context.date), new Date()),
               }
             })
-        }"
-      >
-
-      </DatePicker>
-      <div>
-      <div class="time-select">
-        <Button class="btn-yellow" label="早餐 00:00-11:00" @click="mealType = 'breakfast'" />
-        <Button class="btn-yellow" label="午餐 11:00-17:00" @click="mealType = 'lunch'" />
-        <Button class="btn-yellow" label="晚餐 17:00-00:00" @click="mealType = 'dinner'" />
-        <Button class="btn-yellow" label="全部" @click="mealType = null" />
+          }"
+        />
       </div>
 
-      <DataTable
-        :key="datatablekey"
-        :value="filteredRecords"
-        scrollHeight="300px"
-        style="width: 100%; margin-top: 1rem; min-height: 300px;"
-      >
-      <template #empty>
-        <div style="text-align: center; width: 100%; padding: 1rem;">
-          {{ t('page_content.calculator.storage.no_food_record') }}
+
+      <div class="records-section">
+        <div class="time-select">
+          <Button
+            v-for="option in mealOptions"
+            :key="option.label"
+            :label="option.label"
+            :class="mealType === option.value ? 'btn-yellow' : 'btn-unselected'"
+            @click="mealType = option.value"
+          />
         </div>
-      </template>
 
-      <template #loading> {{ t('page_content.calculator.storage.loading') }}</template>
+      <DataTable
+          :key="datatablekey"
+          :value="filteredRecords"
+          :scrollable="true"
+          scroll-height="380px"
+          class="records-table"
+          :row-hover="true"
+        >
+          <template #empty>
+            <div class="empty-state">
+              <i class="pi pi-calendar-times empty-icon"></i>
+              <p>{{ t('page_content.calculator.storage.no_food_record') }}</p>
+            </div>
+          </template>
 
-      <Column :header="t('edit')" style="width: 100px">
-        <template #body="slotProps">
-          <Button class="btn-yellow" icon="pi pi-pencil" @click="editItem(slotProps.data)" />
-        </template>
-      </Column>
+          <template #loading>
+            <div class="loading-state">
+              <i class="pi pi-spin pi-spinner"></i>
+              {{ t('page_content.calculator.storage.loading') }}
+            </div>
+          </template>
 
-      <Column field="date" :header="t('DatePicker.time')">
-        <template #body="slotProps">
-          {{ new Date(slotProps.data.date).toLocaleTimeString(locale, { hour: '2-digit', minute: '2-digit' }) }}
-        </template>
-      </Column>
-      <Column field="weight" :header="t('pivot.weight')"></Column>
-      <Column field="name" :header="t('pivot.item')" weight="200px"></Column>
-      <Column field="gram" :header="t('pivot.gram')"></Column>
-      <Column field="calories" :header="t('pivot.calories')"></Column>
-      <Column field="carbohydrate" :header="t('pivot.carbohydrate')"></Column>
-      <Column field="protein" :header="t('pivot.protein')"></Column>
-      <Column field="fat" :header="t('pivot.fat')"></Column>
-    </DataTable>
+          <!-- 狀態指示欄 -->
+          <Column header="" style="width: 40px">
+            <template #body>
+              <div class="status-indicator saved"></div>
+            </template>
+          </Column>
+
+          <Column :header="t('edit')" style="width: 80px">
+            <template #body="slotProps">
+              <Button 
+                icon="pi pi-pencil" 
+                size="small"
+                severity="secondary"
+                text
+                @click="editItem(slotProps.data)" 
+              />
+            </template>
+          </Column>
+
+           <Column field="date" :header="t('DatePicker.time')">
+            <template #body="slotProps">
+              {{ new Date(slotProps.data.date).toLocaleTimeString(locale, { hour: '2-digit', minute: '2-digit' }) }}
+            </template>
+          </Column>
+
+          <Column field="weight" :header="t('pivot.weight')" style="width: 80px">
+            <template #body="slotProps">
+              <span class="weight-display">{{ slotProps.data.weight }}</span>
+            </template>
+          </Column>
+          
+          <Column field="name" :header="t('pivot.item')" style="min-width: 150px">
+            <template #body="slotProps">
+              <span class="food-name">{{ slotProps.data.name }}</span>
+            </template>
+          </Column>
+          
+          <Column field="gram" :header="t('pivot.gram')" style="width: 80px"></Column>
+          <Column field="calories" :header="t('pivot.calories')" style="width: 90px">
+            <template #body="slotProps">
+              <span class="calories">{{ slotProps.data.calories }}</span>
+            </template>
+          </Column>
+          <Column field="carbohydrate" :header="t('pivot.carbohydrate')" style="width: 90px"></Column>
+          <Column field="protein" :header="t('pivot.protein')" style="width: 90px"></Column>
+          <Column field="fat" :header="t('pivot.fat')" style="width: 80px"></Column>
+        </DataTable>
     </div>
 
     </div>
@@ -276,26 +339,26 @@ const filteredRecords = computed(() => {
        </div>
    </div>
 
-  <div class="sb-group-input" style="width: 500px; margin: 2.5rem auto;">
+  <div class="sb-group-input" style="width: 1000px; margin: 2.5rem auto;">
     <div style="display: inline-flex; justify-content: center;">
       <div><span></span></div>
-      <div style="margin-right: 1rem;">
+      <div style="margin-right: 1rem; width: 25%;">
         <span>選擇日期</span>
         <DatePicker id="datepicker-12h" v-model="datetime12h"/>
       </div>
-      <div>
+      <div style="margin-right: 1rem; width: 25%;">
         <span>選擇時間</span>
         <DatePicker id="timepicker-12h" v-model="datetime12h" timeOnly :step-minute=30 />
       </div>
+      <div style="display: flex; justify-content: center; margin-top: 1rem">
+        <Button 
+          @click="checkInfomation"
+          class="btn-yellow">
+          <i class="pi pi-upload"/>
+          儲存至個人紀錄
+        </Button>
+      </div>
     </div>
-  </div>
-  <div style="display: flex; justify-content: center; margin-top: 2rem">
-    <Button 
-      @click="checkInfomation"
-      class="btn-yellow">
-      <i class="pi pi-upload"/>
-      儲存至個人紀錄
-    </Button>
   </div>
   
 
@@ -306,11 +369,11 @@ const filteredRecords = computed(() => {
   display: flex;
   flex-direction: row;
   justify-content: right;
-  margin-top: 1rem;
+  margin-top: -4rem;
 }
 
 .dashed-line {
-    /* border-top: 3px dashed #ffc107; */
+    border-top: 0.5px dashed #3e3e3e;
     padding-top: 30px;
     margin-top: 30px;
 }
@@ -366,5 +429,236 @@ const filteredRecords = computed(() => {
 
 .pending-section .section-title {
     color: #856404;
+}
+
+/* 整體佈局 */
+.saved-section, .pending-section {
+  margin-bottom: 2rem;
+}
+
+/* Section Header */
+.section-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--surface-border);
+}
+
+.section-icon {
+  width: 32px;
+  height: 32px;
+  margin-right: 12px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 14px;
+}
+
+.section-icon.saved {
+  background: var(--green-500);
+}
+
+.section-icon.pending {
+  background: var(--orange-500);
+}
+
+.section-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 0.25rem;
+}
+
+.section-subtitle {
+  font-size: 0.875rem;
+  color: var(--text-color-secondary);
+}
+
+/* Records Layout */
+.records-layout {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.calendar-section {
+  min-width: 400px;
+}
+
+.records-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Meal Filter */
+.meal-filter {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.meal-selector {
+  font-size: 0.875rem;
+}
+
+/* 狀態指示器 */
+.status-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.status-indicator.saved {
+  background: var(--green-500);
+}
+
+.status-indicator.pending {
+  background: var(--orange-500);
+}
+
+/* Tables */
+.records-table, .pending-table {
+  border: 1px solid var(--surface-border);
+  border-radius: 8px;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--text-color-secondary);
+}
+
+.empty-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.loading-state {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-color-secondary);
+}
+
+/* Time Tag */
+.time-tag {
+  font-size: 0.875rem;
+}
+
+/* Food Name */
+.food-name {
+  font-weight: 500;
+}
+
+/* Calories */
+.calories {
+  color: var(--orange-500);
+  font-weight: 500;
+}
+
+/* Weight Display */
+.weight-display {
+  font-weight: 500;
+  color: var(--blue-500);
+}
+
+/* Section Divider */
+.section-divider {
+  margin: 2rem 0;
+  border-top: 2px dashed var(--orange-300);
+}
+
+/* DateTime Selector */
+.datetime-selector {
+  margin-bottom: 1.5rem;
+}
+
+.datetime-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 1.5rem;
+  align-items: end;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.save-button {
+  height: fit-content;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+/* Quantity Controls */
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.quantity {
+  min-width: 2rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Edit Form */
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.edit-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.edit-form label {
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .records-layout {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .datetime-form {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+  }
 }
 </style>
