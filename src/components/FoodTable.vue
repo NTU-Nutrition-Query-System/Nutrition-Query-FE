@@ -11,7 +11,6 @@ import Card from "primevue/card";
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
 import Toast from "primevue/toast";
-import MultiSelect from "primevue/multiselect";
 import { useToast } from "primevue/usetoast";
 import type { foodItem } from "@/interfaces/Calculator";
 import { useProductStore } from "@/stores/productStore";

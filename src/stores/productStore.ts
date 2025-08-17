@@ -4,23 +4,14 @@ import type {
   filterOption,
   foodItem,
   weightedFoodItem,
-  nutrient,
 } from "@/interfaces/Calculator";
 import { FilterMatchMode } from "@primevue/core/api";
-
-import type { PersonalInfo } from "@/interfaces/PersonalInfo";
 
 export const useProductStore = defineStore("productStore", () => {
   const products = ref<weightedFoodItem[]>([]);
   const selectedProducts = ref<weightedFoodItem[]>([]);
   const customProducts = ref<weightedFoodItem[]>([]);
   const customProductsCount = ref<number>(0);
-  const dailyNeeds = ref<nutrient>({
-    calories: 0,
-    carbohydrate: 0,
-    protein: 0,
-    fat: 0,
-  });
   const foodTableLoaded = ref(false);
   const selectedOptions = ref();
   const lastUpdated = ref<number>(Date.now());
@@ -219,34 +210,6 @@ export const useProductStore = defineStore("productStore", () => {
     );
   });
 
-  const setDailyNeeds = (data: nutrient) => {
-    dailyNeeds.value = data;
-  };
-
-  const calculateDailyNeeds = (personalInfo: PersonalInfo) => {
-    if (personalInfo.gender == 1) {
-      dailyNeeds.value.calories =
-        (66 +
-          13.7 * personalInfo.weight +
-          5 * personalInfo.height -
-          6.8 * personalInfo.age) *
-        personalInfo.activityFactor;
-    } else {
-      dailyNeeds.value.calories =
-        (665 +
-          9.6 * personalInfo.weight +
-          1.8 * personalInfo.height -
-          4.7 * personalInfo.age) *
-        personalInfo.activityFactor;
-    }
-
-    dailyNeeds.value.protein = personalInfo.weight * 1;
-
-    dailyNeeds.value.carbohydrate = (dailyNeeds.value.calories * 0.5) / 4;
-
-    dailyNeeds.value.fat = (dailyNeeds.value.calories * 0.3) / 9;
-  };
-
   return {
     lastUpdated,
     removeTag,
@@ -254,8 +217,6 @@ export const useProductStore = defineStore("productStore", () => {
     updateRow,
     getColor,
     clearFilters,
-    setDailyNeeds,
-
     products,
     selectedProducts,
     customProductsCount,
@@ -268,7 +229,5 @@ export const useProductStore = defineStore("productStore", () => {
     selectedClass,
     calculatorFilteredData,
     calculatorFilters,
-    dailyNeeds,
-    calculateDailyNeeds,
   };
 });

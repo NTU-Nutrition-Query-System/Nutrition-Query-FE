@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { computed, ref, watch } from "vue";
+import type { nutrient } from "@/interfaces/Calculator";
 import type {
   PersonalInfo,
   PersonalInfoWithTime,
@@ -28,36 +29,6 @@ export const usePersonalInfoStore = defineStore("personInfoStore", () => {
 
   const deleteCookie = (name: string) => {
     document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-  };
-
-  // Load person info from cookie or use default values
-  const loadFromCookie = (): PersonalInfo => {
-    const cookieData = getCookie("personInfo");
-    if (cookieData) {
-      try {
-        const parsedData = JSON.parse(decodeURIComponent(cookieData));
-        return {
-          name: parsedData.name || "",
-          schoolName: parsedData.schoolName || "",
-          gender: parsedData.gender || 0,
-          age: parsedData.age || 0,
-          weight: parsedData.weight || 0,
-          height: parsedData.height || 0,
-          activityFactor: parsedData.activityFactor || 0,
-        };
-      } catch (error) {
-        console.error("Error parsing person info from cookie:", error);
-      }
-    }
-    return {
-      name: "",
-      schoolName: "",
-      gender: 0,
-      age: 0,
-      weight: 0,
-      height: 0,
-      activityFactor: 0,
-    };
   };
 
   const checkCookieExists = (): boolean => {
@@ -96,7 +67,68 @@ export const usePersonalInfoStore = defineStore("personInfoStore", () => {
     }
   };
 
+  // Load person info from cookie or use default values
+  const loadFromCookie = (): PersonalInfo => {
+    const cookieData = getCookie("personInfo");
+    if (cookieData) {
+      try {
+        const parsedData = JSON.parse(decodeURIComponent(cookieData));
+        return {
+          name: parsedData.name || "",
+          schoolName: parsedData.schoolName || "",
+          gender: parsedData.gender || 0,
+          age: parsedData.age || 0,
+          weight: parsedData.weight || 0,
+          height: parsedData.height || 0,
+          activityFactor: parsedData.activityFactor || 0,
+        };
+      } catch (error) {
+        console.error("Error parsing person info from cookie:", error);
+      }
+    }
+    return {
+      name: "",
+      schoolName: "",
+      gender: 0,
+      age: 0,
+      weight: 0,
+      height: 0,
+      activityFactor: 0,
+    };
+  };
+
   const personalInfo = ref<PersonalInfo>(loadFromCookie());
+
+  const dailyRequirement = computed((): nutrient => {
+    let calories = 0;
+
+    if (personalInfo.value.gender == 1) {
+      calories =
+        (66 +
+          13.7 * personalInfo.value.weight +
+          5 * personalInfo.value.height -
+          6.8 * personalInfo.value.age) *
+        personalInfo.value.activityFactor;
+    } else {
+      calories =
+        (665 +
+          9.6 * personalInfo.value.weight +
+          1.8 * personalInfo.value.height -
+          4.7 * personalInfo.value.age) *
+        personalInfo.value.activityFactor;
+    }
+
+    const protein = personalInfo.value.weight * 1;
+    const carbohydrate = (calories * 0.5) / 4;
+    const fat = (calories * 0.3) / 9;
+
+    return {
+      calories,
+      protein,
+      carbohydrate,
+      fat,
+    };
+  });
 
   // Save person info to cookie whenever it changes
   const saveToCookie = () => {
@@ -128,8 +160,9 @@ export const usePersonalInfoStore = defineStore("personInfoStore", () => {
   };
 
   return {
-    personInfo: personalInfo,
-    savePersonInfoToCookie: saveToCookie,
+    personalInfo,
+    dailyRequirement,
+    saveToCookie,
     checkCookieExists,
     clearPersonInfo,
   };

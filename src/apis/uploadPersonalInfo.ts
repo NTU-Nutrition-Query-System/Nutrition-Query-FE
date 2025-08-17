@@ -1,10 +1,10 @@
 import axios from "axios";
 import { useAuthStore } from "@/stores/authStore";
-import { usePersonalInfoStore } from "@/stores/personInfoStore";
+import { usePersonalInfoStore } from "@/stores/personalInfoStore";
 
 export const uploadPersonalInfo = async () => {
   const authStore = useAuthStore();
-  const personInfoStore = usePersonalInfoStore();
+  const personalInfoStore = usePersonalInfoStore();
 
   if (!authStore.isLoggedIn) {
     return;
@@ -14,7 +14,7 @@ export const uploadPersonalInfo = async () => {
     const response = await axios.post(
       "/api/uploadPersonalInfo",
       {
-        ...personInfoStore.personInfo,
+        ...personalInfoStore.personalInfo,
       },
       {
         headers: {
