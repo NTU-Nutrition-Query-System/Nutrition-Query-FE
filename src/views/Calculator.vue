@@ -1,19 +1,17 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { onMounted, ref, computed } from "vue";
+import { onMounted, ref } from "vue";
 import Button from "primevue/button";
 import OverlayBadge from "primevue/overlaybadge";
-import { useToast } from "primevue/usetoast";
 
 import { getTableData } from "@/apis/tableData";
 
-import type { nutrient } from "@/interfaces/Calculator";
 import { useProductStore } from "@/stores/productStore";
 import DailyNeedsCalculator from "@/components/DailyNeedsCalculator.vue";
 import FoodTable from "@/components/FoodTable.vue";
 import CaloricResult from "@/components/CaloricResult.vue";
 
-import { usePersonalInfoStore } from "@/stores/personInfoStore";
+import { usePersonalInfoStore } from "@/stores/personalInfoStore";
 const personalInfoStore = usePersonalInfoStore();
 
 import { library as faLibrary } from "@fortawesome/fontawesome-svg-core";
@@ -25,69 +23,30 @@ import {
 faLibrary.add(faSortDown, faCalendarDay, faBurger);
 
 const { locale } = useI18n();
-const toast = useToast();
 
 const productStore = useProductStore();
 
-const showCalculator = ref<boolean>(false);
+const showDailyNeedsCalculator = ref<boolean>(false);
 const showResult = ref<boolean>(false);
 
-const nutritionShow = () => {
-  showCalculator.value = true;
+const dailyNeedsShow = () => {
+  showDailyNeedsCalculator.value = true;
 };
 
-const calculate = () => {
+const resultShow = () => {
   showResult.value = true;
 };
 
 const foodTableLoaded = ref<boolean>(false);
-
-const dailyNeeds = computed(() => {
-  console.log("Daily needs:", productStore.dailyNeeds);
-  if (productStore.dailyNeeds) {
-    return productStore.dailyNeeds;
-  }
-  return {
-    calories: 0,
-    carbohydrate: 0,
-    protein: 0,
-    fat: 0,
-  } as nutrient;
-});
 
 const loadTableData = async () => {
   foodTableLoaded.value = true;
   productStore.loadTableData(getTableData, locale.value);
 };
 
-const targetSection = ref<HTMLElement | null>(null);
-const itemSelect = (e: any) => {
-  console.log("Row clicked");
-  console.log(e);
-  const success = productStore.updateRow(e.data);
-  if (success) {
-    // Toast 提示
-    toast.add({
-      severity: "success",
-      summary: "",
-      detail: `${e?.data.item} is added`,
-      life: 1000,
-    });
-  } else {
-    toast.add({
-      severity: "warn",
-      summary: "",
-      detail: `${e?.data.item} is removed`,
-      life: 2000,
-    });
-  }
-};
-
 onMounted(() => {
   if (!personalInfoStore.checkCookieExists()) {
-    showCalculator.value = true;
-  } else {
-    productStore.calculateDailyNeeds(personalInfoStore.personInfo);
+    showDailyNeedsCalculator.value = true;
   }
   loadTableData();
 });
@@ -113,9 +72,9 @@ onMounted(() => {
       margin-right: 1rem;
     "
     label="營養素"
-    @click="nutritionShow"
+    @click="dailyNeedsShow"
   />
-  <div ref="targetSection" v-if="foodTableLoaded">
+  <div v-if="foodTableLoaded">
     <!--
     A fixed positioned overlay badge component in the bottom-right corner of the screen
     with a circular shape.
@@ -139,7 +98,7 @@ onMounted(() => {
         class="calculator-btn"
         icon="pi pi-calculator"
         :label="$t('calculate')"
-        @click="calculate"
+        @click="resultShow"
       />
     </OverlayBadge>
     <section style="margin-top: 10rem">
@@ -148,14 +107,15 @@ onMounted(() => {
     </section>
   </div>
 
-  <DailyNeedsCalculator v-if="showCalculator" v-model:visible="showCalculator">
-  </DailyNeedsCalculator>
+  <DailyNeedsCalculator
+    v-if="showDailyNeedsCalculator"
+    v-model:visible="showDailyNeedsCalculator"
+  />
 
   <CaloricResult
     v-if="showResult"
     v-model:visible="showResult"
-    v-model:needData="dailyNeeds"
-  ></CaloricResult>
+  />
 </template>
 
 <style>

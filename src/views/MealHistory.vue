@@ -9,8 +9,6 @@ import Column from "primevue/column";
 
 import type { DatePickerDateSlotOptions } from "primevue/datepicker";
 
-import { useProductStore } from "@/stores/productStore";
-import { useRecordStore } from "@/stores/recordStore";
 
 import { library as faLibrary } from "@fortawesome/fontawesome-svg-core";
 import { faCalendarDay, faBurger } from "@fortawesome/free-solid-svg-icons";
@@ -18,8 +16,10 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 faLibrary.add(faCalendarDay);
 faLibrary.add(faBurger);
 
+import { usePersonalInfoStore } from "@/stores/personalInfoStore";
+const personalInfoStore = usePersonalInfoStore();
 
-const productStore = useProductStore();
+import { useRecordStore } from "@/stores/recordStore";
 const recordStore = useRecordStore();
 
 const primevue = usePrimeVue();
@@ -102,7 +102,7 @@ const toast = useToast();
               </h3>
               <div
                 class="sb-menu-item sb-menu-item-sm"
-                v-for="(value, key) in productStore.dailyNeeds"
+                v-for="(value, key) in personalInfoStore.dailyRequirement"
                 :key="key"
               >
                 <div class="sb-card-tp">
@@ -129,7 +129,7 @@ const toast = useToast();
               </h3>
               <div
                 class="sb-menu-item sb-menu-item-sm"
-                v-for="(value, key) in productStore.dailyNeeds"
+                v-for="(value, key) in personalInfoStore.dailyRequirement"
                 :key="key"
               >
                 <div class="sb-card-tp">

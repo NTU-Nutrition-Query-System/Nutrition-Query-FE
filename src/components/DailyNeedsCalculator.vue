@@ -15,7 +15,7 @@ const { t } = useI18n();
 import type { nutrient } from "@/interfaces/Calculator";
 import { useProductStore } from "@/stores/productStore";
 const productStore = useProductStore();
-import { usePersonalInfoStore } from "@/stores/personInfoStore";
+import { usePersonalInfoStore } from "@/stores/personalInfoStore";
 const personalInfoStore = usePersonalInfoStore();
 import { uploadPersonalInfo } from "@/apis/uploadPersonalInfo";
 const toast = useToast();
@@ -44,14 +44,14 @@ const age = ref<string>("");
 
 onMounted(() => {
   if (personalInfoStore.checkCookieExists()) {
-    age.value = personalInfoStore.personInfo.age.toString();
-    height.value = personalInfoStore.personInfo.height.toString();
-    weight.value = personalInfoStore.personInfo.weight.toString();
+    age.value = personalInfoStore.personalInfo.age.toString();
+    height.value = personalInfoStore.personalInfo.height.toString();
+    weight.value = personalInfoStore.personalInfo.weight.toString();
   }
 });
 
 const nextOnClicked = () => {
-  if (!personalInfoStore.personInfo.gender) {
+  if (!personalInfoStore.personalInfo.gender) {
     toast.add({
       severity: "error",
       summary: "",
@@ -87,7 +87,7 @@ const nextOnClicked = () => {
     });
     return;
   }
-  if (!personalInfoStore.personInfo.activityFactor) {
+  if (!personalInfoStore.personalInfo.activityFactor) {
     toast.add({
       severity: "error",
       summary: "",
@@ -96,12 +96,10 @@ const nextOnClicked = () => {
     });
     return;
   }
-  personalInfoStore.personInfo.age = parseInt(age.value);
-  personalInfoStore.personInfo.height = parseInt(height.value);
-  personalInfoStore.personInfo.weight = parseInt(weight.value);
-  personalInfoStore.savePersonInfoToCookie();
+  personalInfoStore.personalInfo.age = parseInt(age.value);
+  personalInfoStore.personalInfo.height = parseInt(height.value);
+  personalInfoStore.personalInfo.weight = parseInt(weight.value);
   isExpanded.value = true;
-  productStore.calculateDailyNeeds(personalInfoStore.personInfo);
   uploadPersonalInfo();
 };
 
@@ -160,7 +158,7 @@ const closeDialog = () => {
                       <div class="form-check form-check-inline">
                         <!-- <input class="form-check-input check-activity" type="radio" name="gender" id="boy" value="boy"> -->
                         <RadioButton
-                          v-model="personalInfoStore.personInfo.gender"
+                          v-model="personalInfoStore.personalInfo.gender"
                           value="1"
                           style="margin-left: 1rem"
                         />
@@ -173,7 +171,7 @@ const closeDialog = () => {
                       <div class="form-check form-check-inline">
                         <!-- <input class="form-check-input check-activity" type="radio" name="gender" id="girl" value="girl"> -->
                         <RadioButton
-                          v-model="personalInfoStore.personInfo.gender"
+                          v-model="personalInfoStore.personalInfo.gender"
                           value="0"
                           style="margin-left: 1rem"
                         />
@@ -262,7 +260,7 @@ const closeDialog = () => {
                       >
                         <!-- <input v-model="activityFactor" value="1.3" class="form-check-input check-activity" type="radio" name="intensity" id="mild"> -->
                         <RadioButton
-                          v-model="personalInfoStore.personInfo.activityFactor"
+                          v-model="personalInfoStore.personalInfo.activityFactor"
                           value="1.3"
                           class="form-check-input check-activity"
                         />
@@ -284,7 +282,7 @@ const closeDialog = () => {
                       >
                         <!-- <input v-model="activityFactor" value="1.5" class="form-check-input check-activity" type="radio" name="intensity" id="moderate"> -->
                         <RadioButton
-                          v-model="personalInfoStore.personInfo.activityFactor"
+                          v-model="personalInfoStore.personalInfo.activityFactor"
                           value="1.5"
                           class="form-check-input check-activity"
                         />
@@ -308,7 +306,7 @@ const closeDialog = () => {
                       >
                         <!-- <input v-model="activityFactor" value="2" class="form-check-input check-activity" type="radio" name="intensity" id="severe"> -->
                         <RadioButton
-                          v-model="personalInfoStore.personInfo.activityFactor"
+                          v-model="personalInfoStore.personalInfo.activityFactor"
                           value="2"
                           class="form-check-input check-activity"
                         />

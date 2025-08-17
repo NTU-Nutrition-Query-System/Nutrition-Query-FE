@@ -6,7 +6,7 @@ import Button from "primevue/button";
 import { useToast } from "primevue/usetoast";
 import type { CalculatedNutrition } from "@/interfaces/Calculator";
 import { useProductStore } from "@/stores/productStore";
-import { usePersonalInfoStore } from "@/stores/personInfoStore";
+import { usePersonalInfoStore } from "@/stores/personalInfoStore";
 import { exportResultToXlsx } from "@/components/ResultToXlsx";
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
@@ -18,8 +18,8 @@ const personalInfoStore = usePersonalInfoStore();
 
 const checkInfomation = () => {
   if (
-    personalInfoStore.personInfo.name == "" ||
-    personalInfoStore.personInfo.schoolName == ""
+    personalInfoStore.personalInfo.name == "" ||
+    personalInfoStore.personalInfo.schoolName == ""
   ) {
     toast.add({
       severity: "error",
@@ -29,7 +29,7 @@ const checkInfomation = () => {
     });
     return false;
   } else {
-    personalInfoStore.personInfo;
+    personalInfoStore.personalInfo;
     exportResultToXlsx(props.selectedIntake, productStore.selectedProducts, t);
   }
   closeDialog();
@@ -72,12 +72,12 @@ const props = defineProps({
     style="width: 40%; height: 80%"
   >
     <div class="sb-group-input" style="width: 300px; margin: 2.5rem auto">
-      <input v-model="personalInfoStore.personInfo.name" type="text" required />
+      <input v-model="personalInfoStore.personalInfo.name" type="text" required />
       <label>{{ $t("resultPage.name") }}</label>
     </div>
     <div class="sb-group-input" style="width: 300px; margin: 2.5rem auto">
       <input
-        v-model="personalInfoStore.personInfo.schoolName"
+        v-model="personalInfoStore.personalInfo.schoolName"
         type="text"
         required
       />

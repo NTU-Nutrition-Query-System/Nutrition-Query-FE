@@ -32,14 +32,13 @@ const { t } = useI18n();
 const productStore = useProductStore();
 const { locale } = useI18n();
 
+import { usePersonalInfoStore } from "@/stores/personalInfoStore";
+const personalInfoStore = usePersonalInfoStore();
+
 const toast = useToast();
 const props = defineProps({
   visible: {
     type: Boolean,
-    required: true,
-  },
-  needData: {
-    type: Object as () => nutrient,
     required: true,
   },
 });
@@ -77,14 +76,14 @@ const selectedIntake = computed<CalculatedNutrition[]>(() => {
       id: 0,
       nutrition: "calories",
       intake: selectedValue.value.calories.toFixed(1),
-      mealRequirement: (props.needData.calories / 3).toFixed(1),
+      mealRequirement: (personalInfoStore.dailyRequirement.calories / 3).toFixed(1),
       mealUptakePercentage: (
-        (selectedValue.value.calories / props.needData.calories) *
+        (selectedValue.value.calories / personalInfoStore.dailyRequirement.calories) *
         300
       ).toFixed(1),
-      dailyRequirement: props.needData.calories.toFixed(1),
+      dailyRequirement: personalInfoStore.dailyRequirement.calories.toFixed(1),
       dailyUptakePercentage: (
-        (selectedValue.value.calories / props.needData.calories) *
+        (selectedValue.value.calories / personalInfoStore.dailyRequirement.calories) *
         100
       ).toFixed(1),
     },
@@ -92,14 +91,14 @@ const selectedIntake = computed<CalculatedNutrition[]>(() => {
       id: 1,
       nutrition: "carbohydrate",
       intake: selectedValue.value.carbohydrate.toFixed(1),
-      mealRequirement: (props.needData.carbohydrate / 3).toFixed(1),
+      mealRequirement: (personalInfoStore.dailyRequirement.carbohydrate / 3).toFixed(1),
       mealUptakePercentage: (
-        (selectedValue.value.carbohydrate / props.needData.carbohydrate) *
+        (selectedValue.value.carbohydrate / personalInfoStore.dailyRequirement.carbohydrate) *
         300
       ).toFixed(1),
-      dailyRequirement: props.needData.carbohydrate.toFixed(1),
+      dailyRequirement: personalInfoStore.dailyRequirement.carbohydrate.toFixed(1),
       dailyUptakePercentage: (
-        (selectedValue.value.carbohydrate / props.needData.carbohydrate) *
+        (selectedValue.value.carbohydrate / personalInfoStore.dailyRequirement.carbohydrate) *
         100
       ).toFixed(1),
     },
@@ -107,14 +106,14 @@ const selectedIntake = computed<CalculatedNutrition[]>(() => {
       id: 2,
       nutrition: "protein",
       intake: selectedValue.value.protein.toFixed(1),
-      mealRequirement: (props.needData.protein / 3).toFixed(1),
+      mealRequirement: (personalInfoStore.dailyRequirement.protein / 3).toFixed(1),
       mealUptakePercentage: (
-        (selectedValue.value.protein / props.needData.protein) *
+        (selectedValue.value.protein / personalInfoStore.dailyRequirement.protein) *
         300
       ).toFixed(1),
-      dailyRequirement: props.needData.protein.toFixed(1),
+      dailyRequirement: personalInfoStore.dailyRequirement.protein.toFixed(1),
       dailyUptakePercentage: (
-        (selectedValue.value.protein / props.needData.protein) *
+        (selectedValue.value.protein / personalInfoStore.dailyRequirement.protein) *
         100
       ).toFixed(1),
     },
@@ -123,14 +122,14 @@ const selectedIntake = computed<CalculatedNutrition[]>(() => {
       id: 3,
       nutrition: "fat",
       intake: selectedValue.value.fat.toFixed(1),
-      mealRequirement: (props.needData.fat / 3).toFixed(1),
+      mealRequirement: (personalInfoStore.dailyRequirement.fat / 3).toFixed(1),
       mealUptakePercentage: (
-        (selectedValue.value.fat / props.needData.fat) *
+        (selectedValue.value.fat / personalInfoStore.dailyRequirement.fat) *
         300
       ).toFixed(1),
-      dailyRequirement: props.needData.fat.toFixed(1),
+      dailyRequirement: personalInfoStore.dailyRequirement.fat.toFixed(1),
       dailyUptakePercentage: (
-        (selectedValue.value.fat / props.needData.fat) *
+        (selectedValue.value.fat / personalInfoStore.dailyRequirement.fat) *
         100
       ).toFixed(1),
     },
