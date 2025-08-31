@@ -49,11 +49,11 @@ export const useAuthStore = defineStore("authStore", () => {
     personalInfoStore.personalInfo = {
       name: user.name || "",
       schoolName: user.schoolName || "",
-      gender: 0,
+      gender: user.gender || 0,
       age: user.age || 0,
       height: user.height || 0,
       weight: user.weight || 0,
-      activityFactor: 1.3, // Default value
+      activityFactor: user.activityFactor || 1.3, // Default value
     }
     setAccessToken(accessToken);
     startReloginInterval();
