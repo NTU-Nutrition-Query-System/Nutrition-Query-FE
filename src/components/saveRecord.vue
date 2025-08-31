@@ -319,12 +319,24 @@ const filteredRecords = computed(() => {
           <Column field="gram" :header="t('pivot.gram')" style="width: 80px"></Column>
           <Column field="calories" :header="t('pivot.calories')" style="width: 90px">
             <template #body="slotProps">
-              <span class="calories">{{ slotProps.data.calories }}</span>
+              <span class="calories">{{ slotProps.data.calories * slotProps.data.weight }}</span>
             </template>
           </Column>
-          <Column field="carbohydrate" :header="t('pivot.carbohydrate')" style="width: 90px"></Column>
-          <Column field="protein" :header="t('pivot.protein')" style="width: 90px"></Column>
-          <Column field="fat" :header="t('pivot.fat')" style="width: 80px"></Column>
+          <Column field="carbohydrate" :header="t('pivot.carbohydrate')" style="width: 90px">
+            <template #body="slotProps">
+              <span>{{ slotProps.data.carbohydrate * slotProps.data.weight }}</span>
+            </template>
+          </Column>
+          <Column field="protein" :header="t('pivot.protein')" style="width: 90px">
+            <template #body="slotProps">
+              <span>{{ slotProps.data.protein * slotProps.data.weight }}</span>
+            </template>
+          </Column>
+          <Column field="fat" :header="t('pivot.fat')" style="width: 80px">
+            <template #body="slotProps">
+              <span>{{ slotProps.data.fat * slotProps.data.weight }}</span>
+            </template>
+          </Column>
         </DataTable>
     </div>
 

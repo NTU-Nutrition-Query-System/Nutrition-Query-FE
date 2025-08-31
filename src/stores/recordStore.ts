@@ -37,7 +37,7 @@ export const useRecordStore = defineStore("RecordStore", () => {
             fat: record.fat,
             protein: record.protein,
             dietaryFibre: record.dietaryFibre,
-            weight: record.weight,
+            weight: record.portion,
             is_customized: record.is_customized,
           });
         });
