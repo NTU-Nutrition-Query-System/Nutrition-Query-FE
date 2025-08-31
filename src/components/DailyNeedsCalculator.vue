@@ -12,11 +12,9 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 
-import type { nutrient } from "@/interfaces/Calculator";
-import { useProductStore } from "@/stores/productStore";
-const productStore = useProductStore();
 import { usePersonalInfoStore } from "@/stores/personalInfoStore";
 const personalInfoStore = usePersonalInfoStore();
+
 import { uploadPersonalInfo } from "@/apis/uploadPersonalInfo";
 const toast = useToast();
 
@@ -31,27 +29,24 @@ const emit = defineEmits(["update:visible"]);
 
 const isExpanded = ref<boolean>(false);
 
-const dailyNeeds = ref<nutrient>({
-  calories: 0,
-  carbohydrate: 0,
-  protein: 0,
-  fat: 0,
-});
-
+const activityFactor = ref<string>("");
 const height = ref<string>("");
 const weight = ref<string>("");
 const age = ref<string>("");
+const gender = ref<string>("");
 
 onMounted(() => {
   if (personalInfoStore.checkCookieExists()) {
     age.value = personalInfoStore.personalInfo.age.toString();
     height.value = personalInfoStore.personalInfo.height.toString();
     weight.value = personalInfoStore.personalInfo.weight.toString();
+    gender.value = personalInfoStore.personalInfo.gender.toString();
+    activityFactor.value = personalInfoStore.personalInfo.activityFactor.toString();
   }
 });
 
 const nextOnClicked = () => {
-  if (!personalInfoStore.personalInfo.gender) {
+  if (gender.value === "") {
     toast.add({
       severity: "error",
       summary: "",
@@ -87,7 +82,7 @@ const nextOnClicked = () => {
     });
     return;
   }
-  if (!personalInfoStore.personalInfo.activityFactor) {
+  if (activityFactor.value === "") {
     toast.add({
       severity: "error",
       summary: "",
@@ -96,9 +91,11 @@ const nextOnClicked = () => {
     });
     return;
   }
+  personalInfoStore.personalInfo.gender = parseInt(gender.value);
   personalInfoStore.personalInfo.age = parseInt(age.value);
   personalInfoStore.personalInfo.height = parseInt(height.value);
   personalInfoStore.personalInfo.weight = parseInt(weight.value);
+  personalInfoStore.personalInfo.activityFactor = parseFloat(activityFactor.value);
   isExpanded.value = true;
   uploadPersonalInfo();
 };
@@ -158,7 +155,7 @@ const closeDialog = () => {
                       <div class="form-check form-check-inline">
                         <!-- <input class="form-check-input check-activity" type="radio" name="gender" id="boy" value="boy"> -->
                         <RadioButton
-                          v-model="personalInfoStore.personalInfo.gender"
+                          v-model="gender"
                           value="1"
                           style="margin-left: 1rem"
                         />
@@ -171,7 +168,7 @@ const closeDialog = () => {
                       <div class="form-check form-check-inline">
                         <!-- <input class="form-check-input check-activity" type="radio" name="gender" id="girl" value="girl"> -->
                         <RadioButton
-                          v-model="personalInfoStore.personalInfo.gender"
+                          v-model="gender"
                           value="0"
                           style="margin-left: 1rem"
                         />
@@ -260,7 +257,9 @@ const closeDialog = () => {
                       >
                         <!-- <input v-model="activityFactor" value="1.3" class="form-check-input check-activity" type="radio" name="intensity" id="mild"> -->
                         <RadioButton
-                          v-model="personalInfoStore.personalInfo.activityFactor"
+                          v-model="
+                            activityFactor
+                          "
                           value="1.3"
                           class="form-check-input check-activity"
                         />
@@ -282,7 +281,9 @@ const closeDialog = () => {
                       >
                         <!-- <input v-model="activityFactor" value="1.5" class="form-check-input check-activity" type="radio" name="intensity" id="moderate"> -->
                         <RadioButton
-                          v-model="personalInfoStore.personalInfo.activityFactor"
+                          v-model="
+                            activityFactor
+                          "
                           value="1.5"
                           class="form-check-input check-activity"
                         />
@@ -306,7 +307,9 @@ const closeDialog = () => {
                       >
                         <!-- <input v-model="activityFactor" value="2" class="form-check-input check-activity" type="radio" name="intensity" id="severe"> -->
                         <RadioButton
-                          v-model="personalInfoStore.personalInfo.activityFactor"
+                          v-model="
+                            activityFactor
+                          "
                           value="2"
                           class="form-check-input check-activity"
                         />
@@ -380,7 +383,7 @@ const closeDialog = () => {
                 </h3>
                 <div
                   class="sb-menu-item sb-menu-item-sm"
-                  v-for="(value, key) in dailyNeeds"
+                  v-for="(value, key) in personalInfoStore.dailyRequirement"
                   :key="key"
                 >
                   <div class="sb-card-tp">
@@ -414,7 +417,7 @@ const closeDialog = () => {
                 </h3>
                 <div
                   class="sb-menu-item sb-menu-item-sm"
-                  v-for="(value, key) in dailyNeeds"
+                  v-for="(value, key) in personalInfoStore.dailyRequirement"
                   :key="key"
                 >
                   <div class="sb-card-tp">
