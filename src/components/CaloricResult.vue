@@ -297,7 +297,7 @@ const checkLogined = () => {
                   :config="caloricResultConfig" 
                   :dataset="{
                             series: caloricResultSeries,
-                            value: Math.max(0, Math.min(200, parseFloat(slotProps.data.mealUptakePercentage))),
+                            value: Math.max(0, Math.min(200, parseFloat(slotProps.data.dailyUptakePercentage))),
                           }"
                   style="width: 180px; height: 65px; position: relative; top: -20px;"
                   >
