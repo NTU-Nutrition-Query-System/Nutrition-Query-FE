@@ -153,7 +153,6 @@ const closeDialog = () => {
                   <form id="form">
                     <div class="mb-3">
                       <div class="form-check form-check-inline">
-                        <!-- <input class="form-check-input check-activity" type="radio" name="gender" id="boy" value="boy"> -->
                         <RadioButton
                           v-model="gender"
                           value="1"
@@ -166,7 +165,6 @@ const closeDialog = () => {
                         >
                       </div>
                       <div class="form-check form-check-inline">
-                        <!-- <input class="form-check-input check-activity" type="radio" name="gender" id="girl" value="girl"> -->
                         <RadioButton
                           v-model="gender"
                           value="0"

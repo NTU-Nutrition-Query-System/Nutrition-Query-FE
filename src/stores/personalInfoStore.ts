@@ -100,25 +100,42 @@ export const usePersonalInfoStore = defineStore("personInfoStore", () => {
   const personalInfo = ref<PersonalInfo>(loadFromCookie());
 
   const dailyRequirement = computed((): nutrient => {
-    let calories = 0;
-
-    if (personalInfo.value.gender == 1) {
-      calories =
-        (66 +
-          13.7 * personalInfo.value.weight +
-          5 * personalInfo.value.height -
-          6.8 * personalInfo.value.age) *
-        personalInfo.value.activityFactor;
-    } else {
-      calories =
-        (665 +
-          9.6 * personalInfo.value.weight +
-          1.8 * personalInfo.value.height -
-          4.7 * personalInfo.value.age) *
-        personalInfo.value.activityFactor;
+    let bmr = 0;
+    let bmi = personalInfo.value.weight / ((personalInfo.value.height / 100) ** 2);
+    // Schofield equation for BMR calculation
+    if (personalInfo.value.gender == 1) { // Male
+      if (personalInfo.value.age <= 3) {
+        bmr = 59.512 * personalInfo.value.weight - 30.4;
+      } else if (personalInfo.value.age >= 4 && personalInfo.value.age <= 10) {
+        bmr = 22.706 * personalInfo.value.weight + 504.3;
+      } else if (personalInfo.value.age >= 11 && personalInfo.value.age <= 17) {
+        bmr = 17.686 * personalInfo.value.weight + 658.2;
+      } else if (personalInfo.value.age >= 18 && personalInfo.value.age <= 29) {
+        bmr = 15.057 * personalInfo.value.weight + 692.2;
+      } else if (personalInfo.value.age >= 30 && personalInfo.value.age <= 59) {
+        bmr = 11.472 * personalInfo.value.weight + 873.1;
+      } else if (personalInfo.value.age >= 60) {
+        bmr = 11.711 * personalInfo.value.weight + 587.7;
+      }
+    } else if (personalInfo.value.gender == 2) { // Female
+      if (personalInfo.value.age <= 3) {
+        bmr = 58.317 * personalInfo.value.weight - 31.1;
+      } else if (personalInfo.value.age >= 4 && personalInfo.value.age <= 10) {
+        bmr = 20.315 * personalInfo.value.weight + 485.9;
+      } else if (personalInfo.value.age >= 11 && personalInfo.value.age <= 17) {
+        bmr = 13.384 * personalInfo.value.weight + 692.6;
+      } else if (personalInfo.value.age >= 18 && personalInfo.value.age <= 29) {
+        bmr = 14.818 * personalInfo.value.weight + 486.6;
+      } else if (personalInfo.value.age >= 30 && personalInfo.value.age <= 59) {
+        bmr = 8.126 * personalInfo.value.weight + 845.6;
+      } else if (personalInfo.value.age >= 60) {
+        bmr = 9.082 * personalInfo.value.weight + 658.5;
+      }
     }
 
-    const protein = personalInfo.value.weight * 1;
+    const calories = bmr * personalInfo.value.activityFactor;
+
+    const protein = (calories * 0.2) / 4;
     const carbohydrate = (calories * 0.5) / 4;
     const fat = (calories * 0.3) / 9;
 
