@@ -5,6 +5,7 @@ import type {
   PersonalInfo,
   PersonalInfoWithTime,
 } from "@/interfaces/PersonalInfo";
+import { getRecommendedWeight } from "@/utils/BMIChecking";
 
 export const usePersonalInfoStore = defineStore("personInfoStore", () => {
   // Cookie management functions
@@ -101,35 +102,44 @@ export const usePersonalInfoStore = defineStore("personInfoStore", () => {
 
   const dailyRequirement = computed((): nutrient => {
     let bmr = 0;
-    let bmi = personalInfo.value.weight / ((personalInfo.value.height / 100) ** 2);
+    let recommendedWeight = getRecommendedWeight(
+      personalInfo.value.weight,
+      personalInfo.value.height,
+      personalInfo.value.age,
+      personalInfo.value.gender == 1 ? 'male' : 'female'
+    );
+    
+    if (!recommendedWeight) {
+      return { calories: 0, protein: 0, carbohydrate: 0, fat: 0 };
+    }
     // Schofield equation for BMR calculation
     if (personalInfo.value.gender == 1) { // Male
       if (personalInfo.value.age <= 3) {
-        bmr = 59.512 * personalInfo.value.weight - 30.4;
+        bmr = 59.512 * recommendedWeight - 30.4;
       } else if (personalInfo.value.age >= 4 && personalInfo.value.age <= 10) {
-        bmr = 22.706 * personalInfo.value.weight + 504.3;
+        bmr = 22.706 * recommendedWeight + 504.3;
       } else if (personalInfo.value.age >= 11 && personalInfo.value.age <= 17) {
-        bmr = 17.686 * personalInfo.value.weight + 658.2;
+        bmr = 17.686 * recommendedWeight + 658.2;
       } else if (personalInfo.value.age >= 18 && personalInfo.value.age <= 29) {
-        bmr = 15.057 * personalInfo.value.weight + 692.2;
+        bmr = 15.057 * recommendedWeight + 692.2;
       } else if (personalInfo.value.age >= 30 && personalInfo.value.age <= 59) {
-        bmr = 11.472 * personalInfo.value.weight + 873.1;
+        bmr = 11.472 * recommendedWeight + 873.1;
       } else if (personalInfo.value.age >= 60) {
-        bmr = 11.711 * personalInfo.value.weight + 587.7;
+        bmr = 11.711 * recommendedWeight + 587.7;
       }
     } else if (personalInfo.value.gender == 2) { // Female
       if (personalInfo.value.age <= 3) {
-        bmr = 58.317 * personalInfo.value.weight - 31.1;
+        bmr = 58.317 * recommendedWeight - 31.1;
       } else if (personalInfo.value.age >= 4 && personalInfo.value.age <= 10) {
-        bmr = 20.315 * personalInfo.value.weight + 485.9;
+        bmr = 20.315 * recommendedWeight + 485.9;
       } else if (personalInfo.value.age >= 11 && personalInfo.value.age <= 17) {
-        bmr = 13.384 * personalInfo.value.weight + 692.6;
+        bmr = 13.384 * recommendedWeight + 692.6;
       } else if (personalInfo.value.age >= 18 && personalInfo.value.age <= 29) {
-        bmr = 14.818 * personalInfo.value.weight + 486.6;
+        bmr = 14.818 * recommendedWeight + 486.6;
       } else if (personalInfo.value.age >= 30 && personalInfo.value.age <= 59) {
-        bmr = 8.126 * personalInfo.value.weight + 845.6;
+        bmr = 8.126 * recommendedWeight + 845.6;
       } else if (personalInfo.value.age >= 60) {
-        bmr = 9.082 * personalInfo.value.weight + 658.5;
+        bmr = 9.082 * recommendedWeight + 658.5;
       }
     }
 

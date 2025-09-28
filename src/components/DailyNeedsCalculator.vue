@@ -258,7 +258,7 @@ const closeDialog = () => {
                           v-model="
                             activityFactor
                           "
-                          value="1.3"
+                          value="1.15"
                           class="form-check-input check-activity"
                         />
                         <label
@@ -282,7 +282,7 @@ const closeDialog = () => {
                           v-model="
                             activityFactor
                           "
-                          value="1.5"
+                          value="1.28"
                           class="form-check-input check-activity"
                         />
                         <label
@@ -308,7 +308,7 @@ const closeDialog = () => {
                           v-model="
                             activityFactor
                           "
-                          value="2"
+                          value="1.5"
                           class="form-check-input check-activity"
                         />
                         <label
