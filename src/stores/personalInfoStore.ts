@@ -127,7 +127,7 @@ export const usePersonalInfoStore = defineStore("personInfoStore", () => {
       } else if (personalInfo.value.age >= 60) {
         bmr = 11.711 * recommendedWeight + 587.7;
       }
-    } else if (personalInfo.value.gender == 2) { // Female
+    } else if (personalInfo.value.gender == 0) { // Female
       if (personalInfo.value.age <= 3) {
         bmr = 58.317 * recommendedWeight - 31.1;
       } else if (personalInfo.value.age >= 4 && personalInfo.value.age <= 10) {
