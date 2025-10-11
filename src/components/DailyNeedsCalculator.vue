@@ -36,13 +36,11 @@ const age = ref<string>("");
 const gender = ref<string>("");
 
 onMounted(() => {
-  if (personalInfoStore.checkCookieExists()) {
-    age.value = personalInfoStore.personalInfo.age.toString();
-    height.value = personalInfoStore.personalInfo.height.toString();
-    weight.value = personalInfoStore.personalInfo.weight.toString();
-    gender.value = personalInfoStore.personalInfo.gender.toString();
-    activityFactor.value = personalInfoStore.personalInfo.activityFactor.toString();
-  }
+  age.value = personalInfoStore.personalInfo.age.toString();
+  height.value = personalInfoStore.personalInfo.height.toString();
+  weight.value = personalInfoStore.personalInfo.weight.toString();
+  gender.value = personalInfoStore.personalInfo.gender.toString();
+  activityFactor.value = personalInfoStore.personalInfo.activityFactor.toString();
 });
 
 const nextOnClicked = () => {
