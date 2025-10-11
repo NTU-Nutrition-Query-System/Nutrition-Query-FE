@@ -8,16 +8,97 @@ import type {
 import { getRecommendedWeight } from "@/utils/BMIChecking";
 
 export const usePersonalInfoStore = defineStore("personInfoStore", () => {
+  // Cookie management functions
+  const setCookie = (name: string, value: string) => {
+    const expires = new Date();
+    expires.setDate(expires.getDate() + 1); // tomorrow
+    // expires.setDate(expires.getDate() - 1); // yesterday for testing
+    expires.setHours(3, 0, 0, 0); // 3:00 AM
+    document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/;SameSite=Strict;`;
+  };
 
-  const personalInfo = ref<PersonalInfo>({
+  const getCookie = (name: string): string | null => {
+    const nameEQ = name + "=";
+    const ca = document.cookie.split(";");
+    for (let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) === " ") c = c.substring(1, c.length);
+      if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+  };
+
+  const deleteCookie = (name: string) => {
+    document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+  };
+
+  const checkCookieExists = (): boolean => {
+    const cookieData = getCookie("personInfo");
+
+    if (!cookieData) {
+      return false;
+    }
+
+    try {
+      // Check if the cookie data is valid JSON
+      const parsedData = JSON.parse(decodeURIComponent(cookieData));
+
+      // Manual expiration check based on stored timestamp
+      if (parsedData.time) {
+        const cookieTime = new Date(parsedData.time);
+        const now = new Date();
+
+        // Calculate expiration time: 3 AM tomorrow from when cookie was created
+        const expirationTime = new Date(cookieTime);
+        expirationTime.setDate(expirationTime.getDate() + 1);
+        expirationTime.setHours(3, 0, 0, 0);
+
+        // Check if cookie has expired
+        if (now >= expirationTime) {
+          deleteCookie("personInfo");
+          return false;
+        }
+      }
+
+      // Return true if cookie exists, is valid, and hasn't expired
+      return parsedData && typeof parsedData === "object";
+    } catch (error) {
+      console.error("Error checking cookie validity:", error);
+      return false;
+    }
+  };
+
+  // Load person info from cookie or use default values
+  const loadFromCookie = (): PersonalInfo => {
+    const cookieData = getCookie("personInfo");
+    if (cookieData) {
+      try {
+        const parsedData = JSON.parse(decodeURIComponent(cookieData));
+        return {
+          name: parsedData.name || "",
+          schoolName: parsedData.schoolName || "",
+          gender: parsedData.gender || 0,
+          age: parsedData.age || 0,
+          weight: parsedData.weight || 0,
+          height: parsedData.height || 0,
+          activityFactor: parsedData.activityFactor || 0,
+        };
+      } catch (error) {
+        console.error("Error parsing person info from cookie:", error);
+      }
+    }
+    return {
       name: "",
       schoolName: "",
-      gender: -1,
+      gender: 0,
       age: 0,
       weight: 0,
       height: 0,
       activityFactor: 0,
-  });
+    };
+  };
+
+  const personalInfo = ref<PersonalInfo>(loadFromCookie());
 
   const dailyRequirement = computed((): nutrient => {
     let bmr = 0;
@@ -76,22 +157,40 @@ export const usePersonalInfoStore = defineStore("personInfoStore", () => {
     };
   });
 
+  // Save person info to cookie whenever it changes
+  const saveToCookie = () => {
+    const dataWithTimestamp: PersonalInfoWithTime = {
+      ...personalInfo.value,
+      time: new Date().toISOString(),
+    };
+    setCookie(
+      "personInfo",
+      encodeURIComponent(JSON.stringify(dataWithTimestamp))
+    );
+  };
+
+  // Watch for changes in person info and save to cookie
+  watch(personalInfo, saveToCookie, { deep: true });
+
   // Clear person info and cookies
   const clearPersonInfo = () => {
     personalInfo.value = {
       name: "",
       schoolName: "",
-      gender: -1,
+      gender: 0,
       age: 0,
       weight: 0,
       height: 0,
       activityFactor: 0,
     };
+    deleteCookie("personInfo");
   };
 
   return {
     personalInfo,
     dailyRequirement,
+    saveToCookie,
+    checkCookieExists,
     clearPersonInfo,
   };
 });
