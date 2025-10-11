@@ -49,7 +49,7 @@ export const useAuthStore = defineStore("authStore", () => {
     personalInfoStore.personalInfo = {
       name: user.name || "",
       schoolName: user.schoolName || "",
-      gender: user.gender || 0,
+      gender: user.gender || -1,
       age: user.age || 0,
       height: user.height || 0,
       weight: user.weight || 0,
@@ -58,6 +58,7 @@ export const useAuthStore = defineStore("authStore", () => {
     setAccessToken(accessToken);
     startReloginInterval();
     isLoggedIn.value = true;
+    personalInfoStore.saveToCookie();
   };
 
   const logout = () => {
@@ -66,6 +67,8 @@ export const useAuthStore = defineStore("authStore", () => {
     clearAccessToken();
     clearInterval(reloginIntervalId.value as ReturnType<typeof setTimeout>);
     reloginIntervalId.value = null;
+    const personalInfoStore = usePersonalInfoStore();
+    personalInfoStore.clearPersonInfo();
   };
 
   const setAccessToken = (token: string) => {

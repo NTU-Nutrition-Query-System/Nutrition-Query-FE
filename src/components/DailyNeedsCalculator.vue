@@ -14,6 +14,8 @@ const { t } = useI18n();
 
 import { usePersonalInfoStore } from "@/stores/personalInfoStore";
 const personalInfoStore = usePersonalInfoStore();
+import { useAuthStore } from "@/stores/authStore";
+const authStore = useAuthStore();
 
 import { uploadPersonalInfo } from "@/apis/uploadPersonalInfo";
 const toast = useToast();
@@ -97,7 +99,10 @@ const nextOnClicked = () => {
   personalInfoStore.personalInfo.weight = parseInt(weight.value);
   personalInfoStore.personalInfo.activityFactor = parseFloat(activityFactor.value);
   isExpanded.value = true;
-  uploadPersonalInfo();
+  if(authStore.isLoggedIn){
+    personalInfoStore.saveToCookie();
+    uploadPersonalInfo();
+  }
 };
 
 const closeDialog = () => {

@@ -90,7 +90,7 @@ export const usePersonalInfoStore = defineStore("personInfoStore", () => {
     return {
       name: "",
       schoolName: "",
-      gender: 0,
+      gender: -1,
       age: 0,
       weight: 0,
       height: 0,
@@ -169,15 +169,12 @@ export const usePersonalInfoStore = defineStore("personInfoStore", () => {
     );
   };
 
-  // Watch for changes in person info and save to cookie
-  watch(personalInfo, saveToCookie, { deep: true });
-
   // Clear person info and cookies
   const clearPersonInfo = () => {
     personalInfo.value = {
       name: "",
       schoolName: "",
-      gender: 0,
+      gender: -1,
       age: 0,
       weight: 0,
       height: 0,
