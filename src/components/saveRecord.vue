@@ -1,14 +1,15 @@
 <script setup lang="ts">
 
 import { ref, watch, defineProps } from "vue";
-import { useI18n } from "vue-i18n";
 import DatePicker from "primevue/datepicker";
 import Button from "primevue/button";
 import Toast from "primevue/toast";
+import Select from 'primevue/select';
 import { usePrimeVue } from "primevue/config";
 import { useToast } from "primevue/usetoast";
 import { uploadRecord } from "@/apis/uploadRecord";
 import { useAuthStore } from "@/stores/authStore";
+import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 const toast = useToast();
 
@@ -37,30 +38,32 @@ const props = defineProps({
   },
 });
 
-const dialogVisible = ref(false);
-const openDialog = () => {
-  const authStore = useAuthStore();
-  if(!authStore.isLoggedIn){
-    toast.add({
-      severity: "warn",
-      summary: "",
-      detail: "請先登入",
-      life: 2000,
-    });
-  }
-  dialogVisible.value = true;
-};
-const closeDialog = () => {
-  dialogVisible.value = false;
-};
 const datetime12h = ref(new Date());
+
+const selectedmealType = ref();
+const mealType = ref([
+    { name: t("mealType.breakfast") },
+    { name: t("mealType.lunch") },
+    { name: t("mealType.dinner") },
+    { name: t("mealType.other") },
+]);
+
 
 const checkInfomation = () => {
   if (!datetime12h.value) {
     toast.add({
       severity: "error",
       summary: "",
-      detail: "請選擇時間",
+      detail: t('SaveRecord.toastSelectTime'),
+      life: 2000,
+    });
+    return false;
+  }
+  if (!selectedmealType.value) {
+    toast.add({
+      severity: "error",
+      summary: "",
+      detail: t('SaveRecord.toastSelectMealType'),
       life: 2000,
     });
     return false;
@@ -74,7 +77,7 @@ const checkInfomation = () => {
       toast.add({
         severity: "success",
         summary: "",
-        detail: "紀錄已儲存",
+        detail: t('SaveRecord.toastSaved'),
         life: 2000,
       });
     })
@@ -83,12 +86,10 @@ const checkInfomation = () => {
       toast.add({
         severity: "error",
         summary: "",
-        detail: "儲存失敗，請稍後再試",
+        detail: t('SaveRecord.toastError'),
         life: 2000,
       });
     });
-
-  closeDialog();
   return true;
 };
 
@@ -96,15 +97,19 @@ const checkInfomation = () => {
 
 <template>
   <Toast position="top-center" :auto-z-index=true style="width: 20rem" />
-  <div class="sb-group-input" style="width: 500px; margin: 2.5rem auto;">
+  <div class="sb-group-input" style="width: 600px; margin: 2.5rem auto;">
     <div style="display: inline-flex; justify-content: center;">
       <div style="margin-right: 1rem;">
-        <span>選擇日期</span>
+        <span>{{$t("SaveRecord.selectDate")}}</span>
         <DatePicker id="datepicker-12h" v-model="datetime12h"/>
       </div>
-      <div>
-        <span>選擇時間</span>
+      <div style="margin-right: 1rem;">
+        <span>{{$t("SaveRecord.selectTime")}}</span>
         <DatePicker id="timepicker-12h" v-model="datetime12h" timeOnly :step-minute=30 />
+      </div>
+      <div>
+        <span>{{$t("SaveRecord.selectMealType")}}</span>
+        <Select v-model="selectedmealType" :options="mealType" optionLabel="name" :placeholder="$t('SaveRecord.selectMealType')" />
       </div>
     </div>
   </div>
@@ -113,7 +118,7 @@ const checkInfomation = () => {
       @click="checkInfomation"
       class="btn-yellow">
       <i class="pi pi-upload"/>
-      儲存至個人紀錄
+      {{$t("SaveRecord.saveButton")}}
     </Button>
   </div>
   
