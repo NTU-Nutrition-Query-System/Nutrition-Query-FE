@@ -387,7 +387,7 @@ const closeDialog = () => {
                   <div class="sb-card-tp">
                     <h4 class="sb-card-title">{{ $t(key) }}:</h4>
                     <div class="sb-price">
-                      {{ value.toFixed(2) }} ({{
+                      {{ value.toFixed(0) }} ({{
                         key === "calories" ? "kcal" : "g"
                       }})
                     </div>
@@ -421,7 +421,7 @@ const closeDialog = () => {
                   <div class="sb-card-tp">
                     <h4 class="sb-card-title">{{ $t(key) }}:</h4>
                     <div class="sb-price">
-                      {{ (value / 3.0).toFixed(2) }} ({{
+                      {{ (value / 3.0).toFixed(0) }} ({{
                         key === "calories" ? "kcal" : "g"
                       }})
                     </div>
