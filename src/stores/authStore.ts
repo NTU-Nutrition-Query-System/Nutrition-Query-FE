@@ -3,6 +3,7 @@ import { onMounted, ref } from "vue";
 import { relogin } from "@/apis/google-login";
 import { usePersonalInfoStore } from "./personalInfoStore";
 import type { PersonalInfo } from "@/interfaces/PersonalInfo";
+import { uploadPersonalInfo } from "@/apis/uploadPersonalInfo";
 export interface userInfo extends PersonalInfo {
   email: string;
   picture: string;
@@ -46,14 +47,18 @@ export const useAuthStore = defineStore("authStore", () => {
   const login = (user: userInfo, accessToken: string) => {
     userInfo.value = user;
     const personalInfoStore = usePersonalInfoStore();
-    personalInfoStore.personalInfo = {
-      name: user.name || "",
-      schoolName: user.schoolName || "",
-      gender: user.gender || -1,
-      age: user.age || 0,
-      height: user.height || 0,
-      weight: user.weight || 0,
-      activityFactor: user.activityFactor || 1.3, // Default value
+    if(!personalInfoStore.dailyRequirement.calories){ // only overwrite if personal info is empty
+      personalInfoStore.personalInfo = {
+        name: user.name || "",
+        schoolName: user.schoolName || "",
+        gender: user.gender || -1,
+        age: user.age || 0,
+        height: user.height || 0,
+        weight: user.weight || 0,
+        activityFactor: user.activityFactor || 1.3, // Default value
+      }
+    } else {
+      uploadPersonalInfo();
     }
     setAccessToken(accessToken);
     startReloginInterval();

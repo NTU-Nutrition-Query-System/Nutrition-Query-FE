@@ -102,6 +102,11 @@ export const usePersonalInfoStore = defineStore("personInfoStore", () => {
 
   const dailyRequirement = computed((): nutrient => {
     let bmr = 0;
+
+    if(personalInfo.value.gender == -1) {
+      return { calories: 0, protein: 0, carbohydrate: 0, fat: 0 };
+    }
+
     let recommendedWeight = getRecommendedWeight(
       personalInfo.value.weight,
       personalInfo.value.height,

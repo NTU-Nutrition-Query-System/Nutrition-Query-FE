@@ -45,7 +45,7 @@ const loadTableData = async () => {
 };
 
 onMounted(() => {
-  if (!personalInfoStore.checkCookieExists()) {
+  if (!personalInfoStore.checkCookieExists() || personalInfoStore.dailyRequirement.calories == 0) {
     showDailyNeedsCalculator.value = true;
   }
   loadTableData();

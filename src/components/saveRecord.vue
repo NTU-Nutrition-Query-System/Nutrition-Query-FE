@@ -105,7 +105,7 @@ const checkInfomation = () => {
       </div>
       <div style="margin-right: 1rem;">
         <span>{{$t("SaveRecord.selectTime")}}</span>
-        <DatePicker id="timepicker-12h" v-model="datetime12h" timeOnly :step-minute=30 />
+        <DatePicker id="timepicker-12h" v-model="datetime12h" timeOnly />
       </div>
       <div>
         <span>{{$t("SaveRecord.selectMealType")}}</span>
