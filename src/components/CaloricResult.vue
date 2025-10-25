@@ -55,10 +55,10 @@ const selectedValue = computed<nutrient>(() => {
 
   return productStore.selectedProducts.reduce<nutrient>(
     (acc, item) => {
-      acc.calories += item.calories * item.weight;
-      acc.protein += item.protein * item.weight;
-      acc.carbohydrate += item.carbohydrate * item.weight;
-      acc.fat += item.fat * item.weight;
+      acc.calories += item.calories * item.portion;
+      acc.protein += item.protein * item.portion;
+      acc.carbohydrate += item.carbohydrate * item.portion;
+      acc.fat += item.fat * item.portion;
       return acc;
     },
     {
@@ -344,7 +344,7 @@ const checkLogined = () => {
           <div>
             <InputNumber
               class="iptBtn-amount"
-              v-model="data.weight"
+              v-model="data.portion"
               showButtons
               :step=0.5
               :max=5
@@ -368,27 +368,27 @@ const checkLogined = () => {
       </Column>
       <Column field="gram" :header="$t('food_gram')">
         <template #body="{ data }">
-          <div v-if="!data.is_customized" >{{ (data.gram * data.weight).toFixed(0) }}</div>
+          <div v-if="!data.is_customized" >{{ (data.gram * data.portion).toFixed(0) }}</div>
           <div v-if="data.is_customized"></div>
         </template>
       </Column>
       <Column field="calories" :header="$t('calories')">
         <template #body="{ data }">
-          <div>{{ (data.calories * data.weight).toFixed(0) }}</div>
+          <div>{{ (data.calories * data.portion).toFixed(0) }}</div>
         </template></Column>
       <Column field="carbohydrate" :header="$t('carbohydrate')">
         <template #body="{ data }">
-          <div>{{ (data.carbohydrate * data.weight).toFixed(1) }}</div>
+          <div>{{ (data.carbohydrate * data.portion).toFixed(1) }}</div>
         </template>
       </Column>
       <Column field="protein" :header="$t('protein')">
         <template #body="{ data }">
-          <div>{{ (data.protein * data.weight).toFixed(1) }}</div>
+          <div>{{ (data.protein * data.portion).toFixed(1) }}</div>
         </template>
       </Column>
       <Column field="fat" :header="$t('fat')">
         <template #body="{ data }">
-          <div>{{ (data.fat * data.weight).toFixed(1) }}</div>
+          <div>{{ (data.fat * data.portion).toFixed(1) }}</div>
         </template>
       </Column>
     </DataTable>

@@ -79,7 +79,7 @@ export const useProductStore = defineStore("productStore", () => {
     products.value = res;
     foodTableLoaded.value = true;
     products.value.forEach((product) => {
-      product.weight = 1.0;
+      product.portion = 1.0;
       product.is_customized = false;
     });
     lastUpdated.value = Date.now();
@@ -88,7 +88,7 @@ export const useProductStore = defineStore("productStore", () => {
   const updateRow = (row: weightedFoodItem) => {
     if (!selectedProducts.value.some((item: any) => item.id === row.id)) {
       selectedProducts.value.push(row);
-      row.weight = 1.0;
+      row.portion = 1.0;
 
       // To trigger re-rendering
       selectedProducts.value = [...selectedProducts.value];

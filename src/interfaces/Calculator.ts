@@ -29,7 +29,7 @@ export interface CalculatedNutrition {
 };
 
 export interface weightedFoodItem extends foodItem {
-  weight: number;
+  portion: number;
   is_customized: boolean;
 }
 export interface filterOption {

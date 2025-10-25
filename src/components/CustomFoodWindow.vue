@@ -35,7 +35,7 @@ const food = ref<weightedFoodItem>({
   fat: 0,
   protein: 0,
   dietaryFibre: 0,
-  weight: 1,
+  portion: 1,
   is_customized: true,
 });
 
@@ -66,7 +66,7 @@ const addFood = () => {
     fat: 0,
     protein: 0,
     dietaryFibre: 0,
-    weight: 1,
+    portion: 1,
     is_customized: true,
   };
 };
