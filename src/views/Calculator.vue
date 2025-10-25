@@ -579,7 +579,7 @@ onMounted(() => {
   border-radius: 3px;
 }
 
-.nutrition-btn {
+.calculator-btn {
   display: flex;
   flex-direction: column;
   border-radius: 25px !important;
@@ -590,7 +590,7 @@ onMounted(() => {
   background-color: #f5c332 !important;
 }
 
-.nutrition-btn .p-button-icon {
+.calculator-btn .p-button-icon {
   font-size: 2rem;
   margin-right: 0 !important;
   /* Remove default icon spacing */
@@ -598,7 +598,7 @@ onMounted(() => {
   /* Space between icon and text */
 }
 
-.nutrition-btn:hover {
+.calculator-btn:hover {
   transform: scale(1.05);
 }
 
