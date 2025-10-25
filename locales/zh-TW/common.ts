@@ -55,7 +55,7 @@ export default {
     calculate: "計算我的營養需求！",
     choosing: "開始選取食物！",
     scroll_down: "請往下滑",
-    food_selection_prompt: "關閉視窗選擇食物，再點按右下方「查看」",
+    food_selection_prompt: "從下方選擇食物，再點按右下方「查看」",
     view_selected_food: "查看已選食物以及計算營養素",
   },
   resultPage: {
