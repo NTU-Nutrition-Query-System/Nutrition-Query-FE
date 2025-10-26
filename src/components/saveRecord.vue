@@ -39,6 +39,16 @@ const props = defineProps({
 });
 
 const datetime12h = ref(new Date());
+const time12h = ref();
+const timeOptions = ref(
+  Array.from({ length: 48 }, (_, i) => {
+    const hours = Math.floor(i / 2).toString().padStart(2, '0');
+    const minutes = (i % 2 === 0 ? '00' : '30');
+    const timeString = `${hours}:${minutes}`;
+    const unixTime = new Date().setHours(parseInt(hours), parseInt(minutes), 0, 0) / 1000;
+    return { name: timeString, code: unixTime };
+  })
+);
 
 const selectedmealType = ref();
 const mealType = ref([
@@ -105,7 +115,7 @@ const checkInfomation = () => {
       </div>
       <div style="margin-right: 1rem;">
         <span>{{$t("SaveRecord.selectTime")}}</span>
-        <DatePicker id="timepicker-12h" v-model="datetime12h" timeOnly />
+        <Select v-model="time12h" :options="timeOptions" optionLabel="name" :placeholder="$t('SaveRecord.selectTime')" class="w-full md:w-56" />
       </div>
       <div>
         <span>{{$t("SaveRecord.selectMealType")}}</span>
