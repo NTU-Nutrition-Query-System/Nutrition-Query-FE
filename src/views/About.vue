@@ -61,6 +61,7 @@ import ContactUs from "@/components/common/ContactUs.vue";
           </div>
         </div>
       </div>
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd5kbG6szrI4rOUl-zTouCIRG-tkVRP5Up40e1yzPKzUarDng/viewform?embedded=true" width="100%" height="970" frameborder="0" marginheight="0" marginwidth="0">載入中…</iframe>
     </div>
   </section>
 
