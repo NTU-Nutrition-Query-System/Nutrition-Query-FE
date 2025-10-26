@@ -50,6 +50,23 @@ const timeOptions = ref(
   })
 );
 
+// initialize default to the option closest to now and apply it to datetime12h
+(() => {
+  const now = Math.floor(Date.now() / 1000);
+  if (!timeOptions.value.length) return;
+  const nearest = timeOptions.value.reduce((a, b) =>
+    Math.abs(b.code - now) < Math.abs(a.code - now) ? b : a
+  , timeOptions.value[0]);
+
+  time12h.value = nearest;
+
+  // keep current selected date but set its time to the nearest slot
+  const d = new Date(datetime12h.value);
+  const t = new Date(nearest.code * 1000);
+  d.setHours(t.getHours(), t.getMinutes(), 0, 0);
+  datetime12h.value = d;
+})();
+
 const selectedmealType = ref();
 const mealType = ref([
     { name: t("mealType.breakfast") },
