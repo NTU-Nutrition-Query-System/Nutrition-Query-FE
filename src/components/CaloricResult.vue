@@ -2,6 +2,10 @@
 import InputNumber from "primevue/inputnumber";
 import { ref, watch, computed, onMounted } from "vue";
 import { defineAsyncComponent } from "vue";
+
+import { useI18n } from "vue-i18n";
+const { t } = useI18n();
+
 import Dialog from "primevue/dialog";
 import DataTable from "primevue/datatable";
 import Column from "primevue/column";
@@ -23,14 +27,11 @@ import { useProductStore } from "@/stores/productStore";
 import RecommendMealWindow from "@/components/RecommendMealWindow.vue";
 import CustomFoodWindow from "@/components/CustomFoodWindow.vue";
 import { useAuthStore } from "@/stores/authStore";
-import { caloricResultConfig, caloricResultSeries } from "@/components/common/resultGaugeConfig";
+import { caloricResultConfig } from "@/components/common/resultGaugeConfig";
 import { VueUiGauge } from "vue-data-ui";
 import saveRecord from "./saveRecord.vue";
 const ResultExport = defineAsyncComponent(() => import("./ResultExport.vue"));
-import { useI18n } from "vue-i18n";
-const { t } = useI18n();
 const productStore = useProductStore();
-const { locale } = useI18n();
 
 import { usePersonalInfoStore } from "@/stores/personalInfoStore";
 const personalInfoStore = usePersonalInfoStore();
@@ -181,6 +182,28 @@ const checkLogined = () => {
   }
   return true;
 };
+
+
+const caloricResultSeries = [
+    {
+        from: 0,
+        to: 75,
+        color: '#c2f24e',
+        name: t('resultPage.gauge.low')
+    },
+    {
+        from: 75,
+        to: 125,
+        color: '#ffd21c',
+        name: t('resultPage.gauge.mid')
+    },
+    {
+        from: 125,
+        to: 200,
+        color: '#ff8650',
+        name: t('resultPage.gauge.high')
+    }
+];
 
 </script>
 

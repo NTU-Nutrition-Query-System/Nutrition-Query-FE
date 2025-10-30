@@ -1,7 +1,5 @@
 import { computed, ref } from "vue";
-import { VueUiGauge } from "vue-data-ui";
 import type { FormatterParams, VueUiGaugeConfig } from "vue-data-ui";
-import type { VueUiGaugeDataset } from "vue-data-ui";
 import "vue-data-ui/style.css"; // If you are using multiple components, place this style import in your main
 
 const caloricResultConfig = ref<VueUiGaugeConfig>({
@@ -40,28 +38,6 @@ const caloricResultConfig = ref<VueUiGaugeConfig>({
     }
 });
 
-const caloricResultSeries = [
-    {
-        from: 0,
-        to: 75,
-        color: '#c2f24e',
-        name: '太少'
-    },
-    {
-        from: 75,
-        to: 125,
-        color: '#ffd21c',
-        name: '剛好'
-    },
-    {
-        from: 125,
-        to: 200,
-        color: '#ff8650',
-        name: '太多'
-    }
-];
-
 export {
     caloricResultConfig,
-    caloricResultSeries,
 }

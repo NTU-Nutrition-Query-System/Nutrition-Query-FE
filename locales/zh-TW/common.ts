@@ -65,6 +65,11 @@ export default {
     name: "姓名",
     date: "日期",
     save: "儲存到紀錄",
+    gauge: {
+      low: "太少",
+      mid: "剛好",
+      high: "太多",
+    }
   },
   mealType: {
     breakfast: "早餐",

@@ -70,6 +70,11 @@ export default {
     name: "Name",
     date: "Date",
     save: "Save to History",
+    gauge: {
+      low: "low",
+      mid: "fine",
+      high: "high",
+    }
   },
   mealType: {
     breakfast: "Breakfast",
