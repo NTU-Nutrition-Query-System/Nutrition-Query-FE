@@ -29,6 +29,21 @@ export default {
     addCustomFoodtoList: "新增食物至查看",
     calculator: "營養計算機",
   },
+  portion_reference: {
+    title: "份量參考",
+    fruit: {
+      title: "水果類",
+      grape: "葡萄",
+      cherryTomatoes: "小番茄",
+    },
+    vegetable: {
+      title: "蔬菜類",
+      sweetPotatoLeaves: "地瓜葉",
+      babyCorn: "玉米筍"
+    },
+    bowl: "碗",
+    section: "格"
+  },
   calculator_input: {
     title: "計算我的每日/每餐所需營養素",
     gender: {

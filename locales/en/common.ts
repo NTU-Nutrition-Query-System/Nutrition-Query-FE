@@ -30,6 +30,22 @@ export default {
     addCustomFood: "Add Custom Food",
     addCustomFoodtoList: "Add Food to Calculate",
     calculator: "Nutrition Calculator",
+    portion_reference: "Portion Reference",
+  },
+  portion_reference: {
+    title: "Portion Reference",
+    fruit: {
+      title: "Fruit",
+      grape: " of Grape",
+      cherryTomatoes: " of Cherry Tomatoes",
+    },
+    vegetable: {
+      title: "Vegetable",
+      sweetPotatoLeaves: " of Sweet Potato Leaves",
+      babyCorn: " of Baby Corn"
+    },
+    bowl: "Bowl",
+    section: "Section"
   },
   calculator_input: {
     title: "Calculate daily nutrition needs",

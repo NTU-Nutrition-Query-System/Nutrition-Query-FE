@@ -1,5 +1,9 @@
 <script setup lang="ts">
 import { ref } from "vue";
+
+import { useI18n } from "vue-i18n";
+const { t } = useI18n();
+
 import Dialog from "primevue/dialog";
 import Button from "primevue/button";
 import { library as faLibrary } from "@fortawesome/fontawesome-svg-core";
@@ -27,30 +31,30 @@ const closeDialog = () => {
           :icon="['fas', 'fa-bowl-rice']"
           style="height: 24px; width: 24px; margin-right: 5px"
         />
-        參考份量
+        {{ t('portion_reference.title') }}
       </div>
     </Button>
   </div>
 
   <Dialog
     v-model:visible="dialogVisible"
-    header="參考份量"
+    :header="t('portion_reference.title')"
     @hide="closeDialog"
     :modal="true"
     :closable="true"
     style="width: 80%; height: 80%"
   >
-    <h3 style="text-align: center">水果類</h3>
+    <h3 style="text-align: center">{{ t('portion_reference.fruit.title') }}</h3>
     <table>
       <tbody>
         <tr>
           <td>
-            <span class="sb-description">1/2 碗</span
-            ><span style="font-size: 1.2em">葡萄</span>
+            <span class="sb-description">1/2 {{ t('portion_reference.bowl') }}</span
+            ><span style="font-size: 1.2em">{{ t('portion_reference.fruit.grape') }}</span>
           </td>
           <td>
-            <span class="sb-description">1 碗</span
-            ><span style="font-size: 1.2em">小番茄</span>
+            <span class="sb-description">1 {{ t('portion_reference.bowl') }}</span
+            ><span style="font-size: 1.2em">{{ t('portion_reference.fruit.cherryTomatoes') }}</span>
           </td>
         </tr>
         <tr>
@@ -71,17 +75,17 @@ const closeDialog = () => {
         </tr>
       </tbody>
     </table>
-    <h3 style="text-align: center; padding-top: 30px">蔬菜類</h3>
+    <h3 style="text-align: center; padding-top: 30px">{{ t('portion_reference.vegetable.title') }} </h3>
     <table>
       <tbody>
         <tr>
           <td>
-            <span class="sb-description">1 格</span
-            ><span style="font-size: 1.2em">地瓜葉</span>
+            <span class="sb-description">1 {{ t('portion_reference.section') }}</span
+            ><span style="font-size: 1.2em">{{ t('portion_reference.vegetable.sweetPotatoLeaves') }}</span>
           </td>
           <td>
-            <span class="sb-description">1 格</span
-            ><span style="font-size: 1.2em">玉米筍</span>
+            <span class="sb-description">1 {{ t('portion_reference.section') }}</span
+            ><span style="font-size: 1.2em">{{ t('portion_reference.vegetable.babyCorn') }}</span>
           </td>
         </tr>
         <tr>
