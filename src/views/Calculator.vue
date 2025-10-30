@@ -48,6 +48,12 @@ const loadTableData = async () => {
   productStore.loadTableData(getTableData, locale.value);
 };
 
+import { watch } from "vue";
+
+watch(locale, () => {
+  loadTableData();
+});
+
 const activityFactor = ref<string>("");
 const height = ref<string>("");
 const weight = ref<string>("");
